@@ -1,0 +1,1 @@
+### Cada pasta na pagina App, corresponde a uma aplicação React

@@ -1,0 +1,1 @@
+### Arquivos publicos, são todos considerados estaticos
