@@ -1,19 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+/* scripts */
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
 import { Provider } from 'react-redux'
 import store from '../../store'
-import App from './app';
+import App from './main/app';
 
 ReactDOM.render(
-    <div>
-        Sister and brothers
-        <App />
-   {/*  <Provider store={store}>
+    <Provider store={store}>
         <React.StrictMode>
-          
+            <App />
         </React.StrictMode>
-    </Provider> */}
-    </div>
-    
-    , document.getElementById("root") );
+    </Provider>, document.getElementById("root") );

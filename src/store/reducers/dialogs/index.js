@@ -1,14 +1,3 @@
-const MakeDialogCel = () => {
-    return (
-        {
-            content: null,
-            icon: null,
-            title: null,
-            onResult: null,
-            isLoading: false
-        }
-    )
-}
 
 export const INITIAL_STATE = {
     dialogStack: [ ],
