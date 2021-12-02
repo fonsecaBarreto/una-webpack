@@ -1,0 +1,56 @@
+.blue-lagum {
+    /* variables */
+    --header-height-desktop: 56px;
+    --header-height-mobile: 60px;
+    --menu-width-expanded: 300px;
+    --menu-width: 72px;
+
+    /* style */
+    position: relative; z-index: 0;
+    width: 100%; height: 100vh;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "menu header" "menu content";
+    background: var(--admin-bg-color);
+    overflow: hidden;
+}
+
+.blue-lagum > main{
+    height: 100%;
+    grid-area: content;
+    background-color: rgb(219, 219, 219);
+    overflow-y: scroll;
+    position: relative;
+    z-index: 1; 
+}
+
+.blue-lagum > header{
+    position: relative;
+    z-index: 2; 
+    grid-area: header;
+    box-shadow: 0px 1px 3px 1px #0002;
+}
+
+.blue-lagum > aside{
+    position: relative;
+    z-index: 3; 
+    grid-area: menu;
+    box-shadow: 1px 0px 3px 2px #0003;
+}
+
+@media only screen and (max-width: 1024px){
+
+    .blue-lagum > header{
+        z-index: 3; 
+    }
+
+    .blue-lagum {  
+        grid-template-areas: "header header" "content content" ;
+
+    }
+
+} 
+ 
+ 

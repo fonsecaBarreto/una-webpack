@@ -6,5 +6,4 @@ ReactDOM.render(
     <div className="App"> 
         Pagina nao encontrada.
     </div>
-, document.getElementById("root")
-);
+, document.getElementById("root"));
