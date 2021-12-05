@@ -6,7 +6,6 @@ export const MkItem = ( label, to, icon = null, childs=[]) =>{
 }
 
 export const MENU_TREE = [
-    MkItem("Inicio", "/dashboard", <AiFillDashboard/>),
-    MkItem("Produtos", "/dashboard", <AiFillDashboard/>),
-    MkItem("Usuarios", "/users", <ImUsers></ImUsers>),
+    MkItem("Painel", "/dashboard", <AiFillDashboard/>),
+    MkItem("Produtos", "/produtos", <AiFillDashboard/>),
 ]
