@@ -6,7 +6,7 @@
     "build": "webpack --mode production",
     "start": "npm run build && node server.js",
     "dev:server": "npm run build && nodemon server.js",
-    "dev:client": "webpack-dev-server --mode development --hot",
+    "dev:client": "webpack-dev-server --open --mode development --config webpack.config.js",
     "dev": "npm run server & npm run client"
 
   },

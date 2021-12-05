@@ -6,7 +6,7 @@ export function App(){
     
     return (
       <div  className={`App ${ false ? 'loading': ''}`}>
-        Ava asdsadsad
+            Era isos entao, seu idioata
       </div>
       );
   }

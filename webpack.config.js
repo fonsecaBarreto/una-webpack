@@ -86,9 +86,13 @@ module.exports = (env) => {
                 }),
      
             ],
+            target: "web",
                 
             devServer: {
-       
+                
+                contentBase: "./dist",
+                watchContentBase: true,
+                inline: true,
                 publicPath: "/", 
                 hot: true,
                 open: true,

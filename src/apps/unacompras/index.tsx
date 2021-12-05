@@ -17,9 +17,3 @@ ReactDOM.render(
         </React.StrictMode>
     </Provider>, document.getElementById("root") );
 reportWebVitals();
-
-
-console.log("testin it")
-const person: any = {}
-
-person.speak();
