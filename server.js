@@ -14,7 +14,7 @@ app.get(`login/:path*?`, (req, res) => {
 
 /* Raiz */
 app.get(`/:path*?`, (req, res) => {
-    return res.sendFile(path.resolve(__dirname, "dist", "views", `unacompras.html`));
+    return res.sendFile(path.resolve(__dirname, "dist", "views", `main.html`));
 });
 
 /* Inicar */
