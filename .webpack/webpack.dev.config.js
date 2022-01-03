@@ -5,24 +5,16 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: "./dist",
-        watchContentBase: true,
-        inline: true,
-        publicPath: "/", 
-        hot: true,
-        open: true,
-        compress: true,
-        port: 3000,
-        disableHostCheck: true,
-        useLocalIp: true,
-        host: "localhost",
+
+        compress: true, port: 3000, hot: true, open: true, 
         historyApiFallback:{
             disableDotRule: false,
             rewrites: [ 
-                { from: "^/login", to: "/views/login.html"},
-                { from: "^/saudacoes", to: "/views/greetings.html"},
-                { from: "^/", to: "/views/main.html"},
+                { from: "^/login", to: "/views/login.html"},            // React aapp
+                { from: "^/teste", to: "/views/teste.html"},    // pagina teste
+                { from: "^/", to: "/views/main.html"},                  // Aplicação principal
             ]
         },
-    },
+        host: "localhost"
+    }
 });

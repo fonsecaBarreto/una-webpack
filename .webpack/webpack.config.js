@@ -7,9 +7,9 @@ const SRC_DIR =  path.resolve(__dirname, "..", "src")
 const OUTPUT_DIR =  path.resolve(__dirname, "..", "dist")
 
 const entries = {};
-fs.readdirSync(`${SRC_DIR}/ReactApps/apps`).map(async (file) => {
-    if (!fs.statSync(path.resolve(`${SRC_DIR}/ReactApps/apps`, file)).isDirectory()) return;
-    entries[file] = `${SRC_DIR}/ReactApps/apps` + `/${file}/index.js`;
+fs.readdirSync(`${SRC_DIR}/react-apps/apps`).map(async (file) => {
+    if (!fs.statSync(path.resolve(`${SRC_DIR}/react-apps/apps`, file)).isDirectory()) return;
+    entries[file] = `${SRC_DIR}/react-apps/apps` + `/${file}/index.js`;
 })
 
 module.exports ={ 
