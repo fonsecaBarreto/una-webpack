@@ -1,16 +1,12 @@
+import React from "react";
 import { useEffect } from 'react'
-
+import BlueLagumLayout from '../../components/Layouts/BlueLagum' 
+import DeparamentoPage from "./pages/Departamento";
 export const MyApplication = () =>{
     return (
-        <div> 
-            <h1> Pagina Principal </h1>
-            <nav> 
-                <a href="/login"> Login</a>
-                <a href="/test"> Teste </a>
-                <span> Testansd </span>
-        
-            </nav>
-        </div>
+       <BlueLagumLayout> 
+           <DeparamentoPage></DeparamentoPage>
+       </BlueLagumLayout>
     )
 }
 

@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const SRC_DIR =  path.resolve(__dirname, "..", "src")
 const OUTPUT_DIR =  path.resolve(__dirname, "..", "dist")
@@ -22,26 +23,42 @@ module.exports ={
     },
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
-        alias: { '@': path.resolve(__dirname, 'src') },
+        alias: { 
+            '@': path.resolve(__dirname, 'src')
+        },
     },
+
+    plugins: [
+        new MiniCssExtractPlugin(),
+        
+        new CleanWebpackPlugin([OUTPUT_DIR]),
+
+        ...Object.keys(entries).map(a=>{
+            return (
+                new HtmlWebpackPlugin({
+                    template: "./src/public/index.html",  // Html Raiz
+                    favicon: "./src/public/favicon.ico",  // Icone
+                    filename: `./views/${a}.html`,        // Distribuição Final
+                    chunks: [a],                          // chuck Js
+            }))
+        }),
+
+    ],
+
     module: {
         rules: [
+
             {
-                test: /\.(js|jsx)$/, 
-                include: [ SRC_DIR ],
-                use:  "babel-loader",
-            },
-            {
-                test: /\.(ts|tsx)?$/,
-                use: [{
-                        loader: 'ts-loader',
-                        options: { transpileOnly: true }
-                    }],
-                include: [ SRC_DIR ],
+                test: /\.(js|jsx|tsx|ts)$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
             },
             {
                 test: /\.css$/,
-                use: [ 'style-loader', 'css-loader' ],
+                use: [
+                    MiniCssExtractPlugin.loader, // instead of style-loader
+                    'css-loader'
+                ]
             },
             {
                 test: /\.(ttf)$/,
@@ -60,22 +77,7 @@ module.exports ={
         ]
     },
         
-    plugins: [
-        
-        new CleanWebpackPlugin([OUTPUT_DIR]),
-
-        ...Object.keys(entries).map(a=>{
-            return (
-                new HtmlWebpackPlugin({
-                    template: "./src/public/index.html",  // Html Raiz
-                    favicon: "./src/public/favicon.ico",  // Icone
-                    filename: `./views/${a}.html`,        // Distribuição Final
-                    chunks: [a],                          // chuck Js
-            }))
-        }),
-
-    ],
-
+  
     performance: {
         hints: false,
         maxEntrypointSize: 512000,

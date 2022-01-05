@@ -1,4 +1,3 @@
-
 .una-submit-form-button{
     height: 42px;
     width: 280px;
@@ -11,40 +10,36 @@
     text-transform: uppercase;
 }
 
-/* .una-submit-form-button:hover{
+.una-submit-form-button:hover{
     cursor: pointer;
     background-color: rgb(42, 122, 226);
 }
- */
-/* .una-login-light-button{
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        background-color: transparent;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        font-size: 16px;
-        line-height: 1.6em;
-        color: #444;
-        gap: 6px;
+
+/* light */
+
+.una-submit-form-button.light{
+    width: 100%;
+    text-transform: none;
+    text-align: center!important;
+    height: fit-content!important;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.6em;
+    color: #444;
+    gap: 6px;
+    margin: auto;
 }
 
-.una-login-light-button:hover{
+.una-submit-form-button.light:hover{
     color: rgb(53, 117, 255);
     text-decoration: underline solid 1pt rgb(53, 117, 255);
-} */
-
-/* @media screen and (max-width: 960px) {
-
-   .una-submit-form-button{
-        height: 56px;
-        width: 100%;
-    }
 }
 
-
- */
-
-
-/* 
+@media screen and (max-width: 960px) {
+    .una-submit-form-button{
+         height: 56px;
+         width: 100%;
+    }
+ }

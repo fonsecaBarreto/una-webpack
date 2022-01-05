@@ -25,6 +25,18 @@ body {
 .flex-aln-center { align-items: center;  }
 .flex-column{  flex-direction: column; }
 .flex-row { flex-direction: row; }
+
+.app-container{
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 16px;
+    margin: auto;
+}
+  
+.app-padding{
+    padding: 0 32px;
+}
+
   
 @media only screen and (min-width: 961px){
     .mobile-only{
@@ -36,6 +48,7 @@ body {
     .desktop-only{
         display: none!important;
     }
+    .app-container, .app-padding { padding: 0 10px; }
 
 }
 

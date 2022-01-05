@@ -2,7 +2,7 @@ import React from 'react'
 import './style.css'
 
 import Logo from '../../../../public/assets/images/logo.svg' 
-import UnaSubmitButton from '../../../components/una/SubmitButton'
+
 
 export namespace LoginCard {
     export type Params = {
@@ -11,13 +11,13 @@ export namespace LoginCard {
         title: string, 
         className?: string, 
         loading?: boolean,
-        submitText: string
+        sm?: boolean
     }
 }
 
-export const LoginCard: React.FunctionComponent<LoginCard.Params> = ({ children, show, title, className, loading, submitText }): JSX.Element =>{
+export const LoginCard: React.FunctionComponent<LoginCard.Params> = ({ children, show, title, className, loading, sm }): JSX.Element =>{
     return (
-        <div className={`login-card ${show ? 'show': '' } ${className} ${loading ? 'card-loading' : ''} `}>
+        <div className={` login-card ${sm? "sm": ""} ${show ? 'show': '' } ${loading ? 'card-loading' : ''} ${className}  `}>
        
             <div className="login-card-header">
 
@@ -27,9 +27,7 @@ export const LoginCard: React.FunctionComponent<LoginCard.Params> = ({ children,
             <section className="login-card-content">
                 <span className="login-header-text"> {title} </span>
                 {children} 
-                <span className="cp-small-span">Copyright©2021, UnaCompras. Todos os direitos reservados.</span> 
-                <UnaSubmitButton></UnaSubmitButton>
-                {/* <UnaSubmitButton > {submitText} </UnaSubmitButton> */}
+                <span className="cp-small-span">Copyright©2022, UnaCompras. Todos os direitos reservados.</span> 
             </section> 
         </div>
     )

@@ -1,0 +1,10 @@
+#departamento-content-grid{
+    display: grid;
+    grid-template-columns: 280px 4fr;
+    grid-template-rows: 1fr;
+    gap: 12px;
+}
+
+#departamento-content-grid > section{
+  /*   border: solid 2px red; */
+}

@@ -1,22 +1,30 @@
 
 import React, { useState } from 'react'
-import './style.css'
+import './style.css' // Baixar em um arquivo separado
 import LoginCard from './Cards' 
 
 import { Forming, Controls }  from 'fck-components'
 import { UseStateAdapter } from 'fck-components/lib/Controls'
+import UnaSubmitButton from '../../components/una/SubmitButton'
 
-const INITIAL_DATA = {
+const SIGNUP_INITIAL_DATA = {
     nome: "Lucas Fonseca Barreto",
     email: "lucasfonsecab@hotmail.com",
     telefone: "22997836256",
     cpf: "0000000000",
+    senha: "123456",
+    senhaconfirmacao: "123456"
+}
+
+const SIGNIN_INITIAL_DATA = {
+    credencial: "Lucas Fonseca Barreto",
     senha: "123456"
 }
 
 export const LoginPage = () =>{
     const [ toSignup, setToSignup ] = useState(false)
-    const state = UseStateAdapter(INITIAL_DATA)
+    const signupState = UseStateAdapter(SIGNUP_INITIAL_DATA)
+    const signinState = UseStateAdapter(SIGNIN_INITIAL_DATA)
 
     const toggleMode = () =>{
         setToSignup(!toSignup)
@@ -24,21 +32,24 @@ export const LoginPage = () =>{
 
     return (
         <div id="login-screen">     
-            <LoginCard show={toSignup} title={"Cadastro"} submitText="Cadastrar">
-                <Controls.TextBox state={state} label={"Nome"} name={"nome"} type={Controls.TextBoxTypes.TEXT}/>
-                <Controls.TextBox state={state} label={"E-mail"} name={"email"} type={Controls.TextBoxTypes.TEXT}/>
-                <Controls.TextBox state={state} label={"Telefone"} name={"telefone"} type={Controls.TextBoxTypes.TEXT}/>
-                <Controls.TextBox state={state} label={"CPF"} name={"cpf"} type={Controls.TextBoxTypes.TEXT}/>
-                <Controls.TextBox state={state} label="Senha" name={"senha"} type={Controls.TextBoxTypes.PASSWORD}/> 
-                <Controls.TextBox state={state} label='Confirme a senha' name={"senhaconfirmacao"} type={Controls.TextBoxTypes.PASSWORD}/> 
+            <LoginCard show={toSignup} title={"Cadastro"}>
+                <Controls.TextBox state={signupState} label={"Nome"} name={"nome"} type={Controls.TextBoxTypes.TEXT}/>
+                <Controls.TextBox state={signupState} label={"E-mail"} name={"email"} type={Controls.TextBoxTypes.TEXT}/>
+                <Controls.TextBox state={signupState} label={"Telefone"} name={"telefone"} type={Controls.TextBoxTypes.TEXT}/>
+                <Controls.TextBox state={signupState} label={"CPF"} name={"cpf"} type={Controls.TextBoxTypes.TEXT}/>
+                <Controls.TextBox state={signupState} label="Senha" name={"senha"} type={Controls.TextBoxTypes.PASSWORD}/> 
+                <Controls.TextBox state={signupState} label='Confirme a senha' name={"senhaconfirmacao"} type={Controls.TextBoxTypes.PASSWORD}/> 
+                <UnaSubmitButton> Cadastrar </UnaSubmitButton>
+                <UnaSubmitButton light onClick={toggleMode}> Já sou Cadastrado </UnaSubmitButton>
+                
             </LoginCard>
 
-            <LoginCard show={!toSignup} title={"Entrar"} submitText="Entrar">
-                <div> Aqui ou entrar</div>
+            <LoginCard show={!toSignup} title={"Entrar"} sm >
+                <Controls.TextBox state={signinState} label={"Usuario"} name={"credencial"} type={Controls.TextBoxTypes.TEXT}/>
+                <Controls.TextBox state={signinState} label="Senha" name={"senha"} type={Controls.TextBoxTypes.PASSWORD}/> 
+                <UnaSubmitButton>  Entrar </UnaSubmitButton>
+                <UnaSubmitButton light onClick={toggleMode}>  Cadastrar-se</UnaSubmitButton>
             </LoginCard>
-
-            <button onClick={toggleMode}> Cadastro aqui </button>
-
         </div>
     )
 
