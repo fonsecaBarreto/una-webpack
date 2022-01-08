@@ -4,6 +4,7 @@
     grid-template-rows: 1fr;
     gap: 12px;
     padding-top: 20px;
+    padding-bottom: 160px;
 }
 
 #departamento-content-grid > section{

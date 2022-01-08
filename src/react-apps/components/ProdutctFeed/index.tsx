@@ -18,8 +18,8 @@ export const ProdutFeed: React.FunctionComponent<any> = () =>{
                     )
                 })
             }
-
-            <button> Load More </button>
+            <span>tatos de Tantos </span> 
+            <button> Mostart Mains </button>
         </div>
     )
 }

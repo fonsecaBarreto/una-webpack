@@ -6,7 +6,7 @@
 
 
 .bluelagum-logo{
-    height: calc(var(--header-height-desktop) - 42px)
+    height: calc(var(--header-height-desktop) - 45px)
 }
 
 .primary-header-content{
@@ -96,5 +96,17 @@
     }
 
 }
+
+
+@media only screen and (max-width: 756px){
+    .bluelagum-logo{
+        display: none;
+     /*  height: calc(var(--header-height-desktop) - 50px) */
+    }
+    
+    
+
+}
+
 
 

@@ -6,12 +6,18 @@
     --second-color: rgb(8, 62, 122);
 }
 
+@font-face {
+    font-family: unaCompras;
+    src: url(./assets//fonts//Montserrat/Montserrat-Regular.ttf);
+}
+
 * {  box-sizing: border-box; }
 
 body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .flex-row, .flex-column{

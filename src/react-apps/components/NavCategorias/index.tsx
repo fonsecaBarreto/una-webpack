@@ -1,5 +1,6 @@
 /* Esse é o conjunto de NavComponents */
 import React, { useState, useEffect } from 'react'
+import './style.css'
 import SelectorNav, { NavComponent } from './SelectorNav'
 import { departamentosService } from "@/react-apps/services/departamentos-service"
 import { useSelector } from 'react-redux'
@@ -71,7 +72,7 @@ export const NavCategorias: React.FunctionComponent<any> = () => {
         })
     } 
     return (
-        <div>
+        <aside className='nav-categorias-aside'>
             <SelectorNav 
                 title="Departamentos" push={(item: any) =>toggleFilters("departamentos", item)}  items={structData.departamentos} 
                 selectedItems={[...filterData.departamentos.map((f:any)=>f.value)]}></SelectorNav>
@@ -83,7 +84,7 @@ export const NavCategorias: React.FunctionComponent<any> = () => {
             <SelectorNav 
                 title="Sub Categorias"  push={(item: any) =>toggleFilters("subCategorias", item)}  items={structData.subCategorias} 
                 selectedItems={[...filterData.subCategorias.map((f:any)=>f.value)]}></SelectorNav>
-        </div> 
+        </aside> 
     )
 }
 

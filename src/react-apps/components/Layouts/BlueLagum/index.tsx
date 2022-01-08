@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import './style.css'
 
 import LayoutHeader from './Header'
-import LayoutFooter from './Footer'
+import LayoutFooter from './Footer' 
+
+
 /* import { useSelector  } from 'react-redux' */
 
 /* const MenuState = () =>{
@@ -12,24 +14,23 @@ import LayoutFooter from './Footer'
     return { show, setShow, toToggle }
 }
  */
-const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
 /*     const { currentPage } = useSelector(state => state.global) */
 /*    const menuState = MenuState() */
+const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
     return (
         <div className="blue-lagum">
 
             <header>
-                 <LayoutHeader></LayoutHeader> 
+                <LayoutHeader></LayoutHeader>
             </header> 
 
-            <main>
+             <main>
                 {children}
             </main>
-
+    
             <footer>
-                <LayoutFooter></LayoutFooter>
-            </footer>
-            
+                <LayoutFooter></LayoutFooter>  
+            </footer> 
         </div>
     )
 }
