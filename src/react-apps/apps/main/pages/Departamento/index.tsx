@@ -1,31 +1,19 @@
-import React from 'react'
-import NavCategorias from '@/react-apps/components/NavCategorias'
+import React, { useEffect, useState } from 'react'
 import ContentGrid from './ContentGrid'
-
+import NavCategorias from '@/react-apps/components/NavCategorias'
+import ProdutctFeed from '@/react-apps/components/ProdutctFeed'
 
 export const DeparamentoPage = () =>{
+   
     return (
         <div id="departamento-page">
             <div className='app-container'>
-
-                <div>
-                    <span>{" Exemplo >" }</span> 
-                    <span>{" Exemplo >" }</span>
-                    <span>{" Exemplo >" }</span>
-                    <span>{" Exemplo >" }</span> 
-                </div>
+              
                 <ContentGrid>
-             
                     <NavCategorias></NavCategorias>
-             
-             
-                    <div>
-                        Produtos aca
-                    </div>
-          
-                 </ContentGrid>
-                {/* 
-                <NavCategorias></NavCategorias> */}
+                    <ProdutctFeed></ProdutctFeed>
+                </ContentGrid>
+
             </div>
         </div>
     )

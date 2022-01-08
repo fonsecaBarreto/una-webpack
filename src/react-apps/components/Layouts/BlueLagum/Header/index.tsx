@@ -2,7 +2,7 @@
 import React from 'react'
 import './style.css'
 import ToggleButton from '../ToggleButton'
-import Logo from '@/public/assets/images/logo-alt.svg' 
+import Logo from '@/public/assets/images/logo.svg' 
 import { IoMdCart } from 'react-icons/io'
 import { FaUserCircle } from "react-icons/fa"
 import SearchBar from '../SearchBar'

@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
 
-import AppHeader from './Header'
- 
+import LayoutHeader from './Header'
+import LayoutFooter from './Footer'
 /* import { useSelector  } from 'react-redux' */
 
 /* const MenuState = () =>{
@@ -17,18 +17,18 @@ const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
 /*    const menuState = MenuState() */
     return (
         <div className="blue-lagum">
-            <h1> Eu sou o blue lagim layout </h1>
 
             <header>
-                 <AppHeader ></AppHeader> 
+                 <LayoutHeader></LayoutHeader> 
             </header> 
 
             <main>
                 {children}
-            {/*     { JSON.stringify(menuTree)}
-                { menuState.show? "Show" : "No"} */}
-               {/*  {children} */}
             </main>
+
+            <footer>
+                <LayoutFooter></LayoutFooter>
+            </footer>
             
         </div>
     )

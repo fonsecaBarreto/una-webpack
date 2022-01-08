@@ -6,7 +6,7 @@
 
 
 .bluelagum-logo{
-    height: calc(var(--header-height-desktop) - 14px)
+    height: calc(var(--header-height-desktop) - 42px)
 }
 
 .primary-header-content{

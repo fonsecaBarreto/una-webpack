@@ -7,15 +7,24 @@
 
     /* style */
     position: relative; z-index: 0;
-    width: 100%; height: 100vh;
+    width: 100%; height: 100%;
+    min-height: 100vh;
     box-sizing: border-box;
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: "header header" "content content";
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "header header" "content content" "footer footer";
     background: var(--admin-bg-color);
     overflow: hidden;
 }
+
+.blue-lagum > header{
+    position: relative;
+    z-index: 2; 
+    grid-area: header;
+    box-shadow: 0px 1px 3px 1px #0002;
+}
+
 
 .blue-lagum > main{
     height: 100%;
@@ -25,10 +34,9 @@
     z-index: 1; 
 }
 
-.blue-lagum > header{
-    position: relative;
+.blue-lagum > footer{
     z-index: 2; 
-    grid-area: header;
+    grid-area: footer;
     box-shadow: 0px 1px 3px 1px #0002;
 }
 
