@@ -55,6 +55,7 @@
 .app-cart-body{
     height: 100%;
     width: 100%;
+    padding: 16px 8px;
 }
 /* footer */
 
@@ -74,6 +75,7 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
+    color: white;
 }
 
 .app-cart > footer .app-cart-resume .app-cart-resume-value{

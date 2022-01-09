@@ -1,3 +1,4 @@
+import { IgnorePlugin } from "webpack";
 import { CartItem, Product } from "./actions";
 
 const INITIAL_STATE = {
@@ -10,21 +11,26 @@ export const carrinhoReducer = (state=INITIAL_STATE, action: any) => {
                return ({ ...state, cart: action.payload })
           } ;
           case "PUSH_TO_CART": {
-               console.log(action.payload)
-               var exists = state.cart.find((p: CartItem) => (p.product.id  == action.payload.id) )
-               var qtd = exists ? exists.qtd + 1 : 1;
-               var cartItem = { qtd, product: action.payload}
-               var prev = state.cart.filter((p: Product) =>p.product.id!=action.payload.id);
-               return { ...state, cart: [ ...prev, cartItem ] }
+               var cart= [ ...state.cart ]
+               var product: any = action.payload;
+               const indexOf = cart.map((p: CartItem) => p.product.id).indexOf(product.id);
+               if (indexOf > -1){
+                    cart[indexOf].qtd+=1; }
+               else {
+                    cart = [ { qtd :1, product: action.payload}, ...cart ]; }
+               return ({ ...state, cart })
           };
           case "REMOVE_FROM_CART": {
-               var exists = state.cart.find((p: CartItem) => (p.product.id  == action.payload.id) )
-               if(!exists) return state;
-               var qtd = exists.qtd - 1 ?? 0;
-               var cartItem = { qtd, product: action.payload}
-               console.log(cartItem)
-               var prev = state.cart.filter((p: Product) =>p.product.id!=action.payload.id);
-               return ({ ...state, cart: cartItem.qtd <= 0 ? [...prev] : [ ...prev, cartItem ]});
+               var cart= [ ...state.cart ];
+               console.log(action.payload)
+               const indexOf = cart.map((p: CartItem) => p.product.id).indexOf(action.payload.id);
+               console.log(indexOf)
+               if(indexOf > -1){
+                    var item = cart[indexOf]
+                    item.qtd -= 1 ;
+                    if( item.qtd <= 0) cart.splice(indexOf,1);
+               }
+               return ({ ...state, cart });
           };
 
           default: return state

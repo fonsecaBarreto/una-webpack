@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css'
 import { RiCloseFill } from "react-icons/ri"
 import CartItem from './CartItem'
@@ -16,17 +16,28 @@ export namespace LayoutCart {
 
 export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, onClose }) =>{
 
-    const { cart } = useSelector((state: any)=>state.carrinho)
-
-    const dispatch = useDispatch()
+    const { cart } = useSelector((state: any)=>state.carrinho);
+    var [ totalProducts, setTotalProducts ]= useState(0);
+    const dispatch = useDispatch();
 
     const addToCart =(novo_produto: any) =>{
+       
         dispatch(pushToCart(novo_produto))
     }
 
     const rmFromCart =(produto: any) =>{
         dispatch(removeFromCart(produto))
     }
+
+    const getTotalItems = () =>{
+        var total =0;
+        cart.map((c:any)=>{ total+=c.qtd })
+        setTotalProducts(total);
+    }
+
+    useEffect(()=>{
+        getTotalItems()
+    },[cart])
 
     return (
 
@@ -46,9 +57,9 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
                     <footer>
                         <div className='app-cart-resume'>
 
-                            <span> Total: 99 </span>
+                            <span> Total: { totalProducts } </span>
 
-                            <span className='app-cart-resume-value'> R$: 01230123</span>
+                            <span className='app-cart-resume-value'> R$: 00,00</span>
                         </div>
 
                         <button> Finalizar </button>

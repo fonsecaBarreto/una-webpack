@@ -12,6 +12,8 @@ export const ProdutFeed: React.FunctionComponent<any> = () =>{
     const { produtos } = useSelector((state: any)=>state.departamentos)
     const { cart } = useSelector((state: any)=>state.carrinho)
 
+    useEffect(()=>{ produtosService.list() },[])
+
     const addToCart =(novo_produto: any) =>{
         dispatch(pushToCart(novo_produto))
     }
@@ -20,18 +22,29 @@ export const ProdutFeed: React.FunctionComponent<any> = () =>{
         dispatch(removeFromCart(produto))
     }
 
-    useEffect(()=>{ produtosService.list() },[])
+    const countProductQtd = (product_id:string) => {
+        const item_index = cart.map((c:any)=> c.product.id ).indexOf(product_id);
+        const item = cart[item_index];
+        return item?.qtd ?? 0;
+    }
+
+
     return (
         <div className="una-product-feed">
             {
                 produtos && produtos.data.map((p: any, i: string)=>{
                     return (
-                        <Item key={i} produto={p} add={addToCart} remv={rmFromCart}></Item>
+                        <React.Fragment key={i}>
+                            <Item key={i} produto={p} toAdd={addToCart} toRemove={rmFromCart} count={countProductQtd(p.id)} ></Item>
+                        </React.Fragment>
                     )
                 })
             }
-            <span>tatos de Tantos </span> 
-            <button> Mostart Mains </button>
+
+            <div>
+                <span>tatos de Tantos </span> 
+                <button> Mostrar Mais aqui </button>
+            </div>
         </div>
     )
 }

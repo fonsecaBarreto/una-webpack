@@ -2,10 +2,12 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
+    padding: 4px 6px;
+    gap: 5px;
 }
 
 .layout-cart-item > section{
-    padding: 4px;
+    overflow: hidden;
 }   
 
 
@@ -22,11 +24,7 @@
 .layout-cart-item > section:nth-child(1) img{
     position: absolute;
     object-fit: contain;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
+    top: 0; left: 0; right: 0; bottom: 0;  width: 100%;
 }
 
 .layout-cart-item > section:nth-child(2){
@@ -35,8 +33,14 @@
     object-fit: cover;
     display: flex;
     flex-direction: column;
-    border: solid 2px rgb(38, 0, 255);
 }
+
+
+.layout-cart-item > section:nth-child(2) > span:nth-child(1){
+    font-weight: bold;
+}
+
+
 
 
 
@@ -46,5 +50,4 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border: solid 2px red;
 }
