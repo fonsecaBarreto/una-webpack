@@ -6,7 +6,19 @@ import Logo from '@/public/assets/images/logo.svg'
 import { IoMdCart } from 'react-icons/io'
 import { FaUserCircle } from "react-icons/fa"
 import SearchBar from '../SearchBar'
-export const PrimaryHeader: React.FunctionComponent<any> =  ()=> {
+import { useSelector, useDispatch} from 'react-redux'
+import CarrinhoButton from './CarrinhoButton'
+
+export namespace PrimaryHeader {
+    export type Params = {
+        toggleCart: () => void
+    }
+}
+
+export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({toggleCart})=> {
+
+    const { cart } = useSelector((state: any)=>state.carrinho)
+
     return (
     
         <header className="primary-header">
@@ -22,8 +34,8 @@ export const PrimaryHeader: React.FunctionComponent<any> =  ()=> {
                 </section>
 
                 <section className='primary-header-content-option'>
-                    <button><FaUserCircle></FaUserCircle></button>
-                    <button><IoMdCart></IoMdCart></button>
+                    <button ><FaUserCircle></FaUserCircle></button>
+                    <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
                 </section>
 
             </div> 

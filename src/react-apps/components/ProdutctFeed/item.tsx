@@ -1,16 +1,16 @@
 import React from 'react'
 import FlourImage from '@/public/assets/images/flour.png'
-import SubmitButton from "@/react-apps/components/una/SubmitButton"
 
 
-export const ProductItem: React.FunctionComponent<any> = ({produto}) =>{
+export namespace ProductItem {
+    export type Params = {
+        add: () => void
+        remv: () => void
+    }
+}
 
-    const { 
-            id,
-            marca_id,
-            especificacao,
-            image,
-     } = produto
+export const ProductItem: React.FunctionComponent<any> = ({produto, add, remv}) =>{
+    const {   especificacao, image } = produto
     return (
    
             <div className="product-feed-item">
@@ -26,7 +26,8 @@ export const ProductItem: React.FunctionComponent<any> = ({produto}) =>{
                     </span>
                 </section>
                 <section className='product-feed-item-footer'>
-                    <SubmitButton> Adicionar </SubmitButton>
+                    <button onClick={()=>add(produto)}> Adicionar + </button>
+                    <button onClick={()=>remv(produto)}> Remover - </button>
                 </section>
             </div>
     )

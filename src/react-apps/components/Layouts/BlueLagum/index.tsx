@@ -4,24 +4,18 @@ import './style.css'
 
 import LayoutHeader from './Header'
 import LayoutFooter from './Footer' 
+import LayoutCart from './Cart'
 
 
-/* import { useSelector  } from 'react-redux' */
-
-/* const MenuState = () =>{
-    const [ show, setShow ] = useState(false)
-    const toToggle = () => { setShow(!show)  }
-    return { show, setShow, toToggle }
-}
- */
-/*     const { currentPage } = useSelector(state => state.global) */
-/*    const menuState = MenuState() */
 const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
+
+    const [ showCart, setShowCart ] = useState(false)
+
     return (
         <div className="blue-lagum">
 
             <header>
-                <LayoutHeader></LayoutHeader>
+                <LayoutHeader toggleCart={()=>setShowCart(!showCart)}></LayoutHeader>
             </header> 
 
              <main>
@@ -31,6 +25,8 @@ const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
             <footer>
                 <LayoutFooter></LayoutFooter>  
             </footer> 
+
+            <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart>
         </div>
     )
 }

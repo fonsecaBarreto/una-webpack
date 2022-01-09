@@ -35,7 +35,7 @@ body {
 .app-container{
     width: 100%;
     max-width: 1440px;
-    padding: 0 16px;
+    padding: 0 22px;
     margin: auto;
 }
   
@@ -54,7 +54,7 @@ body {
     .desktop-only{
         display: none!important;
     }
-    .app-container, .app-padding { padding: 0 10px; }
+    .app-container, .app-padding { padding: 0 12px; }
 
 }
 

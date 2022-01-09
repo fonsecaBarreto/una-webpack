@@ -1,6 +1,6 @@
 #departamento-content-grid{
     display: grid;
-    grid-template-columns: 280px 4fr;
+    grid-template-columns: 272px 4fr;
     grid-template-rows: 1fr;
     gap: 12px;
     padding-top: 20px;
