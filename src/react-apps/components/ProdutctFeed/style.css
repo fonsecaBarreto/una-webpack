@@ -1,5 +1,13 @@
 .una-product-feed{
     width: 100%;
+}
+
+.una-product-feed >section{
+    width: 100%;
+}
+
+.una-product-feed >section:nth-child(1){
+    width: 100%;
     height: fit-content;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -7,6 +15,16 @@
     gap: 8px;
     padding: 10px
 }
+
+.una-product-feed >section:nth-child(2){
+    width: 100%;
+    border: solid 2px red;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: flex-start;
+}
+
+
+/* item */
 .una-product-feed .product-feed-item{
     border: solid 1px #ddd;
     padding: 10px;

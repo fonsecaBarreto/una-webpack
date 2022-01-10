@@ -1,0 +1,103 @@
+@keyframes appears {
+    from {  opacity: 0; }
+    to { }
+}
+
+.una-cadastro-carousel-frame{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 8px;
+    width: 100%;
+
+}
+
+.una-cadastro-carousel-frame > section{
+    width: 100%;
+
+    padding: 0 12px;
+}
+
+/* Corpo do carrosel */
+.una-cadastro-carousel-frame > section:nth-child(2){ /* body */
+    overflow-y: auto;
+    min-height: 420px; 
+}
+
+.una-cadastro-carousel-frame > section:nth-child(2)::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgba(241, 241, 241, 0.555);
+}
+ 
+.una-cadastro-carousel-frame > section:nth-child(2)::-webkit-scrollbar-thumb {
+    border-radius: 20px;                     /* roundness of the scroll thumb */
+    border: 3px solid rgb(197, 197, 197);  /* creates padding around scroll thumb */
+}
+
+.una-cadastro-carousel-frame > section:nth-child(2) > :nth-child(1){ /* body */
+    animation-name: appears;
+    animation-duration: .5s;
+}
+
+/* Footer */
+.una-cadastro-carousel-frame > section:nth-child(3){
+    margin-top: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 12px 14px;
+}
+
+.una-cadastro-carousel-btn{
+    cursor: pointer;
+    color: white;
+    border-radius: 12px;
+    padding: 12px 56px;
+    border: none;
+    height: fit-content;
+    background-color: var(--main-color);
+}
+
+.una-cadastro-carousel-btn.next-btn{
+    margin-left: auto;
+    margin-right: 0;
+
+}
+
+.una-cadastro-carousel-btn.una-prev-btn{
+    margin-right: auto;
+    margin-left: 0;
+} 
+
+
+@media screen and (max-width: 960px) {
+    .una-carousel-frame .una-carousel-frame-section:nth-child(2){ /* body */
+        height: 500px; 
+    }
+    
+}
+
+
+
+/* LOADING... */
+
+.una-cadastro-carousel.loading{
+    position: relative;
+}
+
+.una-cadastro-carousel.loading::after{
+    content: "";
+    position: relative;
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.466);
+/*     background-image: url(../../../../../../../assets/loading.svg); */
+    background-size: 90px;
+    background-position: center;
+    background-repeat: no-repeat;
+}

@@ -3,8 +3,8 @@ export const setDepartamentos = value => ({
      payload: value
 })
 
-export const setProdutos = value => ({
-     type: "SET_PRODUCTOS",
+export const setProdutosFeed = value => ({
+     type: "SET_PRODUCTOS_FEED",
      payload: value
 })
  

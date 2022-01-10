@@ -33,7 +33,7 @@
     height: calc(100%);
 }
 
-.primary-header-content .primary-header-content-option button{
+.primary-header-content .primary-header-content-option button, .header-a-btn{
     font-size: 28px;
     color: white;
     border: none;

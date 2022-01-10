@@ -9,7 +9,7 @@ import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers
 export const ProdutFeed: React.FunctionComponent<any> = () =>{
 
     const dispatch = useDispatch()
-    const { produtos } = useSelector((state: any)=>state.departamentos)
+    const { produtos_feed } = useSelector((state: any)=>state.departamentos)
     const { cart } = useSelector((state: any)=>state.carrinho)
 
     useEffect(()=>{ produtosService.list() },[])
@@ -28,23 +28,24 @@ export const ProdutFeed: React.FunctionComponent<any> = () =>{
         return item?.qtd ?? 0;
     }
 
-
     return (
         <div className="una-product-feed">
-            {
-                produtos && produtos.data.map((p: any, i: string)=>{
-                    return (
-                        <React.Fragment key={i}>
-                            <Item key={i} produto={p} toAdd={addToCart} toRemove={rmFromCart} count={countProductQtd(p.id)} ></Item>
-                        </React.Fragment>
-                    )
-                })
-            }
+            <section>
+                {
+                    produtos_feed && produtos_feed.data.map((p: any, i: string)=>{
+                        return (
+                            <React.Fragment key={i}>
+                                <Item key={i} produto={p} toAdd={addToCart} toRemove={rmFromCart} count={countProductQtd(p.id)} ></Item>
+                            </React.Fragment>
+                        )
+                    })
+                }
+            </section>
 
-            <div>
-                <span>tatos de Tantos </span> 
-                <button> Mostrar Mais aqui </button>
-            </div>
+            <section>
+                <span> Tanto de Tantos </span> 
+                <button> Carregar Mais aqui </button>
+            </section>
         </div>
     )
 }

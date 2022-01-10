@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import './style.css'
 import ToggleButton from '../ToggleButton'
 import Logo from '@/public/assets/images/logo.svg' 
@@ -8,6 +8,12 @@ import { FaUserCircle } from "react-icons/fa"
 import SearchBar from '../SearchBar'
 import { useSelector, useDispatch} from 'react-redux'
 import CarrinhoButton from './CarrinhoButton'
+import { Link } from 'react-router-dom'
+
+/* global */
+import globalComponent from '@/react-apps/apps/main/global/global-components-context';
+/* Dialog helpers */
+import {  MakeOptions } from 'fck-react-dialog';
 
 export namespace PrimaryHeader {
     export type Params = {
@@ -16,6 +22,25 @@ export namespace PrimaryHeader {
 }
 
 export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({toggleCart})=> {
+
+    const Context: any = useContext(globalComponent);
+
+    const openProfileDialog = () => Context.dialog.push(MakeOptions((n:any)=>{
+        switch(n){
+            case 0:
+                console.log("Logar")
+            break;
+            case 1:
+                console.log("*Editando*")
+                return -1; // Para Fechar o Modal
+            case 2: 
+                console.log("*Deletando*")
+            break;
+            default:
+                return -1
+        }
+        console.log("Opção selecionada com sucesso!", n);
+    }, [ { label: "Entrar"}, { label: "Cadastrar-se"}], "Minha Conta"))
 
     const { cart } = useSelector((state: any)=>state.carrinho)
 
@@ -26,7 +51,9 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({t
 
                 <section>
                     <ToggleButton ></ToggleButton> 
-                    <img className="bluelagum-logo" src={Logo}></img>  
+                    <Link to="/">
+                        <img className="bluelagum-logo" src={Logo}></img>  
+                    </Link>
                 </section> 
 
                 <section>
@@ -34,7 +61,7 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({t
                 </section>
 
                 <section className='primary-header-content-option'>
-                    <button ><FaUserCircle></FaUserCircle></button>
+                    <button className='header-a-btn' onClick={openProfileDialog} ><FaUserCircle></FaUserCircle></button>
                     <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
                 </section>
 
@@ -44,3 +71,5 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({t
 }
 
 export default PrimaryHeader
+
+/*  to="/login" */

@@ -9,10 +9,11 @@ import store from '@/react-apps/store'
 import { Provider } from 'react-redux'
 
 ReactDOM.render(
-    <Provider store={store}>
-        <React.StrictMode>
+    <React.StrictMode>
+        <Provider store={store}>
                 <App></App>
-        </React.StrictMode>
-    </Provider>, document.getElementById("root") );
+        </Provider>
+    </React.StrictMode>
+    ,document.getElementById("root") );
 reportWebVitals(); 
 

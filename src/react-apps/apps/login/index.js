@@ -1,3 +1,5 @@
+import "regenerator-runtime/runtime";
+import "core-js/stable"; 
 import "../../../public/root.css"
 import React from "react";
 import ReactDOM from "react-dom";

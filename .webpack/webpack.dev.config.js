@@ -10,8 +10,8 @@ module.exports = merge(common, {
         historyApiFallback:{
             disableDotRule: false,
             rewrites: [ 
-                { from: "^/login", to: "/views/login.html"},            // React aapp
-                { from: "^/teste", to: "/views/teste.html"},    // pagina teste
+         /*        { from: "^/login", to: "/views/login.html"},            // React aapp */
+                { from: "^/teste", to: "/views/teste.html"},            // pagina teste
                 { from: "^/", to: "/views/main.html"},                  // Aplicação principal
             ]
         },

@@ -1,12 +1,20 @@
-import React from "react";
-import { useEffect } from 'react'
-import BlueLagumLayout from '../../components/Layouts/BlueLagum' 
-import DeparamentoPage from "./pages/Departamento";
+import React, { ReactNode, useContext, useEffect } from "react";
+import Routes from './routes'
+import globalComponent from './global/global-components-context';
+import { DialogStack, MakeNotification, NotificationType }  from 'fck-react-dialog'
+import MyContext from './global/global-components-context';
+
+
+
 export const MyApplication = () =>{
+    const [ StackComponent, StackState ] = DialogStack();
     return (
-       <BlueLagumLayout> 
-           <DeparamentoPage></DeparamentoPage>
-       </BlueLagumLayout>
+        <MyContext.Provider value={{ dialog: StackState}}>
+            <React.Fragment>
+                <Routes></Routes>
+                <StackComponent></StackComponent> 
+            </React.Fragment>
+        </MyContext.Provider>
     )
 }
 

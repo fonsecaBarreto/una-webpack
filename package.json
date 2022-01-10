@@ -18,7 +18,7 @@
     "axios": "^0.24.0",
     "copy-webpack-plugin": "^10.1.0",
     "cors": "^2.8.5",
-    "fck-components": "^1.0.2",
+    "fck-components": "^1.0.3",
     "fck-react-dialog": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
