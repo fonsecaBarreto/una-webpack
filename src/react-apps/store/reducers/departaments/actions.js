@@ -3,8 +3,8 @@ export const setDepartamentos = value => ({
      payload: value
 })
 
-export const setProdutosFeed = value => ({
+export const setProdutosFeed = (value, append) => ({
      type: "SET_PRODUCTOS_FEED",
-     payload: value
+     payload: { listView: value, toAppend: append}
 })
  

@@ -4,13 +4,18 @@ export namespace UnaSubmitButton {
     export type Params = {
         children?: React.ReactNode, 
         light?: boolean,
-        onClick?:  () => unknown
+        onClick?: () => unknown
     }
 }
 
 export const UnaSubmitButton: React.FunctionComponent<UnaSubmitButton.Params>  = ({children, light, onClick}) =>{
+
+    const handleSubtmit = () =>{
+        console.log("submit here")
+        onClick && onClick();
+    }
     return (
-        <button onClick={onClick} className={`una-submit-form-button ${light ? "light" : ""}`} > {children} </button>
+        <button onClick={handleSubtmit} className={`una-submit-form-button ${light ? "light" : ""}`} > {children} </button>
     )
 }
 

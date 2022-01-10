@@ -10,9 +10,11 @@ const produtosApi = MakeApiSettings({
 })
 
 export const produtosService = {
-     list: async () => {
-          const { data } = await produtosApi.send({ method: "get", url:"/" }) 
-          store.dispatch(setProdutosFeed(data));
+     list: async (page:number = 1) => {
+          const p = `?p=${page}` ;
+          const url = `/${p}`
+          const { data } = await produtosApi.send({ method: "get", url }) 
+          store.dispatch(setProdutosFeed(data, page > 1 ? true : false));
           return data
      }
 }
