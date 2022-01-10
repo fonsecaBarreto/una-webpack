@@ -1,9 +1,8 @@
 import React, { ReactNode, useContext, useEffect } from "react";
 import Routes from './routes'
-import globalComponent from './global/global-components-context';
+import './style.css'
 import { DialogStack, MakeNotification, NotificationType }  from 'fck-react-dialog'
 import MyContext from './global/global-components-context';
-
 
 
 export const MyApplication = () =>{

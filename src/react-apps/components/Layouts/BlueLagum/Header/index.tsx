@@ -9,7 +9,6 @@ import SearchBar from '../SearchBar'
 import { useSelector, useDispatch} from 'react-redux'
 import CarrinhoButton from './CarrinhoButton'
 import { Link } from 'react-router-dom'
-
 /* global */
 import globalComponent from '@/react-apps/apps/main/global/global-components-context';
 /* Dialog helpers */
@@ -21,25 +20,25 @@ export namespace PrimaryHeader {
     }
 }
 
+import { useHistory } from 'react-router-dom'
+
 export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({toggleCart})=> {
 
     const Context: any = useContext(globalComponent);
+    const history = useHistory()
 
     const openProfileDialog = () => Context.dialog.push(MakeOptions((n:any)=>{
         switch(n){
             case 0:
-                console.log("Logar")
-            break;
-            case 1:
-                console.log("*Editando*")
+                history.push("/login?v=signin")
                 return -1; // Para Fechar o Modal
-            case 2: 
-                console.log("*Deletando*")
-            break;
+            case 1:
+                history.push("/login?v=signup")
+                return -1; // Para Fechar o Modal
+         
             default:
                 return -1
         }
-        console.log("Opção selecionada com sucesso!", n);
     }, [ { label: "Entrar"}, { label: "Cadastrar-se"}], "Minha Conta"))
 
     const { cart } = useSelector((state: any)=>state.carrinho)
@@ -71,5 +70,3 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({t
 }
 
 export default PrimaryHeader
-
-/*  to="/login" */

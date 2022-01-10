@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css' // Baixar em um arquivo separado
 import LoginCard from './Cards' 
 
@@ -7,6 +7,7 @@ import { Controls }  from 'fck-components'
 import { UseStateAdapter } from 'fck-components/lib/Controls'
 import UnaSubmitButton from '../../components/una/SubmitButton'
 import CadastroCarousel from '@/react-apps/components/una/CadastroCarousel'
+import { useHistory } from 'react-router-dom'
 
 const SIGNIN_INITIAL_DATA = {
     credencial: "Lucas Fonseca Barreto",
@@ -14,12 +15,21 @@ const SIGNIN_INITIAL_DATA = {
 }
 
 export const LoginPage = () =>{
-    const [ toSignup, setToSignup ] = useState(true)
+    const history = useHistory()
+    const [ toSignup, setToSignup ] = useState(false)
     const signinState = UseStateAdapter(SIGNIN_INITIAL_DATA)
 
-    const toggleMode = () =>{
-        setToSignup(!toSignup)
-    } 
+    const toggleMode = () =>{ setToSignup(!toSignup)  } 
+
+    useEffect(()=>{
+        if(!history.location.search ) return;
+
+        const mode = history.location.search.split("?v=")[1]
+        switch (mode) {
+            case 'signup': setToSignup(true); break;
+            default: setToSignup(false); break;
+        }
+    },[history, history.location])
 
     return (
         <div id="login-screen">     
@@ -39,21 +49,6 @@ export const LoginPage = () =>{
 }
 
 export default LoginPage
-
-
-/*     useState(()=>{
-        if(!history.location.search ) return;
-        const mode = history.location.search.split("?v=")[1]
-        switch (mode) {
-            case 'signup': setToSignup(true); break;
-            default: setToSignup(false); break;
-        }
-        const err = history.location.search.split("?e=")[1]
-        if(err) return dialogState.showFailure(  err.replace(/%20/g, " "))
-        
-    },[history, history.location])
- */
-
 
 /* 
 export default () =>{
