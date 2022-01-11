@@ -2,81 +2,33 @@
 import React, { useContext } from 'react'
 import './style.css'
 import ToggleButton from '../ToggleButton'
-import Logo from '@/public/assets/images/logo.svg' 
-import { IoMdCart } from 'react-icons/io'
-import { FaUserCircle } from "react-icons/fa"
+import LogoImg from '@/public/assets/images/logo.svg' 
 import SearchBar from '../SearchBar'
-import { useSelector, useDispatch} from 'react-redux'
-import CarrinhoButton from './CarrinhoButton'
+import OptionsNav from './OptionsNav'
 import { Link } from 'react-router-dom'
-/* global */
-import globalComponent from '@/react-apps/apps/main/global/global-components-context';
-/* Dialog helpers */
-import {  MakeOptions } from 'fck-react-dialog';
-
-import { loginServices } from "@/react-apps/services/login-service"
 
 export namespace PrimaryHeader {
     export type Params = {
         toggleCart: () => void,
-        user: Usuario
     }
 }
-
-import { useHistory } from 'react-router-dom'
-import { Usuario } from '@/domain/views/Usuario'
-
-export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({toggleCart, user })=> {
-
-    const Context: any = useContext(globalComponent);
-    const history = useHistory()
-
-    const openProfileDialog = () => Context.dialog.push(MakeOptions((n:any)=>{
-
-        if(!user){
-            switch(n){
-                case 0:
-                    history.push("/login?v=signin");break;
-                case 1:
-                    history.push("/login?v=signup");break;
-            }
-        }else{
-            switch(n){
-                case 0:
-                    history.push("/perfil");break;
-                case 1:
-                    loginServices.logout();break;
-            }
-        }
-
-        return -1
-    }, 
-    user ? [ { label: "Perfil" }, { label: "Sair" }]
-    : [ { label: "Entrar"}, { label: "Cadastrar-se"}], user ? user.nome :"Minha Conta"))
-
-    const { cart } = useSelector((state: any)=>state.carrinho)
-
+export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ toggleCart })=> {
     return (
     
         <header className="primary-header">
             <div className="primary-header-content app-container">
-
                 <section>
                     <ToggleButton ></ToggleButton> 
                     <Link to="/">
-                        <img className="bluelagum-logo" src={Logo}></img>  
+                        <img className="bluelagum-logo" src={LogoImg}></img>  
                     </Link>
                 </section> 
-
                 <section>
                     <SearchBar></SearchBar>
                 </section>
-
-                <section className='primary-header-content-option'>
-                    <button className='header-a-btn' onClick={openProfileDialog} ><FaUserCircle></FaUserCircle></button>
-                    <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
+                <section>
+                    <OptionsNav toggleCart={toggleCart}></OptionsNav>
                 </section>
-
             </div> 
         </header> 
     )

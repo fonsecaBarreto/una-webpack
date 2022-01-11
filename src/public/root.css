@@ -40,6 +40,7 @@ body {
     max-width: 1440px;
     padding: 0 22px;
     margin: auto;
+    border: solid 2px red;
 }
   
 .app-padding{

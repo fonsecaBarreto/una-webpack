@@ -15,3 +15,12 @@
     justify-content: center;
     align-items:center;
 }
+
+
+.primary-header-content .primary-header-content-option button{
+    font-size: 28px;
+    color: white;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}

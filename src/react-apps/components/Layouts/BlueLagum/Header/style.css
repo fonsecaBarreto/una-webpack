@@ -16,8 +16,7 @@
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
     align-items: center;
-    padding: 0 20px;
-    gap: 32px;
+    gap: 5px
 }
 
 .primary-header-content > section {
@@ -27,22 +26,6 @@
    align-items: center;
    column-gap: 12px;
 }
-
-
-.primary-header-content .primary-header-content-option{
-    display: flex; align-items: center; justify-content: center;
-    height: calc(100%);
-}
-
-.primary-header-content .primary-header-content-option button, .header-a-btn{
-    font-size: 28px;
-    color: white;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-/*  */
 
 .primary-header-content .primary-header-title{
     height: 100%;
