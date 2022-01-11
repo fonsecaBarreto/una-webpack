@@ -1,0 +1,30 @@
+.forbidden-cart-modal{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 420px;
+    gap: 12px;
+}
+
+.forbidden-cart-modal > img {
+    width: 240px;
+    margin: auto;
+    object-fit: contain;
+}
+
+
+.forbidden-cart-modal > h3 {
+    width: 100%;
+    text-align: center;
+    font-weight: normal;
+}
+
+
+.forbidden-cart-modal > button {
+   
+    height: 36px;
+    margin: auto;
+    font-size: 16px!important;
+}
+ /*    height: 40px;
+} */
