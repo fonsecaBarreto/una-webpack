@@ -23,25 +23,19 @@ export const LoginPage = () =>{
     const history = useHistory()
     const [ toSignup, setToSignup ] = useState(false)
     const signinState = UseStateAdapter(SIGNIN_INITIAL_DATA)
-    const toggleMode = () =>{ setToSignup(!toSignup)  } 
+    const toggleMode = () => history.push(`/login?v=${toSignup ? "signin" : 'signup'}`)
 
     const submitLogin = () =>{
-        console.log("trying to submite now")
-        setIsLoading(true)
+        setIsLoading(true);
         loginServices.signin(signinState.data.get)
-        .then((resp)=>{
-            //GlobalContext.dialog.push(MakeNotification(()=>-1,["Bem-vindo"], "deu ruim", NotificationType.SUCCESS))
-            history.push("/");
-        })
+        .then((_)=>history.push("/"))
         .catch(err=>{
             switch(err.name){
                 case "AccessDeniedError":
                     GlobalContext.dialog.push(MakeNotification(()=>-1,[ "Credencial ou senha estão incorretos" ], err.message, NotificationType.FAILURE))
                 break;
             }
-            console.log(err)
             signinState.errors.set(err.params)
-           
         })
         .finally(()=>setIsLoading(false))
     }
@@ -58,10 +52,11 @@ export const LoginPage = () =>{
 
     return (
         <div id="login-screen">     
-            <LoginCard show={toSignup} title={"Cadastro"}>
-                <CadastroCarousel> </CadastroCarousel>
+            <LoginCard show={toSignup} title={"Cadastro"} loading={isLoading}>
+                <CadastroCarousel setLoading={setIsLoading}> </CadastroCarousel>
                 <UnaSubmitButton light onClick={toggleMode}> Já Sou Cadastrado</UnaSubmitButton>
             </LoginCard>
+
             <LoginCard show={!toSignup} title={"LOGIN"} sm loading={isLoading} >
                 <Controls.TextBox state={signinState} label={"Usuario"} name={"credencial"} type={Controls.TextBoxTypes.TEXT}/>
                 <Controls.TextBox state={signinState} label="Senha" name={"senha"} type={Controls.TextBoxTypes.PASSWORD}/> 

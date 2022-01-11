@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import './style.css'
 
 import ProgressBar from '../ProgressBar'
+import { nextTick } from 'process'
 
 export namespace CarouselFrame {
 
@@ -9,22 +10,31 @@ export namespace CarouselFrame {
         title?:string,
         content: ReactNode,
         hideButtons?:boolean,
-        next: () => void,
-        prev: () => void
+        next: () => 1 | -1,
+        prev: () => 1 | -1,
+        nextLabel?: string
     }
     
     export type Params = {
         frames: Frame[], 
-        loading: boolean
+        loading: boolean,
+        forceIndex?: number
     }
 }
 
-export const CarouselFrame: React.FunctionComponent<any> =  ({ loading, frames }) =>{
+export const CarouselFrame: React.FunctionComponent<any> =  ({ loading, frames, forceIndex }) =>{
 
-    const [ pageIndex, setPageIndex ] = useState(0)
+    const [ pageIndex, setPageIndex ] = useState(0);
+    useEffect(()=>{
+        if(forceIndex == -1) return;
+        setPageIndex(forceIndex)},[forceIndex])
 
     const handleNext = async () =>{
-        setPageIndex(pageIndex + 1 )
+        let frame = frames[pageIndex]
+        const n = frame.next ? await frame.next() : 1
+        if(n == 1){
+            setPageIndex(pageIndex + 1 )
+        }
     }
 
     const handlePrev = () =>{
@@ -36,10 +46,7 @@ export const CarouselFrame: React.FunctionComponent<any> =  ({ loading, frames }
         <div className={`una-cadastro-carousel-frame ${loading? 'loading' : ''}`}>
             <section>
                 <ProgressBar frames={frames} pageIndex={pageIndex}></ProgressBar> 
-                {
-                    frames.map( (f: any, i:number)=>{
-                    if(pageIndex === i && f.title) return (<h2 key={i}> {(f.title)} </h2>)
-                })}
+                <h2> {(frames[pageIndex].title)} </h2>
             </section>
             <section>
                 {frames.map( (f: any, i:number)=>{
@@ -51,9 +58,9 @@ export const CarouselFrame: React.FunctionComponent<any> =  ({ loading, frames }
                     frames[pageIndex]?.hideButtons === true ? <span></span>  :
                     <React.Fragment>
                         { (pageIndex > 0) && <button className="una-cadastro-carousel-btn prev-btn" onClick={handlePrev}>Anterior</button>}
-                        { (pageIndex < frames.length - 1) && <button className="una-cadastro-carousel-btn next-btn" onClick={handleNext}>
-                        { frames[pageIndex]?.nextLabel || 'Proximo'}
-                        </button>}    
+                        <button className="una-cadastro-carousel-btn next-btn" onClick={handleNext}>
+                            { frames[pageIndex]?.nextLabel || 'Proximo'} 
+                        </button>
                     </React.Fragment>
                 }
             </section>  

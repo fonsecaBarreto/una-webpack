@@ -14,32 +14,45 @@ import globalComponent from '@/react-apps/apps/main/global/global-components-con
 /* Dialog helpers */
 import {  MakeOptions } from 'fck-react-dialog';
 
+import { loginServices } from "@/react-apps/services/login-service"
+
 export namespace PrimaryHeader {
     export type Params = {
-        toggleCart: () => void
+        toggleCart: () => void,
+        user: Usuario
     }
 }
 
 import { useHistory } from 'react-router-dom'
+import { Usuario } from '@/domain/views/Usuario'
 
-export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({toggleCart})=> {
+export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({toggleCart, user })=> {
 
     const Context: any = useContext(globalComponent);
     const history = useHistory()
 
     const openProfileDialog = () => Context.dialog.push(MakeOptions((n:any)=>{
-        switch(n){
-            case 0:
-                history.push("/login?v=signin")
-                return -1; // Para Fechar o Modal
-            case 1:
-                history.push("/login?v=signup")
-                return -1; // Para Fechar o Modal
-         
-            default:
-                return -1
+
+        if(!user){
+            switch(n){
+                case 0:
+                    history.push("/login?v=signin");break;
+                case 1:
+                    history.push("/login?v=signup");break;
+            }
+        }else{
+            switch(n){
+                case 0:
+                    history.push("/perfil");break;
+                case 1:
+                    loginServices.logout();break;
+            }
         }
-    }, [ { label: "Entrar"}, { label: "Cadastrar-se"}], "Minha Conta"))
+
+        return -1
+    }, 
+    user ? [ { label: "Perfil" }, { label: "Sair" }]
+    : [ { label: "Entrar"}, { label: "Cadastrar-se"}], user ? user.nome :"Minha Conta"))
 
     const { cart } = useSelector((state: any)=>state.carrinho)
 

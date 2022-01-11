@@ -32,17 +32,19 @@
     max-width: 100px;
     object-fit: contain;
     height: auto;
-    
 }
-/*  */
+
+/* imagens */
+.footer-strict-content section:nth-child(1){
+    gap: 6px;
+}
 
 
 label.strict-label{
+    color: #222;
     font-weight: bold;
-    gap: 8px;
     flex-direction: row;
-    font-size: 14px;
-
+    font-size: 15px;
 }
 
 label.strict-label > span{

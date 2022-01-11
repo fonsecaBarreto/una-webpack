@@ -11,19 +11,28 @@
     overflow: hidden;
     border-radius: 8px;
     width: 100%;
+    gap: 5px;
 
 }
 
 .una-cadastro-carousel-frame > section{
     width: 100%;
-
     padding: 0 12px;
 }
 
+.una-cadastro-carousel-frame > section:nth-child(1){ /* body */
+}
+
+.una-cadastro-carousel-frame > section:nth-child(1) > h2{ /* body */
+    font-size: 22px;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
 /* Corpo do carrosel */
 .una-cadastro-carousel-frame > section:nth-child(2){ /* body */
     overflow-y: auto;
-    min-height: 420px; 
+    min-height: 460px; 
 }
 
 .una-cadastro-carousel-frame > section:nth-child(2)::-webkit-scrollbar {
@@ -80,10 +89,8 @@
     
 }
 
-
-
 /* LOADING... */
-
+/* 
 .una-cadastro-carousel.loading{
     position: relative;
 }
@@ -96,8 +103,8 @@
     top: 0;
     left: 0;
     background-color: rgba(255, 255, 255, 0.466);
-/*     background-image: url(../../../../../../../assets/loading.svg); */
     background-size: 90px;
     background-position: center;
     background-repeat: no-repeat;
 }
+ */
