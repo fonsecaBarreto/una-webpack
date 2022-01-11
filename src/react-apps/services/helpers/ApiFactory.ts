@@ -17,10 +17,13 @@ export function MakeApiSettings({base_url, errorHelper, storage_key}: MakeApiPar
   const axiosApi = axios.create({  baseURL: base_url })
   return ({
     send: async ({ method, url, data, headers }: SendParams) => {
+
       if(storage_key){
         const token = localStorage.getItem(storage_key)
         axiosApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       }
+
+      await new Promise(res=> setTimeout(()=>{return res(true)},1000))
 
       try{ 
         const result = await axiosApi({ method, url: `${base_url}${url}`, data, headers })

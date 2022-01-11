@@ -1,4 +1,5 @@
 .blue-lagum {
+
     --header-height-desktop: 66px;
     --header-height-mobile: 64px;
     --menu-width-expanded: 300px;
@@ -26,7 +27,7 @@
 .blue-lagum > main{
     grid-area: laycontent;
     height: 100%;
-    overflow-y: scroll;
+   /*  overflow-y: scroll; */
     position: relative;
     z-index: 1; 
     height: 100%;

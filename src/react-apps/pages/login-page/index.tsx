@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './style.css' // Baixar em um arquivo separado
 import LoginCard from './Cards' 
-
 import { Controls }  from 'fck-components'
 import { UseStateAdapter } from 'fck-components/lib/Controls'
 import UnaSubmitButton from '../../components/una/SubmitButton'
@@ -11,34 +10,40 @@ import { useHistory } from 'react-router-dom'
 import { loginServices } from '@/react-apps/services/login-service'
 import globalContext from '@/react-apps/apps/main/global/global-components-context'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
+import { setLoading } from '@/react-apps/store/reducers/main/actions'
 
 const SIGNIN_INITIAL_DATA = {
-    credencial: "",
-    senha: ""
+    credencial: "17528147540",
+    senha: "123456"
 }
 
 export const LoginPage = () =>{
-
     const GlobalContext = useContext(globalContext)
+    const [ isLoading, setIsLoading ] = useState(false)
     const history = useHistory()
     const [ toSignup, setToSignup ] = useState(false)
     const signinState = UseStateAdapter(SIGNIN_INITIAL_DATA)
-
     const toggleMode = () =>{ setToSignup(!toSignup)  } 
 
     const submitLogin = () =>{
         console.log("trying to submite now")
-       
-        loginServices.signin(signinState.data)
+        setIsLoading(true)
+        loginServices.signin(signinState.data.get)
         .then((resp)=>{
-            GlobalContext.dialog.push(MakeNotification(()=>-1,["Bem-vindo"], "deu ruim", NotificationType.SUCCESS))
+            //GlobalContext.dialog.push(MakeNotification(()=>-1,["Bem-vindo"], "deu ruim", NotificationType.SUCCESS))
+            history.push("/");
         })
         .catch(err=>{
+            switch(err.name){
+                case "AccessDeniedError":
+                    GlobalContext.dialog.push(MakeNotification(()=>-1,[ "Credencial ou senha estão incorretos" ], err.message, NotificationType.FAILURE))
+                break;
+            }
             console.log(err)
             signinState.errors.set(err.params)
-            //GlobalContext.dialog.push(MakeNotification(()=>-1,[ err.message ], "", NotificationType.FAILURE))
+           
         })
-        .finally(()=>console.log("Done"))
+        .finally(()=>setIsLoading(false))
     }
 
     useEffect(()=>{
@@ -57,10 +62,10 @@ export const LoginPage = () =>{
                 <CadastroCarousel> </CadastroCarousel>
                 <UnaSubmitButton light onClick={toggleMode}> Já Sou Cadastrado</UnaSubmitButton>
             </LoginCard>
-            <LoginCard show={!toSignup} title={"LOGIN"} sm >
+            <LoginCard show={!toSignup} title={"LOGIN"} sm loading={isLoading} >
                 <Controls.TextBox state={signinState} label={"Usuario"} name={"credencial"} type={Controls.TextBoxTypes.TEXT}/>
                 <Controls.TextBox state={signinState} label="Senha" name={"senha"} type={Controls.TextBoxTypes.PASSWORD}/> 
-                <UnaSubmitButton onClick={submitLogin}>  Entrar </UnaSubmitButton>
+                <UnaSubmitButton className={"login-entry-btn"} onClick={submitLogin}>  Entrar </UnaSubmitButton>
                 <UnaSubmitButton light onClick={toggleMode}>  Cadastrar-se</UnaSubmitButton>
             </LoginCard>
         </div>
@@ -68,22 +73,3 @@ export const LoginPage = () =>{
 }
 
 export default LoginPage
-
-/* 
-export default () =>{
-   
-
-
-    const handleErrors = (err) =>{
-        
-        switch(err.name){
-            case "InvalidFileBufferError": {
-                dialogState.showFailure("Atenção!",err.message)
-            };break;
-            default: dialogState.showFailure(err.message)
-        } 
-    }
-    return (
-       
-  )
-} */

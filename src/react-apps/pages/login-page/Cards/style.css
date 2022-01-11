@@ -12,7 +12,7 @@
 }
 
 .login-card.sm{
-    width: 500px;
+    width: 460px;
 }
 
 .login-card.show {
@@ -24,10 +24,21 @@
 }
 
 .login-card .login-card-header{
-    display: flex; align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     background-color: #007CDC;
-    padding: 32px 0 28px;
+    padding: 22px 0 28px;
+}
+
+
+.login-card .login-card-header .login-header-text{
+    font-family: "Biysk", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 6px;
+    font-weight: 400;
+    line-height: .8em;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    font-size: 28px;
+    text-align: left;
 }
 
 .login-card .login-card-header img.login-logo{
@@ -45,17 +56,6 @@
     width: 100%;
 }
 
-.login-header-text{
-    font-family: "Biysk", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    letter-spacing: 6px;
-    font-weight: 400;
-    line-height: .8em;
-    text-transform: uppercase;
-    color: #333;
-    font-size: 20px;
-    text-align: left;
-    margin-bottom: 16px;
-}
 
 .cp-small-span {
     max-width: 240px;
@@ -79,36 +79,22 @@
 
 
 
-/* 
 
-
-
-
-
- */
-/* laoding */
-/* .login-card.show.loading{
+.login-card.show.card-loading{
     position: relative;
 }
  
-.login-card.show.loading::after{
+.login-card.show.card-loading::after{
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(255, 255, 255,.8);
-    background-image: url(../../../../../assets//loading.svg);
+    background-color: rgba(153, 177, 255, 0.3);
+    background-image: url(../../../../public//assets/images/loading.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 150px;
-} */
+}
 
-/* submit */
-
-/* 
-
-
-
- */

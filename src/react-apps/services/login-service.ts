@@ -11,12 +11,13 @@ export const loginServices = {
 
   signup:async (data: any) => {
     const result = await loginApi.send({ method: "post", url:"/signup", data }) 
-    return
+    return;
   },
 
   signin:async (data: any) => {
     const result = await loginApi.send({ method: "post", url:"/signin", data }) 
-    localStorage.setItem(global.user_storage_key, result.data['accessToken'])
+    localStorage.setItem(global.user_storage_key, result.data['accessToken']);
+    return
   },
   
   verify:async () =>{
