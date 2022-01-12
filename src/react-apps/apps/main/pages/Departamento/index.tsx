@@ -9,8 +9,8 @@ export const DeparamentoPage = () => {
         <div id="departamento-page">
             <div className='app-container'>
                 <ContentGrid>
-                    <NavCategorias></NavCategorias>
-                    <ProdutctFeed></ProdutctFeed> 
+                  <NavCategorias></NavCategorias>
+                    <ProdutctFeed></ProdutctFeed>  
                 </ContentGrid>
 
             </div>

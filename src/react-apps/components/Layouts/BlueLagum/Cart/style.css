@@ -46,7 +46,6 @@
     font-size: 20px; line-height: 1em;
     display: flex; align-items: center; justify-content: center;
     border-radius: 50%;
-    border: solid 2px red;
     border: none;
     cursor: pointer;
 }

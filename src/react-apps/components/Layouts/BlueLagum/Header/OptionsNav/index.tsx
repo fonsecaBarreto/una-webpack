@@ -11,14 +11,23 @@ import { loginServices } from "@/react-apps/services/login-service"
 import { useSelector, useDispatch} from 'react-redux'
 import { useHistory } from 'react-router-dom'
 //import { Usuario } from '@/domain/views/Usuario'
-
+import DropDown from "@/react-apps/components/una/DropDown"
 export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
     const Context: any = useContext(globalComponent);
     const history = useHistory()
     const { cart } = useSelector((state: any)=>state.carrinho)
     const { user } = useSelector((state: any)=>state.main)
 
-    const openProfileDialog = () => Context.dialog.push(MakeOptions((n:any)=>{
+/*     const openProfileDialog = () => Context.dialog.push(MakeOptions((n:any)=>{
+       
+    }, 
+    user ? [ { label: "Perfil" }, { label: "Sair" }]
+    : [ { label: "Entrar"}, { label: "Cadastrar-se"}], user ? user.nome :"Minha Conta")) */
+
+    var dropDownoptions: DropDown.Options[] =   user ? [ { label: "Perfil", value: 0 }, { label: "Sair", value: 1 }]
+    : [ { label: "Entrar", value: 0}, { label: "Cadastrar-se", value : 1}]
+    
+    const handleOptions = (n:number) =>{
         if(!user){
             switch(n){
                 case 0:  history.push("/login?v=signin");break;
@@ -31,13 +40,13 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
             }
         }
         return -1
-    }, 
-    user ? [ { label: "Perfil" }, { label: "Sair" }]
-    : [ { label: "Entrar"}, { label: "Cadastrar-se"}], user ? user.nome :"Minha Conta"))
+    }
 
     return (
         <nav className='una-header-options-nav'>
-            <UserButton onClick={openProfileDialog}></UserButton>
+            <DropDown options={dropDownoptions} onAction={handleOptions}>
+                <UserButton onClick={() =>{}}></UserButton>
+            </DropDown>
             <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
         </nav>
     )

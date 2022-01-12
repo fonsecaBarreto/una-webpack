@@ -22,9 +22,7 @@ export const carrinhoReducer = (state=INITIAL_STATE, action: any) => {
           };
           case "REMOVE_FROM_CART": {
                var cart= [ ...state.cart ];
-               console.log(action.payload)
                const indexOf = cart.map((p: CartItem) => p.product.id).indexOf(action.payload.id);
-               console.log(indexOf)
                if(indexOf > -1){
                     var item = cart[indexOf]
                     item.qtd -= 1 ;

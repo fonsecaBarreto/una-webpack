@@ -73,10 +73,7 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
         }
     
         try{
-
             const result = await loginServices.signup(data);
-            console.log(result);
-            
             GlobalContext.dialog.push(MakeNotification(()=>-1,[ 
                 "Bem Vindo a UNA Compras",
                 "Cadastro efetuado com successo!", 

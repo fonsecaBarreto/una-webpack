@@ -1,10 +1,5 @@
 #App{
-    overflow: hidden;
-}
-
-/* fck-dialog */
-.fck-dialog {
-    background-color: rgba(0, 16, 39, 0.329)!important;
-    border: solid 5px #0003;
-    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
 }

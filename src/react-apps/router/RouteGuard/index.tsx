@@ -22,6 +22,7 @@ const Guard: React.FunctionComponent<GuardRouter.Params> = ({component: PageComp
   const [ redirectTo, SetRedirectTo ] = useState("");
 
   const verifyUser = async () =>{
+    console.log("** Trocando de rota ...")
     console.log("Verificando usuario")
     if(!user){ 
       dispatch(setLoading(true));
@@ -40,9 +41,10 @@ const Guard: React.FunctionComponent<GuardRouter.Params> = ({component: PageComp
   useEffect(()=>{ beforeRouter(); }, [ location ]) 
 
   const beforeRouter = async () => {
-    verifyUser(); 
     window.scroll({ top: 0, left: 0, behavior: 'auto' }); 
+    verifyUser(); 
   } 
+
 
   return ( 
     <React.Fragment>

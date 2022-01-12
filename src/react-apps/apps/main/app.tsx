@@ -8,12 +8,10 @@ export const MyApplication = () =>{
     const [ StackComponent, StackState ] = DialogStack();
     return (
         <MyContext.Provider value={{ dialog: StackState}}>
-            <React.Fragment>
-                <div id="App">
-                    <Routes></Routes>
-                    <StackComponent></StackComponent> 
-                </div>
-            </React.Fragment>
+            <div id="App" >
+                <Routes></Routes>
+                <StackComponent></StackComponent>  
+            </div>
         </MyContext.Provider>
     )
 }

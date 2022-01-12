@@ -40,7 +40,7 @@ const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
     return (
         <div className="blue-lagum">
             <header>
-                <LayoutHeader toggleCart={openCart} user={user}></LayoutHeader>
+                <LayoutHeader toggleCart={openCart}></LayoutHeader>
             </header> 
              <main>
                 {children}

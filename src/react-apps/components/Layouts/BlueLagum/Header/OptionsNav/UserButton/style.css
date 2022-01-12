@@ -1,6 +1,5 @@
 .una-header-user-button{
     position: relative;
-    border: solid 2px red;
 }
 
 .una-header-user-button > :nth-child(2){

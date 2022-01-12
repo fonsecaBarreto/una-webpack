@@ -1,0 +1,45 @@
+@keyframes slideDown {
+    0% {transform: scale(.4) translateY(-150%); opacity: 0;}
+    60% {transform: scale(1.06) translateY(6%); opacity: 1;}
+    100% {transform: scale(1)  translateY(0);}
+}
+
+.una-drop-down-container{
+    position: relative;
+}
+
+.una-drop-down-container .una-drop-down-content{
+    position: absolute;  top: 100%; right: 0;
+    background-color: rgb(252, 252, 252);
+    box-shadow: 0px 4px 4px 1px #0002;
+    animation-name: slideDown;
+    animation-duration: .25s;
+    animation-timing-function: ease;
+    overflow: hidden;
+    padding: 4px;
+    border-radius: 4px;
+    min-width: 180px;
+    display: none;
+    z-index: 5;
+}
+
+.una-drop-down-container .una-drop-down-content.show{
+    display: flex; justify-content: flex-start; align-items: center; flex-direction: column;
+}
+
+.una-drop-down-container .una-drop-down-content button{
+    width: 100%;
+    justify-content: flex-start;
+    color: #222;
+    padding: 0 16px;
+    font-size: 15px;
+    height: 32px;
+    border-radius: 0!important;
+    white-space: nowrap;
+    border-bottom: solid 1px #ddd;
+}
+
+.una-drop-down-container .una-drop-down-content button:hover{
+    color: var(--main-color);
+    background-color: rgb(245, 245, 245);
+}
