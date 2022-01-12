@@ -1,13 +1,13 @@
-/* Esse é o conjunto de NavComponents */
 import React, { useState, useEffect } from 'react'
 import './style.css'
 import SelectorNav, { NavComponent } from './SelectorNav'
 import { departamentosService } from "@/react-apps/services/departamentos-service"
 import { useSelector } from 'react-redux'
 
- export interface CategoriasView extends NavComponent.Item {
+export interface CategoriasView extends NavComponent.Item {
     departamento_id: string
 }
+
 export interface SubCategoriasView extends NavComponent.Item {
     categoria_Id: string
 }
@@ -22,26 +22,18 @@ export interface DepartamentoData {
 const INITIAL_DATA = {
     departamentos: [],
     categorias: [],
-    subCategorias:[],
-    marcas:[],
+    subCategorias: [],
+    marcas: [],
 }
 
-export const NavCategorias: React.FunctionComponent<any> = () => {
+export const NavCategorias: React.FunctionComponent<any> = ({onChange}) => {
 
     const { struct } = useSelector((state :any) => state.departamentos)
     const [ initialData, setInitalData ] = useState<any>({ ...INITIAL_DATA })
     const [ structData, setStructData ] = useState<DepartamentoData>({ ...INITIAL_DATA })
     const [ filterData, setFilterData ] = useState<DepartamentoData>({ ...INITIAL_DATA }) 
 
-    const toggleFilters = ( param: string, item?: any[] | any,  ) =>{
-        return setFilterData( ( prev: any ) => {
-            if(!item) return { ...prev, [param]: []} 
-            if(Array.isArray(item)) return { ...prev, [param]: item }
-            let sliced = [ ...prev[param].filter((c:any)=> c.value !== item.value) ];
-            var lista_data = sliced.length < prev[param].length ? [ ...sliced ] : [ ...sliced, item ]
-            return { ...prev, [param]: lista_data}
-        })
-    }
+    /* Baixa de foram asincona a estrutura de departamentos */
     useEffect(()=>{ departamentosService.list() },[])
     
     useEffect(()=>{
@@ -52,17 +44,10 @@ export const NavCategorias: React.FunctionComponent<any> = () => {
         }
     },[ struct ])
 
-    useEffect(()=>{  doFilters(filterData, "departamentos", "categorias", "departamento_id") },[filterData.departamentos])
-    useEffect(()=>{  doFilters(filterData, "categorias", "subCategorias", "categoria_id") },[filterData.categorias])
+    useEffect( ()=> { 
+        onChange(filterData) 
+    },[filterData])
 
-    const doFilters = (filterData:any, from: string, to: string, key: string ) => {
-        var struct = ( filterData[from].length == 0) ? initialData[to] : 
-        initialData[to].filter( (c:any) => ( filterData[from].map( (d: any)=>d.value ).includes(c[key])))
-        setStructData(prev => ({ ...prev, [to]: struct }))
-        var rmains: any = filterData[to].filter( (f: any) => 
-            (struct.map((s: any)=>s.value).includes(f.value)))  
-        setFilterData(prev => ({ ...prev, [to]: rmains}))
-    } 
     const MakeStructLabelData = (struct: any) =>{
         return ({  
             departamentos: struct?.departamentos ? struct.departamentos.map( (d: any) =>( { value: d.id, label: d.nome } )) : [],
@@ -71,6 +56,48 @@ export const NavCategorias: React.FunctionComponent<any> = () => {
             marcas: struct?.marcas ? struct.marcas.map( (c:any) =>({ ...c })) :[]
         })
     } 
+
+    const toggleFilters = ( param: string, item?: any,  ) =>{
+        const buildStruct = (filterData: any) =>{
+            /* Mostra somente as categorias dos respectivos departamentos selecionados 
+                - Mostras as subCategorias das respectivas subCategorias
+                - Se nao houver categorias selecionas, ou seja todas estão selecionadas ele deve mostrar todas realcionadas a struct a cima
+                - Do contrario deve mostrar as subCategorias realcionadas ao filtro selcionado
+            */
+            var struct =  { ...initialData } 
+
+            struct.categorias = filterData["departamentos"].length == 0 ?  struct['categorias'] :
+                struct['categorias'].filter( (c:any) => ( filterData["departamentos"].map( (d: any)=>d.value ).includes(c['departamento_id'])))
+
+            struct.subCategorias =  filterData["categorias"].length == 0 ?  
+                struct['subCategorias'].filter( (c:any) => ( struct.categorias.map( (d: any)=>d.value ).includes(c['categoria_id']))) :
+                struct['subCategorias'].filter( (c:any) => ( filterData["categorias"].map( (d: any)=>d.value ).includes(c['categoria_id'])))
+
+            /* Toda vez que um departamento é selecionado, deve ser limpar os filtros realcionado as categorias */
+            filterData['categorias'] = filterData["categorias"].filter((c: any)=>{
+                return ( struct["categorias"].map((s: any)=>s.value).includes(c.value) ) 
+            })
+
+            filterData['subCategorias'] = filterData["subCategorias"].filter((c: any)=>{
+                return ( struct["subCategorias"].map((s: any)=>s.value).includes(c.value) ) 
+            })
+
+            setStructData(struct)
+        }
+
+        return setFilterData( ( prev: any ) => {
+            var filterData: any = { ...prev }
+            if(!item) { filterData[param] = []  }
+            else {  
+                let sliced = filterData[param].length > 0 && filterData[param].filter((c:any)=> c.value !== item.value); 
+                filterData[param] = sliced.length < filterData[param].length ? sliced : [ ...filterData[param], item ] 
+            } 
+            buildStruct(filterData)
+            return filterData
+        })
+
+    }
+  
     return (
         <aside className='nav-categorias-aside'>
             <SelectorNav 

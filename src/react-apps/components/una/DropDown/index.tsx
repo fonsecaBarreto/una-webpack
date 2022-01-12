@@ -1,7 +1,6 @@
 import React, { FC, ReactNode, useState } from 'react'
 import './style.css'
 
-
 export namespace DropDown {
     export type Options = {
         label: string,
@@ -13,6 +12,7 @@ export namespace DropDown {
         onAction: Function
     }
 }
+
 export const DropDown: FC<DropDown.Params> =  ({ children, options, onAction }) =>{
 
     const [active, setActive ] = useState(false)

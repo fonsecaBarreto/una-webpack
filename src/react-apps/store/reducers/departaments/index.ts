@@ -26,6 +26,10 @@ export const departamentosReducer = (state=INITIAL_STATE, action: any) => {
                var produtos_feed :any = { ...action.payload.listView, data } ;
                return ({ ...state, produtos_feed }) ;
           };
+          case "SET_PRODUCTOS_FEED_QUERIES" :{
+               var produtos_feed :any = { ...state.produtos_feed, queries: { ...action.payload } } ;
+               return ({ ...state, produtos_feed }) ; 
+          }
           default: return state
      }
 }

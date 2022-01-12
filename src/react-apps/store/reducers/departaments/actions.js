@@ -8,3 +8,9 @@ export const setProdutosFeed = (value, append) => ({
      payload: { listView: value, toAppend: append}
 })
  
+
+export const setProdutosFeedQueries = (queries) => ({
+     type: "SET_PRODUCTOS_FEED_QUERIES",
+     payload: queries
+})
+ 

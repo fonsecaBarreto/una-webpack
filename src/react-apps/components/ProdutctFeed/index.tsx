@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react'
 import './style.css'
 import Item from './item'
-import { produtosService } from "@/react-apps/services/produtos-service"
+
 import { useSelector, useDispatch} from 'react-redux'
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
 import { ProductListView, Produto } from '@/domain/views/Produto'
 import { AiOutlinePlus } from 'react-icons/ai'
-export const ProdutFeed: React.FunctionComponent<any> = () =>{
+
+export const ProdutFeed: React.FunctionComponent<any> = ({ listProducts }) =>{
 
     const dispatch = useDispatch()
     const { produtos_feed } = useSelector( (state: any)=>state.departamentos)
     const { cart } = useSelector((state: any)=>state.carrinho)
-
-    useEffect(()=>{ produtosService.list() },[])
-
     const addToCart =(novo_produto: any) =>  dispatch(pushToCart(novo_produto))
     const rmFromCart =(produto: any) => dispatch(removeFromCart(produto))
     
@@ -24,9 +22,12 @@ export const ProdutFeed: React.FunctionComponent<any> = () =>{
     }
 
     const handleGetProdutos = () =>{
-        const listingView: ProductListView = { ...produtos_feed };
-        produtosService.list(listingView.pageIndex+1)
+  
+        listProducts()
+       
     }
+
+    useEffect(()=>{ listProducts() },[])
 
     return (
         <div className="una-product-feed">
@@ -41,7 +42,6 @@ export const ProdutFeed: React.FunctionComponent<any> = () =>{
                     })
                 }
             </section>
-
             <section>
                 <span> ... </span> 
                 <button className='una-product-feed-plus-btn' onClick={handleGetProdutos}><AiOutlinePlus></AiOutlinePlus> </button>
