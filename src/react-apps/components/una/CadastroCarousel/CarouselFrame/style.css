@@ -12,25 +12,28 @@
     border-radius: 8px;
     width: 100%;
     gap: 5px;
-
-}
-
-.una-cadastro-carousel-frame > section{
-    width: 100%;
-    padding: 0 12px;
-}
-
-.una-cadastro-carousel-frame > section:nth-child(1){ /* body */
-}
-
-.una-cadastro-carousel-frame > section:nth-child(1) > h2{ /* body */
-    font-size: 22px;
-    color: #222;
-    margin: 0;
     padding: 0;
 }
+
+ /* SECTIONS */
+.una-cadastro-carousel-frame > section{
+    width: 100%; margin: 0; padding: 0;
+}
+
+
+ /* BODY */
+.una-cadastro-carousel-frame > section:nth-child(1){
+
+}
+
+.una-cadastro-carousel-frame > section:nth-child(1) > h2{ 
+    font-size: 22px;
+    color: #222;
+    margin: 0; padding: 0;
+}
+
 /* Corpo do carrosel */
-.una-cadastro-carousel-frame > section:nth-child(2){ /* body */
+.una-cadastro-carousel-frame > section:nth-child(2){ 
     overflow-y: auto;
     min-height: 460px; 
 }
@@ -52,19 +55,18 @@
 
 /* Footer */
 .una-cadastro-carousel-frame > section:nth-child(3){
-    margin-top: 18px;
+    margin-top: 12px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4px 12px 14px;
+    flex-direction: row; align-items: center; justify-content: space-between;
+    padding: 4px 4px 14px;
+    gap: 10px;
 }
 
 .una-cadastro-carousel-btn{
     cursor: pointer;
     color: white;
     border-radius: 12px;
-    padding: 12px 56px;
+    padding: 12px 48px;
     border: none;
     height: fit-content;
     background-color: var(--main-color);
@@ -80,31 +82,3 @@
     margin-right: auto;
     margin-left: 0;
 } 
-
-
-@media screen and (max-width: 960px) {
-    .una-carousel-frame .una-carousel-frame-section:nth-child(2){ /* body */
-        height: 500px; 
-    }
-    
-}
-
-/* LOADING... */
-/* 
-.una-cadastro-carousel.loading{
-    position: relative;
-}
-
-.una-cadastro-carousel.loading::after{
-    content: "";
-    position: relative;
-    width: 100%; height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.466);
-    background-size: 90px;
-    background-position: center;
-    background-repeat: no-repeat;
-}
- */

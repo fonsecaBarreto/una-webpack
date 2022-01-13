@@ -6,7 +6,7 @@ import { useSelector, useDispatch} from 'react-redux'
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
 import { ProductListView, Produto } from '@/domain/views/Produto'
 import { AiOutlinePlus } from 'react-icons/ai'
-
+import { LoadingComponent } from 'fck-components/lib/utils'
 export const ProdutFeed: React.FunctionComponent<any> = ({ listProducts }) =>{
 
     const dispatch = useDispatch()
@@ -41,6 +41,9 @@ export const ProdutFeed: React.FunctionComponent<any> = ({ listProducts }) =>{
                         )
                     })
                 }
+                {/* carregando... */}
+                {/* Aqui o comenasdasd
+                <LoadingComponent></LoadingComponent> */}
             </section>
             <section>
                 <span> ... </span> 

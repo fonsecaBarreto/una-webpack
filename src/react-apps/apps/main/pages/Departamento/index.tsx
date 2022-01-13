@@ -9,41 +9,26 @@ import { useSelector, useDispatch} from 'react-redux'
 
 export const DeparamentoPage = () => {
     
-    const dispatch = useDispatch();
-    const [ toRequest, setToRequest] = useState(false)
     const { produtos_feed } = useSelector( (state: any)=>state.departamentos)
   
-
+    /* Listagem feita pela categorias */
     const filterChanged = (filters: any) => {
-      
-        /* Quando os filtros mudam pageIndex é setado para 0 */
         const { especificacao="", categorias=[], departamentos=[], subCategorias=[] } = filters
         const e = especificacao
         const d = [ ...departamentos ].map(d=>d.value)
         const s = [ ...subCategorias ].map(d=>d.value)
         const c = [ ...categorias ].map(d=>d.value)
-
-        dispatch(setProdutosFeed({
-            total: 0, length: 0,  data: [],                      
-            queries: {e,d,s,c},
-            pages: 0, pageIndex: 0
-        }))
-        setToRequest(true)
+        return produtosService.list({ p: 0, e, d, s, c }) 
     }
 
-    useEffect(()=>{
-        if(toRequest === true){
-            listProducts();
-            setToRequest(false)
-        }
-    },[toRequest])
-
+    /* Listagem de produtos fetira pelo botao de ver mais */
     const listProducts = () => {
-        console.log("listando produto aqui")
         const listingView: ProductListView = { ...produtos_feed };
         const { pageIndex, queries } = listingView
-        return produtosService.list({ p: pageIndex, ...queries}) 
+        return produtosService.list({ p: pageIndex+ 1, ...queries }) 
     }
+
+    /* Listagem feita pela barra de pesquisa deve ficar aqui a baixo*/
 
     return (
         <div id="departamento-page">

@@ -174,7 +174,6 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
     ]
     return (
         <div className="una-cadastro-carousel">
-      
             <CarouselFrame frames={carouselFrames} forceIndex={carouselInitialIndex}> </CarouselFrame>        
         </div>
     )

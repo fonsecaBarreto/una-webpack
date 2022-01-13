@@ -3,20 +3,26 @@ import React, { useState } from 'react'
 import './style.css'
 import { HiSearchCircle } from 'react-icons/hi'
 
-export const SearchBar: React.FunctionComponent<any> = ({})  =>{
+export namespace SearchBar {
+    export type Params = {
+        value: string,
+        onInput: (v: string) => void,
+        onClick: () => void
+    }
+}
+export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({value, onInput, onClick})  =>{
 
-    const handleInput = () => {
-        console.log("Pesquisar")
-        //state.setText(e.target.value)
+    const handleInput = (e: any) => {
+        onInput(e.target.value)
     }
 
     const search = () => {
+        onClick()
        // state.loadFeed(0, false)
     }
 
-    const handleKeys = ( ) =>{
-        console.log("digitando")
-        //if(e.key === "Enter") return search()
+    const handleKeys = (e:any) =>{
+        if(e.key === "Enter") return search()
     } 
 
     return (
@@ -25,7 +31,7 @@ export const SearchBar: React.FunctionComponent<any> = ({})  =>{
         
             <input type="text" 
                 placeholder="Pesquise por produto"
-                value={""} 
+                value={value} 
                 onInput={handleInput} 
                 onKeyDown={handleKeys}></input>
 

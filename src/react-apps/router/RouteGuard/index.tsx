@@ -1,10 +1,11 @@
-import React, { Component, FC, ReactNode, useEffect, useState } from 'react'
+import React, { useContext, FC, ReactNode, useEffect, useState } from 'react'
 import { Route } from "react-router-dom";
 import { loginServices } from '@/react-apps/services/login-service'
 
 import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector} from 'react-redux'
 import { setUser, setLoading } from '@/react-apps/store/reducers/main/actions' 
+import MyContext from '@/react-apps/apps/main/global/global-components-context';
 
 export namespace GuardRouter {
   export type Params = {
@@ -16,7 +17,7 @@ export namespace GuardRouter {
 }
 
 const Guard: React.FunctionComponent<GuardRouter.Params> = ({component: PageComponent, layout: Layout, path, location, ...rest } ) => {
-
+  const context = useContext(MyContext)
   const dispatch = useDispatch()
   var { user }  = useSelector((state:any)=>state.main) 
   const [ redirectTo, SetRedirectTo ] = useState("");
@@ -41,7 +42,11 @@ const Guard: React.FunctionComponent<GuardRouter.Params> = ({component: PageComp
   useEffect(()=>{ beforeRouter(); }, [ location ]) 
 
   const beforeRouter = async () => {
-    window.scroll({ top: 0, left: 0, behavior: 'auto' }); 
+    //context.app.current.getBoundingClientRect().top + window.pageYOffset;
+
+  /*   context.app.current.current.scrollIntoView({behavior: 'smooth'});  
+
+ */
     verifyUser(); 
   } 
 

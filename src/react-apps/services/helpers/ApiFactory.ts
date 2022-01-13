@@ -23,7 +23,7 @@ export function MakeApiSettings({base_url, errorHelper, storage_key}: MakeApiPar
         axiosApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       }
 
-      await new Promise(res=> setTimeout(()=>{return res(true)},1000))
+      //await new Promise(res=> setTimeout(()=>{return res(true)},1000))
 
       try{ 
         const result = await axiosApi({ method, url: `${base_url}${url}`, data, headers })

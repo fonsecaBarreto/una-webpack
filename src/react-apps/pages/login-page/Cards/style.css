@@ -29,7 +29,6 @@
     padding: 22px 0 28px;
 }
 
-
 .login-card .login-card-header .login-header-text{
     font-family: "Biysk", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     letter-spacing: 6px;
@@ -47,7 +46,7 @@
 }
 
 .login-card .login-card-content{
-    padding: 26px 24px 36px;   
+    padding: 26px 18px 36px;   
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -77,9 +76,6 @@
 
 
 
-
-
-
 .login-card.show.card-loading{
     position: relative;
 }
@@ -91,8 +87,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(153, 177, 255, 0.3);
-    background-image: url(../../../../public//assets/images/loading.svg);
+    background-color: rgba(0, 66, 153, 0.15);
+    background-image: url(../../../../public/assets/images/loading.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 150px;

@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './style.css' // Baixar em um arquivo separado
 import LoginCard from './Cards' 
-import { Controls }  from 'fck-components'
+import { Controls, Forming }  from 'fck-components'
 import { UseStateAdapter } from 'fck-components/lib/Controls'
 import UnaSubmitButton from '../../components/una/SubmitButton'
 import CadastroCarousel from '@/react-apps/components/una/CadastroCarousel'
