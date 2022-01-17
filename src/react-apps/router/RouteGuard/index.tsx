@@ -12,7 +12,7 @@ export namespace GuardRouter {
     component: FC,
     layout: FC,
     path: string,
-    location: string
+    location: string | null
   }
 }
 
@@ -42,12 +42,9 @@ const Guard: React.FunctionComponent<GuardRouter.Params> = ({component: PageComp
   useEffect(()=>{ beforeRouter(); }, [ location ]) 
 
   const beforeRouter = async () => {
-    //context.app.current.getBoundingClientRect().top + window.pageYOffset;
 
-  /*   context.app.current.current.scrollIntoView({behavior: 'smooth'});  
-
- */
-    verifyUser(); 
+    context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
+    //verifyUser(); 
   } 
 
 

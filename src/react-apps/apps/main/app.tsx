@@ -7,10 +7,11 @@ import MyContext from './global/global-components-context';
 export const MyApplication = () =>{
     const [ StackComponent, StackState ] = DialogStack();
     const appRef = useRef<HTMLHeadingElement>(null)
+
     return (
         <MyContext.Provider value={{ dialog: StackState, app: appRef }}>
             <div id="App" ref={appRef} > 
-                <Routes></Routes>
+                <Routes></Routes> 
                 <StackComponent></StackComponent>  
             </div>
         </MyContext.Provider>
