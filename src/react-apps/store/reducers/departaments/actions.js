@@ -1,4 +1,4 @@
-/* departamentos struct */
+
 export const setDepartamentos = value => ({
      type: "SET_DEPARTMENTOS_STRUCT",
      payload: value
@@ -9,9 +9,7 @@ export const setMarcasAvailables = value => ({
      payload: value
 })
 
-/* produtos */
-
-export const setProdutosFeed = (value, append) => ({
+export const setProdutos = (value, append) => ({
      type: "SET_PRODUCTOS_FEED",
      payload: { listView: value, toAppend: append}
 })

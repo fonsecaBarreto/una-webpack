@@ -13,7 +13,7 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    padding: 0 6px;
+    padding: 0 8px;
     border-radius: 12px;
     border: solid 1px rgb(255, 255, 255,0);
     transition: all .1s;

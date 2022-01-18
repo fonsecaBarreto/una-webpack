@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import Routes from './routes'
 import './style.css'
 import { DialogStack }  from 'fck-react-dialog'
-import MyContext from './global/global-components-context';
+import MyContext from './global-components-context';
 
 export const MyApplication = () =>{
     const [ StackComponent, StackState ] = DialogStack();

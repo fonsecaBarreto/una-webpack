@@ -1,9 +1,0 @@
-.una-header-user-button{
-    position: relative;
-}
-
-.una-header-user-button > :nth-child(2){
-    font-size: 24px;
-    margin: auto;
-    margin-left: 5px;
-}

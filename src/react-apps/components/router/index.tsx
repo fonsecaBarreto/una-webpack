@@ -18,7 +18,8 @@ export namespace AppRouter {
 export interface PageRouterConfig {
     layout: React.FunctionComponent<{children?: ReactNode}>
     prefix?: String,
-    routes: AppRouter.RouteConfig[] 
+    routes: AppRouter.RouteConfig[],
+    beforeEach?: Function
 }
 
 export function AppRouter({ pages }: { pages: PageRouterConfig[]}){
@@ -27,9 +28,9 @@ export function AppRouter({ pages }: { pages: PageRouterConfig[]}){
 			<Switch>
                 {   
                 pages.map((p: PageRouterConfig, j:number)=>{
-                    const { layout, routes, prefix="" } = p
+                    const { layout, routes, beforeEach, prefix="" } = p
                     return ( routes.map((r,i) => (
-                    <Guard location={location} key={i} component={r.component} layout={layout} path={`${prefix}${r.path}`} ></Guard>)))   
+                    <Guard beforeRouter={beforeEach} location={location} key={i} component={r.component} layout={layout} path={`${prefix}${r.path}`} ></Guard>)))   
                 })
                 }
 			</Switch>

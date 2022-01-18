@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react'
 import './style.css'
 import Item from './item'
-
 import { useSelector, useDispatch} from 'react-redux'
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
 import { AiOutlinePlus } from 'react-icons/ai'
 
-export const ProdutFeed: React.FunctionComponent<any> = ({ listProducts }) =>{
+export const ProdutFeed: React.FunctionComponent<any> = ({ listProducts, produtos }) =>{
 
     const dispatch = useDispatch()
-    const { produtos } = useSelector( (state: any)=>state.departamentos)
     const { cart } = useSelector((state: any)=>state.carrinho)
     const addToCart =(novo_produto: any) =>  dispatch(pushToCart(novo_produto))
     const rmFromCart =(produto: any) => dispatch(removeFromCart(produto))
@@ -39,8 +37,7 @@ export const ProdutFeed: React.FunctionComponent<any> = ({ listProducts }) =>{
                     })
                 }
                 {/* carregando... */}
-                {/* Aqui o comenasdasd
-                <LoadingComponent></LoadingComponent> */}
+                {/*  <LoadingComponent></LoadingComponent> */}
             </section>
             <section>
                 <span> ... </span> 

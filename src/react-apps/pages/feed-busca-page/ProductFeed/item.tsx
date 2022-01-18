@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductImage from "@/public/assets/images/shopping-bag.jpg"
-import CounterControl from '../una/CounterControl'
-import SubmitButton from '../una/SubmitButton'
+import CounterControl from '../../../components/una/inputs-control/CounterControl'
+import SubmitButton from '../../../components/una/inputs-control/SubmitButton'
 
 export namespace ProductItem {
     export type Params = {

@@ -1,7 +1,5 @@
-import { global } from '@/global'
-import store from '@/react-apps/store'
+import { global } from '@/services/global-keys'
 import { MakeApiSettings, errorHandler } from './helpers'
-import { setDepartamentos  } from '../react-apps/store/reducers/departaments/actions'
 
 const departamentsApi = MakeApiSettings({
      base_url: `${global.base_url}/departamentos`,
@@ -12,7 +10,6 @@ const departamentsApi = MakeApiSettings({
 export const departamentosService = {
      list:async () => {
           const { data } = await departamentsApi.send({ method: "get", url:"/" }) 
-          store.dispatch(setDepartamentos(data));
           return data
      }
 }

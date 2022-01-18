@@ -6,11 +6,10 @@ import LayoutHeader from './Header'
 import LayoutFooter from './Footer' 
 import LayoutCart from './Cart'
 import { useDispatch, useSelector } from 'react-redux'
-import globalComponent from '@/react-apps/apps/main/global/global-components-context';
+import globalComponent from '@/react-apps/apps/main/global-components-context';
 import { MakeDialogConfig } from 'fck-react-dialog'
-import ForbiddenCartModal from '../../Modals/ForbiddenCart'
+import ForbiddenCartModal from '../../components/Modals/ForbiddenCart'
 
-import { IoMdLogIn } from 'react-icons/io'
 import { useHistory } from 'react-router-dom'
 
 const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{

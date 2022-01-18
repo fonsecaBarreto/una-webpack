@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css'
-import CounterControl from '@/react-apps/components/una/CounterControl'
+import CounterControl from '@/react-apps/components/una/inputs-control/CounterControl'
 import ShoopingBagImage from "@/public/assets/images/shopping-bag.jpg"
 
 export namespace CartItem {

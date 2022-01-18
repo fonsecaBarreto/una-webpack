@@ -4,25 +4,19 @@ import { IoMdCart } from 'react-icons/io'
 import UserButton from './UserButton'
 import CarrinhoButton from './CarrinhoButton'
 /* global */
-import globalComponent from '@/react-apps/apps/main/global/global-components-context';
+import globalComponent from '@/react-apps/apps/main/global-components-context';
 /* Dialog helpers */
-import {  MakeOptions } from 'fck-react-dialog';
-import { loginServices } from "@/services/login-service"
-import { useSelector, useDispatch} from 'react-redux'
+import { loginServices } from "@/services/api/login-service"
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 //import { Usuario } from '@/domain/views/Usuario'
 import DropDown from "@/react-apps/components/una/DropDown"
+
 export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
     const Context: any = useContext(globalComponent);
     const history = useHistory()
     const { cart } = useSelector((state: any)=>state.carrinho)
     const { user } = useSelector((state: any)=>state.main)
-
-/*     const openProfileDialog = () => Context.dialog.push(MakeOptions((n:any)=>{
-       
-    }, 
-    user ? [ { label: "Perfil" }, { label: "Sair" }]
-    : [ { label: "Entrar"}, { label: "Cadastrar-se"}], user ? user.nome :"Minha Conta")) */
 
     var dropDownoptions: DropDown.Options[] =   user ? [ { label: "Perfil", value: 0 }, { label: "Sair", value: 1 }]
     : [ { label: "Entrar", value: 0}, { label: "Cadastrar-se", value : 1}]
@@ -45,7 +39,7 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
     return (
         <nav className='una-header-options-nav'>
             <DropDown options={dropDownoptions} onAction={handleOptions}>
-                <UserButton onClick={() =>{}}></UserButton>
+                <UserButton user={user} onClick={() =>{}}></UserButton>
             </DropDown>
             <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
         </nav>
@@ -53,3 +47,9 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
 }
 
 export default OptionsNav
+
+
+
+/*     const openProfileDialog = () => Context.dialog.push(MakeOptions((n:any)=>{ }, 
+    user ? [ { label: "Perfil" }, { label: "Sair" }]
+    : [ { label: "Entrar"}, { label: "Cadastrar-se"}], user ? user.nome :"Minha Conta")) */

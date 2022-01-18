@@ -5,10 +5,10 @@ import { Controls, Forming } from 'fck-components'
 import { UseStateAdapter } from 'fck-components/lib/Controls'
 import { CadastroCompanhia_schema, CadastroEndereco_schema, CadastroUsuario_schema } from './schemas'
 import { ValidationSchema, Validator } from 'fck-schema-validator'
-import GlobalComponentsContext from '@/react-apps/apps/main/global/global-components-context'
+import GlobalComponentsContext from '@/react-apps/apps/main/global-components-context'
 import ufs from './ufs.json'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
-import { loginServices } from "@/services/login-service"
+import { loginServices } from "@/services/api/login-service"
 import { useHistory } from 'react-router-dom'
 
 const validator = new Validator()
