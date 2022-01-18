@@ -28,7 +28,7 @@ const INITIAL_DATA = {
 
 export const NavCategorias: React.FunctionComponent<any> = ({onChange}) => {
 
-    const { struct } = useSelector((state :any) => state.departamentos)
+    const { struct, marcasAvailables } = useSelector((state :any) => state.departamentos)
     const [ initialData, setInitalData ] = useState<any>({ ...INITIAL_DATA })
     const [ structData, setStructData ] = useState<DepartamentoData>({ ...INITIAL_DATA })
     const [ filterData, setFilterData ] = useState<DepartamentoData>({ ...INITIAL_DATA }) 
@@ -44,9 +44,9 @@ export const NavCategorias: React.FunctionComponent<any> = ({onChange}) => {
         }
     },[ struct ])
 
-    useEffect( ()=> { 
-        onChange(filterData) 
-    },[filterData])
+    useEffect( ()=> { onChange(filterData)  },[filterData])
+
+    useEffect(()=>{ filterAvailablesMarcas() },[marcasAvailables])
 
     const MakeStructLabelData = (struct: any) =>{
         return ({  
@@ -95,11 +95,12 @@ export const NavCategorias: React.FunctionComponent<any> = ({onChange}) => {
             buildStruct(filterData)
             return filterData
         })
-
     }
+
   
     return (
         <aside className='nav-categorias-aside'>
+     
             <SelectorNav 
                 title="Departamentos" push={(item: any) =>toggleFilters("departamentos", item)}  items={structData.departamentos} 
                 selectedItems={[...filterData.departamentos.map((f:any)=>f.value)]}></SelectorNav>
@@ -111,6 +112,10 @@ export const NavCategorias: React.FunctionComponent<any> = ({onChange}) => {
             <SelectorNav 
                 title="Sub Categorias"  push={(item: any) =>toggleFilters("subCategorias", item)}  items={structData.subCategorias} 
                 selectedItems={[...filterData.subCategorias.map((f:any)=>f.value)]}></SelectorNav>
+                
+            <SelectorNav 
+                title="Marcas" push={(item: any) =>toggleFilters("marcas", item)}  items={structData.marcas} 
+                selectedItems={[...filterData.marcas.map((f:any)=>f.value)]}></SelectorNav> 
         </aside> 
     )
 }

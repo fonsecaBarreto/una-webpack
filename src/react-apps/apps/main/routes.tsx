@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect } from "react";
 
 import BlueLagumLayout from '../../components/Layouts/BlueLagum' 
-import DeparamentoPage from "./pages/Departamento";
+import DeparamentoPage from "../../pages/feed-busca-page";
 import LoginPage from "@/react-apps/pages/login-page";
 import AppRouter, { PageRouterConfig } from '@/react-apps/router'
 

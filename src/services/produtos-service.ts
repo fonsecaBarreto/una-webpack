@@ -1,7 +1,7 @@
 import { global } from '@/global'
 import store from '@/react-apps/store'
 import { MakeApiSettings, errorHandler } from './helpers'
-import { setMarcas, setProdutosFeed } from '../react-apps/store/reducers/departaments/actions'
+import { setMarcasAvailables, setProdutosFeed } from '../react-apps/store/reducers/departaments/actions'
 
 const produtosApi = MakeApiSettings({
      base_url: `${global.base_url}/produtos`,
@@ -38,7 +38,7 @@ export const produtosService = {
           const { data } = await produtosApi.send({ method: "get", url: `/${query}` }) 
           var produtosListView = { ...data, data: [ ...data.data.produtos ]}
           store.dispatch(setProdutosFeed(produtosListView, p > 1 ? true : false));
-          store.dispatch(setMarcas(data.data.martcas))
+          store.dispatch(setMarcasAvailables(data.data.marcas))
           return data 
      }
 }

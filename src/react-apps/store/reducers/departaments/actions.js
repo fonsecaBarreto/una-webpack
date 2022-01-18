@@ -4,8 +4,8 @@ export const setDepartamentos = value => ({
      payload: value
 })
 
-export const setMarcas = value => ({
-     type: "SET_DEPARTMENTOS_STRUCT_MARCAS",
+export const setMarcasAvailables = value => ({
+     type: "SET_MARCAS_AVAILABLES",
      payload: value
 })
 

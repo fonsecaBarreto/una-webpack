@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
-import ContentGrid from './ContentGrid'
+import React from 'react'
+import ContentGrid from '../../components/ContentGrid'
 import NavCategorias from '@/react-apps/components/NavCategorias'
 import ProdutctFeed from '@/react-apps/components/ProdutctFeed'
-import { setProdutosFeed } from '@/react-apps/store/reducers/departaments/actions'
 import { produtosService } from "@/services/produtos-service"
-import { ProductListView } from '@/domain/views/Produto'
-import { useSelector, useDispatch} from 'react-redux'
+import { useSelector } from 'react-redux'
+import { ListingView } from '@/domain/views/ListingView'
+import { Produto } from '@/domain/views/Produto'
 
 export const DeparamentoPage = () => {
     
@@ -23,13 +23,12 @@ export const DeparamentoPage = () => {
 
     /* Listagem de produtos fetira pelo botao de ver mais */
     const listProducts = () => {
-        const listingView: ProductListView = { ...produtos_feed };
+        const listingView: ListingView<Produto> = { ...produtos_feed };
         const { pageIndex, queries } = listingView
-        return produtosService.list({ p: pageIndex+ 1, ...queries }) 
+        return produtosService.list({ p: pageIndex + 1, ...queries }) 
     }
 
     /* Listagem feita pela barra de pesquisa deve ficar aqui a baixo*/
-
     return (
         <div id="departamento-page">
             <div className='app-container'>
