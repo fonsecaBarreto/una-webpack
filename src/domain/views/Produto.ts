@@ -18,5 +18,3 @@ export interface Produto {
     apresentacao: LabelView
     subCategoria: LabelView
 }
-
-export type ProductListView = ListingView<Produto>

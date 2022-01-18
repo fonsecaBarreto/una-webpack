@@ -1,6 +1,6 @@
 import React, { useContext, FC, ReactNode, useEffect, useState } from 'react'
 import { Route } from "react-router-dom";
-import { loginServices } from '@/react-apps/services/login-service'
+import { loginServices } from '@/services/login-service'
 
 import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector} from 'react-redux'

@@ -7,7 +7,7 @@ import CarrinhoButton from './CarrinhoButton'
 import globalComponent from '@/react-apps/apps/main/global/global-components-context';
 /* Dialog helpers */
 import {  MakeOptions } from 'fck-react-dialog';
-import { loginServices } from "@/react-apps/services/login-service"
+import { loginServices } from "@/services/login-service"
 import { useSelector, useDispatch} from 'react-redux'
 import { useHistory } from 'react-router-dom'
 //import { Usuario } from '@/domain/views/Usuario'

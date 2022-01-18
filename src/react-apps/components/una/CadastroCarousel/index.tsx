@@ -8,7 +8,7 @@ import { ValidationSchema, Validator } from 'fck-schema-validator'
 import GlobalComponentsContext from '@/react-apps/apps/main/global/global-components-context'
 import ufs from './ufs.json'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
-import { loginServices } from "@/react-apps/services/login-service"
+import { loginServices } from "@/services/login-service"
 import { useHistory } from 'react-router-dom'
 
 const validator = new Validator()

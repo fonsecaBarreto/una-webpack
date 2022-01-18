@@ -3,7 +3,7 @@ import ContentGrid from './ContentGrid'
 import NavCategorias from '@/react-apps/components/NavCategorias'
 import ProdutctFeed from '@/react-apps/components/ProdutctFeed'
 import { setProdutosFeed } from '@/react-apps/store/reducers/departaments/actions'
-import { produtosService } from "@/react-apps/services/produtos-service"
+import { produtosService } from "@/services/produtos-service"
 import { ProductListView } from '@/domain/views/Produto'
 import { useSelector, useDispatch} from 'react-redux'
 

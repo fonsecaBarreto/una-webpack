@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './style.css'
 import SelectorNav, { NavComponent } from './SelectorNav'
-import { departamentosService } from "@/react-apps/services/departamentos-service"
+import { departamentosService } from "@/services/departamentos-service"
 import { useSelector } from 'react-redux'
 
 export interface CategoriasView extends NavComponent.Item {

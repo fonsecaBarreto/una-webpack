@@ -4,13 +4,12 @@ import Item from './item'
 
 import { useSelector, useDispatch} from 'react-redux'
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
-import { ProductListView, Produto } from '@/domain/views/Produto'
 import { AiOutlinePlus } from 'react-icons/ai'
-import { LoadingComponent } from 'fck-components/lib/utils'
+
 export const ProdutFeed: React.FunctionComponent<any> = ({ listProducts }) =>{
 
     const dispatch = useDispatch()
-    const { produtos_feed } = useSelector( (state: any)=>state.departamentos)
+    const { produtos } = useSelector( (state: any)=>state.departamentos)
     const { cart } = useSelector((state: any)=>state.carrinho)
     const addToCart =(novo_produto: any) =>  dispatch(pushToCart(novo_produto))
     const rmFromCart =(produto: any) => dispatch(removeFromCart(produto))
@@ -22,9 +21,7 @@ export const ProdutFeed: React.FunctionComponent<any> = ({ listProducts }) =>{
     }
 
     const handleGetProdutos = () =>{
-  
         listProducts()
-       
     }
 
     useEffect(()=>{ listProducts() },[])
@@ -33,7 +30,7 @@ export const ProdutFeed: React.FunctionComponent<any> = ({ listProducts }) =>{
         <div className="una-product-feed">
             <section>
                 {
-                    produtos_feed?.data.length > 0 && produtos_feed.data.map((p: any, i: string)=>{
+                    produtos?.data.length > 0 && produtos.data.map((p: any, i: string)=>{
                         return (
                             <React.Fragment key={i}>
                                 <Item key={i} produto={p} toAdd={addToCart} toRemove={rmFromCart} count={countProductQtd(p.id)} ></Item>

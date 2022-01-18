@@ -1,7 +1,7 @@
 import { global } from '@/global'
 import store from '@/react-apps/store'
 import { MakeApiSettings, errorHandler } from './helpers'
-import { setProdutosFeed } from '../store/reducers/departaments/actions'
+import { setMarcas, setProdutosFeed } from '../react-apps/store/reducers/departaments/actions'
 
 const produtosApi = MakeApiSettings({
      base_url: `${global.base_url}/produtos`,
@@ -24,28 +24,21 @@ export const produtosService = {
 
           const { e="", p= 1, c=[], d=[], s=[] } = params
 
-          var query  = `?p=${p}&e=${e}`
+          var query = `?p=${p}&e=${e}`
 
-          if(d.length > 0 ){
-               d.map(d=>{
-                    query+=`&d=${d}`
-               })
-          }
+          if(d.length > 0 )
+               d.map(d=>{ query+=`&d=${d}` });
 
-          if(s.length > 0){
-               s.map(s=>{
-                    query+=`&s=${s}`
-               })  
-          }
-
-          if(c.length > 0){
-               c.map(c=>{
-                    query+=`&c=${c}`
-               })  
-          }
+          if(s.length > 0)
+               s.map(s=> { query+=`&s=${s}` });
+   
+          if(c.length > 0)
+               c.map(c=>{ query+=`&c=${c}` });  
 
           const { data } = await produtosApi.send({ method: "get", url: `/${query}` }) 
-          store.dispatch(setProdutosFeed(data, p > 1 ? true : false));
+          var produtosListView = { ...data, data: [ ...data.data.produtos ]}
+          store.dispatch(setProdutosFeed(produtosListView, p > 1 ? true : false));
+          store.dispatch(setMarcas(data.data.martcas))
           return data 
      }
 }

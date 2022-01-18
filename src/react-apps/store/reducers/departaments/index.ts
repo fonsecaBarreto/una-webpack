@@ -1,14 +1,24 @@
-import { ListingView } from "@/domain/views/ListingView";
-import { ProductListView, Produto } from "@/domain/views/Produto";
+import { ListingView, LabelView} from "@/domain/views/ListingView";
+import { Produto } from "@/domain/views/Produto";
 
 export interface DepartamentosState {
-     struct: any;
-     produtos_feed: ListingView<Produto>
+     struct: {
+          departamentos: {id: string,nome: string,descricao: string}[],
+          categorias: {id: string,nome: string, departamento_id: string}[],
+          subCategorias:  {id: string,nome: string, categoria_id: string}[]
+          marcas: LabelView[],
+     };
+     produtos: ListingView<Produto[]>
 }
 
 const INITIAL_STATE = {
-     struct: [],
-     produtos_feed: {
+     struct: {
+          departamentos: [],
+          categorias: [],
+          subCategorias: [],
+          marcas: []
+     },
+     produtos: {
           total: 0,
           length: 0,
           data: [],                      
@@ -21,15 +31,12 @@ const INITIAL_STATE = {
 export const departamentosReducer = (state=INITIAL_STATE, action: any) => {
      switch(action.type){
           case "SET_DEPARTMENTOS_STRUCT": return { ...state, struct: action.payload };
+          case "SET_DEPARTMENTOS_STRUCT_MARCAS": return { ...state, struct: { ...state.struct, marcas: action.payload} };
           case "SET_PRODUCTOS_FEED": { 
-               var data = action.payload.toAppend ? [ ...state.produtos_feed.data, ...action.payload.listView.data ] : [...action.payload.listView.data ]
-               var produtos_feed :any = { ...action.payload.listView, data } ;
-               return ({ ...state, produtos_feed }) ;
+               var data = action.payload.toAppend ? [ ...state.produtos.data, ...action.payload.listView.data ] : [...action.payload.listView.data ]
+               var produtos :any = { ...action.payload.listView, data } ;
+               return ({ ...state, produtos }) ; 
           };
-          case "SET_PRODUCTOS_FEED_QUERIES" :{
-               var produtos_feed :any = { ...state.produtos_feed, queries: { ...action.payload } } ;
-               return ({ ...state, produtos_feed }) ; 
-          }
           default: return state
      }
 }

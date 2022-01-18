@@ -8,7 +8,7 @@ import OptionsNav from './OptionsNav'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ProductListView } from '@/domain/views/Produto'
-import { produtosService } from '@/react-apps/services/produtos-service'
+import { produtosService } from '@/services/produtos-service'
 export namespace PrimaryHeader {
     export type Params = {
         toggleCart: () => void,

@@ -23,16 +23,11 @@ module.exports ={
     },
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
-        alias: { 
-            '@': path.resolve(__dirname, 'src')
-        },
+        alias: { '@': path.resolve(__dirname, 'src') },
     },
-
     plugins: [
         new MiniCssExtractPlugin(),
-        
         new CleanWebpackPlugin([OUTPUT_DIR]),
-
         ...Object.keys(entries).map(a=>{
             return (
                 new HtmlWebpackPlugin({
@@ -42,7 +37,6 @@ module.exports ={
                     chunks: [a],                          // chuck Js
             }))
         }),
-
     ],
 
     module: {
@@ -55,7 +49,7 @@ module.exports ={
             },
             {
                 test: /\.css$/,
-                use: [
+                use: [ 
                     MiniCssExtractPlugin.loader, // instead of style-loader
                     'css-loader'
                 ]
@@ -77,7 +71,6 @@ module.exports ={
         ]
     },
         
-  
     performance: {
         hints: false,
         maxEntrypointSize: 512000,
