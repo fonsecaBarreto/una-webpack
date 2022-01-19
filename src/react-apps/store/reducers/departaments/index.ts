@@ -9,11 +9,11 @@ export interface DepartamentosState {
           marcas: LabelView[],
      };
      marcasAvaiable: string[]
-     produtos: ListingView<Produto[]>
+     produtos: ListingView<Produto[]>,
+     toSubmitQueries: boolean
 }
 
 const INITIAL_STATE = {
-
      struct: {
           departamentos: [],
           categorias: [],
@@ -22,13 +22,14 @@ const INITIAL_STATE = {
      },
      marcasAvailables:[],
      produtos: {
+          queries: {},
           total: 0,
           length: 0,
           data: [],                      
-          queries: {},
           pages: 0,                 
           pageIndex: 0
-     }
+     },
+     toSubmitQueries: false
 }
    
 export const departamentosReducer = (state=INITIAL_STATE, action: any) => {
@@ -36,10 +37,17 @@ export const departamentosReducer = (state=INITIAL_STATE, action: any) => {
           case "SET_DEPARTMENTOS_STRUCT": return { ...state, struct: action.payload };
           case "SET_MARCAS_AVAILABLES": return { ...state, marcasAvailables: action.payload };
           case "SET_PRODUCTOS_FEED": { 
-               var data = action.payload.toAppend ? [ ...state.produtos.data, ...action.payload.listView.data ] : [...action.payload.listView.data ]
-               var produtos :any = { ...action.payload.listView, data } ;
-               return ({ ...state, produtos }) ; 
+               const toAppend = action.payload.toAppend
+               var data = toAppend ? [ ...state.produtos.data, ...action.payload.listView.data ] : [...action.payload.listView.data ];
+               var { total, length, pages, pageIndex, queries } = action.payload.listView;
+               let produtos :ListingView<Produto[]> = { queries, total, length, pages, pageIndex, data } ;
+               return ({ ...state, produtos, toSubmitQueries: false }) ; 
           };
+          case "SPLICE_PRODUCTOS_FEED_QUERIES": {
+               let produtos :ListingView<Produto[]> = { ...state.produtos, queries: { ...state.produtos.queries, ...action.payload } } ;
+               return ({ ...state, produtos, toSubmitQueries: true }) ; 
+          };
+
           default: return state
      }
 }

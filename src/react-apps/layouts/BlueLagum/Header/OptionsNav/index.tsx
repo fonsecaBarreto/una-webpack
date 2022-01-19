@@ -18,7 +18,14 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
     const { cart } = useSelector((state: any)=>state.carrinho)
     const { user } = useSelector((state: any)=>state.main)
 
-    var dropDownoptions: DropDown.Options[] =   user ? [ { label: "Perfil", value: 0 }, { label: "Sair", value: 1 }]
+    var dropDownoptions: DropDown.Options[] =  user ? 
+    [ 
+        { label: "Dashboard", value: 0 }, 
+        { label: "Meus Pedidos", value: 2 },
+        { label: "Meus Produtos", value: 2 },
+        { label: "Perfil", value: 1 }, 
+        { label: "Sair", value: 3 }
+    ]
     : [ { label: "Entrar", value: 0}, { label: "Cadastrar-se", value : 1}]
     
     const handleOptions = (n:number) =>{
@@ -29,8 +36,10 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
             }
         }else{
             switch(n){
-                case 0: history.push("/perfil");break;
-                case 1: loginServices.logout();break;
+                case 0: history.push("/dashboard");break;
+                case 1: history.push("/perfil");break;
+                case 2: history.push("/pedidos");break;
+                case 3: loginServices.logout();break;
             }
         }
         return -1

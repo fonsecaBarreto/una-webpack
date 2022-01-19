@@ -10,11 +10,12 @@ export namespace NavComponent {
         items:Item[],
         push: ( item?: Item ) => void,
         selectedItems: string[],
+        open_initial?: boolean
     }
 }   
 
-export const SelectorNav: React.FunctionComponent<NavComponent.Params> =  ({ title, items, selectedItems, push }) =>{
-    const [ open, setOpen ] = useState(true);
+export const SelectorNav: React.FunctionComponent<NavComponent.Params> =  ({ title, items, selectedItems, push, open_initial=true }) =>{
+    const [ open, setOpen ] = useState(open_initial);
     return (
         <div className="nav-selector">
             <div onClick={()=>setOpen(!open)} className="nav-selector-title">{ open ? <MdExpandMore/> : <MdExpandLess/>}{ title } </div>

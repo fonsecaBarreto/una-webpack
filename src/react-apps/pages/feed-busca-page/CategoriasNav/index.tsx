@@ -48,7 +48,8 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ o
     const filterMarcas = () =>{
         var struct: any =  { ...structData } 
         if (marcas_availables && marcas_availables.length > 0) 
-            struct.marcas = struct.marcas .filter((mm: any)=> marcas_availables.includes(mm.value)); 
+            struct.marcas = inital_struct.marcas .filter((mm: any)=> marcas_availables.includes(mm.value)); 
+
         setStructData(struct);
     }
 
@@ -105,18 +106,21 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ o
         <aside className='nav-categorias-aside'>
 
             <SelectorNav 
+                open_initial={false}
                 title="Departamentos" 
                 push={(item: any) =>toggleFilters("departamentos", item)}  
                 items={structData.departamentos} 
                 selectedItems={[...filterData.departamentos.map((f:any)=>f.value)]}></SelectorNav>
 
             <SelectorNav 
+                open_initial={false}
                 title="Categorias"  
                 push={(item: any) =>toggleFilters("categorias", item)}
                 items={structData.categorias} 
                 selectedItems={[...filterData.categorias.map((f:any)=>f.value)]}></SelectorNav>
 
             <SelectorNav 
+                open_initial={false}
                 title="Sub Categorias" 
                 push={(item: any) =>toggleFilters("subCategorias", item)}  
                 items={structData.subCategorias} 

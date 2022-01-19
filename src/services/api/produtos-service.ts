@@ -13,6 +13,7 @@ export namespace produtosServices {
           c?: string[]
           d?: string[],
           s?: string[],
+          m?: string[]
           e?: string
      }
 }
@@ -20,7 +21,7 @@ export namespace produtosServices {
 export const produtosService = {
      list: async (params: produtosServices.Params) => {
 
-          const { e="", p= 1, c=[], d=[], s=[] } = params
+          const { e="", p= 1, c=[], d=[], s=[], m =[] } = params
 
           var query = `?p=${p}&e=${e}`
 
@@ -32,6 +33,9 @@ export const produtosService = {
    
           if(c.length > 0)
                c.map(c=>{ query+=`&c=${c}` });  
+
+          if(m.length > 0)
+               m.map(m=>{ query+=`&m=${m}` });  
 
           const { data } = await produtosApi.send({ method: "get", url: `/${query}` }) 
           return data 
