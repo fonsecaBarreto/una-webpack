@@ -3,8 +3,8 @@
     --header-height-mobile: 64px;
     --menu-width-expanded: 300px;
     --menu-width: 72px;
-    position: relative; z-index: 0;
-    width: 100%; height: 100%;
+    position: relative; 
+    z-index: 0; width: 100%; height: fit-content;
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 1fr;
