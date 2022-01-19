@@ -10,3 +10,10 @@
 #departamento-content-grid > section{
   
 } */
+
+
+@media screen and (max-width: 960px) {
+    #departamento-content-grid{
+        grid-template-columns: 1fr;
+    }
+}

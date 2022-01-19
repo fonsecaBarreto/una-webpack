@@ -108,13 +108,13 @@
     
 }
 
-@media screen  and (max-width: 756px){
+/* @media screen  and (max-width: 756px){
     .una-product-feed >section:nth-child(1){
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
     
 }
-
+ */
 
 /* PLUS BUTTON */
 

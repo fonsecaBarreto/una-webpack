@@ -5,7 +5,7 @@ import CartItem from './CartItem'
 import { useSelector, useDispatch} from 'react-redux'
 
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
-
+import BlueLagumAsideModal from '../AsideModal'
 
 export namespace LayoutCart {
     export type Params = {
@@ -14,6 +14,36 @@ export namespace LayoutCart {
     }
 }
 
+/* Footer */
+const CartFooter = ({total}: {total: number}) =>{
+    return (
+    <React.Fragment>
+        <div className='bl-cart-footer'>
+
+            <div className='bl-cart-resume'>
+
+                <span> Total: { total } </span>
+
+                <span className='bl-cart-resume-value'> R$: 00,00</span>
+            </div>
+            <button> Finalizar </button>
+        </div>
+    </React.Fragment>)
+}
+
+/* Conteudo */
+const CartContent = ({ cart, add, rm}: {cart:any, add:  (product: any) => void, rm:  (product: any) => void}) =>{
+
+    return (
+        <React.Fragment> {  
+            cart.length > 0 && cart.map((c: any, i:number)=> {
+                return (<CartItem key={i} item={c} toAdd={add} toRemove={rm}></CartItem>)
+            })
+        } </React.Fragment>
+    )
+}
+
+/* Carrtinho*/
 export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, onClose }) =>{
 
     const { cart } = useSelector((state: any)=>state.carrinho);
@@ -40,33 +70,10 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
     },[cart])
 
     return (
-
-        <React.Fragment>
-            
-           { show && <div className={`app-cart-overflow`}>
-                <div className='app-cart'>
-
-                    <header>
-                        <button className='app-cart-close-btn' onClick={onClose}> <RiCloseFill></RiCloseFill>  </button> 
-                    </header>
-
-                    <div className="app-cart-body">
-                        { cart.length > 0 && cart.map((c: any, i:number)=> (<CartItem key={i} item={c} toAdd={addToCart} toRemove={rmFromCart}></CartItem>))    }
-                    </div>
-
-                    <footer>
-                        <div className='app-cart-resume'>
-
-                            <span> Total: { totalProducts } </span>
-
-                            <span className='app-cart-resume-value'> R$: 00,00</span>
-                        </div>
-
-                        <button> Finalizar </button>
-                    </footer>
-                </div>
-            </div>}
-        </React.Fragment>
+        <BlueLagumAsideModal show={show} title="Carrinho" onClose={onClose} dir="right"
+            footer={ <CartFooter total={totalProducts}/> }
+            content={<CartContent cart={cart} add={addToCart} rm={rmFromCart}></CartContent> }>
+        </BlueLagumAsideModal>
     )
 }
 

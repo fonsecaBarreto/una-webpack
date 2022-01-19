@@ -5,7 +5,7 @@ import { useSelector, useDispatch} from 'react-redux'
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
 import { AiOutlinePlus } from 'react-icons/ai'
 
-export const ProdutFeed: React.FunctionComponent<any> = ({ more, produtos }) =>{
+export const ProductFeed: React.FunctionComponent<any> = ({ more, produtos }) =>{
 
     const dispatch = useDispatch()
     const { cart } = useSelector((state: any)=>state.carrinho)
@@ -41,4 +41,4 @@ export const ProdutFeed: React.FunctionComponent<any> = ({ more, produtos }) =>{
     )
 }
 
-export default ProdutFeed
+export default ProductFeed

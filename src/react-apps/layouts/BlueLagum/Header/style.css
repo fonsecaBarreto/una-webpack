@@ -4,28 +4,37 @@
     background-color: var(--main-color);
 }
 
-
-.bluelagum-logo{
-    height: calc(var(--header-height-desktop) - 45px);
-    margin-top: 6px;
-}
-
 .primary-header-content{
     height: 100%;
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
     align-items: center;
-    gap: 5px
+    gap: 5px;
+    align-items: center;
 }
+
+
 
 .primary-header-content > section {
    height: 100%;
-   display: flex;
-   flex-direction: row;
-   align-items: center;
+   display: flex; flex-direction: row;  align-items: center;
+   justify-content: flex-end;
    column-gap: 12px;
 }
+
+
+.bluelagum-logo-link{
+    display: flex;  justify-content: center;  align-items: center;
+}
+
+
+.bluelagum-logo-link > img{
+    width: 180px; height: auto; margin: auto;
+}
+
+
+
 
 .primary-header-content .primary-header-title{
     height: 100%;
@@ -83,15 +92,11 @@
 }
 
 
-@media only screen and (max-width: 756px){
+/* @media only screen and (max-width: 756px){
     .bluelagum-logo{
-        display: none;
-     /*  height: calc(var(--header-height-desktop) - 50px) */
+       height: calc(var(--header-height-desktop) - 50px) 
     }
-    
-    
-
 }
-
+ */
 
 
