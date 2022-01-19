@@ -1,7 +1,7 @@
 
 import React, { useContext, useState } from 'react'
 import './style.css'
-import ToggleButton from "../ToggleButton"
+import ToggleButton from "../../components/ToggleButton"
 import LogoImg from '@/public/assets/images/logo.svg' 
 import SearchBar from '../SearchBar'
 import OptionsNav from './OptionsNav'

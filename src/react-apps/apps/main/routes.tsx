@@ -38,7 +38,7 @@ export const RouterComponent = () =>{
         /* Aqui o layout secundario */
         {
            layout: ({children}: {children?: ReactNode}) => <div> Aqui sou o layout Secundario  {children}</div>,
-           prefix: "/admin", 
+           prefix: "/outro", 
            routes: [{
                component: () => <div> Componente teste para o layout Secundario </div>,
                path: "", 

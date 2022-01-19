@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import Guard from './RouteGuard'
 
 export enum AccessType {
@@ -29,8 +29,18 @@ export function AppRouter({ pages }: { pages: PageRouterConfig[]}){
                 {   
                 pages.map((p: PageRouterConfig, j:number)=>{
                     const { layout, routes, beforeEach, prefix="" } = p
-                    return ( routes.map((r,i) => (
-                    <Guard beforeRouter={beforeEach} location={location} key={i} component={r.component} layout={layout} path={`${prefix}${r.path}`} ></Guard>)))   
+                 
+                    return ( routes.map((r,i) => { 
+                  
+                        return ( 
+                            <Guard key={i} beforeRouter={beforeEach} 
+                                location={location} 
+                                component={r.component} 
+                                layout={layout} 
+                                path={`${prefix}${r.path}`}>
+                            </Guard>
+                        ) 
+                    }))   
                 })
                 }
 			</Switch>
@@ -38,5 +48,4 @@ export function AppRouter({ pages }: { pages: PageRouterConfig[]}){
 	)
 }
 export default AppRouter
-{/* <Route path="/" exact> <Redirect to={root} /> </Route>  */}
-                                   
+

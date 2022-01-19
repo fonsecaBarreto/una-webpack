@@ -1,0 +1,41 @@
+/* Header */
+.blue-lake-header{
+    height: var(--header-height-desktop);
+    background-color: white;
+}
+
+.blue-lake-header-content{
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 5px;
+    align-items: center;
+}
+
+.blue-lake-header-content > section {
+   height: 100%;
+   display: flex; flex-direction: row;  align-items: center;
+   justify-content: flex-end;
+   column-gap: 12px;
+}
+
+
+.blue-lake-header-logo-link{
+    display: flex;  justify-content: center;  align-items: center;
+}
+
+
+.blue-lake-header-logo-link > img{
+    width: 180px; height: auto; margin: auto;
+}
+
+
+
+@media only screen and (max-width: 1024px){
+    .primary-header{
+        height: var(--header-height-mobile);
+    }
+}
+

@@ -20,10 +20,7 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
 
     var dropDownoptions: DropDown.Options[] =  user ? 
     [ 
-        { label: "Dashboard", value: 0 }, 
-        { label: "Meus Pedidos", value: 2 },
-        { label: "Meus Produtos", value: 2 },
-        { label: "Perfil", value: 1 }, 
+        { label: "Admin", value: 0 }, 
         { label: "Sair", value: 3 }
     ]
     : [ { label: "Entrar", value: 0}, { label: "Cadastrar-se", value : 1}]
@@ -36,9 +33,7 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
             }
         }else{
             switch(n){
-                case 0: history.push("/dashboard");break;
-                case 1: history.push("/perfil");break;
-                case 2: history.push("/pedidos");break;
+                case 0: window.location.href="/admin"
                 case 3: loginServices.logout();break;
             }
         }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
-import ToggleButton from '../ToggleButton'
+import ToggleButton from '../../components/ToggleButton'
 import MenuItem from './Item' 
 /* import UserComponent from './UserComponent'  */
 import { useWindowSize } from '../../../utils/hooks/useWindowSize'
