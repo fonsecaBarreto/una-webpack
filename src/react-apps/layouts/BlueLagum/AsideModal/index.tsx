@@ -9,16 +9,17 @@ export namespace BlueLagumAsideModal {
         onClose: () => void,
         content: ReactNode,
         footer: ReactNode,
-        dir?: "left" | "right"
+        dir?: "left" | "right",
+        className: string
     }
 }
 
-export const BlueLagumAsideModal: React.FunctionComponent<BlueLagumAsideModal.Params> = ({ show, onClose, content, footer, title, dir="right" }) =>{
+export const BlueLagumAsideModal: React.FunctionComponent<BlueLagumAsideModal.Params> = ({ show, onClose, content, footer, title, dir="right", className }) =>{
     return (
 
         <React.Fragment>
             
-           { show && <div className={`bl-aside-modal-overflow`} 
+           { show && <div className={`bl-aside-modal-overflow ${className}`} 
                 style={{ justifyContent: dir == "right" ? "flex-end" : "flex-start"  }}>
 
 

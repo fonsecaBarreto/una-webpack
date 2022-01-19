@@ -3,6 +3,8 @@ import './style.css'
 import SelectorNav, { NavComponent } from './SelectorNav'
 import { privateDecrypt } from 'crypto'
 import { RiCloseFill } from "react-icons/ri"
+import { useWindowSize } from 'fck-components/lib/utils/hooks'
+import BlueLagumAsideModal from '@/react-apps/layouts/BlueLagum/AsideModal'
 export interface CategoriasView extends NavComponent.Item {
     departamento_id: string
 }
@@ -33,12 +35,51 @@ export namespace CategoriasNav {
     }
 }
 
+const SelectorNavs = ({ toggleFilters, structData, filterData}: any) =>{
+    return (<React.Fragment>
+
+        <SelectorNav 
+            open_initial={true}
+            title="Departamentos" 
+            push={(item: any) =>toggleFilters("departamentos", item)}  
+            items={structData.departamentos} 
+            selectedItems={[...filterData.departamentos.map((f:any)=>f.value)]}></SelectorNav>
+
+        <SelectorNav 
+            open_initial={true}
+            title="Categorias"  
+            push={(item: any) =>toggleFilters("categorias", item)}
+            items={structData.categorias} 
+            selectedItems={[...filterData.categorias.map((f:any)=>f.value)]}></SelectorNav>
+
+        <SelectorNav 
+            open_initial={true}
+            title="Sub Categorias" 
+            push={(item: any) =>toggleFilters("subCategorias", item)}  
+            items={structData.subCategorias} 
+            selectedItems={[...filterData.subCategorias.map((f:any)=>f.value)]}></SelectorNav>
+            
+        <SelectorNav 
+            open_initial={true}
+            title="Marcas" 
+            push={(item: any) => toggleFilters("marcas", item) }  
+            items={structData.marcas} 
+            selectedItems={[...filterData.marcas.map((f:any)=>f.value)]}></SelectorNav> 
+            
+    </React.Fragment>)
+}
 export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ onChange, inital_struct, marcas_availables }) => {
     if(!inital_struct) return <span> "Carregando..." </span>;
 
+    const { width } = useWindowSize()
     const [ structData, setStructData ] = useState<DepartamentoData>({ ...INITIAL_DATA })
     const [ filterData, setFilterData ] = useState<DepartamentoData>({ ...INITIAL_DATA }) 
+    const [ showFilters, setShowFilters ] = useState(false)
 
+
+    useEffect(()=>{
+        console.log("Instanciado")
+    },[])
     useEffect(()=>{ setStructData({ ...inital_struct  }); }, [inital_struct])
   
     useEffect( ()=> { onChange(filterData)  },[filterData])
@@ -52,7 +93,6 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ o
 
         setStructData(struct);
     }
-
 
     const toggleFilters = ( param: string, item?: any,  ) =>{
         /* 
@@ -85,55 +125,37 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ o
         }
 
         return setFilterData( ( prev: any ) => {
-
             var filterData: any = { ...prev }
-
             if (!item) { filterData[param] = []  } // Se for um item vazio, deve limpar o array
             else {  // Do contrario vai fazer realizar um splice
                 let sliced = filterData[param].length > 0 && filterData[param].filter((c:any)=> c.value !== item.value); 
                 filterData[param] = sliced.length < filterData[param].length ? sliced : [ ...filterData[param], item ] 
             } 
-            
-            if(param != "marcas") buildStruct(filterData) // Se for do parametro marca deve remotar a arvore
-                
+            if(param != "marcas") buildStruct(filterData) // Se for do parametro marca deve remotar a arvore 
             return filterData
-        
         })
-
     }
 
     return (
         <aside className='nav-categorias-aside'>
-           
-            <SelectorNav 
-                open_initial={true}
-                title="Departamentos" 
-                push={(item: any) =>toggleFilters("departamentos", item)}  
-                items={structData.departamentos} 
-                selectedItems={[...filterData.departamentos.map((f:any)=>f.value)]}></SelectorNav>
+            { 
+            width > 960 ? 
+                <SelectorNavs  toggleFilters={toggleFilters} structData={structData} filterData={filterData} ></SelectorNavs>
+            :
+                <button onClick={()=>setShowFilters(true)}>Filtros</button> 
+            }
 
-            <SelectorNav 
-                open_initial={true}
-                title="Categorias"  
-                push={(item: any) =>toggleFilters("categorias", item)}
-                items={structData.categorias} 
-                selectedItems={[...filterData.categorias.map((f:any)=>f.value)]}></SelectorNav>
-
-            <SelectorNav 
-                open_initial={true}
-                title="Sub Categorias" 
-                push={(item: any) =>toggleFilters("subCategorias", item)}  
-                items={structData.subCategorias} 
-                selectedItems={[...filterData.subCategorias.map((f:any)=>f.value)]}></SelectorNav>
-                
-            <SelectorNav 
-                open_initial={true}
-                title="Marcas" 
-                push={(item: any) => toggleFilters("marcas", item) }  
-                items={structData.marcas} 
-                selectedItems={[...filterData.marcas.map((f:any)=>f.value)]}></SelectorNav> 
-
+            <BlueLagumAsideModal className='mobile-only'
+                content={ <SelectorNavs  toggleFilters={toggleFilters} structData={structData} filterData={filterData} ></SelectorNavs>}
+                footer={<span></span> }
+                title='Filtros'
+                onClose={()=>setShowFilters(false)}
+                show={showFilters}
+                dir='left' >
+            </BlueLagumAsideModal> 
+        
         </aside> 
+
     )
 }
 
