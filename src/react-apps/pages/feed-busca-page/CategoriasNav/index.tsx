@@ -106,27 +106,28 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ o
         <aside className='nav-categorias-aside'>
 
             <SelectorNav 
-                open_initial={false}
+                open_initial={true}
                 title="Departamentos" 
                 push={(item: any) =>toggleFilters("departamentos", item)}  
                 items={structData.departamentos} 
                 selectedItems={[...filterData.departamentos.map((f:any)=>f.value)]}></SelectorNav>
 
             <SelectorNav 
-                open_initial={false}
+                open_initial={true}
                 title="Categorias"  
                 push={(item: any) =>toggleFilters("categorias", item)}
                 items={structData.categorias} 
                 selectedItems={[...filterData.categorias.map((f:any)=>f.value)]}></SelectorNav>
 
             <SelectorNav 
-                open_initial={false}
+                open_initial={true}
                 title="Sub Categorias" 
                 push={(item: any) =>toggleFilters("subCategorias", item)}  
                 items={structData.subCategorias} 
                 selectedItems={[...filterData.subCategorias.map((f:any)=>f.value)]}></SelectorNav>
                 
             <SelectorNav 
+                open_initial={true}
                 title="Marcas" 
                 push={(item: any) => toggleFilters("marcas", item) }  
                 items={structData.marcas} 
