@@ -19,30 +19,33 @@ export interface PageRouterConfig {
     layout: React.FunctionComponent<{children?: ReactNode}>
     prefix?: String,
     routes: AppRouter.RouteConfig[],
-    beforeEach?: Function
+    beforeEach?: Function,
+    layoutParams?: any
 }
 
 export function AppRouter({ pages }: { pages: PageRouterConfig[]}){
-	return ( 
+
+    const Rendered =  pages.map((p: PageRouterConfig, j:number)=>{
+        const { layout, routes, beforeEach, prefix="", layoutParams } = p
+     
+        return ( routes.map((r,i) => { 
+      
+            return ( 
+                <Guard key={i} beforeRouter={beforeEach} 
+                    location={location} 
+                    component={r.component} 
+                    layout={layout} 
+                    layoutParams={layoutParams}
+                    path={`${prefix}${r.path}`}>
+                </Guard>
+            ) 
+        }))   
+    })
+    
+    return ( 
 		<Router>
 			<Switch>
-                {   
-                pages.map((p: PageRouterConfig, j:number)=>{
-                    const { layout, routes, beforeEach, prefix="" } = p
-                 
-                    return ( routes.map((r,i) => { 
-                  
-                        return ( 
-                            <Guard key={i} beforeRouter={beforeEach} 
-                                location={location} 
-                                component={r.component} 
-                                layout={layout} 
-                                path={`${prefix}${r.path}`}>
-                            </Guard>
-                        ) 
-                    }))   
-                })
-                }
+                { Rendered }
 			</Switch>
 		</Router> 
 	)

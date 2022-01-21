@@ -8,6 +8,7 @@
     background-color: transparent;
     font-size: 22px;
     color: #efefef;
+    color: var(--main-color);
     border: solid 1px #efefef;
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }

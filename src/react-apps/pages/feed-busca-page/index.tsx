@@ -14,13 +14,13 @@ export const DeparamentoPage = () => {
 
     const context = useContext(GlobalContext)
 
-    const { produtos} = useSelector( (state: any)=>state.departamentos);
+    const { produtos } = useSelector( (state: any)=>state.departamentos);
 
     useEffect(()=>{ 
-        departamentosService.list().then(data => dispatch(setDepartamentos(data))) 
-        context.methods.listProdutos(false)
+        departamentosService.list().then(data => {
+            dispatch(setDepartamentos(data))}) 
+            context.methods.listProdutos(false) 
     },[])
-
 
     const filterChanged = (filters: any) => {
         const { categorias=[], departamentos=[], subCategorias=[], marcas } = filters
@@ -35,7 +35,7 @@ export const DeparamentoPage = () => {
         <div id="departamento-page">
             <div className='app-container'>
                  <ContentGrid>
-                    <CategoriasNav onChange={filterChanged} inital_struct={struct} marcas_availables={marcasAvailables}></CategoriasNav>
+                    <CategoriasNav onChange={filterChanged} inital_struct={struct} marcas_availables={marcasAvailables}></CategoriasNav> 
                     <ProductFeed more={()=>context.methods.listProdutos(true)} produtos={produtos}></ProductFeed> 
                 </ContentGrid>
             </div> 

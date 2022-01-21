@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useContext, ReactComponentElement } from "react";
+import React, { ReactNode, useEffect, useContext, ReactComponentElement, Children } from "react";
 
 import BlueLagumLayout from '../../layouts/BlueLagum' 
 import DeparamentoPage from "../../pages/feed-busca-page";
@@ -34,32 +34,29 @@ export const RouterComponent = () =>{
 
 
     const config: PageRouterConfig[] =[ 
+      {
+        layout: BlueLagumLayout,
+        layoutParams: {user, menu: false},
+        prefix: "/login",  
+        routes: [
+            { path: "", title: "Login",  component: LoginPage } ,
+        ],
+        beforeEach
+      }, 
 
-        /* Aqui o layout secundario */
-        {
-           layout: ({children}: {children?: ReactNode}) => <div> Aqui sou o layout Secundario  {children}</div>,
-           prefix: "/outro", 
-           routes: [{
-               component: () => <div> Componente teste para o layout Secundario </div>,
-               path: "", 
-               title: "Pagina adm"
-           }],
-           beforeEach
-       },
-       /* Layout Principal aqui */
-       {
-           layout: BlueLagumLayout,
-           prefix: "/",
-           routes: [
-               { path: "login", title: "Login",  component: LoginPage } ,
-               { path: "", title: "Inicio",  component: DeparamentoPage } ,
-               { path: "*", title: "404",  component: () => <div><h1>404</h1></div> } 
-           ],
-           beforeEach
-       }
+      {
+          layout: BlueLagumLayout,
+          layoutParams : { user, menu: true },
+          prefix: "/",
+          routes: [
+            { path: "", title: "Inicio",  component: DeparamentoPage } ,
+            { path: "*", title: "404",  component: () => <div><h1>404</h1></div> }
+         
+          ],
+          beforeEach
+      },
+    
     ]
-
-
     return ( <AppRouter pages={config}></AppRouter> )
 }
 

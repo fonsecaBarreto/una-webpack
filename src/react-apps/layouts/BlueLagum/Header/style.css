@@ -6,7 +6,7 @@
 }
 
 .primary-header-content{
-    height: 100%;
+    height: 100%; width: 100%;
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
@@ -15,27 +15,22 @@
     align-items: center;
 }
 
-
-
 .primary-header-content > section {
-   height: 100%;
+   height: 100%; width: 100%;
    display: flex; flex-direction: row;  align-items: center;
    justify-content: flex-end;
    column-gap: 12px;
 }
 
-
 .bluelagum-logo-link{
     display: flex;  justify-content: center;  align-items: center;
+    margin: auto;
+    justify-self: center;
 }
-
 
 .bluelagum-logo-link > img{
     width: 170px; height: auto; margin: auto;
 }
-
-
-
 
 .primary-header-content .primary-header-title{
     height: 100%;
@@ -44,6 +39,7 @@
     align-items: flex-start;
     justify-content: center;
     gap: 4px;
+
 }
 
 .primary-header-content .primary-header-title > .primary-header-title-label{

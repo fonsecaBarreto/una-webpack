@@ -1,11 +1,9 @@
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { ReactNode, useContext, useEffect, useState } from 'react'
 import './style.css'
-
 import LayoutHeader from './Header'
 import LayoutFooter from './Footer' 
 import LayoutCart from './Cart'
-import { useDispatch, useSelector } from 'react-redux'
 import globalComponent from '@/react-apps/apps/main/global-components-context';
 import { MakeDialogConfig } from 'fck-react-dialog'
 import ForbiddenCartModal from '../../components/Modals/ForbiddenCart'
@@ -20,13 +18,19 @@ const MenuState = () =>{
     return { show, toggle}
 }
 
+export namespace BlueLagumLayout {
+    export type Params ={
+        children: ReactNode,
+        menu?: boolean,
+        user?: any
+    }
+}
 
-const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
+const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children, user, menu}) =>{
 
     const menuState = MenuState()
     const history = useHistory()
     const Context: any = useContext(globalComponent);
-    const { user } = useSelector((state: any)=>state.main)
     const [ showCart, setShowCart ] = useState(false)
 
     const openCart = () =>{
@@ -44,14 +48,13 @@ const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
 
         }else{
             setShowCart(!showCart) 
-        }
+        } 
     }
 
     return (
-        <div className="blue-lagum">
+        <div className={`blue-lagum ${menu ===true && user ? "bl-aside-menu" : ""}`}>
 
-            <aside><Menu menuState={menuState} menuTree={ADMIN_TREE} ></Menu></aside>
-
+            { (menu ===true && user) && <aside><Menu menuState={menuState} menuTree={ADMIN_TREE} ></Menu></aside> }
             <header>
                 <LayoutHeader toggleCart={openCart}></LayoutHeader>
             </header> 
@@ -62,7 +65,7 @@ const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
 
             <footer>
                 <LayoutFooter></LayoutFooter>  
-            </footer> 
+            </footer>  
 
             <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart>
 

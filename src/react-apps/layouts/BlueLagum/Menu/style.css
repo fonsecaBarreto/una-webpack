@@ -8,6 +8,8 @@
     align-items: flex-start;
     justify-content: flex-start;
     width: var(--menu-width);
+    background: rgb(43,157,245);
+    background: linear-gradient(180deg, rgb(32, 149, 238) 0%, rgba(1,110,195,1) 35%, rgba(0,103,184,1) 100%);
 }
 
 .blue-lake-menu.show { width: var(--menu-width-expanded);}
@@ -71,7 +73,7 @@
     cursor: pointer;
     background-color: transparent;
     font-size: 22px;
-    color: #efefef;
+    color: #f1f1f1;
     border: solid 1px #efefef;
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }

@@ -9,8 +9,12 @@
     display: grid;
     grid-template-columns: auto 1fr 1fr;
     grid-template-rows: auto 1fr auto;
-    grid-template-areas: "laymenu layheader layheader" "laymenu laycontent laycontent" "laymenu layfooter layfooter";
+    grid-template-areas: "layheader layheader layheader" "laycontent laycontent laycontent" "layfooter layfooter layfooter";
     background: var(--admin-bg-color);
+}
+
+.blue-lagum.bl-aside-menu {
+    grid-template-areas: "laymenu layheader layheader" "laymenu laycontent laycontent" "laymenu layfooter layfooter";
 }
 
 .blue-lagum > header{

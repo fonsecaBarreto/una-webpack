@@ -29,14 +29,14 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
         <header className="primary-header">
             <div className="primary-header-content app-container">
                 <section>
-                    <ToggleButton ></ToggleButton> 
+                   
                     <Link to="/" className="bluelagum-logo-link">
                         <img src={LogoImg}></img>  
                     </Link>
                 </section> 
 
                 {
-                    width > 960 &&
+                    width > 960 ?
                     <React.Fragment>
                         <section>
                             <SearchBar value={especificacao} onInput={(v)=>setEspecificacao(v)} onClick={toSearch}></SearchBar>
@@ -44,10 +44,15 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
                         <section>
                             <OptionsNav toggleCart={toggleCart}></OptionsNav>
                         </section>
+                    </React.Fragment> :
+
+                    <React.Fragment>
+                        <section> </section>
+                        <section>
+                            <ToggleButton ></ToggleButton> 
+                        </section>
                     </React.Fragment>
                 }
-
-
             </div> 
         </header> 
     )

@@ -12,6 +12,7 @@ export function GlobalMethods(){
     const { produtos, toSubmitQueries } = useSelector( (state: any)=> state.departamentos);
 
     const listProdutos = (append: boolean) => {
+        console.log("Listando produtos aqui")
         const { queries, pageIndex }: ListingView<Produto> = { ...produtos };
 
         produtosService.list({ ...queries, p: append ? pageIndex + 1 : 1 }).then((data: any)=>{
@@ -19,13 +20,16 @@ export function GlobalMethods(){
             dispatch(setProdutos(produtosListView, append));
             dispatch(setMarcasAvailables(data.data.marcas))
         })
+        .finally(()=>{
+            console.log("aqui")
+        })
     }
 
     useEffect(()=>{ 
         if(toSubmitQueries === true){
             listProdutos(false)
         }
-    },[toSubmitQueries]) 
+    },[toSubmitQueries])
 
     return ({ listProdutos })
 }

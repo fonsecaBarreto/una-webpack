@@ -8,11 +8,12 @@ export namespace GuardRouter {
     layout: FC,
     path: string,
     location: string | null,
-    beforeRouter?: Function
+    beforeRouter?: Function,
+    layoutParams?: any
   }
 }
 
-const Guard: React.FunctionComponent<GuardRouter.Params> = ({component: PageComponent, layout: Layout, path, location, beforeRouter } ) => {
+const Guard: React.FunctionComponent<GuardRouter.Params> = ({component: PageComponent, layout: Layout, path, location, beforeRouter, layoutParams } ) => {
 
   const [ redirectTo, SetRedirectTo ] = useState("");
   useEffect(()=>{ beforeRouterHandler(); }, [ location ]) 
@@ -28,7 +29,7 @@ const Guard: React.FunctionComponent<GuardRouter.Params> = ({component: PageComp
         redirectTo != "" ? <Redirect to={redirectTo} ></Redirect> : 
         <Route exact={true} path={path} render={ 
           (props) => { 
-            return (<Layout > <PageComponent {...props} > </PageComponent> </Layout>) 
+            return (<Layout {...layoutParams}> <PageComponent {...props} > </PageComponent> </Layout>) 
           }}  /> 
       }
     </React.Fragment>
