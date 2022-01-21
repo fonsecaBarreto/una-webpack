@@ -35,8 +35,8 @@ export const DeparamentoPage = () => {
         <div id="departamento-page">
             <div className='app-container'>
                  <ContentGrid>
-                 <CategoriasNav onChange={filterChanged} inital_struct={struct} marcas_availables={marcasAvailables}></CategoriasNav>
-                    <ProductFeed more={()=>context.methods.listProdutos(true)} produtos={produtos}></ProductFeed>
+                    <CategoriasNav onChange={filterChanged} inital_struct={struct} marcas_availables={marcasAvailables}></CategoriasNav>
+                    <ProductFeed more={()=>context.methods.listProdutos(true)} produtos={produtos}></ProductFeed> 
                 </ContentGrid>
             </div> 
         </div>

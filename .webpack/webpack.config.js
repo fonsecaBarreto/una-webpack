@@ -41,33 +41,15 @@ module.exports ={
 
     module: {
         rules: [
-
-            {
-                test: /\.(js|jsx|tsx|ts)$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-            },
-            {
-                test: /\.css$/,
-                use: [ 
-                    MiniCssExtractPlugin.loader, // instead of style-loader
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.(ttf)$/,
-                use: "url-loader?limit=100000"
-            },
-            {
-                test: /\.(svg|png|gif|jpg|jpeg|webp|mp3)$/,
+            {   test: /\.(js|jsx|tsx|ts)$/,  exclude: /node_modules/,  loader: 'babel-loader' },
+            {   test: /\.css$/, use: [ MiniCssExtractPlugin.loader,  'css-loader'] },
+            {   test: /\.(ttf)$/, use: "url-loader?limit=100000" },
+            {   test: /\.(svg|png|gif|jpg|jpeg|webp|mp3)$/,
                 use: {
                     loader: 'file-loader',
-                    options: {
-                        name: '[name].[hash].[ext]',
-                        outputPath: 'static',
-                    }
+                    options: { name: '[name].[hash].[ext]', outputPath: 'static' }
                 }
-            },   
+            } 
         ]
     },
         

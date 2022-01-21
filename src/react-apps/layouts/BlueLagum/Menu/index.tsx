@@ -1,5 +1,5 @@
 import React from 'react'
-import ToggleButton from '../../components/ToggleButton'
+import { IoIosArrowForward, IoIosArrowUp } from 'react-icons/io'
 import MenuItem, { BlueLakeMenuItem } from './MenuItem'
 import './style.css'
 
@@ -10,12 +10,17 @@ export namespace BlueLakeMenu {
     }
 }
 
+export const ToggleButton: React.FunctionComponent<any>  = ({ onClick, positive }) => {
+    return (
+        <button className={`blue-lake-menu-toggle-button`} onClick={onClick && onClick}> {positive ? <IoIosArrowForward/> : <IoIosArrowUp/> }</button>
+    )
+}
+
 const BlueLakeMenu: React.FunctionComponent<BlueLakeMenu.Params> = ({ menuState, menuTree }) =>{
     return (
-    
         <div className={`blue-lake-menu ${menuState.show ? 'show' : ''}`}>
             <section className="blue-lake-menu-header">
-                <ToggleButton onClick={menuState.toggle} desktop></ToggleButton>
+                <ToggleButton onClick={menuState.toggle} positive={menuState.show}></ToggleButton>
             </section>
             <section>
                 <ul> {      
@@ -25,8 +30,7 @@ const BlueLakeMenu: React.FunctionComponent<BlueLakeMenu.Params> = ({ menuState,
             <section>
                {/*  <UserComponent menuState={menuState} user={user}></UserComponent> */}
             </section> 
-        </div>)
+        </div>
+    )
 }
-
-
 export default BlueLakeMenu

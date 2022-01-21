@@ -42,10 +42,10 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
 
     return (
         <nav className='una-header-options-nav'>
+            <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
             <DropDown options={dropDownoptions} onAction={handleOptions}>
                 <UserButton user={user} onClick={() =>{}}></UserButton>
             </DropDown>
-            <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
         </nav>
     )
 }

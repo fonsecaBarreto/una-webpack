@@ -24,7 +24,7 @@
 
 /* item */
 .una-product-feed .product-feed-item{
-    border: solid 1px #ddd;
+
     padding: 10px;
     box-shadow: 0px 1px 2px 1px #0001;
     display: flex;
@@ -33,7 +33,9 @@
 }
 
 .una-product-feed .product-feed-item:hover{
-    box-shadow: 0px 1px 2px 1px #00000016;
+   /*  box-shadow: 0px 1px 4px 2px #00000014; */
+    outline: solid 3px rgba(43, 102, 228, 0.1); 
+    background-color: rgba(125, 170, 230, 0.1);
 }
 
 .una-product-feed .product-feed-item .product-feed-item-img-vp{

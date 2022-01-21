@@ -14,7 +14,6 @@ ReactDOM.render(
         <Provider store={store}>
             <App></App>
         </Provider>
-    </React.StrictMode>
-    ,document.getElementById("root") );
+    </React.StrictMode> ,document.getElementById("root") );
 reportWebVitals(); 
 

@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build": "webpack --config ./.webpack/webpack.prod.config.js",
-    "dev:client": "webpack-dev-server --config ./.webpack/webpack.dev.config --host 10.0.10.193 ",
+    "dev:client": "webpack-dev-server --config ./.webpack/webpack.dev.config ",
+    "dev:host": "webpack-dev-server --config ./.webpack/webpack.dev.config --host 10.0.10.193 ",
     "dev:server": "npm run build && nodemon server.js",
     "dev": "npm run server & npm run client",
     "start": "npm run build && node server.js",
@@ -18,6 +19,7 @@
     "axios": "^0.24.0",
     "copy-webpack-plugin": "^10.1.0",
     "cors": "^2.8.5",
+    "dotenv": "^14.2.0",
     "fck-components": "^1.0.5",
     "fck-react-dialog": "^1.0.1",
     "fck-schema-validator": "^1.2.8",

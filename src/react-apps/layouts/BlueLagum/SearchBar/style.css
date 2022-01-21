@@ -8,12 +8,12 @@
     flex-direction: row;
     align-items: center; 
     overflow: hidden;   
-    border-radius: 10px;
-    padding: 2px;
-    height: 42px;
+    height: 38px;
     column-gap: 2px;
     margin-right: 0;
     margin-left: auto;
+    
+    /* border: solid 1px var(--main-color); */
 }
 
 .bl-searchbar-input input{
@@ -22,7 +22,9 @@
     font-size: 16px;
     border: none;
     padding: 0 16px;
-    border-radius: 7px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background-color: rgba(209, 224, 235, 0.336);
 }
 
 .bl-searchbar-input button{
@@ -38,7 +40,8 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 25px;
-    border-radius: 10px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 
 .marts-budget-tool-bar-search-input button:hover{

@@ -2,6 +2,7 @@
 .primary-header{
     height: var(--header-height-desktop);
     background-color: var(--main-color);
+    background-color: rgb(253, 253, 253);
 }
 
 .primary-header-content{
@@ -30,7 +31,7 @@
 
 
 .bluelagum-logo-link > img{
-    width: 180px; height: auto; margin: auto;
+    width: 170px; height: auto; margin: auto;
 }
 
 

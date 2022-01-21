@@ -1,3 +1,19 @@
 #list-companhias-page{
-    border: solid 2px blue;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#list-companhias-page ul{
+    list-style: none;
+    display: grid;
+    min-height: fit-content;
+    gap: 6px;
+    padding: 0 12px;
+    width: 100%;
+}
+
+#list-companhias-page li{
+
 }

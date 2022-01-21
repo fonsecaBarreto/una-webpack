@@ -11,8 +11,19 @@ import { MakeDialogConfig } from 'fck-react-dialog'
 import ForbiddenCartModal from '../../components/Modals/ForbiddenCart'
 
 import { useHistory } from 'react-router-dom'
+import Menu from './Menu'
+import { ADMIN_TREE } from './MENU-TREE'
+
+const MenuState = () =>{
+    const [ show, setShow ] = useState(false)
+    const toggle = () => { setShow(!show)  }
+    return { show, toggle}
+}
+
 
 const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
+
+    const menuState = MenuState()
     const history = useHistory()
     const Context: any = useContext(globalComponent);
     const { user } = useSelector((state: any)=>state.main)
@@ -38,16 +49,23 @@ const PrimaryLayout:  React.FunctionComponent<any> = ({children}) =>{
 
     return (
         <div className="blue-lagum">
+
+            <aside><Menu menuState={menuState} menuTree={ADMIN_TREE} ></Menu></aside>
+
             <header>
                 <LayoutHeader toggleCart={openCart}></LayoutHeader>
             </header> 
-             <main>
+
+            <main>
                 {children}
             </main>
+
             <footer>
                 <LayoutFooter></LayoutFooter>  
             </footer> 
+
             <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart>
+
         </div>
     )
 }

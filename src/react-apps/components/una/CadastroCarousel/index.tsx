@@ -14,29 +14,29 @@ import { useHistory } from 'react-router-dom'
 const validator = new Validator()
 
 const SIGNUP_INITIAL_DATA = {
-    nome: "Lucas Fonseca Barreto",
-    email: "lucasfonsecab@hotmail.com",
+    nome: "Lucas Fonseca",
+    email: "lucafonsecab@hotmail.com",
     telefone: "22997836256",
     cpf: "16855177735",
     senha: "123456",
     senhaConfirmacao: "123456"
 }
 const JURIDICO_INITIAL_DATA ={
-    nomeFantasia: "Minha Empresa.com",
-    razaoSocial: "MinhaEmpresa.com.ldta",
-    cnpj: "79.547.795/0001-02",
-    emailFinanceiro: "meuemail@mail.com",
-    inscricaoEstadual: "123123123123",
-    telefoneComercial: "22997836256"
+    nomeFantasia: "NomeDAminhaempresa",
+    razaoSocial: "NomeDAminhaempresa Ltda",
+    cnpj: "52.562.123/0001-10",
+    emailFinanceiro: "emailfinaendierpo@mail.com",
+    inscricaoEstadual: "123213123213213",
+    telefoneComercial: "22987456986"
 }
 const ENDERECO_INITIAL_DATA = {
-    rua: "Rua Santos Drumount",
-    numero: "123",
-    detalhes: "Detalhes aqui",
-    bairro: "Liberdade",
-    cidade: "Rio das Ostras",
-    uf: "",
-    cep: "123456789"
+    rua: "Araujo Silva ",
+    numero: "69",
+    detalhes: "Casa 1",
+    bairro: "Jardim carioca",
+    cidade: "Campos",
+    uf: { value:"RJ", label: "Rio de Janeiro"},
+    cep: "288936981"
 }
 
 export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {setLoading: Function}) =>{
@@ -84,6 +84,8 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
         }catch(err:any){
             GlobalContext.dialog.push(MakeNotification(()=>-1,[ err?.message ], "Algo Errado", NotificationType.FAILURE))
             setCarouselInitialIndex(-1);
+
+            console.log(err)
             if(err.params) {
                 let paramsKeys = Object.keys(err.params);
                 let signUpParams = Object.keys(signupState.data.get)

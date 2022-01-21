@@ -2,13 +2,14 @@
 import React, { useContext, useState } from 'react'
 import './style.css'
 import ToggleButton from "../../components/ToggleButton"
-import LogoImg from '@/public/assets/images/logo.svg' 
+import LogoImg from '@/public/assets/images/logo-alt-dark.png' 
 import SearchBar from '../SearchBar'
 import OptionsNav from './OptionsNav'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { spliceProdutosQueries } from '@/react-apps/store/reducers/departaments/actions'
 import { useWindowSize } from 'fck-components/lib/utils/hooks'
+
 export namespace PrimaryHeader {
     export type Params = {
         toggleCart: () => void,
