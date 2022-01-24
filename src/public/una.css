@@ -1,0 +1,44 @@
+.una-submit-button{
+    height: 40px;
+    width: 280px;
+    background-color: rgb(22, 107, 218);
+    border-radius: 4px;
+    border: none;
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.una-submit-button:hover{
+    cursor: pointer;
+    background-color: rgb(42, 122, 226);
+}
+
+/* light */
+
+.una-submit-button.light{
+    width: 100%;
+    text-transform: none;
+    text-align: center!important;
+    height: fit-content!important;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.6em;
+    color: #444;
+    gap: 6px;
+    margin: auto;
+}
+
+.una-submit-button.light:hover{
+    color: rgb(53, 117, 255);
+    text-decoration: underline solid 1pt rgb(53, 117, 255);
+}
+
+@media screen and (max-width: 960px) {
+    .una-submit-button{
+         height: 56px;
+         width: 100%;
+    }
+ }

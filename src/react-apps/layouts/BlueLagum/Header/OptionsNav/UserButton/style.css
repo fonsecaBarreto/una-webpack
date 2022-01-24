@@ -1,0 +1,17 @@
+.una-header-user-button{
+    position: relative;
+
+
+}
+
+.una-header-user-button > span:nth-child(1){
+    font-size: 16px;
+    margin-right: 12px;
+}
+
+
+.una-header-user-button > :nth-child(3){
+    font-size: 24px;
+    margin: auto;
+}
+

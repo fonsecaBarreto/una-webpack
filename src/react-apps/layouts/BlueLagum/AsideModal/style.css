@@ -1,0 +1,89 @@
+@keyframes slideInModal {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+}
+
+.bl-aside-modal-overflow{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    display: flex;
+    animation-name: slideInModal;
+    animation-duration: .25s;
+    animation-timing-function: ease;
+}
+
+.bl-aside-modal-overflow .bl-aside-modal{
+    width: 400px; height: 100%;
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    box-shadow: 0px 2px 8px 2px #0003;
+}
+
+/* Header aqui */
+.bl-aside-modal-overflow .bl-aside-modal > header{
+    width: 100%;
+    height: var(--header-height-desktop);
+    background-color: var(--main-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 22px;
+}
+
+.bl-aside-modal-overflow .bl-aside-modal > header > span{
+ 
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.bl-aside-modal-overflow .bl-aside-modal > header .bl-close-btn{
+    height: 32px;  width: 32px;
+    font-size: 20px; line-height: 1em;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+/* body */
+.bl-aside-modal-overflow .bl-aside-modal > .bl-aside-modal-body{
+    height: 100%;
+    width: 100%;
+    padding: 16px 8px;
+    overflow-y: auto;
+}
+/* footer */
+
+.bl-aside-modal-overflow .bl-aside-modal > footer{
+    padding: 16px;
+    width: 100%; height: fit-content;
+    background-color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+
+@media screen and (max-width: 960px) {
+
+    .bl-aside-modal-overflow .bl-aside-modal{
+        width: 80%;
+    }
+    
+}   

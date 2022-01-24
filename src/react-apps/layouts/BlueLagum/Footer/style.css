@@ -1,0 +1,10 @@
+
+#primary-footer{
+    width: 100%;
+    height: fit-content;
+}
+
+#primary-footer > div{
+    overflow: hidden;
+  
+}

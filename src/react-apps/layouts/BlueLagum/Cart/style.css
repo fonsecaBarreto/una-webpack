@@ -1,0 +1,37 @@
+@keyframes slideInCart {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+}
+
+.bl-cart-footer{
+    width: 100%; height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.bl-cart-footer .bl-cart-resume{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
+
+.bl-cart-footer .bl-cart-resume .bl-cart-resume-value{
+    margin-right: 0;
+    margin-left: auto;
+    font-size: 18px;
+}
+
+.bl-cart-footer > button{
+    width: 100%;
+    height: 40px;
+    background-color: rgb(252, 252, 252);
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 0;
+    margin-top: auto;
+}

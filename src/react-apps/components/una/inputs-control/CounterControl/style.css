@@ -1,0 +1,29 @@
+.una-counter-control{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.una-counter-control > button{
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    border: none;
+    color: white;
+    cursor: pointer;
+    opacity: .9;
+}
+
+.una-counter-control.altType{
+    width: 100%;
+    height: 40px;
+    padding: 0 16px;
+}
+
+.una-counter-control.altType > button{
+    height: 32px;
+    width: 32px;
+}

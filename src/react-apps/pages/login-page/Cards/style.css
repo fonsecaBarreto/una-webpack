@@ -1,0 +1,96 @@
+.login-card{
+    position: relative;
+    width: 640px;
+    height: fit-content;
+    background-color: white;
+    border-radius: 4px;
+    transform: rotateY(90deg);
+    transition: transform .25s ease-in-out, opacity .3s;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.login-card.sm{
+    width: 460px;
+}
+
+.login-card.show {
+    position: relative;
+    max-height: unset;
+    box-shadow: 0px 2px 3px 2px #0002;
+    transform: scale(1);
+    opacity: 1; 
+}
+
+.login-card .login-card-header{
+    display: flex; align-items: center; justify-content: center;
+    background-color: #007CDC;
+    padding: 22px 0 28px;
+}
+
+.login-card .login-card-header .login-header-text{
+    font-family: "Biysk", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 6px;
+    font-weight: 400;
+    line-height: .8em;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    font-size: 28px;
+    text-align: left;
+}
+
+.login-card .login-card-header img.login-logo{
+    object-fit: cover;
+    height: 26px;
+}
+
+.login-card .login-card-content{
+    padding: 26px 18px 36px;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+}
+
+
+.cp-small-span {
+    max-width: 240px;
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+}
+
+@media screen and (max-width: 960px) {
+    .login-card{
+        width: 100%!important;
+        
+    }
+   .una-login-form-button{
+        height: 56px;
+        width: 100%;
+    }
+}
+
+
+
+.login-card.show.card-loading{
+    position: relative;
+}
+ 
+.login-card.show.card-loading::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 66, 153, 0.15);
+    background-image: url(../../../../public/assets/images/loading.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 150px;
+}
+

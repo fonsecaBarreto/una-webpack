@@ -1,0 +1,99 @@
+/* Header */
+.primary-header{
+    height: var(--header-height-desktop);
+    background-color: var(--main-color);
+    background-color: rgb(253, 253, 253);
+}
+
+.primary-header-content{
+    height: 100%; width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 5px;
+    align-items: center;
+}
+
+.primary-header-content > section {
+   height: 100%; width: 100%;
+   display: flex; flex-direction: row;  align-items: center;
+   justify-content: flex-end;
+   column-gap: 12px;
+}
+
+.bluelagum-logo-link{
+    display: flex;  justify-content: center;  align-items: center;
+    margin: auto;
+    justify-self: center;
+}
+
+.bluelagum-logo-link > img{
+    width: 170px; height: auto; margin: auto;
+}
+
+.primary-header-content .primary-header-title{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+
+}
+
+.primary-header-content .primary-header-title > .primary-header-title-label{
+    font-size: 16px;
+    white-space: normal;
+    text-align: left;
+    height: 1em;
+    display: block; 
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.primary-header-content .primary-header-title > .primary-header-title-bread-crumbs{
+    font-size: 12px;
+    white-space: normal;
+    text-align: left;
+    height: 15px;
+    display: block; 
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+
+.primary-header-back-btn:hover{
+    background-color: rgba(255, 255, 255, 0.199);
+    box-shadow: inset 0px 0px 2px 1px #0002;
+    color: #000;
+}
+
+@media only screen and (max-width: 1024px){
+    .primary-header{
+        height: var(--header-height-mobile);
+      
+    }
+
+
+    .primary-header-content .primary-header-title, .primary-header-back-btn{
+        color: white!important;
+    }
+
+}
+
+
+/* @media only screen and (max-width: 756px){
+    .bluelagum-logo{
+       height: calc(var(--header-height-desktop) - 50px) 
+    }
+}
+ */
+
+

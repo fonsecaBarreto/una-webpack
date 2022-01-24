@@ -1,0 +1,29 @@
+.una-cadastro-carousel{
+    width: 100%;
+}
+
+.congratspanel, .congratspanel *{
+    box-sizing: border-box;
+}
+
+.congratspanel{
+    display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start;
+    gap: 12px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 32px;
+}
+
+.congratspanel > img:nth-child(1){
+    width: calc(100% );
+    border-radius: 18px;
+    overflow: hidden;
+    object-fit: cover;
+    margin: auto;
+    object-fit: contain;
+}
+
+.congratspanel > h2, h3{
+    margin: 0;
+    padding: 0;
+}
