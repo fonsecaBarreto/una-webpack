@@ -1,7 +1,6 @@
 :root {
     --main-color: #007CDC;
     --main-light-color: #1388e2;
-/*     --main-bg-color: #E3EDFF; */
     --main-bg-color: rgb(240, 245, 255);
     --second-color: rgb(8, 62, 122);
 }

@@ -1,5 +1,4 @@
 
-
 /* item */
 .una-product-feed .product-feed-item{
 
@@ -67,3 +66,50 @@
     height: 38px;
     font-size: 15px;
 }
+<<<<<<< HEAD
+=======
+
+@media screen  and (max-width: 1600px){
+    .una-product-feed >section:nth-child(1){
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+}
+
+@media screen  and (max-width: 1440px){
+    .una-product-feed >section:nth-child(1){
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+}
+
+@media screen  and (max-width: 1024px){
+    .una-product-feed >section:nth-child(1){
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+}
+
+/* @media screen  and (max-width: 756px){
+    .una-product-feed >section:nth-child(1){
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+}
+ */
+
+/* PLUS BUTTON */
+
+
+.una-product-feed-plus-btn{
+    display: flex; align-items: center; justify-content: center;
+    width: 56px;  height: 56px;
+    font-size: 24px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    margin-top: 32px;
+    cursor: pointer;
+}
+>>>>>>> 6c133c312038f043c10833796d3ff60c4d035388
