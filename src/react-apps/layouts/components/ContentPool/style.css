@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    gap: 20px;
+    gap: 10px;
 }
 
 /* header */
@@ -12,9 +12,7 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
     height: 32px;
-    background-color: white;
 }
-
 
 .bl-common-content-pool > header > section{
     display: flex;
@@ -32,16 +30,12 @@
     border: none;
     height: 32px;
     width: 32px;
-  
     cursor: pointer;
-
 }
+
 .bl-common-content-pool > header > section:nth-child(2) button:hover{
     background-color: rgb(214, 214, 214);
-
 }
-
-
 
 
 /* section */
@@ -50,40 +44,47 @@
     width: 100%;
 }
 
-.bl-common-content-pool > section:nth-child(1){
+.bl-common-content-pool > .bl-common-content-pool-flow{
     width: 100%;
     height: fit-content;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: auto;
-    gap: 8px;
+    gap: 6px;
 }
 
-.una-product-feed >section:nth-child(2){
-    width: 100%;
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: flex-start;
+.bl-common-content-pool > .bl-common-content-pool-flow.inline{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
 }
 
 @media screen  and (max-width: 1600px){
-    .bl-common-content-pool >section:nth-child(1){
+    .bl-common-content-pool > .bl-common-content-pool-flow{
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media screen  and (max-width: 1440px){
-    .bl-common-content-pool >section:nth-child(1){
+    .bl-common-content-pool > .bl-common-content-pool-flow{
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media screen  and (max-width: 1024px){
-    .bl-common-content-pool >section:nth-child(1){
+    .bl-common-content-pool > .bl-common-content-pool-flow{
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 /* READ MORE BUTTON */
+
+
+.una-product-feed >section:nth-child(3){
+    width: 100%;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: flex-start;
+}
+
 
 .bl-common-content-plus-btn{
     display: flex; align-items: center; justify-content: center;

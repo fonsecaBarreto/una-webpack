@@ -69,6 +69,7 @@ export const ListCompanhiasPage = () => {
                     </AsideFilters>
 
                     <ContentPool 
+                        initial_mode="inline"
                         itemComponent={CompanyItem} 
                         list_data={companhias} 
                         onAction={handleActions}>

@@ -1,43 +1,41 @@
 
 .list-view-item{
     width: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
     animation-name: slideUp;
     animation-duration: .25s;
     animation-timing-function: ease ;
     border-radius: 8px;
-    overflow-y: hidden;
     cursor: pointer;
 }
 
 
 .list-view-item .list-view-item-content{
     width: 100%;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    flex-direction: row;
+    display: flex;
     align-items: center;
     justify-content: flex-start;
+    animation-name: slideUp;
+    animation-duration: .25s;
+    animation-timing-function: ease ;
+    border-radius: 6px;
     gap: 10px;
+    background-color: rgb(252, 252, 252);
     padding: 6px 14px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    background-color: rgba(248, 248, 248, 0.8);
+    border: solid 1px #ddd;
 }
 
 .list-view-item .list-view-item-content:hover{
-   background-color: rgba(125, 170, 230, 0.3);
-   outline: solid 2px rgba(66, 110, 204, 0.3); 
+    background-color: rgba(125, 170, 230, 0.15);
+    outline: solid 2px rgba(66, 110, 204, 0.3); 
+ }
+ 
+.list-view-item.inline .list-view-item-content{
+    flex-direction: row;
 }
 
-.list-view-item .list-view-item-content section{
-    
-}
+.list-view-item.block .list-view-item-content{
+    flex-direction: column;
 
-.list-view-item .list-view-item-content > section:nth-child(1){
-  
 }
 
 
@@ -50,7 +48,6 @@
     padding-left: 12px;
     width: 100%;
 }
-
 
 .list-view-item .list-view-item-icon{
     height: 42px; 
