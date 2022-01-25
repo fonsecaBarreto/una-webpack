@@ -18,4 +18,11 @@ export const spliceProdutosQueries = (value) => ({
      type: "SPLICE_PRODUCTOS_FEED_QUERIES",
      payload: value
 })
- 
+
+
+/* Companhias */
+
+export const setCompanhias = (value, append) => ({
+     type: "SET_COMPANHIAS_FEED",
+     payload: { listView: value, toAppend: append}
+})

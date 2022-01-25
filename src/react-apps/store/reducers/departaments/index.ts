@@ -1,34 +1,46 @@
+import { Companhia } from "@/domain/views/Companhia";
 import { ListingView, LabelView} from "@/domain/views/ListingView";
 import { Produto } from "@/domain/views/Produto";
 
+
+export namespace DepartamentosState {
+     export type CategoryView = { value: string, label: string, parent_id?:string }
+     export interface struct {
+          departamentos: { value: string, label: string }[]
+          categorias: CategoryView[]
+          subCategorias:CategoryView[],
+          marcas: { value: string, label: string}[]
+     } 
+}
+
 export interface DepartamentosState {
-     struct: {
-          departamentos: {id: string,nome: string,descricao: string}[],
-          categorias: {id: string,nome: string, departamento_id: string}[],
-          subCategorias:  {id: string,nome: string, categoria_id: string}[]
-          marcas: LabelView[],
-     };
+     struct: DepartamentosState.struct,
      marcasAvaiable: string[]
      produtos: ListingView<Produto[]>,
      toSubmitQueries: boolean
 }
 
+const INITIAL_LIST_VIEW = {
+     queries: {},
+     total: 0,
+     length: 0,
+     data: [],                      
+     pages: 0,                 
+     pageIndex: 0
+}
+
+const INITIAL_DEPARTAMENTOS_STRUCT = {
+     departamentos: [],
+     categorias: [],
+     subCategorias: [],
+     marcas: []
+}
+
 const INITIAL_STATE = {
-     struct: {
-          departamentos: [],
-          categorias: [],
-          subCategorias: [],
-          marcas: []
-     },
+     struct: { ...INITIAL_DEPARTAMENTOS_STRUCT },
      marcasAvailables:[],
-     produtos: {
-          queries: {},
-          total: 0,
-          length: 0,
-          data: [],                      
-          pages: 0,                 
-          pageIndex: 0
-     },
+     companhias: { ...INITIAL_LIST_VIEW},
+     produtos: { ...INITIAL_LIST_VIEW},
      toSubmitQueries: false
 }
    
@@ -46,6 +58,13 @@ export const departamentosReducer = (state=INITIAL_STATE, action: any) => {
           case "SPLICE_PRODUCTOS_FEED_QUERIES": {
                let produtos :ListingView<Produto[]> = { ...state.produtos, queries: { ...state.produtos.queries, ...action.payload } } ;
                return ({ ...state, produtos, toSubmitQueries: true }) ; 
+          };
+          case "SET_COMPANHIAS_FEED": { 
+               const toAppend = action.payload.toAppend
+               var data = toAppend ? [ ...state.companhias.data, ...action.payload.listView.data ] : [...action.payload.listView.data ];
+               var { total, length, pages, pageIndex, queries } = action.payload.listView;
+               let companhias :ListingView<Companhia[]> = { queries, total, length, pages, pageIndex, data } ;
+               return ({ ...state, companhias, toSubmitQueries: false }) ; 
           };
 
           default: return state

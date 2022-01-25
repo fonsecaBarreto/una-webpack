@@ -4,7 +4,7 @@ import CategoriasNav from '@/react-apps/pages/feed-busca-page/CategoriasNav'
 import ProductFeed from '@/react-apps/pages/feed-busca-page/ProductFeed'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { departamentosService } from "@/services/api/departamentos-service"
-import { setDepartamentos, setProdutos, spliceProdutosQueries, setMarcasAvailables} from '@/react-apps/store/reducers/departaments/actions'
+import { setDepartamentos, spliceProdutosQueries } from '@/react-apps/store/reducers/departaments/actions'
 import GlobalContext from "@/react-apps/apps/main/global-components-context"
 
 export const DeparamentoPage = () => {

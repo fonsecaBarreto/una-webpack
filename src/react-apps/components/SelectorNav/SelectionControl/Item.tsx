@@ -1,15 +1,15 @@
 import React from 'react'
-import { NavComponent } from '.'
+import { SelectionControl } from '.'
 
 export namespace SelectorNavItem {
     export type Params = {
-        item: NavComponent.Item,
+        item: SelectionControl.Item,
         selected : boolean,
-        onClick: ( item: NavComponent.Item) => void
+        onClick: ( item: SelectionControl.Item) => void
     }
 }
 
-export const SelectorNavItem: React.FunctionComponent<SelectorNavItem.Params> = ({ item, selected, onClick}) =>{
+export const SelectorNavItem: React.FunctionComponent<SelectorNavItem.Params> = ({ item, selected, onClick }) =>{
     const { label } = item
     return (
         <li onClick={() => onClick({...item})} className={`${selected === true? 'selected' : ''}`} >

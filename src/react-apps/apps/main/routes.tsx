@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useContext, ReactComponentElement, Childre
 
 import BlueLagumLayout from '../../layouts/BlueLagum' 
 import DeparamentoPage from "../../pages/feed-busca-page";
+import CompanhiasPage from "@/react-apps/pages/list-companhias-page";
 import LoginPage from "@/react-apps/pages/login-page";
 import AppRouter, { PageRouterConfig } from '@/react-apps/components/router'
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +10,7 @@ import globalContext from "@/react-apps/apps/main/global-components-context"
 import { setLoading, setUser } from "@/react-apps/store/reducers/main/actions"
 import { loginServices } from '@/services/api/login-service'
 export const RouterComponent = () =>{
+
 
     const context = useContext(globalContext) 
     const dispatch = useDispatch()
@@ -49,6 +51,8 @@ export const RouterComponent = () =>{
           layoutParams : { user, menu: true },
           prefix: "/",
           routes: [
+            { path: "mercado", title: "Mercado",  component: DeparamentoPage } ,
+            { path: "companhias", title: "Companhias",  component: CompanhiasPage } ,
             { path: "", title: "Inicio",  component: DeparamentoPage } ,
             { path: "*", title: "404",  component: () => <div><h1>404</h1></div> }
          

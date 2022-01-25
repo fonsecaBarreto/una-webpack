@@ -7,8 +7,6 @@ import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import ProductImage from "@/public/assets/images/shopping-bag.jpg"
 import CounterControl from '../../../components/una/inputs-control/CounterControl'
 import SubmitButton from '../../../components/una/inputs-control/SubmitButton'
-import { count } from 'console'
-import { Produto } from '@/domain/views/Produto'
 
 export namespace ProductItem {
     export type Params = {
