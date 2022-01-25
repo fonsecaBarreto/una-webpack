@@ -65,9 +65,10 @@ export const ProductFeed: React.FunctionComponent<any> = ({ more, produtos }) =>
     return (
         <div className="una-product-feed">
             <ContentPool 
-                component={ ({item_data, key})=>(
+                itemComponent={ ({item_data, key})=>(
                 <ProductItem 
-                    count={countProductQtd(item_data.id)} produto={item_data}
+                    count={countProductQtd(item_data.id)} 
+                    produto={item_data}
                     toAdd={addToCart}
                     toRemove={rmFromCart} ></ProductItem>)} 
                 list_data={produtos} 

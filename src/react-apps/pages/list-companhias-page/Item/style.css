@@ -9,6 +9,7 @@
     animation-timing-function: ease ;
     border-radius: 8px;
     overflow-y: hidden;
+    cursor: pointer;
 }
 
 
@@ -60,7 +61,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+  
 }   
 
 .list-view-item .list-view-item-name{

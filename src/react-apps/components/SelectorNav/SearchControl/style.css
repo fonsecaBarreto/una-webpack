@@ -1,0 +1,28 @@
+.nav-selector-wrapper .nav-selector-wrapper-body > section.search-control{
+    display: grid;
+    grid-template-columns: 1fr 38px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    height: 36px;
+}
+
+
+
+.nav-selector-wrapper .nav-selector-wrapper-body > section.search-control input{
+    width: 100%; height: 100%;
+    border: solid 1px #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 0 12px;
+}
+.nav-selector-wrapper .nav-selector-wrapper-body > section.search-control button{
+    height: 100%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+} 
+

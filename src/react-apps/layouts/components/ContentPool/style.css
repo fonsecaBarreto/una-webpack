@@ -6,6 +6,46 @@
     gap: 20px;
 }
 
+/* header */
+.bl-common-content-pool > header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    height: 32px;
+    background-color: white;
+}
+
+
+.bl-common-content-pool > header > section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.bl-common-content-pool > header > section:nth-child(2){
+    display: flex;
+    justify-content: flex-end;
+}
+
+.bl-common-content-pool > header > section:nth-child(2) button{
+    border: none;
+    height: 32px;
+    width: 32px;
+  
+    cursor: pointer;
+
+}
+.bl-common-content-pool > header > section:nth-child(2) button:hover{
+    background-color: rgb(214, 214, 214);
+
+}
+
+
+
+
+/* section */
+
 .bl-common-content-pool > section{
     width: 100%;
 }

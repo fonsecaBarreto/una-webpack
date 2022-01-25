@@ -39,7 +39,6 @@ const INITIAL_DEPARTAMENTOS_STRUCT = {
 const INITIAL_STATE = {
      struct: { ...INITIAL_DEPARTAMENTOS_STRUCT },
      marcasAvailables:[],
-     companhias: { ...INITIAL_LIST_VIEW},
      produtos: { ...INITIAL_LIST_VIEW},
      toSubmitQueries: false
 }
@@ -58,13 +57,6 @@ export const departamentosReducer = (state=INITIAL_STATE, action: any) => {
           case "SPLICE_PRODUCTOS_FEED_QUERIES": {
                let produtos :ListingView<Produto[]> = { ...state.produtos, queries: { ...state.produtos.queries, ...action.payload } } ;
                return ({ ...state, produtos, toSubmitQueries: true }) ; 
-          };
-          case "SET_COMPANHIAS_FEED": { 
-               const toAppend = action.payload.toAppend
-               var data = toAppend ? [ ...state.companhias.data, ...action.payload.listView.data ] : [...action.payload.listView.data ];
-               var { total, length, pages, pageIndex, queries } = action.payload.listView;
-               let companhias :ListingView<Companhia[]> = { queries, total, length, pages, pageIndex, data } ;
-               return ({ ...state, companhias, toSubmitQueries: false }) ; 
           };
 
           default: return state

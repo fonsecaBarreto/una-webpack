@@ -1,0 +1,20 @@
+.nav-selector-wrapper .nav-selector-wrapper-body > section.button-group-control{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    height: 36px;
+}
+
+.nav-selector-wrapper .nav-selector-wrapper-body > section.button-group-control button{
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 6px;
+} 
+
