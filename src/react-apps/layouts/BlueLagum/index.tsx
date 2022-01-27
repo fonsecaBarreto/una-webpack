@@ -1,5 +1,5 @@
 
-import React, { ReactNode, useContext, useEffect, useState } from 'react'
+import React, { Context, ReactNode, useContext, useEffect, useState } from 'react'
 import './style.css'
 import LayoutHeader from './Header'
 import LayoutFooter from './Footer' 
@@ -22,11 +22,12 @@ export namespace BlueLagumLayout {
     export type Params ={
         children: ReactNode,
         menu?: boolean,
-        user?: any
+        user?: any,
+
     }
 }
 
-const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children, user, menu}) =>{
+const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children, user, menu }) =>{
 
     const menuState = MenuState()
     const history = useHistory()

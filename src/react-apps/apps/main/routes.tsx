@@ -27,6 +27,7 @@ export const RouterComponent = () =>{
 
     const beforeEach = async () =>{
         context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
+
         if(!user){ 
           dispatch(setLoading(true));
           try{
@@ -57,7 +58,7 @@ export const RouterComponent = () =>{
 
       {
           layout: BlueLagumLayout,
-          layoutParams : { user, menu: true },
+          layoutParams : { user, menu: true, context },
           prefix: "/",
           routes: [
             { path: "mercado", title: "Mercado",  component: DeparamentoPage } ,

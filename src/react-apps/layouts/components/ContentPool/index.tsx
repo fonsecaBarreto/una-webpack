@@ -9,7 +9,7 @@ import { BsLayoutThreeColumns } from 'react-icons/bs'
 export namespace ContentPool {
     export type Params = {
         itemComponent: React.FunctionComponent<any>,
-        list_data: ListingView<any>,
+        list_data: ListingView<any[]>,
         onAction: (key?:string, payload?: any)=>void,
         initial_mode?: ListMode
     }
@@ -18,6 +18,7 @@ export namespace ContentPool {
 export type ListMode = "inline" | "block" 
  
 export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ list_data, itemComponent: ItemComponent, onAction, initial_mode="block" }) =>{
+
     const [ listMode, setListMode ] = useState<ListMode>(initial_mode)
     const { pageIndex, pages, data, total, length } = list_data
     return (

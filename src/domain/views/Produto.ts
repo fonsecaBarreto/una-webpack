@@ -1,20 +1,22 @@
 
-import { ListingView, LabelView } from "./ListingView";
+import { LabelView } from "./ListingView";
 
-export interface Produto {
+export interface Product {
     id: string
-    especificacao: string
-
-    marca_id:string
-    apresentacao_id:string
-    subCategoria_id: string
-  
     ncm: string
     ean: string
     sku:string
     image: null 
+    brand_id:string
+    presentation_id:string
+    sub_category_id: string
+    specification: string
+    brand: LabelView
+    presentation: LabelView
+    subCategory: LabelView
+}
 
-    marca: LabelView
-    apresentacao: LabelView
-    subCategoria: LabelView
+export interface Brand {
+    name: string,
+    image: null
 }

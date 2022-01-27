@@ -9,35 +9,30 @@ import GlobalContext from "@/react-apps/apps/main/global-components-context"
 
 export const DeparamentoPage = () => {
 
-    const { marcasAvailables, struct } = useSelector( (state: any)=>state.departamentos);
+    const context = useContext(GlobalContext)
+    const { departaments_struct, products_listingview } = useSelector( (state: any)=>state.departamentos);
+
     const dispatch = useDispatch();
 
-    const context = useContext(GlobalContext)
-
-    const { produtos } = useSelector( (state: any)=>state.departamentos);
-
-    useEffect(()=>{ 
-        departamentosService.list().then(data => {
-            dispatch(setDepartamentos(data))}) 
-            context.methods.listProdutos(false) 
-    },[])
+    useEffect(()=>{  departamentosService.list().then(data => { dispatch(setDepartamentos(data))})  },[])
 
     const filterChanged = (filters: any) => {
-        const { categorias=[], departamentos=[], subCategorias=[], marcas } = filters
-        const d = [ ...departamentos ].map(d=>d.value)
-        const c = [ ...categorias ].map(d=>d.value)
-        const s = [ ...subCategorias ].map(d=>d.value)
-        const m = [ ...marcas ].map(d=>d.value)
-        dispatch(spliceProdutosQueries({ d, s, c, m }))
-    }
+        const { categories, departaments, subCategories, brands } = filters;
+        dispatch(spliceProdutosQueries({ 
+            departament: departaments.map((v:any)=>v.value), 
+            category: categories.map((v:any)=>v.value), 
+            subCategory: subCategories.map((v:any)=>v.value), 
+            brand: brands.map((v:any)=>v.value), 
+        })) 
+    } 
 
     return (
         <div id="departamento-page">
             <div className='app-container'>
-                 <ContentGrid>
-                    <CategoriasNav onChange={filterChanged} inital_struct={struct} marcas_availables={marcasAvailables}></CategoriasNav> 
-                    <ProductFeed more={()=>context.methods.listProdutos(true)} produtos={produtos}></ProductFeed> 
-                </ContentGrid>
+                <ContentGrid>
+                    <CategoriasNav onChange={filterChanged} inital_struct={departaments_struct} marcas_availables={products_listingview.data.brands}></CategoriasNav> 
+                    <ProductFeed more={()=>context.methods.listProdutos(true)} listingView={products_listingview}></ProductFeed> 
+                </ContentGrid> 
             </div> 
         </div>
     )

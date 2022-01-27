@@ -22,7 +22,7 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
     const [ especificacao, setEspecificacao ] = useState("")
     const { width } = useWindowSize()
     const toSearch =() => {
-        dispatch(spliceProdutosQueries({ e: especificacao }))
+        dispatch(spliceProdutosQueries({ specification: especificacao }))
     }
 
     return (

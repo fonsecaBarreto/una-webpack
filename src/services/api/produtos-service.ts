@@ -8,34 +8,28 @@ const produtosApi = MakeApiSettings({
 })
 
 export namespace produtosServices {
-     export type Params = {
+     export type ListParams = {
           p?: number,
-          c?: string[]
-          d?: string[],
-          s?: string[],
-          m?: string[]
-          e?: string
+          specification?: string
+          category?: string[]
+          departament?: string[],
+          subCategory?: string[],
+          brand?: string[]
      }
 }
 
 export const produtosService = {
-     list: async (params: produtosServices.Params) => {
+     list: async (params: produtosServices.ListParams) => {
 
-          const { e="", p= 1, c=[], d=[], s=[], m =[] } = params
+          const {  p= 1, specification="" } = params
+          var query = `?p=${p}&specification=${specification}`;
 
-          var query = `?p=${p}&e=${e}`
-
-          if(d.length > 0 )
-               d.map(d=>{ query+=`&d=${d}` });
-
-          if(s.length > 0)
-               s.map(s=> { query+=`&s=${s}` });
-   
-          if(c.length > 0)
-               c.map(c=>{ query+=`&c=${c}` });  
-
-          if(m.length > 0)
-               m.map(m=>{ query+=`&m=${m}` });  
+          (["category", "departament", "subCategory", "brand"]).map( (v:string)=>{
+               var filter :any = { ...params }[v];
+               if( filter.length > 0){
+                    filter.map((f:any)=>{ query+=`&${v}=${f}` });
+               }
+          })
 
           const { data } = await produtosApi.send({ method: "get", url: `/${query}` }) 
           return data 

@@ -11,3 +11,6 @@ export interface LabelView {
     label: string,
     value: string
 }
+
+export type CategoryView = { value: string, label: string, parent_id?:string }
+

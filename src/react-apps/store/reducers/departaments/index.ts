@@ -1,62 +1,53 @@
-import { Companhia } from "@/domain/views/Companhia";
-import { ListingView, LabelView} from "@/domain/views/ListingView";
-import { Produto } from "@/domain/views/Produto";
-
+import { ListingView, CategoryView} from "@/domain/views/ListingView";
+import { Product, Brand } from "@/domain/views/Produto";
 
 export namespace DepartamentosState {
-     export type CategoryView = { value: string, label: string, parent_id?:string }
-     export interface struct {
-          departamentos: { value: string, label: string }[]
-          categorias: CategoryView[]
-          subCategorias:CategoryView[],
-          marcas: { value: string, label: string}[]
-     } 
+     export type CategoriasLike = "departaments" | "categories" | "subCategories"
+     export type FilterStruct = Record<CategoriasLike | "brands", CategoryView[] >
 }
 
 export interface DepartamentosState {
-     struct: DepartamentosState.struct,
-     marcasAvaiable: string[]
-     produtos: ListingView<Produto[]>,
+     struct: DepartamentosState.FilterStruct
+     products_listview: ListingView<{products: Product[], brands_available: string[]}>,
      toSubmitQueries: boolean
 }
 
-const INITIAL_LIST_VIEW = {
+export const INITIAL_DEPARTAMENTOS_STRUCT = {
+     departaments: [], categories: [], subCategories: [],  brands: []
+}
+
+export const INITIAL_PRODUCTS_LISTING_VIEW = {
      queries: {},
      total: 0,
      length: 0,
-     data: [],                      
+     data: { products: [], brands_available: []},                      
      pages: 0,                 
      pageIndex: 0
-}
-
-const INITIAL_DEPARTAMENTOS_STRUCT = {
-     departamentos: [],
-     categorias: [],
-     subCategorias: [],
-     marcas: []
-}
-
+ }
+ 
 const INITIAL_STATE = {
-     struct: { ...INITIAL_DEPARTAMENTOS_STRUCT },
-     marcasAvailables:[],
-     produtos: { ...INITIAL_LIST_VIEW},
-     toSubmitQueries: false
+     departaments_struct: { ...INITIAL_DEPARTAMENTOS_STRUCT },
+     products_listingview: { ...INITIAL_PRODUCTS_LISTING_VIEW },
+     toSubmit: false
 }
-   
+
 export const departamentosReducer = (state=INITIAL_STATE, action: any) => {
      switch(action.type){
-          case "SET_DEPARTMENTOS_STRUCT": return { ...state, struct: action.payload };
-          case "SET_MARCAS_AVAILABLES": return { ...state, marcasAvailables: action.payload };
-          case "SET_PRODUCTOS_FEED": { 
-               const toAppend = action.payload.toAppend
-               var data = toAppend ? [ ...state.produtos.data, ...action.payload.listView.data ] : [...action.payload.listView.data ];
-               var { total, length, pages, pageIndex, queries } = action.payload.listView;
-               let produtos :ListingView<Produto[]> = { queries, total, length, pages, pageIndex, data } ;
-               return ({ ...state, produtos, toSubmitQueries: false }) ; 
+          case "SET_DEPARTMENTOS_STRUCT": return { ...state, departaments_struct: action.payload };
+          case "SET_PRODUCTOS_LISTINGVIEW": { 
+               var listingView = state.products_listingview;
+               const { content, toAppendData } = action.payload;
+               var prevdata: any = { ...listingView.data }
+               var products = toAppendData ? [ ...prevdata.products, ...content.data.products]: [...content.data.products]
+               content.data["products"] = products
+               return ({ ...state, products_listingview: {...content}, toSubmit: false }) ; 
           };
-          case "SPLICE_PRODUCTOS_FEED_QUERIES": {
-               let produtos :ListingView<Produto[]> = { ...state.produtos, queries: { ...state.produtos.queries, ...action.payload } } ;
-               return ({ ...state, produtos, toSubmitQueries: true }) ; 
+          case "SPLICE_PRODUCTS_LISTVIEW_QUERIES": {
+               let products_listingview :any = { 
+                    ...state.products_listingview, 
+                    queries: { ...state.products_listingview.queries, ...action.payload } 
+               };
+               return ({ ...state, products_listingview, toSubmit: true }) ; 
           };
 
           default: return state
