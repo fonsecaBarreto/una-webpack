@@ -7,15 +7,16 @@ export namespace SelectorNavWrapper {
     export interface Params {
         title:string,
         open_initial?: boolean,
-        children: ReactNode
+        children: ReactNode,
+        showCurtain?:boolean
     }
 }   
 
-export const SelectorNavWrapper: React.FunctionComponent<SelectorNavWrapper.Params> =  ({  title, children, open_initial=true }) =>{
+export const SelectorNavWrapper: React.FunctionComponent<SelectorNavWrapper.Params> =  ({  title, children, open_initial=true,showCurtain=true }) =>{
     const [ open, setOpen ] = useState(open_initial);
     return (
         <nav className="nav-selector-wrapper">
-            <div onClick={()=>setOpen(!open)} className="nav-selector-wrapper-title">{ !open ? <MdExpandMore/> : <MdExpandLess/>}{ title } </div>
+            <div onClick={()=>setOpen(!open)} className="nav-selector-wrapper-title"> { showCurtain && (!open ? <MdExpandMore/> : <MdExpandLess/>)}   { title } </div>
             <div className={`nav-selector-wrapper-body ${open ? 'open' : ''}`}>
                 { children }
             </div>

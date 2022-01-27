@@ -3,7 +3,7 @@ import './style.css'
 import { useSelector, useDispatch} from 'react-redux'
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
 
-import ContentPool from '@/react-apps/layouts/components/ContentPool'
+import ContentPool, { ListMode } from '@/react-apps/layouts/components/ContentPool'
 import ProductImage from "@/public/assets/images/shopping-bag.jpg"
 import CounterControl from '../../../components/una/inputs-control/CounterControl'
 import SubmitButton from '../../../components/una/inputs-control/SubmitButton'
@@ -13,10 +13,11 @@ export namespace ProductItem {
         toAdd: () => void
         toRemove: () => void,
         count: number,
+        listMode: ListMode
     }
 }
 
-export const ProductItem: React.FunctionComponent<any> = ({produto, toAdd, toRemove, count }) =>{
+export const ProductItem: React.FunctionComponent<any> = ({produto, toAdd, toRemove, count, listMode }) =>{
     const { especificacao, image, marca } = produto
 
     const handleCounterInput = (n:number) =>{
@@ -28,7 +29,7 @@ export const ProductItem: React.FunctionComponent<any> = ({produto, toAdd, toRem
     }
     return (
    
-            <div className="product-feed-item">
+            <div className={`product-feed-item ${listMode}`}>
 
                 <section className='product-feed-item-img-vp'> 
                     <img alt="Ilustração do produto" src={ProductImage}></img>
@@ -65,8 +66,9 @@ export const ProductFeed: React.FunctionComponent<any> = ({ more, produtos }) =>
     return (
         <div className="una-product-feed">
             <ContentPool 
-                itemComponent={ ({item_data, key})=>(
+                itemComponent={ ({item_data, key, listMode })=>(
                 <ProductItem 
+                    listMode={listMode}
                     count={countProductQtd(item_data.id)} 
                     produto={item_data}
                     toAdd={addToCart}

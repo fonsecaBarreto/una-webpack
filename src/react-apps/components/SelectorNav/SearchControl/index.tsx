@@ -4,7 +4,7 @@ import Wrapper, { SelectorNavWrapper } from '../Wrapper'
 import { AiOutlineSearch } from 'react-icons/ai'
 export namespace SearchControl {
     export interface Params extends Omit<SelectorNavWrapper.Params, 'children'> {
-        onClick: (text: string) =>void
+        onClick: (text: string) =>void,
     }
 }   
 
@@ -16,10 +16,14 @@ export const SearchControl: React.FunctionComponent<SearchControl.Params> =  ({ 
         onClick(text)
     }
 
+    const handleKeys = (e:any) =>{
+        if(e.key === "Enter") return onClick(text)
+    } 
+
     return (
-        <Wrapper title={title}>
+        <Wrapper title={title} showCurtain={false}>
             <section className='search-control'>
-                <input type="text" value={text} onInput={ ( e:ChangeEvent<HTMLInputElement> ) => setText(e.target.value) }></input>
+                <input type="text" value={text} onKeyDown={handleKeys} onInput={ ( e:ChangeEvent<HTMLInputElement> ) => setText(e.target.value) }></input>
                 <button className="una-submit-button-color" onClick={handleClick}> <AiOutlineSearch/></button>
             </section>
         </Wrapper>

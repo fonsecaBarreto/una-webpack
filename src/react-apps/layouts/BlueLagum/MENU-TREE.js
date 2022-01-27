@@ -9,8 +9,9 @@ import { FaClipboardList} from 'react-icons/fa'
 export const ADMIN_TREE = [
      {label:"Companhias", toDo:"/companhias", icon:<MdBusiness/>},
      {label:"Mercado", toDo:"/mercado", icon:<AiFillShop/>},
-     {label:"Meus Produtos", toDo:()=>window.location.href="/", icon:<MdProductionQuantityLimits/>},
-     {label:"Minas Cotações", toDo:()=>window.location.href="/", icon:<FaClipboardList/>},
+     {label:"Departamentos", toDo:"/departamentos", icon:<MdProductionQuantityLimits/>},
+  /*    {label:"Meus Produtos", toDo:()=>window.location.href="/", icon:<MdProductionQuantityLimits/>},
+     {label:"Minas Cotações", toDo:()=>window.location.href="/", icon:<FaClipboardList/>}, */
      {label:"Perfil", toDo:()=>window.location.href="/", icon:<ImProfile/>},
      {label:"Sair", toDo:loginServices.logout, icon:<ImExit/>},
 ]

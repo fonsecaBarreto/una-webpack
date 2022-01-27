@@ -1,0 +1,45 @@
+.drop-area-file-input{
+    display: flex; flex-direction: column; align-content: center; justify-content: center;
+    width: 100%;height: 100%;
+    padding: 2px  ;
+}
+
+
+.drop-area-file-input .drop-area-container{
+    position: relative;
+    border: dashed 2px #999;
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+    min-width: 100px;
+    min-height: 140px;
+    background-image: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.drop-area-file-input .drop-area-container > img{
+    position: absolute;
+    top: 0;left: 0; right: 0; bottom: 0;
+    margin: auto;
+    height: 58px;
+    width: 58px;
+}
+
+
+.drop-area-file-input .drop-area-container::after{
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+    border-radius: 8px;
+    background-color: white;
+    opacity: .6;
+    cursor: pointer;
+}
+
+.drop-area-file-input .drop-area-container:hover::after{
+    opacity: .7;
+}

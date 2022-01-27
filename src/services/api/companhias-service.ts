@@ -9,19 +9,22 @@ const produtosApi = MakeApiSettings({
 
 export namespace CompanhiasServices {
      export type ListParams = {
+          ativo?: string,
+          v?: string
           p?: number,
-          n?: string
      }
 }
 
 export const companhiasService = {
      list: async (params: CompanhiasServices.ListParams) => {
-
-          const { n="", p= 1 } = params
-
-          var query = `?p=${p}&n=${n}`
-
+          const { v="", p= 1, ativo=""} = params
+          var query = `?p=${p}&v=${v}&ativo=${ativo}`
           const { data } = await produtosApi.send({ method: "get", url: `/${query}` }) 
+          return data 
+     },
+
+     find: async (id:string) => {
+          const { data } = await produtosApi.send({ method: "get", url: `/${id}` }) 
           return data 
      }
 }

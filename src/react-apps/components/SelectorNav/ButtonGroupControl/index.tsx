@@ -11,7 +11,7 @@ export namespace ButtonGroupControl {
 export const ButtonGroupControl: React.FunctionComponent<ButtonGroupControl.Params> =  ({ content, title }) =>{
 
     return (
-        <Wrapper title={title}>
+        <Wrapper title={title} showCurtain={false}>
             <section className='button-group-control'>
                 {
                     content.map((b)=>(

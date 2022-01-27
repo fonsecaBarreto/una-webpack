@@ -8,7 +8,7 @@ export type ListMode = "inline" | "block"
 
 export namespace ListViewItem {
     export type Params = {
-        onClick: (item_data:any) =>void
+        onClick: (key:string, item_data:any) =>void
         item_data: any,
         listMode: ListMode
     }
@@ -19,7 +19,7 @@ export const ListViewItem: React.FunctionComponent<ListViewItem.Params> = ({ onC
 
     const { razaoSocial, telefoneComercial } = item_data
     return (
-        <div className={`list-view-item ${listMode}`} onClick={()=>onClick(item_data)}>
+        <div className={`list-view-item ${listMode}`} onClick={()=>onClick("options",item_data)}>
             <div className="list-view-item-content">
                 <section className="list-view-item-icon">
                     <AiOutlineShop></AiOutlineShop>

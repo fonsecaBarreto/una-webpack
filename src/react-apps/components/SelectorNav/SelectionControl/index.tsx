@@ -8,11 +8,12 @@ export namespace SelectionControl {
     export interface Params extends Omit<SelectorNavWrapper.Params, 'children'> {
         items: Item[],
         items_to_hide?: string [],
-        onChange: (items: Item[]) =>void
+        onChange: (items: Item[]) =>void,
+        radio?: boolean
     }
 }   
 
-export const SelectionControl: React.FunctionComponent<SelectionControl.Params> =  ({ items, items_to_hide, title, onChange }) =>{
+export const SelectionControl: React.FunctionComponent<SelectionControl.Params> =  ({ items, items_to_hide, title, onChange, radio= false }) =>{
 
     const [ selectedItems, setSelectedItems ] = useState<SelectionControl.Item[]>([])
 
@@ -21,8 +22,17 @@ export const SelectionControl: React.FunctionComponent<SelectionControl.Params> 
             var prevData: any = [ ...prev ]
             if (!item) { prevData = [] }
             else {
-                let sliced = prevData.filter((c:any)=> c.value !== item.value); 
-                prevData = sliced.length < prevData.length ? sliced : [ ...prevData, item ] 
+
+                
+                if(radio){
+                    let sliced = prevData.filter((c:any)=> c.value !== item.value); 
+                    prevData = sliced.length < prevData.length ? [] : [ item ] 
+                } else{
+
+                    let sliced = prevData.filter((c:any)=> c.value !== item.value); 
+                    prevData = sliced.length < prevData.length ? sliced : [ ...prevData, item ] 
+                }
+            
             }
             onChange && onChange(prevData)
             return (prevData)

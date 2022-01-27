@@ -1,73 +1,77 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useContext, useDebugValue, useEffect, useState } from 'react'
 import './style.css'
 import { companhiasService } from '@/services/api/companhias-service'
 import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
-import AsideFilters from '@/react-apps/layouts/components/AsideFilters'
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import { setCompanhias } from '@/react-apps/store/reducers/companhias/actions'
 import { useDispatch, useSelector } from 'react-redux'
-import { SearchControl, ButtonGroupControl, SelectionControl as SelectorNav, SelectionControl } from '@/react-apps/components/SelectorNav'
-import { AiOutlineDownload } from 'react-icons/ai'
-import { RiFileExcel2Line } from 'react-icons/ri'
 import CompanyItem from './Item'
-const INITIAL_FILTERS = {
-  ativo: []
-}
+import FiltersNav from './FiltersNav'
+import GlobalContext from  "@/react-apps/apps/main/global-components-context"
+import { MakeDialogConfig, MakeOptions }  from 'fck-react-dialog'
+import CompanhiaViewModal from './modals/CompanhiaView'
+import { useHistory } from 'react-router-dom'
+import queryString from 'query-string'
+import { Parser } from 'webpack'
+export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, history}) => {
 
-const SELECTORS = [
-  { name: "ativo", title: "Ativos" }
-]
-
-
-const STATUS_LIST = [
-  { value: "1", label: "Ativo"},
-  { value: "2", label: "Inativo"}
-]
-
-const CNAES_LIST = [
-  { value: "1", label: "Examplo 1 de CNAE"},
-  { value: "2", label: "Examplo 2 de CNAE"},
-  { value: "3", label: "Examplo 3 de CNAE"},
-  { value: "4", label: "Examplo 4 de CNAE"},
-  { value: "5", label: "Examplo 5 de CNAE"},
-]
-
-export const ListCompanhiasPage = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const context = useContext(GlobalContext)
+    const [ option, setOption] = useState("")
     const { companhias }  = useSelector<any>(state=>state.companhias)
 
     useEffect(()=>{
-        companhiasService.list({}).then(resp => {
-          const payload = { ...resp, data: resp.data.companhias } 
-          dispatch(setCompanhias(payload, false))
-      })
-    },[])
-
-
-    const handleActions = (key: any) =>{
-      console.log(key)
-    }
   
+      if(!location.search) return
+      const parsed = queryString.parse(location.search);
+      if(parsed?.id) {
+        context.dialog.push(MakeDialogConfig(()=><CompanhiaViewModal companhia_id={parsed.id+""} />,()=>{
+          history.push({ search: `` }) 
+          return -1
+        }, "Companhias"))
+      }
+     /*  const id = */
+    },[location.search])
 
+
+
+
+ 
+    const listCompanhias = (filters: any) =>{
+      const v = filters.text_value;
+      const ativo = filters.status.length == 0 ? "" : filters.status[0].value
+      companhiasService.list({ v, ativo }).then(resp => {
+        const payload = { ...resp, data: resp.data.companhias } 
+        dispatch(setCompanhias(payload, false))
+      })
+    }
+
+    const filtersChanged = (filters: any) => {
+      listCompanhias(filters);
+    }
+
+/*     useEffect(()=>{
+      return context.dialog.push(MakeDialogConfig(CompanhiaViewModal,()=>-1, "Companhias"))
+    
+    },[]) */
+    
+    const handleActions = (key: any, payload: any) =>{
+      if(key === "options"){
+        context.dialog.push(MakeOptions((n)=>{ 
+          if(n != -1) {  history.push({ search: `?id=${payload.id}`  })  }
+          return -1
+        }, [{label: "Abrir"}]))
+      }
+      if(key === "+1") return
+      //showCompanhiaModal(payload)
+    }
+
+  
     return (
         <div id="companhias-page">
           <div className='app-container'>
                  <ContentGrid>
-                    <AsideFilters>
-                      <SearchControl title="Nome Fantasia" onClick={()=>console.log("aqui")}/>
-                      <SelectorNav 
-                          title="Status" 
-                          onChange={(payload: SelectionControl.Item[])=>console.log(payload)}  
-                          items={STATUS_LIST}></SelectorNav>
-                      <SelectorNav  title="CNAES" 
-                        onChange={(payload: SelectionControl.Item[])=>console.log(payload)}  
-                        items={CNAES_LIST}></SelectorNav>
-                      <ButtonGroupControl title="Downloads" content={[
-                        {node: (<React.Fragment><RiFileExcel2Line/> Download </React.Fragment>),
-                           onClick: () => alert("Aqui deve começar o download")}
-                      ]}/>
-                    </AsideFilters>
-
+                    <FiltersNav onChange={filtersChanged}/>
                     <ContentPool 
                         initial_mode="inline"
                         itemComponent={CompanyItem} 

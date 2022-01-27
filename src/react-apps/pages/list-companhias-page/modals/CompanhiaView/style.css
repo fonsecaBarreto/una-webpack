@@ -1,0 +1,45 @@
+.companhia-view-modal{
+    width: 700px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+}
+
+.companhia-view-modal > section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.companhia-view-modal > section.companhia-view-modal-header{
+    flex-direction: row;
+    align-items: center; 
+    gap: 18px;
+}
+
+.companhia-view-modal > section.companhia-view-modal-header > div{
+  
+}
+
+.companhia-view-modal > section{
+    align-items: flex-start; 
+}
+ 
+
+.companhia-view-modal > section.companhia-view-modal-body{
+   
+}
+ 
+
+.companhia-view-modal > section.companhia-view-modal-header > img{
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 960px) {
+    .companhia-view-modal{
+        width: 100%;
+    }
+}

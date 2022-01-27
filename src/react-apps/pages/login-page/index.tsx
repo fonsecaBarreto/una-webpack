@@ -26,16 +26,19 @@ export const LoginPage = () =>{
     const toggleMode = () => history.push(`/login?v=${toSignup ? "signin" : 'signup'}`)
 
     const submitLogin = () =>{
+
         setIsLoading(true);
         loginServices.signin(signinState.data.get)
-        .then((_)=>history.push("/"))
+        .then((_)=>{return history.push("/mercado")})
         .catch(err=>{
             switch(err.name){
                 case "AccessDeniedError":
-                    GlobalContext.dialog.push(MakeNotification(()=>-1,[ "Credencial ou senha estão incorretos" ], err.message, NotificationType.FAILURE))
+                    GlobalContext.dialog.push(MakeNotification(()=>-1,[ "Credencial ou senha estão incorretos" ], "Acesso negado", NotificationType.FAILURE))
                 break;
             }
-            signinState.errors.set(err.params)
+            if(err.params){
+                signinState.errors.set(err.params);
+            }
         })
         .finally(()=>setIsLoading(false))
     }

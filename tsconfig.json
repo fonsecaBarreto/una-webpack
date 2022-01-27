@@ -19,7 +19,8 @@
     "moduleResolution": "node",
     "baseUrl": "src",
     "paths": {
-      "@/*": [ "./*"]
+      "@/*": [ "./*"],
+      "@assets/*": [ "./public/assets/*"]
     }
   },
   "include": ["src/**/*", "tests/**/*"]

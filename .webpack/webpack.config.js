@@ -18,15 +18,23 @@ module.exports ={
     entry: { ...entries },
     output: {
         path: OUTPUT_DIR,
-        filename: "static/[name].bundle.js",
+        filename: "js/[name][hash].bundle.js",
         publicPath: "/",
     },
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
-        alias: { '@': path.resolve(__dirname, 'src') },
+        alias: { 
+            '@': path.resolve(__dirname, 'src'),
+            '@assets': path.resolve(__dirname, 'src',"public","assets")
+        },
     },
     plugins: [
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({ 
+            linkType: "text/css",
+            filename: "css/[name].[hash].css",
+            chunkFilename: "[id].css",
+            ignoreOrder: false,
+        }),
         new CleanWebpackPlugin([OUTPUT_DIR]),
         ...Object.keys(entries).map(a=>{
             return (
@@ -41,13 +49,42 @@ module.exports ={
 
     module: {
         rules: [
-            {   test: /\.(js|jsx|tsx|ts)$/,  exclude: /node_modules/,  loader: 'babel-loader' },
-            {   test: /\.css$/, use: [ MiniCssExtractPlugin.loader,  'css-loader'] },
+            {   test: /\.(js|jsx|tsx|ts)$/, 
+                exclude: /node_modules/,  
+                loader: 'babel-loader'
+            },
+            {   
+                test: /\.css$/i, 
+                use: [ 
+                    {
+                        loader: MiniCssExtractPlugin.loader, 
+                        options: { 
+                            publicPath: "/"
+                        }
+                    },
+
+                    {
+                        loader: 'css-loader',
+                        options: { sourceMap: true}
+
+                     /*    options:{
+                                   import: true,
+                                   url: true, 
+                                   esModule: true, 
+                                   importLoaders: 1 
+                            } */
+                    }
+                ] 
+            },
             {   test: /\.(ttf)$/, use: "url-loader?limit=100000" },
-            {   test: /\.(svg|png|gif|jpg|jpeg|webp|mp3)$/,
+    
+            {   test: /\.(svg|png|gif|jpg|jpeg|webp)$/,
                 use: {
                     loader: 'file-loader',
-                    options: { name: '[name].[hash].[ext]', outputPath: 'static' }
+                    options: { 
+                        name: '[name].[ext]',
+                        outputPath: 'img'
+                    }
                 }
             } 
         ]

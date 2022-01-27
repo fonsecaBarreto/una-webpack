@@ -10,7 +10,7 @@ export namespace ContentPool {
     export type Params = {
         itemComponent: React.FunctionComponent<any>,
         list_data: ListingView<any>,
-        onAction: (payload?: any)=>void,
+        onAction: (key?:string, payload?: any)=>void,
         initial_mode?: ListMode
     }
 }
@@ -19,12 +19,12 @@ export type ListMode = "inline" | "block"
  
 export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ list_data, itemComponent: ItemComponent, onAction, initial_mode="block" }) =>{
     const [ listMode, setListMode ] = useState<ListMode>(initial_mode)
-    const { pageIndex, pages, data } = list_data
+    const { pageIndex, pages, data, total, length } = list_data
     return (
         <div className="bl-common-content-pool">
 
             <header>
-                <section>  <label> Total: <span></span> </label> </section>
+                <section>  <label> Total: <span> {length}/{total}</span> </label> </section>
                 <section>
                     <nav>
                         <button onClick={()=>setListMode("block")}> <RiLayoutGridFill/></button>

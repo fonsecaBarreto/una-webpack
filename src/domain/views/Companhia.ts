@@ -9,4 +9,5 @@ export interface Companhia {
     telefoneComercial: string | null;
     enderecos: any[];
     pessoal: any[] ;
+    ativo: boolean
 }
