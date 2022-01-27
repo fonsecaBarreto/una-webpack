@@ -8,10 +8,9 @@ const PORT = process.env.PORT || 8080;
 
 app.use("/", express.static(path.resolve(__dirname, "dist")));
 
-/* app.get(`/login/:path*?`, (req, res) => {
-   return res.sendFile(path.resolve(__dirname, "dist", "views", `login.html`)); //login
-});
- */
+app.post("/read", (req, res)=>{
+  return res.json("teste")
+})
 
 app.get(`/home/:path*?`, (req, res) => {
   return res.sendFile(path.resolve(__dirname, "dist", "views", `landing-page.html`)); //test

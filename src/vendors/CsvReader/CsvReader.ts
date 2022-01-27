@@ -1,5 +1,5 @@
-import * as csv from 'fast-csv';
 import { Readable } from "stream"
+import * as csv from 'fast-csv';
 import { InvalidCsvFile } from './errors';
 
 

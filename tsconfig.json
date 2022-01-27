@@ -20,7 +20,8 @@
     "baseUrl": "src",
     "paths": {
       "@/*": [ "./*"],
-      "@assets/*": [ "./public/assets/*"]
+      "@assets/*": [ "./public/assets/*"],
+      "@main/*": ["./react-apps/apps/main/*"]
     }
   },
   "include": ["src/**/*", "tests/**/*"]

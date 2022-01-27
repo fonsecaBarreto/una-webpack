@@ -23,9 +23,11 @@ module.exports ={
     },
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
+        fallback: { "stream": require.resolve("stream-browserify") },
         alias: { 
             '@': path.resolve(__dirname, 'src'),
-            '@assets': path.resolve(__dirname, 'src',"public","assets")
+            '@assets': path.resolve(__dirname, 'src',"public","assets"),
+            '@main': path.resolve(__dirname, 'src',"react-apps","apps","main")
         },
     },
     plugins: [

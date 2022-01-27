@@ -9,6 +9,7 @@
             "root": ["./dist"],
             "alias": {
                 "@": "./src",
+                "@main": "./src/react-apps/apps/main",
                 "@assets": "./src/public/assets"
             }
         }]

@@ -15,6 +15,9 @@ module.exports = merge(common, {
                 { from: "^/", to: "/views/main.html"},                  // Aplicação principal
             ]
         },
+        /* proxy: {
+            '/api': 'http://localhost:8080'
+        }, */
         host: "localhost"
     }
 });
