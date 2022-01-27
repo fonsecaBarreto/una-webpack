@@ -4,8 +4,9 @@ import UploadFrame from './Upload-frame'
 import TableFrame from './Table-frame'
 
 const ImportCsvModal = ({}) =>{
-    const [ index, setIndex ] = useState(0)
+
     const [ freeze, setFreeze ] = useState(false)
+    const [ object_data, setObject_data ]= useState<any>(null)
    
      return (
           <div className="import-csv-modal">
@@ -14,10 +15,10 @@ const ImportCsvModal = ({}) =>{
                    { freeze && "LOADING..."}
                </section>
                 <section>
-                    { index == 0 ? 
-                         <UploadFrame toFreeze={() => setFreeze(!freeze)}></UploadFrame>
+                    { !object_data ? 
+                         <UploadFrame toFreeze={() => setFreeze(!freeze)} onResult={setObject_data}></UploadFrame>
                          : 
-                        <TableFrame></TableFrame>
+                        <TableFrame dto={object_data}></TableFrame>
                     }
              
                </section> 

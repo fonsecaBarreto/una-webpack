@@ -52,10 +52,6 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
         setErrors({}); return 1;
     }
 
-    const MensagemDeSucesso = () =>{
-        GlobalContext.dialog.push(MakeNotification(()=>-1,["Bem Vindo a UNA Compras", "Receberá em breve um E-mail de confirmação"], "Bem-vindo", NotificationType.SUCCESS))
-    }
-
     const submit = async () =>{
 
         var r = await validateFields( CadastroEndereco_schema, { ...enderecoState.data.get, uf: enderecoState.data.get["uf"].value }, enderecoState.errors.set)
@@ -85,7 +81,6 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
             GlobalContext.dialog.push(MakeNotification(()=>-1,[ err?.message ], "Algo Errado", NotificationType.FAILURE))
             setCarouselInitialIndex(-1);
 
-            console.log(err)
             if(err.params) {
                 let paramsKeys = Object.keys(err.params);
                 let signUpParams = Object.keys(signupState.data.get)

@@ -1,7 +1,5 @@
-import { Readable } from "stream"
-import * as csv from 'fast-csv';
-import { InvalidCsvFile } from './errors';
 
+import { InvalidCsvFile } from './errors';
 
 export namespace CsvReader {
      export type Config = {
@@ -11,13 +9,15 @@ export namespace CsvReader {
      }
 }
 
+/* 
 export interface CsvReader{
-     read(file: Buffer, skipLines?: number ): Promise<any[]>
+     read(file: File, skipLines?: number ): Promise<string>
 }
+*/
 
-export default class AppCsvReader implements CsvReader {
+export default class AppCsvReader  {
      config: CsvReader.Config;
-
+     private readonly _reader: FileReader;
      constructor(c?:Partial<CsvReader.Config>){
           this.config = {
                separator: ",",
@@ -25,25 +25,46 @@ export default class AppCsvReader implements CsvReader {
                headers: [],
                ...c
           }
+          this._reader = new FileReader();
      }
 
-     read(buffer: Buffer, skipLines: number = 0): Promise<any[]>{
-          const { separator, quote, headers } = this.config
-          const results: any = []
-          const readable = new Readable()
-          return new Promise( (resolve, reject) => {
-               readable.push(buffer);
-               readable.push(null);
-               readable.pipe(csv.parse({ 
-                    headers: headers.length > 0 ? headers : true,
-                    skipLines: 0, 
-                    delimiter: separator, quote,
-                    trim: true
-               }))
-               .on('error', (error: any) => reject( new InvalidCsvFile(error)))
-               .on('data', (row:any) => results.push(row))
-               .on('end', ( rowCount: number) => { return resolve(results) })
+     public async execute(file: File | null): Promise<any>{
+          if(!file) return ""
+          const text = await this.read(file)
+          const data = this.csvToArray(text)
+          return data
+     }
+
+     private read(file: File,): Promise<string>{
+          this._reader.readAsText(file);
+          return new Promise((resolve)=>{
+               this._reader.onload = function (e: any) {
+                    const text = e.target.result;
+                    return resolve(text)
+               };
+          })
+     }
+
+     private csvToArray(str: string, skipLines: number = 0) {
+          const { separator, headers } = this.config
+          let lines: any[] = [];
+          /* Divide por linha */
+          const linesArray = str.split('\n');
+          /* Tira os caracteres extras */
+          linesArray.forEach( (e: any) => {
+               const row = e.replace(/[\s]+[,]+|[,]+[\s]+/g, ',').trim();
+               lines.push(row);
           });
+          const result = [];
+          for (let i = skipLines; i < lines.length; i++) {
+               const obj:any = {};
+               const currentline = lines[i].split(separator);
+               for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = currentline[j];
+               }
+               result.push(obj);
+          }
+          return result
      }
 }
 
