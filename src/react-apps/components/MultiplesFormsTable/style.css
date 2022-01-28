@@ -36,3 +36,25 @@
 .csv-reader-table-frame-action-btn.table-warning {
   color: rgb(255, 0, 34);
 }
+
+
+/*  */
+
+
+
+.csv-reader-table-frame-column {
+  width: 100%;
+  height: fit-content;
+  border: solid 1px #ddd ;
+}
+
+.csv-reader-table-frame-column.table-warning{
+  border: solid 2px red;
+}
+
+.csv-reader-table-frame-column > input{
+  height: 38px;
+  width: 100%;
+}
+
+

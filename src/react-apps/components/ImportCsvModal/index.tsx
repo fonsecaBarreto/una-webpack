@@ -3,10 +3,14 @@ import './style.css'
 import UploadFrame from './Upload-frame'
 import TableFrame from './Table-frame'
 
+const TEST_DATA = [
+     { specification: "esse tem que ficar aqui", outro: "asdasd", mais: "asdasda"}, {}, {}, {}, {}
+]
+
 const ImportCsvModal = ({}) =>{
 
     const [ freeze, setFreeze ] = useState(false)
-    const [ object_data, setObject_data ]= useState<any>(null)
+    const [ object_data, setObject_data ]= useState<any>(TEST_DATA) //null
    
      return (
           <div className="import-csv-modal">
@@ -19,8 +23,7 @@ const ImportCsvModal = ({}) =>{
                          <UploadFrame toFreeze={() => setFreeze(!freeze)} onResult={setObject_data}></UploadFrame>
                          : 
                         <TableFrame dto={object_data}></TableFrame>
-                    }
-             
+                    } 
                </section> 
           </div>
      )

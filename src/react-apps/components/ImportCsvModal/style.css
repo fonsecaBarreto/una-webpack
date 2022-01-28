@@ -1,25 +1,19 @@
 
 .import-csv-modal{
      width: 80vw;
+     border: solid 2px red;
 }
 
 
 
-.import-csv-modal > section{
- 
-}
+.import-csv-modal > section{}
 
 .import-csv-modal> section:nth-child(1) h2{
      margin: 0;
      margin-bottom: 10px;
 }
 
-.admin-measurements-dialog > section:nth-child(2){
-     border: solid 2px blue;
-}
-
 @media screen and (max-width: 960px) {
-     
      .import-csv-modal{
           width: 100%;
      }
