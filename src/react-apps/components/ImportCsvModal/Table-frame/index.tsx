@@ -6,7 +6,7 @@ import FrameColumn from './FrameColumn'
 import { RiErrorWarningFill } from 'react-icons/ri'
 import globalContext from "@/react-apps/apps/main/global-components-context"
 import { MakeDialogConfig } from 'fck-react-dialog'
-import NewProductModal from '../NewProductModal'
+import NewProductModal from '../../../pages/list-departamentos-page/NewProductModal'
 import { MdOpenInNew } from 'react-icons/md'
 
 export namespace  TableFrame {
