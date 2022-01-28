@@ -1,0 +1,26 @@
+
+.csv-reader-table-frame > table  td{
+    height: 38px;
+}
+
+.csv-reader-table-frame > table  tr{
+    height: 38px;
+    padding-left: 40px;
+}
+
+
+.csv-reader-table-frame > table td > input{
+    height: 100%;
+}
+
+
+ /*  */
+
+ .csv-reader-table-frame-row-warning{
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 32px;
+     height: 32px;
+     background-color: red;
+ }

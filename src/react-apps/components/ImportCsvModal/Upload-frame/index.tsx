@@ -13,11 +13,12 @@ export namespace UploadFrame {
      }
 }
 
+var headers = ["ean", "specification", "brand_name", "category_name", "presentation_name", "ncm", "sku"]
 export const UploadFrame: React.FunctionComponent<UploadFrame.Params> = ({toFreeze, onResult}) =>{
      const context = useContext(globalContext)
      const [ file, setFile] = useState<File | null>(null)
 
-     const csvReader = new CsvReader({ headers:[ "ean", "ncm", "sku", "especificacao", "marca", "categoria", "apresentacao" ] }) 
+     const csvReader = new CsvReader({ headers }) 
 
      const readfile = async () =>{
           toFreeze()
