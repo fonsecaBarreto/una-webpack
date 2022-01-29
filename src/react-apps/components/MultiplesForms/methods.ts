@@ -3,6 +3,7 @@ import MultiplesForms from ".";
 export const normalizeData = (entry: any[], headers: MultiplesForms.Header[]) =>{
 
     var final_data: any[] = [];
+
     entry.map((entry_unit: any)=>{
         var data_row: any ={}
         headers.map( (header:  MultiplesForms.Header)=>{

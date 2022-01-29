@@ -20,24 +20,26 @@ export const FormModal: React.FunctionComponent<FormModal.Params> = ({ initial_d
     }
     return (
         <div className='m-form-modal'>
-
             <Forming.FormGrid title="" columns={[]}>
+                { 
+                    headers.map((h: any, i: number)=> {
+                        var{ name, label, list, type } =h
+                        return (
+                            <React.Fragment key={i}>
+                                { 
+                                    type == "select" ? 
+                                        <Controls.SelectBox 
+                                            state={formState} label={label} name={name} list={list}/> 
+                                    :  <Controls.TextBox placeHolder="" 
+                                            state={formState} label={label} name={name} type={Controls.TextBoxTypes.TEXT}/> 
+                                } 
+                            </React.Fragment>
+                        )
+                    })
+                }
 
-                        { headers.map((h: any, i: number)=> {
-
-                            var name = h.value;
-                            var label = h.label
-     
-                            return (
-                                <React.Fragment key={i}>
-                                    <Controls.TextBox placeHolder="" state={formState} label={label} name={name} type={Controls.TextBoxTypes.TEXT}/> 
-                                </React.Fragment>
-                            )
-                        })}
-
-                    <button onClick={submit}>Salvar </button>
+            <button onClick={submit}>Salvar </button>
             </Forming.FormGrid>
-
         </div>
     )
 }

@@ -2,11 +2,9 @@
 
 }
 
-
 .m-form-row-input.error{
 
 }
-
 
 .m-form-row-input > input, .m-form-row-input > select{
     width: 100%;
@@ -14,8 +12,7 @@
     border: solid 1px #ccc;
 }
 
-
-
-.m-form-row-input.error > input{
-    background-color: rgba(255, 146, 146, 0.219)!important;
+.m-form-row-input.error > input, .m-form-row-input.error > select{
+    background-color: rgba(236, 43, 53, 0.15)!important;
+    outline: solid 2px rgba(255, 0, 0, 0.486);
 }

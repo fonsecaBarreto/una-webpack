@@ -1,6 +1,7 @@
 import React from 'react'
 import { StateAdapter } from "fck-components/lib/Controls"
 import './style.css'
+
 export namespace MultiplesFormTextInput {
     export type Params = {
         state: StateAdapter.Handler,
@@ -11,9 +12,7 @@ export namespace MultiplesFormTextInput {
 }
 
 export const MultiplesFormTextInput: React.FunctionComponent<MultiplesFormTextInput.Params> = ({ name, state, onDoubleClick, placeHolder}) =>{
-
     var value = state.data.get[name]
-
     return (
         <React.Fragment >
            <input placeholder={placeHolder ?? ""} value={value} onInput={(e: any)=>state.data.onInput(name, e.target.value ,false)}></input> 

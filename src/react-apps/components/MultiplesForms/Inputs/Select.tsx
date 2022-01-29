@@ -17,7 +17,7 @@ export namespace MultiplesFormSelectInput {
 export const MultiplesFormSelectInput: React.FunctionComponent<MultiplesFormSelectInput.Params> = ({ name, state, list, placeHolder }) =>{
 
     const [ observable, setObservable] = useState<MultiplesFormSelectInput.ItemView[]>([])
-    console.log(list)
+
     useEffect(()=>{
         const novo: any[] = list.map((v,i)=> v);
         setObservable([{ value: "", label: placeHolder ??  "Nenhum Item Selecionado " }, ...novo]);
@@ -30,7 +30,6 @@ export const MultiplesFormSelectInput: React.FunctionComponent<MultiplesFormSele
 
     return (
         <React.Fragment>
-
             <select disabled={list.length === 0}  value={ state.data.get[name]?.value ?? ""} onChange={handleInput}>
                 { observable.map((u,i)=><option value={u.value} key={i}>{u.label}</option>) }
             </select>
