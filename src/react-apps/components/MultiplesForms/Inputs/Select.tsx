@@ -1,4 +1,5 @@
-import { StateAdapter } from "fck-components/lib/Controls";
+
+import { StateAdapter } from 'fck-react-input-controls/lib/Controls'
 import React from "react";
 import './style.css'
 import { ChangeEvent, useEffect, useState } from "react"

@@ -24,6 +24,7 @@
     "fast-csv": "^4.3.6",
     "fck-components": "^1.0.5",
     "fck-react-dialog": "^1.0.3",
+    "fck-react-input-controls": "^1.0.0",
     "fck-schema-validator": "^1.2.8",
     "query-string": "^7.1.0",
     "react": "^17.0.2",

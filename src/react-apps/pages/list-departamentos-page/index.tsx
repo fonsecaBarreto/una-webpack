@@ -1,11 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react'
 import './style.css'
+import React, {useContext, useEffect, useState} from 'react'
 import GlobalContext from "@/react-apps/apps/main/global-components-context"
-import { MakeDialogConfig, OnActionFunction } from 'fck-react-dialog'
-import MultiplesFormsTable from '@/react-apps/components/MultiplesFormsTable'
 import { CsvProdutosDTo_schema } from './schemas'
-import NewProductModal from './NewProductModal'
-import { MultiplesFormsTableRow } from '@/react-apps/components/MultiplesFormsTable/Rows'
+
+import { MakeDialogConfig, OnActionFunction } from 'fck-react-dialog'
+
 import ImportCsvModal from '@/react-apps/components/ImportCsvModal'
 import MultiplesForms from '@/react-apps/components/MultiplesForms'
 
@@ -19,7 +18,7 @@ const headers: MultiplesForms.Header[] = [
     { label: "SKU", value: "sku" }]
 
 const initial_data = [
-    { ean: "asdasdasd", specification: "Aqui uma espec", brand_name: "nestle"}, { outro: "asdasd", presentation_name: "1Kg"}
+    { ean: "asdasdasd", specification: "Aqui uma espec", brand: "nestle"}, { outro: "asdasd", presentation: "1Kg"}
 ]
 export const ListDepartamentosPage = () =>{
 
@@ -63,14 +62,6 @@ export default ListDepartamentosPage
         }))
     }
 
-   <button onClick={openImportCsvModal}> Importat .csv </button> 
-        <MultiplesFormsTable 
-            headers={headers} 
-            initial_dtos={productData} 
-            dto_schema={CsvProdutosDTo_schema}
-            onRowAction={handleTableAction}
-        ></MultiplesFormsTable>
-  
   
   
   const openImportCsvModal = () =>{

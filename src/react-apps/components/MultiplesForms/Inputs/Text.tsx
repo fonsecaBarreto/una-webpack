@@ -1,5 +1,5 @@
 import React from 'react'
-import { StateAdapter } from "fck-components/lib/Controls"
+import { StateAdapter } from 'fck-react-input-controls/lib/Controls'
 import './style.css'
 
 export namespace MultiplesFormTextInput {

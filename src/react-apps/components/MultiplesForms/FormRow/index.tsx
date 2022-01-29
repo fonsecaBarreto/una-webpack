@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import './style.css'
-import { UseStateAdapter } from 'fck-components/lib/Controls'
-import FormModal from '../FormModal'
 import { MakeDialogConfig } from 'fck-react-dialog'
+import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import { SchemaValidator } from 'fck-schema-validator'
+
 import { RiErrorWarningLine } from 'react-icons/ri'
 import { AiOutlineCheckCircle } from 'react-icons/ai'
 import MultiplesForms from '..'
+import FormModal from '../FormModal'
 import SelectInput  from '../Inputs/Select'
 import TextInput  from '../Inputs/Text'
 
