@@ -33,9 +33,12 @@ export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({
         <div className='app-multiples-form'>
             <section>
 
-                <IRow columns={headers.length}>
-                    { headers.map((h: any, i: number)=> ( <div key={i}> { h.label } </div> ))}
-                </IRow>
+                <div className='app-multiples-form-row'>
+                    <section> </section>
+                    <section style={{gridTemplateColumns: `repeat(${headers.length}, 1fr)`}}>
+                        { headers.map((h: any, i: number)=> ( <div key={i}> { h.label } </div> ))}
+                    </section>
+                </div>
 
                 {
                     data.map((d: any, i: number)=>(
@@ -48,17 +51,5 @@ export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({
     )
 }
 
-export const IRow: React.FunctionComponent<{children: ReactNode, columns:number, aside?: ReactNode}> = ({children, aside, columns}) =>{
-    return(
-        <div className='app-multiples-form-row'>
-            <section>
-                { aside && aside}
-            </section>
-            <section style={{gridTemplateColumns: `repeat(${columns}, 1fr)`}}>
-                {children}
-            </section>
-        </div>
-    )
-}
 
 export default MultiplesForms

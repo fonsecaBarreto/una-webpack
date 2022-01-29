@@ -23,18 +23,18 @@ export namespace MultiplesFormRow {
         list?: {label: string, value: string}[],
         state: StateAdapter.Handler ,
         name: string, 
-        onDoubleClick?: (e:any) => void 
     }
 }
 
-export const FormRowInput: React.FunctionComponent<MultiplesFormRow.InputParams> = ({ name, state, onDoubleClick, type, list}) =>{
+export const FormRowInput: React.FunctionComponent<MultiplesFormRow.InputParams> = ({ name, state, type, list}) =>{
 
     var error = state.errors.get[name]
 
+  
     return (
-        <div className={`m-form-row-input ${ error ? "error": ""}`} onDoubleClick={onDoubleClick && onDoubleClick}> { 
+        <div className={`m-form-row-input ${ error ? "error": ""}`} > { 
                 type == "select" ? <SelectInput name={name} state={state} list={list ?? []}></SelectInput> 
-                :   <TextInput onDoubleClick={onDoubleClick} state={state} name={name} ></TextInput>
+                :   <TextInput state={state} name={name} ></TextInput>
         } </div>
     )
    
@@ -61,7 +61,7 @@ export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> 
 
     return (
 
-        <div className='app-multiples-form-row' onDoubleClick={openNewProductDialogModal} >
+        <div className='app-multiples-form-row' >
 
             <section >
                 <div onClick={openNewProductDialogModal}>

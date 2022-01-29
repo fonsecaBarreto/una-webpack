@@ -20,7 +20,7 @@ const headers: MultiplesForms.Header[] = [
     { label: "SKU", value: "sku" }]
 
 const initial_data = [
-    { specification: "Aqui uma espec"}, { outro: "asdasd"}
+    { ean: "asdasdasd", specification: "Aqui uma espec", brand_name: "nestle"}, { outro: "asdasd"}
 ]
 export const ListDepartamentosPage = () =>{
 
@@ -28,8 +28,9 @@ export const ListDepartamentosPage = () =>{
     const context = useContext(GlobalContext)
 
     return (<div> 
+
             <MultiplesForms schema={CsvProdutosDTo_schema} headers={headers} entry={productData} dialogContext={context.dialog}></MultiplesForms>
-        
+            
         </div>)
 }
 

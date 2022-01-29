@@ -3,7 +3,6 @@
     max-height: 600px;
     display: flex;
     flex-direction: column; align-items: flex-start; justify-content: flex-start;
-    border: solid 2px red;
 }
 
 .app-multiples-form > section{
