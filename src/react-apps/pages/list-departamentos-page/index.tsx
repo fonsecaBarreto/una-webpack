@@ -13,9 +13,9 @@ import MultiplesForms from '@/react-apps/components/MultiplesForms'
 const headers: MultiplesForms.Header[] = [   
     { label: "EAN *", value: "ean", type: "text" }, 
     { label: "Especificação *", value: "specification" },
-    { label: "Marca *", value: "brand_name" },
-    { label: "Categoria *", value: "category_name" },
-    { label: "Apresentaçao *", value: "presentation_name" },
+    { label: "Marca *", value: "brand_name", type:"select", list:[ {value: "some_id", label:"Nestle"}, {value: "another_id", label:"Macuco"}] },
+    { label: "Categoria *", value: "category_name", type:"select"  },
+    { label: "Apresentaçao *", value: "presentation_name", type:"select"  },
     { label: "NCM", value: "ncm" },
     { label: "SKU", value: "sku" }]
 
@@ -29,9 +29,8 @@ export const ListDepartamentosPage = () =>{
 
     return (<div> 
             <MultiplesForms schema={CsvProdutosDTo_schema} headers={headers} entry={productData} dialogContext={context.dialog}></MultiplesForms>
-         
-         
-         </div>)
+        
+        </div>)
 }
 
 

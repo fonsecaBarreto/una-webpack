@@ -1,32 +1,46 @@
 import React, { useEffect } from 'react'
 import './style.css'
-
 import { StateAdapter, UseStateAdapter } from 'fck-components/lib/Controls'
 import FormModal from '../FormModal'
 import { MakeDialogConfig } from 'fck-react-dialog'
 import { SchemaValidator } from 'fck-schema-validator'
 import { RiErrorWarningLine } from 'react-icons/ri'
 import { AiOutlineCheckCircle } from 'react-icons/ai'
+import MultiplesForms from '..'
+
+import SelectInput  from '../Inputs/Select'
+import TextInput  from '../Inputs/Text'
+
 export namespace MultiplesFormRow {
     export type Params = {
         initial_data: any[],
         dialogContext: any,
         headers: { label: string, value: string }[],
-        validate: (data: any) => Promise<SchemaValidator.Errors | null>
+        validate: (data: any) => Promise<SchemaValidator.Errors | null>,
+    }
+    export type InputParams = {
+        type: string | "text" | "select",
+        list?: {label: string, value: string}[],
+        state: StateAdapter.Handler ,
+        name: string, 
+        onDoubleClick?: (e:any) => void 
     }
 }
 
-export const FormRowTextInput = ({ name, state, onDoubleClick }:{ state: StateAdapter.Handler ,name: string, onDoubleClick?: (e:any) => void }) =>{
-    var value = state.data.get[name]
+export const FormRowInput: React.FunctionComponent<MultiplesFormRow.InputParams> = ({ name, state, onDoubleClick, type, list}) =>{
+
     var error = state.errors.get[name]
+
     return (
-        <div className={`m-form-row-text-input ${ error ? "error": ""}`} onDoubleClick={onDoubleClick && onDoubleClick}>
-            <input value={value} onInput={(e: any)=>state.data.onInput(name, e.target.value ,false)}></input>
-        </div>
+        <div className={`m-form-row-input ${ error ? "error": ""}`} onDoubleClick={onDoubleClick && onDoubleClick}> { 
+                type == "select" ? <SelectInput name={name} state={state} list={list ?? []}></SelectInput> 
+                :   <TextInput onDoubleClick={onDoubleClick} state={state} name={name} ></TextInput>
+        } </div>
     )
+   
 }
 
-export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> = ({initial_data, dialogContext, headers, validate}) => {
+export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> = ({ initial_data, dialogContext, headers, validate }) => {
     const formState = UseStateAdapter(initial_data);
 
     const openNewProductDialogModal = () =>{
@@ -62,15 +76,17 @@ export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> 
             </section>
 
             <section style={{gridTemplateColumns: `repeat(${headers.length}, 1fr)`}}>
+
             {   
-                Object.keys(initial_data).map((name:any, i: number)=>{
-                    return (
-                        <div key={i}>
-                            <FormRowTextInput name={name} state={formState} ></FormRowTextInput>
-                        </div>
-                    )
-                })
+                headers.map((h: MultiplesForms.Header, i: number)=> {
+                let { value: name, type, list } = h
+                return (
+                    <div key={i}>
+                        <FormRowInput name={name} state={formState} type={type ?? "text"} list={list}  ></FormRowInput>
+                    </div>
+                )})
             }
+
             </section>
         </div>
     )

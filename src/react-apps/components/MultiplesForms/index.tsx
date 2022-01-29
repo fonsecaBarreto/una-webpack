@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import './style.css'
 import MultiplesFormRow from './FormRow'
-import { normalizeToHeader } from './methods'
+import { normalizeData } from './methods'
 import { SchemaValidator, Validator } from 'fck-schema-validator'
 
 export namespace MultiplesForms{
@@ -21,9 +21,8 @@ export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({
     const [data, setdata] = useState<any[]>([])
 
     useEffect(()=>{  
-        return setdata(normalizeToHeader(entry, headers.map(h=>h.value))) 
+        return setdata(normalizeData(entry, headers))
     },[entry])
-
 
     const validateData = async (object: any): Promise<SchemaValidator.Errors | null> =>{
         const errors = await validator.validate(schema, object);

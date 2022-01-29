@@ -1,0 +1,21 @@
+.m-form-row-input{
+
+}
+
+
+.m-form-row-input.error{
+
+}
+
+
+.m-form-row-input > input, .m-form-row-input > select{
+    width: 100%;
+    height: 38px;
+    border: solid 1px #ccc;
+}
+
+
+
+.m-form-row-input.error > input{
+    background-color: rgba(255, 146, 146, 0.219)!important;
+}
