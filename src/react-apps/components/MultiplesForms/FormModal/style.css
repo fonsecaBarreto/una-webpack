@@ -1,0 +1,10 @@
+.m-form-modal{
+    width: 800px;
+}
+
+
+@media only screen and (max-width: 960px){
+    .m-form-modal{
+        width: 100%;
+    }
+}
