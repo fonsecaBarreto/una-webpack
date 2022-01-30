@@ -1,28 +1,22 @@
-import React, { useEffect, useState } from 'react'
 import './style.css'
-import UploadFrame from './Upload-frame'
-import TableFrame from './Table-frame'
-
-
+import React, { useEffect, useState } from 'react'
+import UploadFrame from './UploadFrame'
 
 export namespace ImportCsvModal {
      export type Params = {
-          onData: (data: any) => void,
-          onAction: (n:number) => void
+          onAction: (data: any) => void,
+          headers: string[]
      }
 }
 
-const ImportCsvModal: React.FunctionComponent<ImportCsvModal.Params> = ({onData, onAction}) =>{
+const ImportCsvModal: React.FunctionComponent<ImportCsvModal.Params> = ({ headers, onAction}) =>{
 
-    const [ freeze, setFreeze ] = useState(false)
-    const [ object_data, setObject_data ]= useState<any>(null) 
+     const [ freeze, setFreeze ] = useState(false)
+     const [ object_data, setObject_data ]= useState<any>(null) 
 
-    useEffect(()=>{
-     if(object_data){
-          onData(object_data)
-          onAction(-1)
-     }
-    },[object_data])
+     useEffect(()=>{
+          if(object_data){ onAction(object_data); } 
+     },[object_data])
    
      return (
           <div className="import-csv-modal">
@@ -31,7 +25,7 @@ const ImportCsvModal: React.FunctionComponent<ImportCsvModal.Params> = ({onData,
                    { freeze && "LOADING..."}
                </section>
                 <section>
-                    <UploadFrame toFreeze={() => setFreeze(!freeze)} onResult={setObject_data}></UploadFrame> 
+                    <UploadFrame headers={headers} toFreeze={() => setFreeze(!freeze)} onResult={setObject_data}></UploadFrame> 
                </section> 
           </div>
      )

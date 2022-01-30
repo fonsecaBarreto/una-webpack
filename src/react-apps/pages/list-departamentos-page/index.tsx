@@ -8,7 +8,7 @@ import { MakeDialogConfig, OnActionFunction } from 'fck-react-dialog'
 import ImportCsvModal from '@/react-apps/components/ImportCsvModal'
 import MultiplesForms from '@/react-apps/components/MultiplesForms'
 
-const headers: MultiplesForms.Header[] = [   
+const table_headers: MultiplesForms.Header[] = [   
     { label: "EAN *", value: "ean", type: "text" }, 
     { label: "Especificação *", value: "specification" },
     { label: "Marca *", value: "brand", type:"select", list:[ {value: "some_id", label:"Nestle"}, {value: "another_id", label:"Macuco"}] },
@@ -17,17 +17,33 @@ const headers: MultiplesForms.Header[] = [
     { label: "NCM", value: "ncm" },
     { label: "SKU", value: "sku" }]
 
-const initial_data = [
-    { ean: "asdasdasd", specification: "Aqui uma espec", brand: "nestle"}, { outro: "asdasd", presentation: "1Kg"}
-]
+    const test = [ 
+        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+
+    ]
+
 export const ListDepartamentosPage = () =>{
 
-    const [ productData, setProductData ] = useState(initial_data)
+    const [ productData, setProductData ] = useState([])
     const context = useContext(GlobalContext)
 
-    return (<div> 
-            <MultiplesForms schema={CsvProdutosDTo_schema} headers={headers} entry={productData} dialogContext={context.dialog}></MultiplesForms>
-        </div>)
+    const handleImportModalAction = (payload: any) =>{
+        console.log('testando aqui', payload)
+        setProductData(payload)
+    }
+
+    return (
+        <div> 
+            <div className='app-container'>
+                <ImportCsvModal headers={table_headers.map(v=>v.value)} onAction={handleImportModalAction}/>
+                <MultiplesForms schema={CsvProdutosDTo_schema} headers={table_headers} entry={productData} dialogContext={context.dialog}></MultiplesForms>
+            </div>
+        </div>
+    )
 }
 
 export default ListDepartamentosPage

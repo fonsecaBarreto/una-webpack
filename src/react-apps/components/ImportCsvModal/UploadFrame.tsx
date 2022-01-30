@@ -10,21 +10,21 @@ export namespace UploadFrame {
      export type Params ={
           toFreeze: Function,
           onResult: (json:object) => void
+          headers: string[]
      }
 }
 
-var headers = ["ean", "specification", "brand_name", "category_name", "presentation_name", "ncm", "sku"]
-export const UploadFrame: React.FunctionComponent<UploadFrame.Params> = ({toFreeze, onResult}) =>{
+export const UploadFrame: React.FunctionComponent<UploadFrame.Params> = ({toFreeze, onResult, headers}) =>{
      const context = useContext(globalContext)
      const [ file, setFile] = useState<File | null>(null)
 
      const csvReader = new CsvReader({ headers }) 
 
      const readfile = async () =>{
-          toFreeze()
-          const result = await csvReader.execute(file)
-          onResult(result)
-          toFreeze()
+          toFreeze();
+          const result = await csvReader.execute(file);
+          onResult(result);
+          toFreeze();
      }
 
      useEffect(()=>{

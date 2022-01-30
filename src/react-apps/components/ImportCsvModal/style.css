@@ -1,10 +1,7 @@
 
 .import-csv-modal{
-     width: 80vw;
-     border: solid 2px red;
+     width: 100%;
 }
-
-
 
 .import-csv-modal > section{}
 
@@ -13,10 +10,16 @@
      margin-bottom: 10px;
 }
 
-@media screen and (max-width: 960px) {
-     .import-csv-modal{
-          width: 100%;
-     }
+.upload-frame{
+     position: relative;
+     width: 100%;
+     overflow: hidden;
+     margin: auto;
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+     width: 100%; height: fit-content;
 }
+
 
 /* s */

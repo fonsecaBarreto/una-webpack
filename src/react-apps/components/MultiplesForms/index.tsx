@@ -32,7 +32,7 @@ export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({
                 <div className='app-multiples-form-row'>
                     <section> </section>
                     <section style={{gridTemplateColumns: `repeat(${headers.length}, 1fr)`}}>
-                        { headers.map((h: any, i: number)=> ( <div key={i}> { h.label } </div> ))}
+                        { headers.map((h: any, i: number)=> ( <div  className="app-multiples-form-row-header-cell"key={i}> { h.label } </div> ))}
                     </section>
                 </div>
                 {
