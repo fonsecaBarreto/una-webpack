@@ -37,10 +37,6 @@ export const ListDepartamentosPage = () =>{
          )
     }
 
-    const addBlankData = () =>{
-        return setProductData((prev: any)=> [{}, ...prev] ) 
-    }
-
     return (
         <div id="add-products-page"> 
             <div className='add-products-container app-container'>
@@ -52,7 +48,6 @@ export const ListDepartamentosPage = () =>{
               
                 <section>
                     <MultiplesForms schema={CsvProdutosDTo_schema} headers={table_headers} entry={productData} dialogContext={context.dialog}></MultiplesForms>
-                    <button onClick={addBlankData}> Novo </button>
                 </section>
 
                 <section>

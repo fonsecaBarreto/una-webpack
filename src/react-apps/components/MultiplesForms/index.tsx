@@ -25,14 +25,24 @@ export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({
         setData(resultData)
     } ,[entry])
 
+    const onDataChange = ( data: any, index:number) =>{
+        console.log("Adding here", index)
+        setData( (prev: any)=>{
+            var list =[...prev]
+            list.splice(index,1,data)
+            return list
+        }) 
+    }
+
     const validateData = async (object: any): Promise<SchemaValidator.Errors | null> =>{
         return await validator.validate(schema, object);
     }
 
-    const addBlankData = () => setData(prev=>[...prev,  normalizeValues({}, headers)])
+    const addBlankData = () =>{ 
+        setData(prev=>[  normalizeValues({}, headers), ...prev, ])
+    }
 
     const removeDataFrom = (index:number) =>{
-        console.log(index)
         setData((prev)=>{
             var list = [ ...prev]
             list.splice(index, 1)
@@ -53,12 +63,17 @@ export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({
 
                 {
                     data.map((d: any, i: number)=>(
-                        <FormRow validate={validateData} headers={headers} key={i}
-                                 initial_data={d} dialogContext={dialogContext}
-                                 onDelete={()=>removeDataFrom(i)}>
+                        <FormRow 
+                            key={d._id}
+                            onChange={(inner_state: any)=>onDataChange(inner_state,i)}
+                            validate={validateData} headers={headers}
+                            initial_data={d} dialogContext={dialogContext}
+                            onDelete={()=>removeDataFrom(i)}>
                         </FormRow>
                     ))
                 }
+
+                {JSON.stringify(data)}
            </section>
         </div>
     )

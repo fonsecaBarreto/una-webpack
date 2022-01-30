@@ -12,7 +12,10 @@ export const normalizeData = (entry: any[], headers: MultiplesForms.Header[]) =>
 }
 
 export const normalizeValues = (entry_unit: any, headers: MultiplesForms.Header[]) =>{
-    var data_row: any ={}
+    var data_row: any ={
+        _id: Date.now()+"-"+(Math.random()*100)
+    }
+
     headers.map( (header:  MultiplesForms.Header)=>{
         let { list, type='text' } = header
         let name = header.value;

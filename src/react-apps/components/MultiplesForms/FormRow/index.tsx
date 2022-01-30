@@ -13,6 +13,7 @@ import TextInput  from '../Inputs/Text'
 
 export namespace MultiplesFormRow {
     export type Params = {
+        onChange: Function,
         initial_data: any[],
         dialogContext: any,
         headers: MultiplesForms.Header[],
@@ -21,14 +22,14 @@ export namespace MultiplesFormRow {
     }
 }
 
-export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> = ({ initial_data, dialogContext, headers, validate, onDelete }) => {
+export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> = ({ onChange, initial_data, dialogContext, headers, validate, onDelete }) => {
 
     const formState = UseStateAdapter(initial_data);
-    useEffect(()=>{ verifyData({ ...formState.data.get}) },[formState.data.get])
+    /* useEffect(()=>{ formState.data.set({...initial_data}) },[initial_data])  */
     useEffect(()=>{ 
-        console.log("mudou aqui dentro", initial_data)
-        formState.data.set({...initial_data})
-    },[initial_data])
+        verifyData({ ...formState.data.get}) 
+        //onChange(formState.data.get)
+    },[formState.data.get])
 
     const openNewProductDialogModal = () =>{
         dialogContext.push(MakeDialogConfig(({onAction})=><FormModal onAction={onAction} initial_data={formState.data.get} headers={headers}></FormModal>, (data) =>{
