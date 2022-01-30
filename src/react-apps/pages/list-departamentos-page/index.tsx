@@ -17,14 +17,7 @@ const table_headers: MultiplesForms.Header[] = [
     { label: "NCM", value: "ncm" },
     { label: "SKU", value: "sku" }]
 
-    const test = [ 
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-
-    ]
+    const test = [ ]
 
 export const ListDepartamentosPage = () =>{
 
@@ -32,13 +25,16 @@ export const ListDepartamentosPage = () =>{
     const context = useContext(GlobalContext)
 
     const handleImportModalAction = (payload: any) =>{
-        console.log('testando aqui', payload)
+   
+
+        console.log("Payload", payload)
         setProductData(payload)
     }
 
     return (
         <div> 
             <div className='app-container'>
+                <button onClick={()=>setProductData([])}> limpar</button>
                 <ImportCsvModal headers={table_headers.map(v=>v.value)} onAction={handleImportModalAction}/>
                 <MultiplesForms schema={CsvProdutosDTo_schema} headers={table_headers} entry={productData} dialogContext={context.dialog}></MultiplesForms>
             </div>
