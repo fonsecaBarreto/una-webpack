@@ -22,8 +22,10 @@ export namespace MultiplesFormRow {
 
 export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> = ({ initial_data, dialogContext, headers, validate }) => {
 
+
     const formState = UseStateAdapter(initial_data);
     useEffect(()=>{ verifyData({ ...formState.data.get}) },[formState.data.get])
+    useEffect(()=>{ formState.data.set(initial_data)},[initial_data])
 
     const openNewProductDialogModal = () =>{
         dialogContext.push(MakeDialogConfig(({onAction})=><FormModal onAction={onAction} initial_data={formState.data.get} headers={headers}></FormModal>, (data) =>{
@@ -63,6 +65,10 @@ export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> 
                         </div>
                 )})
             }
+            </section>
+
+            <section> 
+                <button> Delete </button>
             </section>
         </div>
     )

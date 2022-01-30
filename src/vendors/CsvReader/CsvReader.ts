@@ -1,6 +1,3 @@
-
-import { InvalidCsvFile } from './errors';
-
 export namespace CsvReader {
      export type Config = {
           separator: string,
@@ -8,12 +5,6 @@ export namespace CsvReader {
           headers: string[]
      }
 }
-
-/* 
-export interface CsvReader{
-     read(file: File, skipLines?: number ): Promise<string>
-}
-*/
 
 export default class AppCsvReader  {
      config: CsvReader.Config;

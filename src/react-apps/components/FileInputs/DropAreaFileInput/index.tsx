@@ -2,15 +2,13 @@ import React from 'react'
 import './style.css'
 import UseFileInput from '../main'
 import UploadImage from "@assets/images/file-upload/upload.png"
-export namespace DropAreaFileInput  {
 
+export namespace DropAreaFileInput  {
     export type Params = {
         onChange: Function,
         multiple?: boolean
     }
-
 }
-
 
 export const DropAreaFileInput: React.FunctionComponent<DropAreaFileInput.Params> = ({  onChange, multiple=false }) =>{
 
@@ -33,6 +31,5 @@ export const DropAreaFileInput: React.FunctionComponent<DropAreaFileInput.Params
         </div>
     )
 }
-
 
 export default DropAreaFileInput 

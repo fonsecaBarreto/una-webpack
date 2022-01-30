@@ -1,0 +1,14 @@
+.una-default-loading{
+    display: flex; align-items: center; justify-content: center;
+    height: fit-content;
+    width: fit-content;
+}
+
+.una-default-loading.una-default-loading-fill{
+    width: 100%;
+}
+.una-default-loading > img{
+    width: 120px;
+    height: auto;
+    margin: auto;
+}

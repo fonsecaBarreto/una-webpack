@@ -1,13 +1,6 @@
 
 .import-csv-modal{
-     width: 100%;
-}
-
-.import-csv-modal > section{}
-
-.import-csv-modal> section:nth-child(1) h2{
-     margin: 0;
-     margin-bottom: 10px;
+     width: 680px;
 }
 
 .upload-frame{
@@ -21,5 +14,10 @@
      width: 100%; height: fit-content;
 }
 
-
-/* s */
+@media only screen and (max-width> 960px){
+    
+     .import-csv-modal{
+          width: 100%;
+          max-width: unset
+     } 
+}

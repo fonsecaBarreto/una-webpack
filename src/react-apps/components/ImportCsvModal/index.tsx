@@ -1,6 +1,7 @@
 import './style.css'
 import React, { useEffect, useState } from 'react'
 import UploadFrame from './UploadFrame'
+import UnaLoading from "@/react-apps/components/una/Loading"
 
 export namespace ImportCsvModal {
      export type Params = {
@@ -9,27 +10,30 @@ export namespace ImportCsvModal {
      }
 }
 
-const ImportCsvModal: React.FunctionComponent<ImportCsvModal.Params> = ({ headers, onAction}) =>{
+const ImportCsvModal: React.FunctionComponent<ImportCsvModal.Params> = ({ headers, onAction }) =>{
 
      const [ freeze, setFreeze ] = useState(false)
-     const [ object_data, setObject_data ]= useState<any>(null) 
+     
+     const onBeforeResult = () => setFreeze(true)
 
-     useEffect(()=>{
-          if(object_data){ onAction(object_data); } 
-     },[object_data])
+     const onResult = (object_data: any) =>{
+          setFreeze(false);
+          onAction(object_data);
+     }
    
      return (
           <div className="import-csv-modal">
-               <section>
-                   <h2> Upload arquivo .CSV Para Fazer inclusão dos produtos </h2> 
-                   { freeze && "LOADING..."}
-               </section>
                 <section>
-                    <UploadFrame headers={headers} toFreeze={() => setFreeze(!freeze)} onResult={setObject_data}></UploadFrame> 
+                    {   
+                         freeze ? <UnaLoading fill/> :    
+                         <React.Fragment>
+                              <UploadFrame headers={headers} onBeforeResult={onBeforeResult} onResult={onResult}></UploadFrame> 
+                         </React.Fragment>
+                    }
                </section> 
           </div>
      )
 }
 
-
 export default ImportCsvModal
+

@@ -1,9 +1,8 @@
 .drop-area-file-input{
     display: flex; flex-direction: column; align-content: center; justify-content: center;
     width: 100%;height: 100%;
-    padding: 2px  ;
+    padding: 2px ;
 }
-
 
 .drop-area-file-input .drop-area-container{
     position: relative;
@@ -11,14 +10,13 @@
     border-radius: 8px;
     height: 100%;
     width: 100%;
-    min-width: 100px;
-    min-height: 140px;
+    min-width: 200px;
+    min-height: 150px;
     background-image: rgba(255, 255, 255, 0);
     cursor: pointer;
     background-position: center;
     background-repeat: no-repeat;
 }
-
 
 .drop-area-file-input .drop-area-container > img{
     position: absolute;
@@ -27,7 +25,6 @@
     height: 58px;
     width: 58px;
 }
-
 
 .drop-area-file-input .drop-area-container::after{
     content: "";

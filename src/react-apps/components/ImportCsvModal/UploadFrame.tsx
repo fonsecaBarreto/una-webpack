@@ -8,30 +8,31 @@ import CsvReader from '@/vendors/CsvReader'
 
 export namespace UploadFrame {
      export type Params ={
-          toFreeze: Function,
+          onBeforeResult: Function,
           onResult: (json:object) => void
           headers: string[]
      }
 }
 
-export const UploadFrame: React.FunctionComponent<UploadFrame.Params> = ({toFreeze, onResult, headers}) =>{
+var csvReader: any;
+
+export const UploadFrame: React.FunctionComponent<UploadFrame.Params> = ({onBeforeResult, onResult, headers}) =>{
      const context = useContext(globalContext)
      const [ file, setFile] = useState<File | null>(null)
 
-     const csvReader = new CsvReader({ headers }) 
+     useEffect(()=>{ csvReader = new CsvReader({ headers }) })
 
      const readfile = async () =>{
-          toFreeze();
+          onBeforeResult();
           const result = await csvReader.execute(file);
           onResult(result);
-          toFreeze();
      }
 
      useEffect(()=>{
           if(!file) return
           if(!["text/csv", "text/x-csv", "application/vnd.ms-excel", "text/plain"].includes(file.type)) {
                context.dialog.push(MakeNotification(()=>-1,["Somento arquivos .CSV permitido"], "Atenção", NotificationType.FAILURE))
-               setFile(null)
+               return setFile(null)
           }
           readfile()
      },[file])

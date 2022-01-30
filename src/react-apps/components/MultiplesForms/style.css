@@ -18,7 +18,7 @@
 .app-multiples-form > section .app-multiples-form-row{
     width: 100%;
     display: grid;
-    grid-template-columns: 52px 1fr;
+    grid-template-columns: 48px 1fr 48px;
     grid-template-rows: 1fr;
     height: fit-content;
 }
