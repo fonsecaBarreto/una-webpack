@@ -16,9 +16,16 @@ const table_headers: MultiplesForms.Header[] = [
     { label: "SKU", value: "sku" }
 ]
 
+const test= [
+    { ean: "Primeiro "},
+    { ean: "Segundo"},
+    { ean: "Terceiro"},
+    { ean: "Quarto"},
+]
+
 export const ListDepartamentosPage = () =>{
 
-    const [ productData, setProductData ] = useState<any[]>([])
+    const [ productData, setProductData ] = useState<any[]>([...test])
     const context = useContext(GlobalContext)
 
     const openImportCsvModal = () =>{
