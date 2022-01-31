@@ -1,5 +1,28 @@
 
 #add-products-page {
-    padding-top: 20px;
-    padding-bottom: 160px;
+    padding: 20px 0;
+}
+
+.add-products-nav-bar{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.add-products-nav-bar button{
+    height: 40px;
+    width: fit-content;
+    padding: 0 32px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    border: none;
+    color: rgb(9, 23, 105);
+    font-size: 16px;
+    border: solid 1px #ddd;
+}
+
+
+.add-products-nav-bar button:hover{
+    cursor: pointer;
+    background-color: rgb(228, 240, 255);
 }

@@ -10,9 +10,11 @@ import MultiplesForms from '..'
 import FormModal from '../FormModal'
 import SelectInput  from '../Inputs/Select'
 import TextInput  from '../Inputs/Text'
+import { IoMdTrash } from 'react-icons/io'
 
 export namespace MultiplesFormRow {
     export type Params = {
+        emitData:Boolean,
         onChange: Function,
         initial_data: any[],
         dialogContext: any,
@@ -22,14 +24,22 @@ export namespace MultiplesFormRow {
     }
 }
 
-export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> = ({ onChange, initial_data, dialogContext, headers, validate, onDelete }) => {
+
+/* Um contador que após para que apos 4 tempo atualizar */
+
+export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> = ({ onChange, emitData, initial_data, dialogContext, headers, validate, onDelete }) => {
 
     const formState = UseStateAdapter(initial_data);
     /* useEffect(()=>{ formState.data.set({...initial_data}) },[initial_data])  */
     useEffect(()=>{ 
         verifyData({ ...formState.data.get}) 
-        //onChange(formState.data.get)
     },[formState.data.get])
+
+    useEffect(()=>{
+        if(emitData === true){
+            onChange(formState.data.get)
+        }
+    },[emitData])
 
     const openNewProductDialogModal = () =>{
         dialogContext.push(MakeDialogConfig(({onAction})=><FormModal onAction={onAction} initial_data={formState.data.get} headers={headers}></FormModal>, (data) =>{
@@ -53,13 +63,13 @@ export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> 
                 } 
                 </div>
             </section>
-            <section style={{gridTemplateColumns: `repeat(${headers.length}, 1fr)`}}>
+            <section style={{gridTemplateColumns: `repeat(${headers.length * 3}, 1fr)`}}>
             {   
                 headers.map((h: MultiplesForms.Header, i: number)=> {
                     let { value: name, type, list } = h
                     var error = formState.errors.get[name];
                     return (
-                        <div key={i}> 
+                        <div key={i} className='m-form-row' style={{gridColumn: `span ${h.columns ?? 3}`}}> 
                             <div className={`m-form-row-input ${ error ? "error": ""}`} > 
                                 { 
                                     type == "select" ? <SelectInput name={ name} state={formState} list={list ?? []}></SelectInput> 
@@ -72,7 +82,7 @@ export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> 
             </section>
 
             <section> 
-                <button onClick={onDelete}> Delete </button>
+                <button onClick={onDelete}> <IoMdTrash/> </button>
             </section>
         </div>
     )

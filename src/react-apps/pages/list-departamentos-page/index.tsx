@@ -5,27 +5,21 @@ import { CsvProdutosDTo_schema } from './schemas'
 import { MakeDialogConfig, OnActionFunction } from 'fck-react-dialog'
 import ImportCsvModal from '@/react-apps/components/ImportCsvModal'
 import MultiplesForms from '@/react-apps/components/MultiplesForms'
-
+import { GrDocumentCsv } from 'react-icons/gr'
 const table_headers: MultiplesForms.Header[] = [   
-    { label: "EAN *", value: "ean", type: "text" }, 
-    { label: "Especificação *", value: "specification" },
-    { label: "Marca *", value: "brand", type:"select", list:[ {value: "some_id", label:"Nestle"}, {value: "another_id", label:"Macuco"}] },
-    { label: "Categoria *", value: "category",   type:"select", list:[ {value: "some_id", label:"Categoria tal"}, {value: "another_id", label:"Outra Categoria"}]   },
-    { label: "Apresentaçao *", value: "presentation",  type:"select", list:[ {value: "some_id", label:"1Kg"}, {value: "another_id", label:"300g"}] },
-    { label: "NCM", value: "ncm" },
-    { label: "SKU", value: "sku" }
-]
-
-const test= [
-    { ean: "Primeiro "},
-    { ean: "Segundo"},
-    { ean: "Terceiro"},
-    { ean: "Quarto"},
+    { label: "EAN *", value: "ean", type: "text", columns: 2}, 
+    { label: "Especificação *", value: "specification", columns: 6 },
+    { label: "Marca *", value: "brand", type:"select",  columns: 3 ,list:[ {value: "some_id", label:"Nestle"}, {value: "another_id", label:"Macuco"}] },
+    { label: "Categoria *", value: "category",   columns: 3 , type:"select", list:[ {value: "some_id", label:"Categoria tal"}, {value: "another_id", label:"Outra Categoria"}]   },
+    { label: "Apresentaçao *", value: "presentation",  columns: 3, type:"select", list:[ {value: "some_id", label:"1Kg"}, {value: "another_id", label:"300g"}] },
+    { label: "NCM", value: "ncm",   columns: 2 },
+    { label: "SKU", value: "sku",   columns: 2 }
 ]
 
 export const ListDepartamentosPage = () =>{
 
-    const [ productData, setProductData ] = useState<any[]>([...test])
+    const [ productData, setProductData ] = useState<any[]>([{}])
+    const [ submitData, setSubmitData ] = useState(false)
     const context = useContext(GlobalContext)
 
     const openImportCsvModal = () =>{
@@ -37,21 +31,28 @@ export const ListDepartamentosPage = () =>{
          )
     }
 
+    const getData = (data: any) =>{
+        console.log("Minha data aqui", data);
+
+        setSubmitData(false)
+    }
+
     return (
         <div id="add-products-page"> 
             <div className='add-products-container app-container'>
 
-                <section>
-                    <button onClick={openImportCsvModal}> Upload .CSV</button> 
-                    <button onClick={openImportCsvModal}> Fornecimento .CSV</button> 
+                <section className='add-products-nav-bar'>
+                    <button className="una-submit-button-color" onClick={openImportCsvModal}> <GrDocumentCsv/> Upload .CSV  </button> 
+        {/*             <button onClick={openImportCsvModal}> Fornecimento .CSV</button>  */}
                 </section>
               
                 <section>
-                    <MultiplesForms schema={CsvProdutosDTo_schema} headers={table_headers} entry={productData} dialogContext={context.dialog}></MultiplesForms>
+                    <MultiplesForms dataTrigger={submitData} getData={getData} schema={CsvProdutosDTo_schema} 
+                    headers={table_headers} entry={productData} dialogContext={context.dialog}></MultiplesForms>
                 </section>
 
                 <section>
-                    <button> Salvar </button>
+                    <button onClick={()=>setSubmitData(true)}> Salvar </button>
 
                 </section>
 
