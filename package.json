@@ -17,6 +17,7 @@
     "url": "git+https://github.com/fonsecaBarreto/Base-React-Express.git"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.4",
     "axios": "^0.24.0",
     "copy-webpack-plugin": "^10.1.0",
     "cors": "^2.8.5",
@@ -35,7 +36,8 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "rimraf": "^3.0.2",
-    "stream-browserify": "^3.0.0"
+    "stream-browserify": "^3.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

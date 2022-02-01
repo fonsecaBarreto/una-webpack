@@ -13,7 +13,7 @@ export interface DepartamentosState {
 }
 
 export const INITIAL_DEPARTAMENTOS_STRUCT = {
-     departaments: [], categories: [], subCategories: [],  brands: []
+     departaments: [], categories: [], subCategories: [],  brands: [], presentations:[]
 }
 
 export const INITIAL_PRODUCTS_LISTING_VIEW = {

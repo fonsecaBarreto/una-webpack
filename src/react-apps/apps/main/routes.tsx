@@ -1,7 +1,5 @@
 import React, { ReactNode, useEffect, useContext, ReactComponentElement, Children } from "react";
-
 import BlueLagumLayout from '../../layouts/BlueLagum' 
-
 import AppRouter, { PageRouterConfig } from '@/react-apps/components/router'
 import { useDispatch, useSelector } from "react-redux";
 import globalContext from "@/react-apps/apps/main/global-components-context"
@@ -9,13 +7,11 @@ import { setLoading, setUser } from "@/react-apps/store/reducers/main/actions"
 import { loginServices } from '@/services/api/login-service'
 import { Redirect } from "react-router-dom";
 
-
-
 /* pages */
 import DeparamentoPage from "../../pages/feed-busca-page";
 import CompanhiasPage from "@/react-apps/pages/list-companhias-page";
 import LoginPage from "@/react-apps/pages/login-page";
-import DepartamentosPage from "@/react-apps/pages/list-departamentos-page";
+import CadastroPage from "@/react-apps/pages/register-page";
 
 
 export const RouterComponent = () =>{
@@ -63,7 +59,7 @@ export const RouterComponent = () =>{
           routes: [
             { path: "mercado", title: "Mercado",  component: DeparamentoPage } ,
             { path: "companhias", title: "Companhias",  component: CompanhiasPage } ,
-            { path: "departamentos", title: "Departamentos",  component: DepartamentosPage } ,
+            { path: "departamentos", title: "Departamentos",  component: CadastroPage } ,
             { path: "", title: "Inicio",  component:() => <Redirect to="/mercado"></Redirect> } ,
             { path: "*", title: "404",  component: () => <div><h1>404</h1></div> }
          

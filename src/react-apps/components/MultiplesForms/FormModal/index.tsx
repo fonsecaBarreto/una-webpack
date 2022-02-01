@@ -7,18 +7,19 @@ import {MultiplesForms} from '..'
 export namespace FormModal {
     export type Params = {
         initial_data: any,
+        initial_errors: any,
         onAction: (data: any) => void,
         headers: MultiplesForms.Header[],
     }
 }
 
-export const FormModal: React.FunctionComponent<FormModal.Params> = ({ initial_data, onAction, headers }) => {
+export const FormModal: React.FunctionComponent<FormModal.Params> = ({ initial_data, initial_errors, onAction, headers }) => {
 
     const formState = UseStateAdapter(initial_data);
+    useEffect(()=>{ formState.errors.set( initial_errors ?? {}) },[initial_errors]) 
 
-    const submit = () =>{
-        onAction(formState.data.get)
-    }
+    const submit = () =>{ onAction(formState.data.get) }
+
     return (
         <div className='m-form-modal'>
             <Forming.FormGrid title="" columns={[]}>
@@ -39,7 +40,7 @@ export const FormModal: React.FunctionComponent<FormModal.Params> = ({ initial_d
                     })
                 }
 
-            <button onClick={submit}>Salvar </button>
+            <button  className="una-submit-button m-auto" onClick={submit}>Inserir </button>
             </Forming.FormGrid>
         </div>
     )

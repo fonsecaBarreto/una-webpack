@@ -14,6 +14,8 @@ import { IoMdTrash } from 'react-icons/io'
 
 export namespace MultiplesFormRow {
     export type Params = {
+        success: boolean,
+        conflict: any,
         emitData:Boolean,
         onChange: Function,
         initial_data: any[],
@@ -24,13 +26,13 @@ export namespace MultiplesFormRow {
     }
 }
 
-
 /* Um contador que após para que apos 4 tempo atualizar */
 
-export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> = ({ onChange, emitData, initial_data, dialogContext, headers, validate, onDelete }) => {
+export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> = ({ conflict, success, onChange, emitData, initial_data, dialogContext, headers, validate, onDelete }) => {
 
     const formState = UseStateAdapter(initial_data);
-    /* useEffect(()=>{ formState.data.set({...initial_data}) },[initial_data])  */
+    useEffect(()=>{  formState.errors.set(conflict?? {})  }, [conflict]) 
+
     useEffect(()=>{ 
         verifyData({ ...formState.data.get}) 
     },[formState.data.get])
@@ -42,19 +44,31 @@ export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> 
     },[emitData])
 
     const openNewProductDialogModal = () =>{
-        dialogContext.push(MakeDialogConfig(({onAction})=><FormModal onAction={onAction} initial_data={formState.data.get} headers={headers}></FormModal>, (data) =>{
+        dialogContext.push(MakeDialogConfig(({onAction})=><FormModal onAction={onAction} initial_errors={formState.errors.get} initial_data={formState.data.get} headers={headers}></FormModal>, (data) =>{
             if(data !== -1){ formState.data.set(data); }
             return -1;
-        }))
+        }, "Editar Produto"))
     }
 
     const verifyData = async (d: object) =>{
         var errors = await validate(d)
-        formState.errors.set(errors ?? {})
+        if(errors == null) return formState.errors.set({});
+
+        /* Sanitiza os erros em formato de objeto, no caso das estruturas de chave e valor */
+        var result_errs: any = { ...errors };
+        
+        Object.keys(errors).map(e=>{
+            let err = result_errs[e]
+            if(typeof err == "string") return result_errs[e] = err
+            result_errs[e] = `Selecione uma opção válida`
+        })
+      
+        console.log(result_errs)
+        formState.errors.set(result_errs ?? {})
     }
 
     return (
-        <div className='app-multiples-form-row' >
+        <div className={`app-multiples-form-row ${success ? "apmfr-success": ""}`} >
             <section >
                 <div onClick={openNewProductDialogModal}>
                 {
@@ -82,7 +96,7 @@ export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> 
             </section>
 
             <section> 
-                <button onClick={onDelete}> <IoMdTrash/> </button>
+                <button  onClick={onDelete}> <IoMdTrash/> </button>
             </section>
         </div>
     )

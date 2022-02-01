@@ -9,7 +9,7 @@
     gap: 10px;
 }
 
-.add-products-nav-bar button{
+.add-products-nav-bar button.nav-header-btn{
     height: 40px;
     width: fit-content;
     padding: 0 32px;
@@ -21,8 +21,7 @@
     border: solid 1px #ddd;
 }
 
-
-.add-products-nav-bar button:hover{
+.add-products-nav-bar button.nav-header-btn:hover{
     cursor: pointer;
     background-color: rgb(228, 240, 255);
-}
+} 

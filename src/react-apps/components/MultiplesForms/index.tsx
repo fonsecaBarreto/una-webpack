@@ -9,6 +9,8 @@ export namespace MultiplesForms{
     export type Header = { columns?: number, label: string, value: string,  type?: "text" | "select", list?: {label: string, value: string}[]}
     export type Params = {
         entry: any[]
+        conflicts: any
+        checkList: any
         headers: Header[],
         dialogContext: any,
         schema: SchemaValidator.Schema,
@@ -19,16 +21,12 @@ export namespace MultiplesForms{
 
 const validator = new Validator()
 
-export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({ dataTrigger = false, headers, entry, schema, dialogContext, getData }) =>{
+export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({ dataTrigger = false, headers, entry, schema, dialogContext, getData, conflicts, checkList}) =>{
 
     const [data, setData] = useState<any[]>([]);
     const [syncCount, setSyncCount] = useState(0)
 
-    useEffect(()=>{
-        if(dataTrigger === true){
-            setSyncCount(-1)
-        }
-    },[dataTrigger])
+    useEffect(()=>{ if(dataTrigger === true){ setSyncCount(-1)  } },[dataTrigger])
 
     useEffect(()=>{  
         if(syncCount > 0 && syncCount === data.length){
@@ -43,7 +41,6 @@ export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({
     } ,[entry])
 
     const onDataChange = ( data: any, index_key:number) =>{
-
         setData( (prev: any)=>{
             var list =[...prev];
             list.splice(index_key,1,data);
@@ -56,9 +53,7 @@ export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({
         return await validator.validate(schema, object);
     }
 
-    const addBlankData = () =>{ 
-        setData(prev=>[  normalizeValues({}, headers), ...prev, ])
-    }
+    const addBlankData = () =>{   setData(prev=>[  normalizeValues({}, headers), ...prev, ]) }
 
     const removeDataFrom = (index:number) =>{
         setData((prev)=>{
@@ -91,6 +86,8 @@ export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({
                 {
                     data.map((d: any, i: number)=>(
                         <FormRow 
+                            success={checkList[d._id]}
+                            conflict={conflicts[d._id]}
                             key={d._id}
                             emitData={syncCount === -1 ? true : false}
                             onChange={(inner_state: any)=>onDataChange(inner_state,i)}

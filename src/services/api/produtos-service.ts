@@ -16,9 +16,28 @@ export namespace produtosServices {
           subCategory?: string[],
           brand?: string[]
      }
+
+     export type AddProduct_dto = {
+          _id: string,
+          brand_id:string
+          presentation_id:string
+          sub_category_id: string
+          specification: string
+          ncm: string
+          ean: string
+          sku:string
+      }
+
 }
 
 export const produtosService = {
+
+     save_mutiples: async ( params: { products: produtosServices.AddProduct_dto[]}) => {
+          const { products } = params
+          const { data } = await produtosApi.send({ method: "post", url: `/`, data: { products } }) 
+          return data 
+     },
+
      list: async (params: produtosServices.ListParams) => {
 
           const {  p= 1, specification="" } = params
