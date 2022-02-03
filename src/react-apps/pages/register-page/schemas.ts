@@ -33,13 +33,12 @@ export const product_headers_schema: MultiplesForms.Header[] = [
 
 export const CsvSupliesDTo_schema = builder.create(b=>{
     b.string('ean').description("EAN")
-    b.string('suggested_price').description("Preço")
-    b.string('stock').description("Quantidade em estoque").optional()
+    b.number('suggested_price').description("Preço")
+    b.number('stock').description("Quantidade em estoque").optional()
 })
 
 export const suply_headers_schema: MultiplesForms.Header[] = [   
     { label: "EAN *", value: "ean", type: "text" }, 
     { label: "Preço sugerido *", value: "suggested_price" },
     { label: "Estoque *", value: "stock" },
-
 ]

@@ -5,7 +5,6 @@ import { product_headers_schema } from './schemas'
 import { MakeDialogConfig } from 'fck-react-dialog'
 import ImportCsvModal from '@/react-apps/components/ImportCsvModal'
 import { GrDocumentCsv } from 'react-icons/gr'
-import { useDispatch, useSelector, useStore } from 'react-redux'
 import SwitchButton from './switchButton'
 import ProductsTable from './tables/products-table'
 import SuplyTable from './tables/supply-table'
@@ -13,42 +12,35 @@ import { AiFillShopping } from 'react-icons/ai'
 import { RiInboxArchiveFill } from 'react-icons/ri'
 
 export const ListDepartamentosPage = () =>{
-    const dispatch = useDispatch()
+
     const [ pageIndex, setPageIndex ] = useState(0);
     const [ dataFromCsv, setDataFromCsv ] = useState<any[] | null>(null)
-
     const context = useContext(GlobalContext)
-
     const openImportCsvModal = () =>{
         return (
             context.dialog.push(MakeDialogConfig( ({onAction}) => <ImportCsvModal onAction={onAction} headers={product_headers_schema.map(v=>v.value)} />, (data: any) => {
                 if(data !== -1) setDataFromCsv(data)
                 return -1   
             }, "Upload produtos via .CSV"))
-         )
+        )
+    }
+
+    const changePage = (n:number) =>{
+        setDataFromCsv(null)
+        setPageIndex(n)
     }
 
     return (
         <div id="add-products-page"> 
             <div className='add-products-container app-container'>
-
                 <section className='add-products-nav-bar'>
-                    <SwitchButton onInput={setPageIndex}> 
-                        <React.Fragment>
-                            <AiFillShopping/>
-                            Produtos
-                        </React.Fragment>
-
-                        <React.Fragment>
-                            <RiInboxArchiveFill/>
-                            Fornecimento
-                        </React.Fragment>
-                    
+                    <SwitchButton onInput={changePage}> 
+                        <React.Fragment> <AiFillShopping/>  Produtos </React.Fragment>
+                        <React.Fragment> <RiInboxArchiveFill/> Fornecimento </React.Fragment>
                     </SwitchButton>
                     <button className="nav-header-btn" onClick={openImportCsvModal}> <GrDocumentCsv/> Upload .CSV  </button> 
-                    <button className="una-submit-button" > Salvar </button>
                 </section>
-              
+        
                 <section>
                     { 
                         pageIndex === 0 ? <ProductsTable override_data={dataFromCsv}></ProductsTable>
