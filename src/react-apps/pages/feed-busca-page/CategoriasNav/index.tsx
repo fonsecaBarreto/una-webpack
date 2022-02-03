@@ -21,12 +21,13 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ o
     useEffect(()=> { onStructChange('categories', "departaments") }, [filterData.departaments])
     useEffect(()=> { onStructChange('subCategories',"categories") }, [filterData.categories, structData.categories]) 
     useEffect(()=> { onChange(filterData) },[filterData])
-    useEffect(()=> { filterMarcas() }, [marcas_availables])
+    useEffect(()=> { filterMarcas(marcas_availables) }, [marcas_availables])
   
-    const filterMarcas = () =>{
+    const filterMarcas = (marcas_availables: any[]) =>{
+       
         var struct: any =  { ...structData } 
         if (marcas_availables && marcas_availables.length > 0) {
-            struct.marcas = inital_struct.marcas.filter((mm: any)=> marcas_availables.includes(mm.value)); 
+            struct.brands = inital_struct.brands.filter((mm: any)=> marcas_availables.includes(mm.value)); 
         }
         setStructData(struct);
     }

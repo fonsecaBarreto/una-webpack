@@ -39,10 +39,11 @@ export const departamentosReducer = (state=INITIAL_STATE, action: any) => {
                const { content, toAppendData } = action.payload;
                var prevdata: any = { ...listingView.data }
                var products = toAppendData ? [ ...prevdata.products, ...content.data.products]: [...content.data.products]
-               content.data["products"] = products
+               content.data["products"] = products;
                return ({ ...state, products_listingview: {...content}, toSubmit: false }) ; 
           };
           case "SPLICE_PRODUCTS_LISTVIEW_QUERIES": {
+
                let products_listingview :any = { 
                     ...state.products_listingview, 
                     queries: { ...state.products_listingview.queries, ...action.payload } 
