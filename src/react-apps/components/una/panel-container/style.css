@@ -1,0 +1,36 @@
+
+.una-panel-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px 2px #0003;
+    border: solid 1px #ddd;
+}
+
+.una-panel-container > header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    height: 58px;
+    padding: 0 32px;
+    font-size: 18px;
+    color: #444;
+    border-bottom: solid 1px #ddd;
+}
+
+.una-panel-container > section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 16px;
+    padding-bottom: 32px;
+}

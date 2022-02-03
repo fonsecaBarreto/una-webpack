@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
-import { Forming } from "fck-components/"
-import { companhiasService } from '@/services/api/companhias-service'
+import { Forming } from "fck-react-input-controls"
+import { companhiasServices } from '@/services/api/companhias-service'
 import { setCompanhias } from '@/react-apps/store/reducers/companhias/actions'
 import { Companhia } from '@/domain/views/Companhia'
 export namespace CompanhiasView {
@@ -13,7 +13,7 @@ export namespace CompanhiasView {
 export const CompanhiasView: React.FunctionComponent<CompanhiasView.Params> = ({ companhia_id }) =>{
     const [ companhia, setCompanhia] = useState<Companhia | null>(null)
     useEffect(()=>{
-        companhiasService.find(companhia_id).then(setCompanhia)
+        companhiasServices.find(companhia_id).then(setCompanhia)
     },[companhia_id])
 
     return (

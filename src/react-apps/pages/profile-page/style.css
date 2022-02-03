@@ -1,0 +1,27 @@
+.company-container{
+    padding-top: 20px;
+    padding-bottom: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+
+.company-staff-list, .address-staff-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.company-staff-list{
+    gap: 2px;
+}
+
+.address-address-list{
+    gap: 2px; 
+}
+

@@ -1,6 +1,6 @@
 import React, { useContext, useDebugValue, useEffect, useState } from 'react'
 import './style.css'
-import { companhiasService } from '@/services/api/companhias-service'
+import { companhiasServices } from '@/services/api/companhias-service'
 import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import { setCompanhias } from '@/react-apps/store/reducers/companhias/actions'
@@ -10,14 +10,12 @@ import FiltersNav from './FiltersNav'
 import GlobalContext from  "@/react-apps/apps/main/global-components-context"
 import { MakeDialogConfig, MakeOptions }  from 'fck-react-dialog'
 import CompanhiaViewModal from './modals/CompanhiaView'
-import { useHistory } from 'react-router-dom'
 import queryString from 'query-string'
-import { Parser } from 'webpack'
+
 export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, history}) => {
 
     const dispatch = useDispatch();
     const context = useContext(GlobalContext)
-    const [ option, setOption] = useState("")
     const { companhias }  = useSelector<any>(state=>state.companhias)
 
     useEffect(()=>{
@@ -30,17 +28,12 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
           return -1
         }, "Companhias"))
       }
-     /*  const id = */
     },[location.search])
 
-
-
-
- 
     const listCompanhias = (filters: any) =>{
       const v = filters.text_value;
       const ativo = filters.status.length == 0 ? "" : filters.status[0].value
-      companhiasService.list({ v, ativo }).then(resp => {
+      companhiasServices.list({ v, ativo }).then(resp => {
         const payload = { ...resp, data: resp.data.companhias } 
         dispatch(setCompanhias(payload, false))
       })
@@ -49,11 +42,6 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
     const filtersChanged = (filters: any) => {
       listCompanhias(filters);
     }
-
-/*     useEffect(()=>{
-      return context.dialog.push(MakeDialogConfig(CompanhiaViewModal,()=>-1, "Companhias"))
-    
-    },[]) */
     
     const handleActions = (key: any, payload: any) =>{
       if(key === "options"){
@@ -63,10 +51,8 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
         }, [{label: "Abrir"}]))
       }
       if(key === "+1") return
-      //showCompanhiaModal(payload)
     }
 
-  
     return (
         <div id="companhias-page">
           <div className='app-container'>

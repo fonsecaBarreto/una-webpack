@@ -12,6 +12,7 @@ import DeparamentoPage from "../../pages/feed-busca-page";
 import CompanhiasPage from "@/react-apps/pages/list-companhias-page";
 import LoginPage from "@/react-apps/pages/login-page";
 import CadastroPage from "@/react-apps/pages/register-page";
+import ProfilePage from "@/react-apps/pages/profile-page";
 
 
 export const RouterComponent = () =>{
@@ -59,7 +60,8 @@ export const RouterComponent = () =>{
           routes: [
             { path: "mercado", title: "Mercado",  component: DeparamentoPage } ,
             { path: "companhias", title: "Companhias",  component: CompanhiasPage } ,
-            { path: "departamentos", title: "Departamentos",  component: CadastroPage } ,
+            { path: "registrar-produtos", title: "Registar Produtos",  component: CadastroPage },
+            { path: "perfil/:id", title: "Perfil Companhia",  component: ProfilePage } ,
             { path: "", title: "Inicio",  component:() => <Redirect to="/mercado"></Redirect> } ,
             { path: "*", title: "404",  component: () => <div><h1>404</h1></div> }
          
