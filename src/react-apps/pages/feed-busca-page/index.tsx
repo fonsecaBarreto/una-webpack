@@ -9,12 +9,11 @@ import GlobalContext from "@/react-apps/apps/main/global-components-context"
 
 export const DeparamentoPage = () => {
 
-    const context = useContext(GlobalContext)
+    const context = useContext(GlobalContext);
+    const dispatch = useDispatch();
     const { departaments_struct, products_listingview } = useSelector( (state: any)=>state.departamentos);
 
-    const dispatch = useDispatch();
-
-    useEffect(()=>{  departamentosService.list().then(data => { dispatch(setDepartamentos(data))})  },[])
+    useEffect(()=>{ departamentosService.list().then(data => { dispatch(setDepartamentos(data))})  },[])
 
     const filterChanged = (filters: any) => {
         const { categories, departaments, subCategories, brands } = filters;

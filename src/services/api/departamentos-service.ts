@@ -2,7 +2,7 @@ import { global } from '@/services/global-keys'
 import { MakeApiSettings, errorHandler } from './helpers'
 
 const departamentsApi = MakeApiSettings({
-     base_url: `${global.base_url}/departamentos`,
+     base_url: `${global.base_url}/departaments`,
      errorHelper: errorHandler, 
      storage_key: global.user_storage_key
 })

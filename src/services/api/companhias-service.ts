@@ -2,7 +2,7 @@ import { global } from '@/services/global-keys'
 import { MakeApiSettings, errorHandler } from './helpers'
 
 const companhiasApi = MakeApiSettings({
-     base_url: `${global.base_url}/companhias`,
+     base_url: `${global.base_url}/companies`,
      errorHelper: errorHandler, 
      storage_key: global.user_storage_key
 })
@@ -11,7 +11,7 @@ export namespace CompanhiasServices {
      export type ListParams = {
           ativo?: string,
           v?: string
-          p?: number,
+          p?: number
      }
 }
 

@@ -1,6 +1,4 @@
 
-import { ListingView, LabelView } from "./ListingView";
-
 export enum PapeisUsuario{
     LOGISTICA="LOGISTICA",              // Usuario a receber noções de logistica
     COMPRADOR="COMPRADOR",              // Comprador
@@ -12,7 +10,7 @@ export enum PapeisUsuario{
 
 export interface Usuario {
     id: string
-    companhia_id: string;
+    company_id: string;
     image: string;
     email: string;
     cpf: string;
@@ -20,6 +18,6 @@ export interface Usuario {
     telefone: string;
     senha: string;
     ativo: boolean;
-    papeis: PapeisUsuario[];
+    roles: PapeisUsuario[];
 }
 

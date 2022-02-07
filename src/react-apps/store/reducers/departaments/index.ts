@@ -1,9 +1,9 @@
-import { ListingView, CategoryView} from "@/domain/views/ListingView";
-import { Product, Brand } from "@/domain/views/Produto";
+import { ListingView, LabelView } from "@/domain/views/ListingView";
+import { Product, Brand } from "@/domain/views/Product";
 
 export namespace DepartamentosState {
      export type CategoriasLike = "departaments" | "categories" | "subCategories"
-     export type FilterStruct = Record<CategoriasLike | "brands", CategoryView[] >
+     export type FilterStruct = Record<CategoriasLike | "brands", LabelView[] >
 }
 
 export interface DepartamentosState {
@@ -43,7 +43,6 @@ export const departamentosReducer = (state=INITIAL_STATE, action: any) => {
                return ({ ...state, products_listingview: {...content}, toSubmit: false }) ; 
           };
           case "SPLICE_PRODUCTS_LISTVIEW_QUERIES": {
-
                let products_listingview :any = { 
                     ...state.products_listingview, 
                     queries: { ...state.products_listingview.queries, ...action.payload } 

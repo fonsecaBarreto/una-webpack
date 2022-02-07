@@ -9,8 +9,6 @@ export interface ListingView<View> {
 
 export interface LabelView {
     label: string,
-    value: string
+    value: string,
+    parent_id?:string
 }
-
-export type CategoryView = { value: string, label: string, parent_id?:string }
-

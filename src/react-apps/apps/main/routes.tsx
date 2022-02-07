@@ -14,9 +14,7 @@ import LoginPage from "@/react-apps/pages/login-page";
 import CadastroPage from "@/react-apps/pages/register-page";
 import ProfilePage from "@/react-apps/pages/profile-page";
 
-
 export const RouterComponent = () =>{
-
 
     const context = useContext(globalContext) 
     const dispatch = useDispatch()

@@ -3,7 +3,7 @@ import './style.css'
 import GlobalContext from "@/react-apps/apps/main/global-components-context"
 import { MakeDialogConfig } from 'fck-react-dialog'
 import { Forming } from 'fck-react-input-controls'
-import { Companhia } from '@/domain/views/Companhia'
+import { Companhia } from '@/domain/views/Company'
 import { companhiasServices } from '@/services/api/companhias-service'
 import PanelContainer from '../../components/una/panel-container'
 import { BsInfoCircle } from 'react-icons/bs'
@@ -40,18 +40,18 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
 
                 <PanelContainer title="Pessoal" icon={<MdGroups/>}>
                     <div  className='company-staff-list' >
-                        { companhia.pessoal.map(p=>{ return (<UserItem key={p.id} user={p}></UserItem>)}) } 
+                        { companhia.staff.map(p=>{ return (<UserItem key={p.id} user={p}></UserItem>)}) } 
                     </div>
                 </PanelContainer>
 
                 <PanelContainer title="Endereços" icon={<MdOutlineLocationOn/>}>
                     <div  className='company-address-list' >
-                        { companhia.enderecos.map(a=>{ return (<AddressItem key={a.id} address={a}></AddressItem>)}) } 
+                        { companhia.addresses.map(a=>{ return (<AddressItem key={a.id} address={a}></AddressItem>)}) } 
                     </div>
                 </PanelContainer>
 
                 <PanelContainer title="documentos" icon={<CgFileDocument/>}>
-                    <div >
+                    <div  className='company-documents-list' >
                        
                     </div>
                 </PanelContainer>

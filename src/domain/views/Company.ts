@@ -7,7 +7,8 @@ export interface Companhia {
     emailFinanceiro: string;
     inscricaoEstadual: string;
     telefoneComercial: string | null;
-    enderecos: any[];
-    pessoal: any[] ;
-    ativo: boolean
+    addresses: any[];
+    staff: any[] ;
+    ativo: boolean,
+    documents: any
 }

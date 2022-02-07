@@ -11,7 +11,7 @@ import { CgProfile } from 'react-icons/cg'
 export const ADMIN_TREE = (user) => ([
      {label:"Companhias", toDo:"/companhias", icon:<MdBusiness/>},
      {label:"Mercado", toDo:"/mercado", icon:<AiFillShop/>},
-     {label:"Perfil", toDo:`/perfil/${user.companhia_id}`, icon:<CgProfile/>},
+     {label:"Perfil", toDo:`/perfil/${user.company_id}`, icon:<CgProfile/>},
      {label:"Publicar", toDo:"/registrar-produtos", icon:<BsPlusCircleDotted/>},
 ])
 

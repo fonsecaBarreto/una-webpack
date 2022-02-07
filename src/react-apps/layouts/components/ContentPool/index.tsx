@@ -9,18 +9,26 @@ import { BsLayoutThreeColumns } from 'react-icons/bs'
 export namespace ContentPool {
     export type Params = {
         itemComponent: React.FunctionComponent<any>,
-        list_data: ListingView<any[]>,
+        list_data: ListingView<any>,
         onAction: (key?:string, payload?: any)=>void,
         initial_mode?: ListMode
+        dataAlias?:string
     }
 }
 
 export type ListMode = "inline" | "block" 
  
-export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ list_data, itemComponent: ItemComponent, onAction, initial_mode="block" }) =>{
+export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ dataAlias, list_data, itemComponent: ItemComponent, onAction, initial_mode="block" }) =>{
 
     const [ listMode, setListMode ] = useState<ListMode>(initial_mode)
     const { pageIndex, pages, data, total, length } = list_data
+    const [ poolData, setPoolData] = useState<any>([])
+
+    useEffect(()=>{
+        var data = dataAlias ? list_data.data[dataAlias] : list_data.data
+        return setPoolData(data)
+    },[list_data])
+
     return (
         <div className="bl-common-content-pool">
 
@@ -36,7 +44,7 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ list_
             
             <section className={`bl-common-content-pool-flow ${listMode}`}>   
                 {
-                    data.length > 0 && data.map( (d: any, i: number) =>{
+                    poolData.length > 0 && poolData.map( (d: any, i: number) =>{
                         return (<ItemComponent listMode={listMode} key={i} item_data={d} onClick={onAction}></ItemComponent> )
                     })
                 }
