@@ -11,13 +11,10 @@ module.exports = merge(common, {
         historyApiFallback:{
             disableDotRule: false,
             rewrites: [ 
-                { from: "^/home", to: "/views/landing-page.html"},                  // Aplicação principal
-                { from: "^/", to: "/views/main.html"},                  // Aplicação principal
+                { from: "^/home", to: "/views/landing-page.html"},                 
+                { from: "^/", to: "/views/main.html"},                  
             ]
         },
-        /* proxy: {
-            '/api': 'http://localhost:8080'
-        }, */
         host: "localhost"
     }
 });
