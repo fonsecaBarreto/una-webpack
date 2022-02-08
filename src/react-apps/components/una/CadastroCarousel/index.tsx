@@ -14,29 +14,29 @@ import { useHistory } from 'react-router-dom'
 const validator = new Validator()
 
 const SIGNUP_INITIAL_DATA = {
-    nome: "Lucas Fonseca",
-    email: "lucafonsecab@hotmail.com",
-    telefone: "22997836256",
-    cpf: "16855177735",
-    senha: "123456",
-    senhaConfirmacao: "123456"
+    nome: "",
+    email: "",
+    telefone: "",
+    cpf: "",
+    senha: "",
+    senhaConfirmacao: ""
 }
 const JURIDICO_INITIAL_DATA ={
-    nomeFantasia: "NomeDAminhaempresa",
-    razaoSocial: "NomeDAminhaempresa Ltda",
-    cnpj: "52.562.123/0001-10",
-    emailFinanceiro: "emailfinaendierpo@mail.com",
-    inscricaoEstadual: "123213123213213",
-    telefoneComercial: "22987456986"
+    nomeFantasia: "",
+    razaoSocial: "",
+    cnpj: "",
+    emailFinanceiro: "",
+    inscricaoEstadual: "",
+    telefoneComercial: ""
 }
 const ENDERECO_INITIAL_DATA = {
-    rua: "Araujo Silva ",
-    numero: "69",
-    detalhes: "Casa 1",
-    bairro: "Jardim carioca",
-    cidade: "Campos",
-    uf: { value:"RJ", label: "Rio de Janeiro"},
-    cep: "288936981"
+    rua: "",
+    numero: "",
+    detalhes: "",
+    bairro: "",
+    cidade: "",
+    uf: { value:"", label: ""},
+    cep: ""
 }
 
 export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {setLoading: Function}) =>{
@@ -56,18 +56,15 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
 
         var r = await validateFields( CadastroEndereco_schema, { ...enderecoState.data.get, uf: enderecoState.data.get["uf"].value }, enderecoState.errors.set)
         if(r == -1) return
-
         setLoading(true);
         signupState.errors.set({})
         enderecoState.errors.set({})
         juridicoState.errors.set({}) 
-
         const data = { 
             usuario: { ...signupState.data.get }, 
             companhia: { ...juridicoState.data.get },
             endereco: { ...enderecoState.data.get, uf: enderecoState.data.get["uf"].value }, 
         }
-    
         try{
             const result = await loginServices.signup(data);
             GlobalContext.dialog.push(MakeNotification(()=>-1,[ 

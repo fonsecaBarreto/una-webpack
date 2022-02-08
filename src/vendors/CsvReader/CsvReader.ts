@@ -50,9 +50,11 @@ export default class AppCsvReader  {
           for (let i = skipLines; i < lines.length; i++) {
                const obj:any = {};
                const currentline = lines[i].split(separator);
+
                for (let j = 0; j < headers.length; j++) {
                     obj[headers[j]] = currentline[j];
                }
+               
                result.push(obj);
           }
           return result

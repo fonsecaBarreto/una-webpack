@@ -14,7 +14,7 @@ import { setLoading } from '@/react-apps/store/reducers/main/actions'
 
 const SIGNIN_INITIAL_DATA = {
     credencial: "",
-    senha: "123456"
+    senha: ""
 }
 
 export const LoginPage = () =>{
