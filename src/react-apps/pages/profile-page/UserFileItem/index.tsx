@@ -64,7 +64,7 @@ export const UserFileItem: React.FunctionComponent<UserFileItem.params> = ({entr
                     </div>
                     <span className={`user-file-item-placeholder ${error ? "err" :  ""}`}>
                         {userFile ?  
-                            `tipo: ${userFile.mimeType} - Tamanho ${userFile.size}`
+                            `tipo: ${userFile.mimeType} - ${Number(userFile.size / 1024).toFixed(2)}KB`
                         :
                             error ? error.message : placeHolder
                         }
