@@ -27,7 +27,7 @@ export function MakeApiSettings({base_url, errorHelper, storage_key}: MakeApiPar
         const result = await axiosApi({ method, url: `${base_url}${url}`, data, headers })
         return result;
       } catch(err) { 
-        throw errorHelper(err) 
+          throw errorHelper(err) 
       } 
     }
   })

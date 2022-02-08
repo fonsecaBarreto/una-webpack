@@ -9,14 +9,15 @@ import PanelContainer from '../../components/una/panel-container'
 import { BsInfoCircle } from 'react-icons/bs'
 import { MdGroups, MdOutlineLocationOn } from 'react-icons/md'
 import { CgFileDocument } from 'react-icons/cg'
-import FlexLabelColumn from '@/react-apps/components/una/panel-container/FlexLabelColumn'
 import UserItem from './user-item'
 import AddressItem from './address-item'
 import CompanyInfoPanel from './company-info-panel'
+import UserFileItem from './UserFileItem'
+const COMPANY_DOCUMENT_SPECIFICATION = "* Arquivos em PDF com tamanho maximo de 9.537 Mb."
 export const CompanyProfilePage: React.FunctionComponent<any> = ({location, history, match}) =>{
 
     const [companhia, setCompanhia] = useState<Companhia | null>(null)
-    const context = useContext(GlobalContext);
+    const context = useContext(GlobalContext)
 
     useEffect(()=>{
         const { id: companhia_id } = match.params
@@ -38,6 +39,18 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
                     <CompanyInfoPanel company={companhia}></CompanyInfoPanel>
                 </PanelContainer>
 
+                <PanelContainer title="documentos" icon={<CgFileDocument/>}>
+                
+                    <UserFileItem 
+                        name="contrato_social" label={"Contrato Social"} placeHolder={COMPANY_DOCUMENT_SPECIFICATION}
+                        entry={companhia?.documents.contrato_social}/>
+
+                    <UserFileItem 
+                        name="inscricao_estadual" label={"Inscrição Estadual"} placeHolder={COMPANY_DOCUMENT_SPECIFICATION}
+                        entry={companhia?.documents.inscricao_estadual}/>
+                 
+                </PanelContainer>
+
                 <PanelContainer title="Pessoal" icon={<MdGroups/>}>
                     <div  className='company-staff-list' >
                         { companhia.staff.map(p=>{ return (<UserItem key={p.id} user={p}></UserItem>)}) } 
@@ -50,11 +63,7 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
                     </div>
                 </PanelContainer>
 
-                <PanelContainer title="documentos" icon={<CgFileDocument/>}>
-                    <div  className='company-documents-list' >
-                       
-                    </div>
-                </PanelContainer>
+              
           
             </div>
         </div>

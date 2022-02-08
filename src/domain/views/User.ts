@@ -1,5 +1,5 @@
 
-export enum PapeisUsuario{
+export enum UserProfileRole{
     LOGISTICA="LOGISTICA",              // Usuario a receber noções de logistica
     COMPRADOR="COMPRADOR",              // Comprador
     FORNECEDOR="FORNECEDOR",             // Fornecedor
@@ -8,7 +8,7 @@ export enum PapeisUsuario{
     NEGOCIADOR="NEGOCIADOR"
 }
 
-export interface Usuario {
+export interface User {
     id: string
     company_id: string;
     image: string;
@@ -18,6 +18,14 @@ export interface Usuario {
     telefone: string;
     senha: string;
     ativo: boolean;
-    roles: PapeisUsuario[];
+    roles: UserProfileRole[];
+}
+
+export interface UserFile{
+    user_id:string,
+    name: string,
+    alt: string,
+    mimeType: string,
+    size: number
 }
 
