@@ -41,11 +41,11 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
 
                 <PanelContainer title="documentos" icon={<CgFileDocument/>}>
                 
-                    <UserFileItem 
+                    <UserFileItem company_id={companhia.id}
                         name="contrato_social" label={"Contrato Social"} placeHolder={COMPANY_DOCUMENT_SPECIFICATION}
                         entry={companhia?.documents.contrato_social}/>
 
-                    <UserFileItem 
+                    <UserFileItem company_id={companhia.id}
                         name="inscricao_estadual" label={"Inscrição Estadual"} placeHolder={COMPANY_DOCUMENT_SPECIFICATION}
                         entry={companhia?.documents.inscricao_estadual}/>
                  

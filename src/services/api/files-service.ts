@@ -21,10 +21,10 @@ export const filesService = {
         return data 
     },
 
-    uploadCompanyDocument: async (file: File, document_type: "contrato_social"|"inscricao_estadual") => {
+    uploadCompanyDocument: async (file: File, company_id: string, document_type: "contrato_social"|"inscricao_estadual") => {
         const formData = new FormData();
         formData.append('document', file)
-        const { data } = await filesApi.send({method: "post", url:`/comapanies-documents?v=${document_type}`, data: formData });
+        const { data } = await filesApi.send({method: "post", url:`/comapanies-documents/${company_id}?v=${document_type}`, data: formData });
         return data
     }
 }

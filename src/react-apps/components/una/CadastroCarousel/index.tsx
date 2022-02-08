@@ -75,7 +75,7 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
                 "Cadastro efetuado com successo!", 
                 "Obrigado pela confiança, entraremos em contato em breve!"], "Sucesso!", NotificationType.SUCCESS));
 
-            history.push("/");
+            history.push("/login?v=signin");
 
         }catch(err:any){
             GlobalContext.dialog.push(MakeNotification(()=>-1,[ err?.message ], "Algo Errado", NotificationType.FAILURE))

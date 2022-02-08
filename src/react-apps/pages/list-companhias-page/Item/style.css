@@ -94,6 +94,27 @@
 }
 
 
+
+/* badge */
+
+.list-view-item-name-status-badge{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: auto;
+    font-size: 30px;
+}
+.list-view-item-name-status-badge.ativo{
+    color: rgb(9, 184, 82);
+}
+
+.list-view-item-name-status-badge.inativo{
+    color: #444;
+    font-size: 26px;
+}
+
+
 @media only screen and (max-width: 756px){
     .list-view-item .list-view-item-content{
         gap: 8px;

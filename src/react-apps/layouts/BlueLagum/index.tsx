@@ -10,7 +10,7 @@ import ForbiddenCartModal from '../../components/Modals/ForbiddenCart'
 
 import { useHistory } from 'react-router-dom'
 import Menu from './Menu'
-import { ADMIN_TREE } from './MENU-TREE'
+import { RESULT_MENU_TREE } from './MENU-TREE'
 
 const MenuState = () =>{
     const [ show, setShow ] = useState(false)
@@ -55,7 +55,7 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
     return (
         <div className={`blue-lagum ${menu ===true && user ? "bl-aside-menu" : ""}`}>
 
-            { (menu ===true && user) && <aside><Menu menuState={menuState} menuTree={ADMIN_TREE(user)} ></Menu></aside> }
+            { (menu ===true && user) && <aside><Menu menuState={menuState} menuTree={RESULT_MENU_TREE(user)} ></Menu></aside> }
             <header>
                 <LayoutHeader toggleCart={openCart}></LayoutHeader>
             </header> 

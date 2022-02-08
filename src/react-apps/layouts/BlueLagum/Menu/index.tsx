@@ -6,7 +6,7 @@ import './style.css'
 export namespace BlueLakeMenu {
     export type Params = {
         menuState: { show: boolean, toggle: Function }
-        menuTree: BlueLakeMenuItem.Config[]
+        menuTree: any //BlueLakeMenuItem.Config[]
     }
 }
 

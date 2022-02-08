@@ -1,23 +1,30 @@
 
 import React from 'react'
-import { AiFillDashboard, AiFillShop } from 'react-icons/ai'
-import { ImUsers, ImExit, ImProfile } from 'react-icons/im'
-import { loginServices } from '@/services/api/login-service'
-import { MdBusiness, MdProductionQuantityLimits } from 'react-icons/md'
+import { AiFillShop } from 'react-icons/ai'
+import { MdBusiness } from 'react-icons/md'
 import { BsPlusCircleDotted } from 'react-icons/bs'
-import { FaClipboardList} from 'react-icons/fa'
 import { CgProfile } from 'react-icons/cg'
+import { UserProfileRole } from '@/domain/views/User'
 
-export const ADMIN_TREE = (user) => ([
-     {label:"Companhias", toDo:"/companhias", icon:<MdBusiness/>},
-     {label:"Mercado", toDo:"/mercado", icon:<AiFillShop/>},
-     {label:"Perfil", toDo:`/perfil/${user.company_id}`, icon:<CgProfile/>},
-     {label:"Publicar", toDo:"/registrar-produtos", icon:<BsPlusCircleDotted/>},
+
+
+export const ADMIN_TREE = (user) =>{
+    if( !user.roles.includes(UserProfileRole.ADMIN) ) return []
+    return ([
+        {label:"Companhias", toDo:"/companhias", icon:<MdBusiness/>},
+        {label:"Publicar", toDo:"/registrar-produtos", icon:<BsPlusCircleDotted/>},
+    ])
+}
+
+export const COMMON_TREE = (user) => ([
+    {label:"Mercado", toDo:"/mercado", icon:<AiFillShop/>},
+    {label:"Perfil", toDo:`/perfil/${user.company_id}`, icon:<CgProfile/>},
 ])
 
-export const COMMON_TREE = [
-    {label:"Minhas cotações", toDo:"/admin/companhias", icon:<MdBusiness/>},
-]
+export const RESULT_MENU_TREE = (user) => ([
+    ...COMMON_TREE(user), ...ADMIN_TREE(user)
+])
+
 
 
     //{label:"Meus Produtos", toDo:()=>window.location.href="/", icon:<MdProductionQuantityLimits/>},

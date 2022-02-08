@@ -27,7 +27,7 @@ export const RouterComponent = () =>{
           dispatch(setLoading(true));
           try{
             const user = await loginServices.verify()
-            dispatch(setUser(user));
+            if(user && Object.keys(user).length > 0) dispatch(setUser(user));
           }catch(err){
             console.log("Nenhum usuario encontrado")
             //SetRedirect(`/login?e=${err.message}`)

@@ -3,6 +3,8 @@ import './style.css'
 import { AiOutlineShop, AiOutlineBell, AiOutlinePaperClip } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { FiEdit } from 'react-icons/fi'
+import { BiBadgeCheck } from 'react-icons/bi'
+import { MdBlock } from 'react-icons/md'
 
 export type ListMode = "inline" | "block" 
 
@@ -16,20 +18,22 @@ export namespace ListViewItem {
 
 export const ListViewItem: React.FunctionComponent<ListViewItem.Params> = ({ onClick, item_data, listMode }) =>{
 
-    const { value, label } = item_data
+    const { id, nomeFantasia, telefoneComercial, ativo } = item_data
     return (
-        <div className={`list-view-item ${listMode}`} onClick={()=>onClick("options",value)}>
+        <div className={`list-view-item ${listMode}`} onClick={()=>onClick("options",id)}>
             <div className="list-view-item-content">
                 <section className="list-view-item-icon">
                     <AiOutlineShop></AiOutlineShop>
                 </section>
 
                 <section>
-                    <span className="list-view-item-name">{label}</span> 
+                    <span className="list-view-item-name">{nomeFantasia} - {telefoneComercial} </span> 
                 </section>
 
                 <section>
-                  
+                    <div className={`list-view-item-name-status-badge ${ativo ?"ativo": "inativo"}`}>
+                        {ativo == true ?   <BiBadgeCheck/>   :<MdBlock/>  }
+                    </div>
                 </section> 
             </div>
         </div>

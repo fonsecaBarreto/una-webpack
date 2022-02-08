@@ -13,7 +13,7 @@ import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { setLoading } from '@/react-apps/store/reducers/main/actions'
 
 const SIGNIN_INITIAL_DATA = {
-    credencial: "lucasbfonte@gmail.com",
+    credencial: "",
     senha: "123456"
 }
 
