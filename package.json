@@ -10,7 +10,8 @@
     "test": "jest --passWithNoTests --runInBand --no-cache --silent",
     "test:unit": "npm test -- --watch --silent -c jest-unit-config.js",
     "test:integration": "npm test -- --watch --silent -c jest-integration-config.js",
-    "test:coverage": "npm test -- --coverage"
+    "test:coverage": "npm test -- --coverage",
+    "heroku-postbuild":"npm run build"
   },
   "repository": {
     "type": "git",
@@ -71,7 +72,7 @@
     "url-loader": "^1.0.1",
     "web-vitals": "^2.1.2",
     "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1",
+    "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.1",
     "webpack-merge": "^5.8.0"
   },
