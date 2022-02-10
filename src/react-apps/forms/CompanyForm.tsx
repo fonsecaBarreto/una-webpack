@@ -23,8 +23,8 @@ export const CompanyForm: React.FunctionComponent<CompanyForm.Params> = ({ entry
     const state = UseStateAdapter(INITIAL_DATA)
 
     useEffect(()=>{ 
-        console.log(entry)
-        state.data.set(entry ? entry : INITIAL_DATA)  },[entry])
+        state.data.set(entry ? entry : INITIAL_DATA) 
+    },[entry])
 
     return (
         <UnaModalForm onSave={()=>{}} onCancel={()=>{}} >

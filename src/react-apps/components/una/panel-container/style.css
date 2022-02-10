@@ -5,9 +5,9 @@
     align-items: center;
     justify-content: flex-start;
     background-color: white;
-    border-radius: 6px;
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0px 2px 4px 2px #0003;
+    box-shadow: 0px 2px 3px 1px #0002;
     border: solid 1px #ddd;
 }
 
@@ -18,22 +18,36 @@
     align-items: center;
     justify-content: flex-start;
     gap: 8px;
-    height: 58px;
-    padding: 0 32px;
+    height: 56px;
+    padding: 0 28px;
     font-size: 18px;
     color: #444;
     border-bottom: solid 1px #ddd;
 }
 
 .header-side-content{
-    border: solid 2px red;
     margin-right: 0; margin-left: auto;
     width: fit-content;
     height: fit-content;
 }
 
-/* body */
+.header-side-content > button{
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: none;
+    line-height: 1em;
+    cursor: pointer;
+    background-color: #dbe0e680;
+    box-shadow: 0px 0px 1px 1px #0002;
+}
 
+.header-side-content > button:hover{
+    background-color: #efefef!important;
+    color: #111;
+}
+
+/* body */
 .una-panel-container > section{
     width: 100%;
     display: flex;
