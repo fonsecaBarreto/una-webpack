@@ -14,14 +14,26 @@ import AddressItem from './address-item'
 import CompanyInfoPanel from './company-info-panel'
 import UserFileItem from './UserFileItem'
 import LoadingPage from "@/react-apps/components/una/Loading/presentation/LoadingPage"
-
-
+import CompanyForm from "@/react-apps/forms/CompanyForm"
+import { FiEdit } from 'react-icons/fi'
 const COMPANY_DOCUMENT_SPECIFICATION = "* Arquivos em PDF com tamanho maximo de 9.537 Mb."
+
+const EditTollBar = ({company}:{company: any}) =>{
+    const context = useContext(GlobalContext)
+    const editCompany = () =>{
+        return context.dialog.push(MakeDialogConfig(() =><CompanyForm entry={company} />, () =>{}, "Editar Companhia"))
+    }
+    return (
+        <React.Fragment>
+            <button onClick={editCompany}> <FiEdit/> </button>
+        </React.Fragment>
+    )
+}
+
 export const CompanyProfilePage: React.FunctionComponent<any> = ({location, history, match}) =>{
 
     const [companhia, setCompanhia] = useState<Companhia | null>(null)
-    const context = useContext(GlobalContext)
-
+    
     useEffect(()=>{
         const { id: companhia_id } = match.params
         companhiasServices.find(companhia_id)
@@ -34,8 +46,7 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
         <div id="company-profile-page"> 
             <div className='company-container app-container'>
 
-            
-                <PanelContainer title="Informações da Companhia" icon={<BsInfoCircle/>}>
+                <PanelContainer title="Informações da Companhia" icon={<BsInfoCircle/>} headerContent={<EditTollBar company={companhia}></EditTollBar>}>
                     <CompanyInfoPanel company={companhia}></CompanyInfoPanel>
                 </PanelContainer>
 
@@ -63,8 +74,6 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
                     </div>
                 </PanelContainer>
 
-              
-          
             </div>
         </div>
     )

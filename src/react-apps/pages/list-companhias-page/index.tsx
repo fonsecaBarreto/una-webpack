@@ -11,8 +11,6 @@ import GlobalContext from  "@/react-apps/apps/main/global-components-context"
 import { MakeDialogConfig, MakeOptions }  from 'fck-react-dialog'
 import CompanhiaViewModal from './modals/CompanhiaView'
 import queryString from 'query-string'
-import { CompaniesState } from '@/react-apps/store/reducers/companies'
-import { json } from 'stream/consumers'
 
 export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, history}) => {
 
@@ -47,8 +45,10 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
             case 1:  history.push(`/perfil/${payload}`);break;
           }
           return -1;
-         
-        }, [{label: "Visualizar"},{label:"Perfil Companhia"}]))
+        }, [
+          {label: "Visualizar"},
+          {label: "Abrir"},
+        ]))
       }
       if(key === "+1") return
     }
