@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import './style.css'
 import { UserFile } from '@/domain/views/User'
 import { BiErrorCircle, BiCheckCircle } from 'react-icons/bi'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import { AiFillFilePdf, AiOutlineLoading3Quarters } from 'react-icons/ai'
 import InlineFileInput from "@/react-apps/components/FileInputs/InlineFileInput"
 import { filesService } from '@/services/api/files-service'
 export namespace UserFileItem {
@@ -59,13 +59,16 @@ export const UserFileItem: React.FunctionComponent<UserFileItem.params> = ({comp
 
                     <div>
                         {
-                            userFile ? <a target="_blank" href={`${filesService.get_url(userFile.name)}`}> {userFile.alt} </a> :
-                            <InlineFileInput value={incomingFile} onChange={setIncomingFile}/>
+                            userFile ? 
+                                <a className='user-file-item-document' target="_blank" href={`${filesService.get_url(userFile.name)}`}>
+                                    <AiFillFilePdf/> {userFile.alt} 
+                                </a>
+                            : <InlineFileInput value={incomingFile} onChange={setIncomingFile}/>
                         }
                     </div>
                     <span className={`user-file-item-placeholder ${error ? "err" :  ""}`}>
                         {userFile ?  
-                            `tipo: ${userFile.mimeType} - ${Number(userFile.size / 1024).toFixed(2)}KB`
+                            `${userFile.mimeType} - ${Number(userFile.size / 1024).toFixed(2)}KB`
                         :
                             error ? error.message : placeHolder
                         }

@@ -3,15 +3,15 @@
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 8px;
-    padding: 2px;
     width: 100%;
+    border-radius: 4px;
+    border: solid 1px #ddd;
 }
 
-
 .inline-file-input > span{
-    font-size: 15px;
+    font-size: 14px;
     width: 100%;
-    line-height: 15px;
+    line-height: 1em;
     white-space: normal;
     text-align: left;
     max-height: 15px;
@@ -21,23 +21,24 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #444;
+    color: #666;
 }
 
 .inline-file-input button{
     display: flex; align-items: center; justify-content: center;
-    height: 28px;
+    height: 32px;
     border: none;
     background-color: #dbe0e680;
-    box-shadow: 0px 1px 1px 1px #0002;
+    box-shadow: 0px 0px 1px 1px #0002;
     border-radius: 4px;
-    padding: 0 12px;
+    padding: 0 24px;
     cursor: pointer;
     color: #222;
 }
 
 .inline-file-input button:hover{
     background-color: #bcc1c554;
+    background-color: #efefef;
     color: #111;
 }
 

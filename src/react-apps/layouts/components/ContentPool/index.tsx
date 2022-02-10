@@ -4,7 +4,7 @@ import { AiOutlinePlus } from 'react-icons/ai'
 import { ListingView } from '@/domain/views/ListingView'
 import { RiLayoutGridFill } from 'react-icons/ri'
 import { VscThreeBars } from 'react-icons/vsc'
-import { BsLayoutThreeColumns } from 'react-icons/bs'
+import LoadingComponent from '@/react-apps/components/una/Loading'
 
 export namespace ContentPool {
     export type Params = {
@@ -23,10 +23,12 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ dataA
     const [ listMode, setListMode ] = useState<ListMode>(initial_mode)
     const { pageIndex, pages, data, total, length } = list_data
     const [ poolData, setPoolData] = useState<any>([])
+    const [ loading, setLoading ] = useState(true)
 
     useEffect(()=>{
         var data = dataAlias ? list_data.data[dataAlias] : list_data.data
-        return setPoolData(data)
+        setPoolData(data)
+        if(data.length > 0 ) setLoading(false);
     },[list_data])
 
     return (
@@ -41,20 +43,25 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ dataA
                     </nav>
                 </section>
             </header>
-            
-            <section className={`bl-common-content-pool-flow ${listMode}`}>   
-                {
-                    poolData.length > 0 && poolData.map( (d: any, i: number) =>{
-                        return (<ItemComponent listMode={listMode} key={i} item_data={d} onClick={onAction}></ItemComponent> )
-                    })
-                }
-            </section>
 
-            <section>
-               { pageIndex < pages && <button className='bl-common-content-plus-btn' onClick={()=>onAction("+1")}>
-                   <AiOutlinePlus></AiOutlinePlus>
-                </button>}
-            </section>
+            <main>
+                { loading ?  <LoadingComponent></LoadingComponent> :
+                <React.Fragment>
+                    <section className={`bl-common-content-pool-flow ${listMode}`}>   
+                        {
+                            poolData.length > 0 && poolData.map( (d: any, i: number) =>{
+                                return (<ItemComponent listMode={listMode} key={i} item_data={d} onClick={onAction}></ItemComponent> )
+                            })
+                        }
+                    </section>
+
+                    <section>
+                    { pageIndex < pages && <button className='bl-common-content-plus-btn' onClick={()=>onAction("+1")}>
+                        <AiOutlinePlus></AiOutlinePlus>
+                        </button>}
+                    </section>
+                </React.Fragment>}
+            </main>
         </div>
     )
 }

@@ -13,6 +13,9 @@ import UserItem from './user-item'
 import AddressItem from './address-item'
 import CompanyInfoPanel from './company-info-panel'
 import UserFileItem from './UserFileItem'
+import LoadingPage from "@/react-apps/components/una/Loading/presentation/LoadingPage"
+
+
 const COMPANY_DOCUMENT_SPECIFICATION = "* Arquivos em PDF com tamanho maximo de 9.537 Mb."
 export const CompanyProfilePage: React.FunctionComponent<any> = ({location, history, match}) =>{
 
@@ -21,26 +24,23 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
 
     useEffect(()=>{
         const { id: companhia_id } = match.params
-        console.log(companhia_id)
         companhiasServices.find(companhia_id)
-        .then(company=>{ 
-            console.log("upcomming company", company)
-            setCompanhia(company) })
+        .then(company=>{ setCompanhia(company) })
         .catch(err =>{ console.log(err) })
-        
       },[location.pathname])
 
-    if(companhia === null) return <span>"Carregando..."</span>
+    if(companhia === null) return <LoadingPage/>
     return (
         <div id="company-profile-page"> 
             <div className='company-container app-container'>
-                
+
+            
                 <PanelContainer title="Informações da Companhia" icon={<BsInfoCircle/>}>
                     <CompanyInfoPanel company={companhia}></CompanyInfoPanel>
                 </PanelContainer>
 
                 <PanelContainer title="documentos" icon={<CgFileDocument/>}>
-                
+                    
                     <UserFileItem company_id={companhia.id}
                         name="contrato_social" label={"Contrato Social"} placeHolder={COMPANY_DOCUMENT_SPECIFICATION}
                         entry={companhia?.documents.contrato_social}/>

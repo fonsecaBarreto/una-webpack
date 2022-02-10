@@ -1,10 +1,6 @@
 @-webkit-keyframes endlessrotating {
-    from{
-        -webkit-transform: rotate(0deg);
-    }
-    to{
-        -webkit-transform: rotate(360deg);
-    }
+    from{  -webkit-transform: rotate(0deg); }
+    to{ -webkit-transform: rotate(360deg); }
 }
 
 .user-file-item{
@@ -13,10 +9,10 @@
     display: grid;
     grid-template-columns: auto 1fr;
     border-radius: 6px;
-    padding: 4px 16px;
+    padding: 2px 12px;
     overflow: hidden;
     cursor: default;
-    gap: 6px;
+    gap: 4px;
 }
 
 .user-file-item.sending{
@@ -81,20 +77,40 @@
 }
 
 .user-file-item-content > div{
-    width: 100%;
     display: flex;flex-direction: row; align-items: center; justify-content: flex-start; 
-    height: 46px;
+    width: 100%; height: 46px;
 }
 
 /* error */
 .user-file-item-placeholder{
-    height: 15px;
-    font-size: 14px;
-    line-height: 1em;
-    color: #555;
+    height: 12px;
     font-size: 12px;
+    line-height: 1em;
+    color: #888;
 }
 
 .user-file-item-placeholder.err{
     color: rgb(158, 14, 14);
+}
+
+/* document */
+
+a.user-file-item-document{
+    background-color: #dbe0e680;
+    box-shadow: 0px 0px 1px 1px #0002;
+    width:fit-content; height: 32px;
+    border-radius: 6px;
+    display: flex;   flex-direction: row; align-items: center;
+    flex-direction: row;
+    gap: 4px;
+    padding: 0 24px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+
+a.user-file-item-document:hover{
+    background-color: #efefef;
+    color: #000;
 }
