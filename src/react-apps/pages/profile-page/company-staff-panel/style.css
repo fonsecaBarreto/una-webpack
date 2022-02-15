@@ -26,7 +26,7 @@
     border-radius: 6px;
     padding: 6px 16px ;
     overflow: hidden;
-    cursor: default;
+    cursor: pointer;
 }
 
 .company-user-item:hover{
@@ -39,7 +39,7 @@
     grid-template-columns: auto 1fr;
     height: fit-content;
     align-items: center;
-    gap: 10px;
+    gap: 36px;
 }
 
 .company-user-item > section:nth-child(1) .company-user-item-main-content{

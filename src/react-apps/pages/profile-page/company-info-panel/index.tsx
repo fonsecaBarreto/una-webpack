@@ -5,8 +5,10 @@ import ShopImage from "@assets/images/shop.png"
 export const CompanyInfoPanel: React.FunctionComponent<any> =({company}) =>{
     return (
         <div className='company-info-panel'>
-            <img src={ShopImage}></img>
-            <div className='company-info-panel-content'>
+            <section>
+                <img src={ShopImage}></img>
+            </section>
+            <section className='company-info-panel-content'>
                 <FlexLabelColumn label='Nome Fantasia'>{company.nomeFantasia}</FlexLabelColumn>
                 <FlexLabelColumn label='Razão Social'>{company.razaoSocial}</FlexLabelColumn>
                 <FlexLabelColumn label='CNPJ'>{company.cnpj}</FlexLabelColumn>
@@ -14,7 +16,7 @@ export const CompanyInfoPanel: React.FunctionComponent<any> =({company}) =>{
                 <FlexLabelColumn label='Telefone Comercial'>{company.telefoneComercial}</FlexLabelColumn>
                 <FlexLabelColumn label='Incrição Estadual'>{company.inscricaoEstadual}</FlexLabelColumn>
                 <FlexLabelColumn label='status'>{company.ativo ? "Ativo": "Inativo"}</FlexLabelColumn> 
-            </div>
+            </section>
     </div>
     )
 }

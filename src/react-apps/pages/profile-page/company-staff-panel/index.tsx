@@ -16,13 +16,13 @@ export const CompanyStaffPanel: React.FunctionComponent<CompanyStaffPanel.Params
             <div className='company-staff-list' >
                 {   
                     staff.map((user:any)=>{ 
-                        const { id, nome, telefone, roles } = user
+                        const { id, nome, telefone, roles, cpf} = user
                         return (
                             <div key={user.id} onClick={()=>onItemClick(id)} className="company-user-item"> 
                                 <section>
                                     <img src={UserImage}></img>
                                     <div className='company-user-item-main-content'>
-                                        <span> {nome} - {telefone }</span>
+                                        <span> {nome} - {telefone} -{cpf}</span>
                                         <span> { JSON.stringify(roles) }</span>
                                     </div>
                                 </section>

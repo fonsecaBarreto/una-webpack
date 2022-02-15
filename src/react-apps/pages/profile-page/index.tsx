@@ -3,7 +3,7 @@ import './style.css'
 import { Companhia } from '@/domain/views/Company'
 import { companhiasServices } from '@/services/api/companhias-service'
 import PanelContainer from '../../components/una/panel-container'
-import { BsInfoCircle } from 'react-icons/bs'
+import { BsArchiveFill, BsInfoCircle } from 'react-icons/bs'
 import { MdGroups, MdOutlineLocationOn } from 'react-icons/md'
 import { CgFileDocument } from 'react-icons/cg'
 import CompanyAddressesPanel from './company-addresses-panel'
@@ -18,6 +18,7 @@ import { MakeDialogConfig, OnActionFunction } from 'fck-react-dialog'
 import queryString from 'query-string'
 import CompanyStaffPanel from './company-staff-panel'
 import CompanyFilesPanel from './company-files-panel'
+import { AiFillPlusCircle } from 'react-icons/ai'
 
 
 export const CompanyProfilePage: React.FunctionComponent<any> = ({location, history, match}) => {
@@ -87,12 +88,15 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
 
                 <PanelContainer 
                     title="Informações da Companhia"  icon={<BsInfoCircle/>} 
-                    headerButtons={[{ content: <RiFileEditFill/>, onClick: () => history.push({ search: `?company=${1}` }) }]}>
+                    headerButtons={[
+                        { content: <BsArchiveFill/>, onClick: () => history.push({ search: `?company=${1}` }) },
+                        { content: <RiFileEditFill/>, onClick: () => history.push({ search: `?company=${1}` }) }
+                        ]}>
                     <CompanyInfoPanel company={companhia}></CompanyInfoPanel>
                 </PanelContainer> 
 
                 <PanelContainer 
-                    title="Pessoal" icon={<MdGroups/>} 
+                    title="Pessoal" icon={<AiFillPlusCircle/>} 
                     headerButtons={[{ onClick: () => history.push({ search: `?user=${1}` }), content: <IoMdAddCircleOutline/> }]}>
                    <CompanyStaffPanel staff={companhia.staff} onItemClick={(user_id: string) =>  history.push({ search: `?user=${user_id}`}) }></CompanyStaffPanel>
                 </PanelContainer> 
