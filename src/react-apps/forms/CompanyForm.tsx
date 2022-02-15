@@ -57,7 +57,7 @@ export const CompanyForm: React.FunctionComponent<CompanyForm.Params> = ({ entry
                 <Controls.TextBox placeHolder="Exemplo: 99.999.999/9999-99" mask="99.999.999/9999-99" 
                     state={state} label="CNPJ " name={"cnpj"}  type={Controls.TextBoxTypes.TEXT} > </Controls.TextBox>
                 <Forming.InputWrapper label={"Status"}>
-                    <SwitchButton value={state.data.get['ativo'] === true ? 0 : 1} 
+                    <SwitchButton fill value={state.data.get['ativo'] === true ? 0 : 1} 
                         onInput={(i)=>state.data.onInput("ativo", i === 0 ? true : false)}> 
                         <span className='una-company-status-button active' > <BiBadgeCheck/>  Ativo </span>
                         <span className='una-company-status-button inactive'> <MdBlock/>  Inativo </span>

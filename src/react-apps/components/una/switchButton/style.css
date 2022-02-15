@@ -1,13 +1,15 @@
 .una-switch-button{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 42px; width: 100%;
+    height: 42px;
     border-radius: 5px;
     overflow: hidden;
     gap: 2px; padding: 1px;
     border: solid 1px #ddd;
+}
 
-    
+.una-switch-button.w100{
+     width: 100%;
 }
 .una-switch-button, .una-switch-button > *{
     box-sizing: border-box;

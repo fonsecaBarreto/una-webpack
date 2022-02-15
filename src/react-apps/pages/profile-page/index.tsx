@@ -10,9 +10,8 @@ import CompanyAddressesPanel from './company-addresses-panel'
 import CompanyInfoPanel from './company-info-panel'
 import LoadingPage from "@/react-apps/components/una/Loading/presentation/LoadingPage"
 import CompanyForm from "@/react-apps/forms/CompanyForm"
-import { IoMdAddCircleOutline } from 'react-icons/io'
 import UserForm from '@/react-apps/forms/UserForm'
-import { RiFileEditFill } from 'react-icons/ri'
+import { RiFileEditFill, RiSearch2Fill } from 'react-icons/ri'
 import GlobalContext from "@/react-apps/apps/main/global-components-context"
 import { MakeDialogConfig, OnActionFunction } from 'fck-react-dialog'
 import queryString from 'query-string'
@@ -89,6 +88,7 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
                 <PanelContainer 
                     title="Informações da Companhia"  icon={<BsInfoCircle/>} 
                     headerButtons={[
+                        { content: <RiSearch2Fill/>, onClick: () => history.push({ search: `?company=${1}` }) },
                         { content: <BsArchiveFill/>, onClick: () => history.push({ search: `?company=${1}` }) },
                         { content: <RiFileEditFill/>, onClick: () => history.push({ search: `?company=${1}` }) }
                         ]}>
@@ -96,8 +96,8 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
                 </PanelContainer> 
 
                 <PanelContainer 
-                    title="Pessoal" icon={<AiFillPlusCircle/>} 
-                    headerButtons={[{ onClick: () => history.push({ search: `?user=${1}` }), content: <IoMdAddCircleOutline/> }]}>
+                    title="Pessoal" icon={<MdGroups/>} 
+                    headerButtons={[{ onClick: () => history.push({ search: `?user=${1}` }), content: <AiFillPlusCircle/> }]}>
                    <CompanyStaffPanel staff={companhia.staff} onItemClick={(user_id: string) =>  history.push({ search: `?user=${user_id}`}) }></CompanyStaffPanel>
                 </PanelContainer> 
 

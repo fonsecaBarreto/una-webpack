@@ -115,7 +115,7 @@ export const UserInfoForm = ({state}: { state: any}) =>{
                 state={state} label={"Nome"} name={"nome"} type={Controls.TextBoxTypes.TEXT}/>
             
             <Forming.InputWrapper label={"Status"}>
-                <SwitchButton value={state.data.get['ativo'] === true ? 0 : 1} 
+                <SwitchButton fill value={state.data.get['ativo'] === true ? 0 : 1} 
                     onInput={(i)=>state.data.onInput("ativo", i === 0 ? true : false)}> 
                     <span className='una-company-status-button active' > <BiBadgeCheck/>  Ativo </span>
                     <span className='una-company-status-button inactive'> <MdBlock/>  Inativo </span>
