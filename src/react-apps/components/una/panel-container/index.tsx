@@ -1,55 +1,32 @@
-import React, { FunctionComponent, ReactNode, useContext } from 'react'
-import GlobalContext from "@/react-apps/apps/main/global-components-context"
+import React, { ReactNode } from 'react'
 import "./style.css"
-import { MakeDialogConfig } from 'fck-react-dialog'
-
-
-
-export namespace HeaderSideContent { 
-    export type Params = {
-        buttons: { content: ReactNode, view: ReactNode }[]
-    }
-}
-
-const HeaderSideContent: React.FunctionComponent<HeaderSideContent.Params> = ({buttons}) =>{
-    const context = useContext(GlobalContext)
-    const openModal = (View: any) =>{
-        return context.dialog.push(MakeDialogConfig(View, () =>{}, "!"))
-    }
-    return (
-        <section className='header-side-content'>
-
-            {
-                buttons.map(({ content, view})=>{
-                    return ( 
-                        <button onClick={() => openModal(view)}>
-                            { content }
-                        </button>
-                    )
-                })
-            }
-        </section>
-    )
-}
 
 
 export namespace PanelContainer {
+    export type buttonsConfig = { content: ReactNode, onClick: any }
     export type Params= {
         children: ReactNode,
         title: string, 
         icon: ReactNode,
-        headerButtons?:  { content: ReactNode, view: ReactNode }[]
+        headerButtons?: buttonsConfig[]
     }
 }
 
-export const PanelContainer: React.FunctionComponent<PanelContainer.Params> = ({children, title, icon, headerButtons}) =>{
+export const PanelContainer: React.FunctionComponent<PanelContainer.Params> = ({ children, title, icon, headerButtons }) =>{
     return (
         <div className='una-panel-container'>
             <header> 
-                {icon}
-                <span>  {title} </span>
-                { headerButtons && 
-                    <HeaderSideContent buttons={headerButtons}></HeaderSideContent>
+                {icon} <span>  {title} </span>
+
+                { 
+                    headerButtons && 
+                    <section className='header-side-content'>
+                    {
+                        headerButtons.map(({ content, onClick })=>{
+                            return (  <button onClick={onClick}> { content } </button>
+                        )})
+                    }
+                    </section>
                 }
             </header>
             <section>   

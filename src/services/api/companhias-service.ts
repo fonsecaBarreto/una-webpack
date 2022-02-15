@@ -16,6 +16,16 @@ export namespace CompanhiasServices {
 }
 
 export const companhiasServices = {
+
+     save: async (params: any) => {
+          const data = { ...params };
+          const METHOD = data.id ? "PUT" : "POST"
+          const URL = data.id ? `/${data.id}` : "/";
+          delete data.id
+          const resp = await companhiasApi.send({ method: METHOD, url: URL, data }) 
+          return resp.data 
+     },
+
      list: async (params: CompanhiasServices.ListParams) => {
           const { v="", p= 1, ativo=""} = params
           var query = `?p=${p}&v=${v}&ativo=${ativo}`

@@ -7,3 +7,20 @@
         width: 100%;
     }
 }
+
+/* move */
+
+.una-company-status-button{
+    height: 100%;
+    width: 100%!important;
+    display: flex; align-items: center; justify-content: center;
+    gap: 6px; font-size: 18px;
+    
+}
+
+.una-company-status-button.active{
+    color: rgb(10, 173, 78);
+}
+.una-company-status-button.inactive{
+    color: rgb(133, 15, 7);
+} 
