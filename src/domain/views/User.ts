@@ -8,6 +8,14 @@ export enum UserProfileRole{
     NEGOCIADOR="NEGOCIADOR"
 }
 
+export const USER_PROFILE_ROLES = [ 
+    { value: "LOGISTICA", label: "Logistica" },
+    { value: "COMPRADOR", label: "Comprador" },
+    { value: "FORNECEDOR", label: "Fornecedor" },
+    { value: "GESTOR", label:"Gestor" },
+    { value: "ADMIN", label:"Admin" },
+    { value: "NEGOCIADOR", label:"Negociador" } ]
+
 export interface User {
     id: string
     company_id: string;

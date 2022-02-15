@@ -1,3 +1,7 @@
+.address-address-list{
+    gap: 2px; 
+}
+
 .company-address-item{
     position: relative;
     width: 100%; height: fit-content;

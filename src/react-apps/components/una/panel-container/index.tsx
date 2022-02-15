@@ -22,8 +22,8 @@ export const PanelContainer: React.FunctionComponent<PanelContainer.Params> = ({
                     headerButtons && 
                     <section className='header-side-content'>
                     {
-                        headerButtons.map(({ content, onClick })=>{
-                            return (  <button onClick={onClick}> { content } </button>
+                        headerButtons.map(({ content, onClick }, i)=>{
+                            return (  <button onClick={onClick} key={i}> { content } </button>
                         )})
                     }
                     </section>
