@@ -1,17 +1,19 @@
 import MultiplesForms from ".";
 
-export const normalizeData = (entry: any[], headers: MultiplesForms.Header[]) =>{
+export const normalizeEntries = (entry: any[], headers: MultiplesForms.Header[], cb?:any) =>{
 
     var final_data: any[] = [];
 
     final_data = entry.map((entry_unit: any)=>{
-        return normalizeValues(entry_unit, headers)
+        return normalizeSingleEntry(entry_unit, headers)
     })
 
+    cb && cb(final_data)
     return final_data 
+
 }
 
-export const normalizeValues = (entry_unit: any, headers: MultiplesForms.Header[]) =>{
+export const normalizeSingleEntry = (entry_unit: any, headers: MultiplesForms.Header[]) =>{
     var data_row: any ={
         _id: Date.now()+"-"+(Math.random()*100)
     }

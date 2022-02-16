@@ -11,7 +11,7 @@ import FormModal from '../FormModal'
 import SelectInput  from '../Inputs/Select'
 import TextInput  from '../Inputs/Text'
 import { IoMdTrash } from 'react-icons/io'
-
+import { MfgRow } from '../'
 export namespace MultiplesFormRow {
     export type Params = {
         success: boolean,
@@ -68,37 +68,43 @@ export const MultiplesFormRow: React.FunctionComponent<MultiplesFormRow.Params> 
     }
 
     return (
-        <div className={`app-multiples-form-row ${success ? "apmfr-success": ""}`} >
-            <section >
-                <div onClick={openNewProductDialogModal}>
-                {
-                    Object.keys(formState.errors.get).length > 0 ?
-                    <span> <RiErrorWarningLine/></span> : <span> <AiOutlineCheckCircle/> </span>
-                } 
-                </div>
-            </section>
-            <section style={{gridTemplateColumns: `repeat(${headers.length * 3}, 1fr)`}}>
-            {   
-                headers.map((h: MultiplesForms.Header, i: number)=> {
-                    let { value: name, type, list } = h
-                    var error = formState.errors.get[name];
-                    return (
-                        <div key={i} className='m-form-row' style={{gridColumn: `span ${h.columns ?? 3}`}}> 
-                            <div className={`m-form-row-input ${ error ? "error": ""}`} > 
-                                { 
-                                    type == "select" ? <SelectInput name={ name} state={formState} list={list ?? []}></SelectInput> 
-                                    :   <TextInput state={formState} name={ name} ></TextInput>
-                                } 
-                            </div> 
-                        </div>
-                )})
-            }
-            </section>
 
-            <section> 
-                <button  onClick={onDelete}> <IoMdTrash/> </button>
-            </section>
-        </div>
+        <MfgRow columns={headers.length}>
+
+            <React.Fragment>
+                <div onClick={openNewProductDialogModal}>
+                    {
+                        Object.keys(formState.errors.get).length > 0 ?
+                        <span> <RiErrorWarningLine/></span> : <span> <AiOutlineCheckCircle/> </span>
+                    } 
+                </div>
+            </React.Fragment>
+
+            <React.Fragment>
+
+                {   
+                    headers.map((h: MultiplesForms.Header, i: number)=> {
+                        let { value: name, type, list } = h
+                        var error = formState.errors.get[name];
+                        return (
+                            <div key={i}  style={{gridColumn: `span ${h.columns ?? 3}`}}> 
+                                <div className={`m-form-row-input ${ error ? "error": ""}`} > 
+                                    { 
+                                        (type == "select")
+                                        ? <SelectInput name={ name} state={formState} list={list ?? []}></SelectInput> 
+                                        : <TextInput state={formState} name={ name} ></TextInput>
+                                    } 
+                                </div> 
+                            </div>
+                    )})
+                }
+
+            </React.Fragment>
+        
+            <React.Fragment> 
+                <button  onClick={onDelete}> <IoMdTrash/> </button> 
+            </React.Fragment>
+        </MfgRow>
     )
 }
 

@@ -34,7 +34,7 @@ export const ListDepartamentosPage = () =>{
         <div id="add-products-page"> 
             <div className='add-products-container app-container'>
                 <section className='add-products-nav-bar'>
-                    <SwitchButton onInput={changePage}> 
+                    <SwitchButton value={pageIndex} onInput={changePage}> 
                         <React.Fragment> <AiFillShopping/>  Produtos </React.Fragment>
                         <React.Fragment> <RiInboxArchiveFill/> Fornecimento </React.Fragment>
                     </SwitchButton>
@@ -44,8 +44,9 @@ export const ListDepartamentosPage = () =>{
                 <section>
                     { 
                         pageIndex === 0 ? <ProductsTable override_data={dataFromCsv}></ProductsTable>
-                        : <SuplyTable override_data={dataFromCsv}></SuplyTable>
+                        :  <span> Supply aqui </span> 
                     }
+                    {/* <SuplyTable override_data={dataFromCsv}></SuplyTable> */}
                 </section>
 
             </div>

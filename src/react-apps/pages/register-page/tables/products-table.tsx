@@ -15,30 +15,40 @@ export namespace ProductsTable {
 }
 
 export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({override_data}) =>{
+    
     const dispatch = useDispatch()
-    const [ productData, setProductData ] = useState<any[]>([{}])
-    const { departaments_struct } = useSelector((state: any) => state.departamentos)
+    const [ productData, setProductData ] = useState<any[]>([])
+    const { departaments_struct, departaments_struct_loadtry } = useSelector((state: any) => state.departamentos)
     const [ productsConflicts, setProductsConflicts] = useState<any>({})
     const [ productsCheckList, setProductsCheckList ] = useState<any>({})
     const [ submitData, setSubmitData ] = useState(false)
     const context = useContext(GlobalContext)
 
-    useEffect(()=>{ setProductData( override_data ?? [{}]) },[override_data])
+    /* hooks */
 
+    /* Deve checar se ja foi baixado os departamnetos no redux, do contratio sera baixo asincronamente */
     useEffect(()=>{
-        if(departaments_struct.brands.length == 0){
-            departamentosService.list().then(struct =>{dispatch(setDepartamentos(struct)) }
-        )}
-    },[])
-
-    useEffect(()=>{
-        if(departaments_struct.brands.length > 0){ product_headers_schema[2].list = departaments_struct.brands}
-        if(departaments_struct.subCategories.length > 0){ product_headers_schema[3].list = departaments_struct.subCategories}
-        if(departaments_struct.presentations.length > 0){ product_headers_schema[4].list = departaments_struct.presentations}
+        if(departaments_struct_loadtry == 0){
+            departamentosService.list().then(struct =>{dispatch(setDepartamentos(struct))});
+            return;
+        }
+        product_headers_schema[2].list = departaments_struct.brands;
+        product_headers_schema[3].list = departaments_struct.subCategories;
+        product_headers_schema[4].list = departaments_struct.presentations;
     },[departaments_struct])
 
-    const submitSaveProducts = async (data: any) =>{
+    /* Todas Vez que houver uma nova inserção sera questionado se os dados devem ser sobrescrito ou concatenado */
+    useEffect(()=>{ 
+        if(!override_data) return setProductData([{}]) // Um item vazio
+        context.dialog.push(MakeNotification((v)=>{
+            if(v == 0 ){ setProductData(override_data) }
+            else if(v == 1){ setProductData((prev:any[])=>([ ...override_data, ...prev ])) }
+            return -1
+        },["Deseja sobrescrever os dados existentes?"], "Atenção", NotificationType.CONFIRMATION))
+    },[ override_data ])
 
+    /* Salvar Produtos */
+    const submitSaveProducts = async (data: any) =>{
         var checkList = Object.keys(productsCheckList)
         var raw_list = data.filter((d: any)=>!checkList.includes(d._id))
         var productDtos: produtosServices.AddProduct_dto[] = raw_list.map((d:any)=>{
@@ -57,7 +67,7 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ov
             if(Object.keys(conflicts).length > 0){
                 context.dialog.push( MakeNotification(()=>-1,["Certifique conflitos","Certifique-se de que todos os dados são validos"],  "Atenção", NotificationType.FAILURE),)
                 var flicts = { ...conflicts}
-             
+                
                 Object.keys(flicts).map(f=>{
                     const c = flicts[f];
                     if(c.brand_id){ c.brand = c.brand_id; delete c.brand_id}
@@ -68,7 +78,7 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ov
                 setProductsConflicts(conflicts);
             }
         }catch(err){ console.log("err", err) }
-        setSubmitData(false)
+            setSubmitData(false)
     }
 
     return (<div>
@@ -79,7 +89,7 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ov
             getData={submitSaveProducts} 
             schema={CsvProdutosDTo_schema} 
             headers={product_headers_schema} 
-            entry={productData} 
+            entries={productData} 
             dialogContext={context.dialog}>
         </MultiplesForms>
 

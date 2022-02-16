@@ -1,16 +1,3 @@
-import { ListingView, LabelView } from "@/domain/views/ListingView";
-import { Product, Brand } from "@/domain/views/Product";
-
-export namespace DepartamentosState {
-     export type CategoriasLike = "departaments" | "categories" | "subCategories"
-     export type FilterStruct = Record<CategoriasLike | "brands", LabelView[] >
-}
-
-export interface DepartamentosState {
-     struct: DepartamentosState.FilterStruct
-     products_listview: ListingView<{products: Product[], brands_available: string[]}>,
-     toSubmitQueries: boolean
-}
 
 export const INITIAL_DEPARTAMENTOS_STRUCT = {
      departaments: [], categories: [], subCategories: [],  brands: [], presentations:[]
@@ -20,20 +7,24 @@ export const INITIAL_PRODUCTS_LISTING_VIEW = {
      queries: {},
      total: 0,
      length: 0,
-     data: { products: [], brands_available: []},                      
+     data: { products: [], brands_available: [] },                      
      pages: 0,                 
      pageIndex: 0
  }
  
 const INITIAL_STATE = {
      departaments_struct: { ...INITIAL_DEPARTAMENTOS_STRUCT },
+     departaments_struct_loadtry: 0,
+
      products_listingview: { ...INITIAL_PRODUCTS_LISTING_VIEW },
      toSubmit: false
 }
 
 export const departamentosReducer = (state=INITIAL_STATE, action: any) => {
      switch(action.type){
-          case "SET_DEPARTMENTOS_STRUCT": return { ...state, departaments_struct: action.payload };
+          case "SET_DEPARTMENTOS_STRUCT": {
+               return { ...state, departaments_struct: action.payload, departaments_struct_loadtry: state.departaments_struct_loadtry + 1 };
+          };
           case "SET_PRODUCTOS_LISTINGVIEW": { 
                var listingView = state.products_listingview;
                const { content, toAppendData } = action.payload;
