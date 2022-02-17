@@ -10,6 +10,7 @@ import ProductsTable from './tables/products-table'
 import SuplyTable from './tables/supply-table'
 import { AiFillShopping } from 'react-icons/ai'
 import { RiInboxArchiveFill } from 'react-icons/ri'
+import { BsCloudCheckFill } from 'react-icons/bs'
 
 export const ListDepartamentosPage = () =>{
 
@@ -33,12 +34,17 @@ export const ListDepartamentosPage = () =>{
     return (
         <div id="add-products-page"> 
             <div className='add-products-container app-container'>
+                
                 <section className='add-products-nav-bar'>
                     <SwitchButton value={pageIndex} onInput={changePage}> 
                         <React.Fragment> <AiFillShopping/>  Produtos </React.Fragment>
                         <React.Fragment> <RiInboxArchiveFill/> Fornecimento </React.Fragment>
                     </SwitchButton>
                     <button className="nav-header-btn" onClick={openImportCsvModal}> <GrDocumentCsv/> Upload .CSV  </button> 
+                    <button className="nav-header-btn nav-header-btn-save"> 
+                        <BsCloudCheckFill/> Salvar
+                     </button>
+               
                 </section>
         
                 <section>

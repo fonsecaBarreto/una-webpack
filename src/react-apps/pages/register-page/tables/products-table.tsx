@@ -49,6 +49,11 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ov
 
     /* Salvar Produtos */
     const submitSaveProducts = async (data: any) =>{
+
+        console.log(data);
+       
+        return setSubmitData(false)
+
         var checkList = Object.keys(productsCheckList)
         var raw_list = data.filter((d: any)=>!checkList.includes(d._id))
         var productDtos: produtosServices.AddProduct_dto[] = raw_list.map((d:any)=>{
@@ -81,21 +86,26 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ov
             setSubmitData(false)
     }
 
-    return (<div>
-        <MultiplesForms 
-            conflicts={productsConflicts}
-            checkList={productsCheckList}
-            dataTrigger={submitData} 
-            getData={submitSaveProducts} 
-            schema={CsvProdutosDTo_schema} 
-            headers={product_headers_schema} 
-            entries={productData} 
-            dialogContext={context.dialog}>
-        </MultiplesForms>
+    return (
+        <div>
 
-        <button className="una-submit-button" onClick={()=>setSubmitData(true)}> Salvar </button>
-               
-    </div>)
+            <MultiplesForms 
+                conflicts={productsConflicts}
+                checkList={productsCheckList}
+                trigger_data={submitData} 
+                emitData={submitSaveProducts} 
+                schema={CsvProdutosDTo_schema} 
+                headers={product_headers_schema} 
+                entries={productData} 
+                dialogContext={context.dialog}>
+            </MultiplesForms>
+
+            <button className="una-submit-button" onClick={()=>setSubmitData(true)}> 
+                Salvar 
+            </button>
+                
+        </div>
+    )
 
 }
 

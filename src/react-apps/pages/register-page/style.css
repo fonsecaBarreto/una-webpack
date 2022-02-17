@@ -4,10 +4,17 @@
 }
 
 .add-products-nav-bar{
-    display: flex;
-    flex-direction: row;
+    display: flex;flex-direction: row;
+    width: 100%;
     gap: 10px;
 }
+
+.add-products-container{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 
 .add-products-nav-bar button.nav-header-btn{
     height: 40px;
@@ -21,7 +28,13 @@
     border: solid 1px #ddd;
 }
 
+
 .add-products-nav-bar button.nav-header-btn:hover{
     cursor: pointer;
     background-color: rgb(228, 240, 255);
 } 
+
+.nav-header-btn-save{
+    margin-right: 0;
+    margin-left: auto;
+}

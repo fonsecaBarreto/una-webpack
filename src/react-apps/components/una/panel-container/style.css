@@ -24,7 +24,8 @@
     color: #444;
     border-bottom: solid 1px #ddd;
     background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(105, 105, 105, 0.1) 0%, rgba(77, 77, 77, 0.1)17%, rgba(255,255,255,1) 100%);}
+    background: linear-gradient(90deg, rgba(105, 105, 105, 0.1) 0%, rgba(77, 77, 77, 0.1)17%, rgba(255,255,255,1) 100%);
+}
 
 .header-side-content{
     display: flex;
