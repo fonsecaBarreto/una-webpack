@@ -1,5 +1,5 @@
 import './style.css'
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect, useReducer, useRef, useState} from 'react'
 import GlobalContext from "@/react-apps/apps/main/global-components-context"
 import { product_headers_schema } from './schemas'
 import { MakeDialogConfig } from 'fck-react-dialog'
@@ -11,12 +11,16 @@ import SuplyTable from './tables/supply-table'
 import { AiFillShopping } from 'react-icons/ai'
 import { RiInboxArchiveFill } from 'react-icons/ri'
 import { BsCloudCheckFill } from 'react-icons/bs'
+import UseTrigger from '@/react-apps/components/utils/UseTrigger'
+
 
 export const ListDepartamentosPage = () =>{
 
     const [ pageIndex, setPageIndex ] = useState(0);
     const [ dataFromCsv, setDataFromCsv ] = useState<any[] | null>(null)
     const context = useContext(GlobalContext)
+    const saveTrigger = UseTrigger()
+
     const openImportCsvModal = () =>{
         return (
             context.dialog.push(MakeDialogConfig( ({onAction}) => <ImportCsvModal onAction={onAction} headers={product_headers_schema.map(v=>v.value)} />, (data: any) => {
@@ -41,15 +45,12 @@ export const ListDepartamentosPage = () =>{
                         <React.Fragment> <RiInboxArchiveFill/> Fornecimento </React.Fragment>
                     </SwitchButton>
                     <button className="nav-header-btn" onClick={openImportCsvModal}> <GrDocumentCsv/> Upload .CSV  </button> 
-                    <button className="nav-header-btn nav-header-btn-save"> 
-                        <BsCloudCheckFill/> Salvar
-                     </button>
-               
+                    <button className="nav-header-btn nav-header-btn-save" onClick={saveTrigger.execute}> <BsCloudCheckFill/> Salvar </button>
                 </section>
         
                 <section>
                     { 
-                        pageIndex === 0 ? <ProductsTable override_data={dataFromCsv}></ProductsTable>
+                        pageIndex === 0 ? <ProductsTable override_data={dataFromCsv} trigger={saveTrigger} ></ProductsTable>
                         :  <span> Supply aqui </span> 
                     }
                     {/* <SuplyTable override_data={dataFromCsv}></SuplyTable> */}
@@ -61,3 +62,4 @@ export const ListDepartamentosPage = () =>{
 }
 
 export default ListDepartamentosPage
+

@@ -7,26 +7,19 @@ import { departamentosService } from '@/services/api/departamentos-service'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { setDepartamentos } from '@/react-apps/store/reducers/departaments/actions'
 import { CsvProdutosDTo_schema, product_headers_schema } from '../schemas'
+import UseTrigger from '@/react-apps/components/utils/UseTrigger'
 
 export namespace ProductsTable {
     export type Params = {
-        override_data?: any[] | null
+        override_data?: any[] | null,
+        trigger: any
     }
 }
 
-export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({override_data}) =>{
-    
+/* Departamentos */
+const loadDepartaments = () =>{
     const dispatch = useDispatch()
-    const [ productData, setProductData ] = useState<any[]>([])
     const { departaments_struct, departaments_struct_loadtry } = useSelector((state: any) => state.departamentos)
-    const [ productsConflicts, setProductsConflicts] = useState<any>({})
-    const [ productsCheckList, setProductsCheckList ] = useState<any>({})
-    const [ submitData, setSubmitData ] = useState(false)
-    const context = useContext(GlobalContext)
-
-    /* hooks */
-
-    /* Deve checar se ja foi baixado os departamnetos no redux, do contratio sera baixo asincronamente */
     useEffect(()=>{
         if(departaments_struct_loadtry == 0){
             departamentosService.list().then(struct =>{dispatch(setDepartamentos(struct))});
@@ -37,40 +30,56 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ov
         product_headers_schema[4].list = departaments_struct.presentations;
     },[departaments_struct])
 
-    /* Todas Vez que houver uma nova inserção sera questionado se os dados devem ser sobrescrito ou concatenado */
+    return{ departaments_struct }
+}
+
+export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ override_data, trigger }) =>{
+
+    const saveTrigger = UseTrigger();
+    const context = useContext(GlobalContext)
+    const [ products, setProducts ] = useState<any[]>([])
+    const [ conflicts, setConflicts] = useState<any>({})
+    const [ checkList, setCheckList ] = useState<any>({})
+    loadDepartaments()
+
+    /* Qual houver um gatilho deve executar a função de salvar */
+    useEffect(()=> trigger.setCallBack( () => saveTrigger.execute().then(submitProducts)), [])
+
+    /* Ao perceber a entrada de dados */
     useEffect(()=>{ 
-        if(!override_data) return setProductData([{}]) // Um item vazio
+        if(!override_data) return setProducts([{}]) // Um item vazio
+
         context.dialog.push(MakeNotification((v)=>{
-            if(v == 0 ){ setProductData(override_data) }
-            else if(v == 1){ setProductData((prev:any[])=>([ ...override_data, ...prev ])) }
+
+            if(v == 0 ){ setProducts(override_data) }
+            else if(v == 1){ setProducts((prev:any[])=>([ ...override_data, ...prev ])) }
             return -1
+
         },["Deseja sobrescrever os dados existentes?"], "Atenção", NotificationType.CONFIRMATION))
+
     },[ override_data ])
 
     /* Salvar Produtos */
-    const submitSaveProducts = async (data: any) =>{
+    const submitProducts = async (data: any) =>{
 
-        console.log(data);
-       
-        return setSubmitData(false)
+        var _checkList_keys = Object.keys(checkList)
 
-        var checkList = Object.keys(productsCheckList)
-        var raw_list = data.filter((d: any)=>!checkList.includes(d._id))
-        var productDtos: produtosServices.AddProduct_dto[] = raw_list.map((d:any)=>{
-            const { _id, ean, ncm, sku, specification } =d 
-            const brand_id = d.brand.value
-            const presentation_id = d.presentation.value
-            const sub_category_id = d.category.value
-            var dto: produtosServices.AddProduct_dto = { _id, ean, ncm, sku, specification, brand_id, presentation_id, sub_category_id }
+        var final_products = data.filter((d: any)=>!_checkList_keys.includes(d._id)).map((d:any)=>{
+            const { _id, ean, ncm, sku, specification, brand, presentation, category } =d 
+            var dto: produtosServices.AddProduct_dto = { 
+                _id, ean, ncm, sku, specification, brand_id: brand.value, presentation_id: presentation.value, sub_category_id: category.value
+            }
             return dto;
         })
 
-        // Serializar a data e tranformar o labelView em brand_id, presenda se etc...
         try{
-            var { conflicts, results }= await produtosService.save_mutiples({products: productDtos})
-            setProductsCheckList((prev: any)=> ({ ...prev, ...results}) );
+            var { conflicts, results } = await produtosService.save_mutiples({products: final_products})
+
+            setCheckList((prev: any)=> ({ ...prev, ...results}) );
+
             if(Object.keys(conflicts).length > 0){
-                context.dialog.push( MakeNotification(()=>-1,["Certifique conflitos","Certifique-se de que todos os dados são validos"],  "Atenção", NotificationType.FAILURE),)
+                context.dialog.push( MakeNotification(()=>-1, ["Certifique conflitos","Certifique-se de que todos os dados são validos"],  "Atenção", NotificationType.FAILURE),)
+                
                 var flicts = { ...conflicts}
                 
                 Object.keys(flicts).map(f=>{
@@ -80,33 +89,25 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ov
                     if(c.sub_category_id){ c.category = c.sub_category_id; delete c.sub_category_id}
                     return c
                 })
-                setProductsConflicts(conflicts);
+
+                setConflicts(conflicts);
             }
-        }catch(err){ console.log("err", err) }
-            setSubmitData(false)
+
+        }catch(err){ console.log("err", err) } 
     }
 
     return (
         <div>
-
             <MultiplesForms 
-                conflicts={productsConflicts}
-                checkList={productsCheckList}
-                trigger_data={submitData} 
-                emitData={submitSaveProducts} 
+                entries={products}
+                conflicts={conflicts}
+                checkList={checkList}
+                trigger={saveTrigger}
                 schema={CsvProdutosDTo_schema} 
-                headers={product_headers_schema} 
-                entries={productData} 
-                dialogContext={context.dialog}>
-            </MultiplesForms>
-
-            <button className="una-submit-button" onClick={()=>setSubmitData(true)}> 
-                Salvar 
-            </button>
-                
+                headers={product_headers_schema}>
+            </MultiplesForms>    
         </div>
     )
-
 }
 
 export default ProductsTable

@@ -8,37 +8,25 @@ import { IoMdTrash } from 'react-icons/io'
 import CellInput from './Inputs'
 import MakeRow from '../MakeRow'
 
-
-
-
 export namespace MakeEditContent {
     export type Params = {
-        initial_data: any[],
-        emitData: Boolean,
+        initial_data: any,
         conflict: any,
+        success: any,
         headers: MultiplesForms.Header[],
-        /* Call backs */
         onValidation: (data: any) => Promise<SchemaValidator.Errors | null>,
-        onData: Function,
         onDelete: any
         onClick: any,
-        dataTrigger: any
+        onTrigger: any
     }
 }
 
-export const MakeEditContent: React.FunctionComponent<MakeEditContent.Params> = ({ dataTrigger, conflict, emitData, initial_data, headers, onValidation, onData, onClick,  onDelete  }) => {
-
-    useEffect(()=>{
-        dataTrigger.emitData("Ok")
-    },[dataTrigger.data_trigger])
+export const MakeEditContent: React.FunctionComponent<MakeEditContent.Params> = ({ onTrigger, conflict, success, initial_data, headers, onValidation, onClick,  onDelete  }) => {
 
     const formState = UseStateAdapter(initial_data);
-
+    useEffect(()=>{ if(onTrigger.on === true ){ onTrigger.call(formState.data.get)} },[onTrigger.on])
     useEffect(()=>{ formState.errors.set(conflict?? {}) }, [conflict]) 
-
     useEffect(()=>{ verifyData({ ...formState.data.get}) },[formState.data.get])
-
-    useEffect(()=>{ if(emitData === true){ onData(formState.data.get) }},[emitData])
 
     const verifyData = async (d: object) =>{
         var errors = await onValidation(d)
@@ -56,7 +44,7 @@ export const MakeEditContent: React.FunctionComponent<MakeEditContent.Params> = 
         formState.errors.set(result_errs ?? {})
     }
     return (
-        <MakeRow columns={headers.length}>
+        <MakeRow columns={headers.length} freeze={success ? true : false}>
             <React.Fragment>
                 <button onClick={onClick}>
                     {   ( Object.keys(formState.errors.get).length > 0 ) 
