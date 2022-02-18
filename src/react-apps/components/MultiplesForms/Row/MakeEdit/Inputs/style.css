@@ -1,11 +1,11 @@
 .m-form-row-input.m-form-row-input{
     position: relative;
     box-sizing: border-box;
-    height: 38px;
+    height: 42px;
 }
 
 .m-form-row-input.error {
-     outline: solid 1px rgba(228, 10, 21, 0.12);
+    outline: solid 1px rgba(228, 10, 21, 0.12);
     outline-offset: -1px; 
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import { SchemaValidator } from 'fck-schema-validator'
 import { RiErrorWarningLine } from 'react-icons/ri'
-import { AiOutlineCheckCircle } from 'react-icons/ai'
+import { AiOutlineCheckCircle, AiOutlineCloudSync } from 'react-icons/ai'
 import MultiplesForms from '../..'
 import { IoMdTrash } from 'react-icons/io'
 import CellInput from './Inputs'
@@ -46,10 +46,15 @@ export const MakeEditContent: React.FunctionComponent<MakeEditContent.Params> = 
     return (
         <MakeRow columns={headers.length} freeze={success ? true : false}>
             <React.Fragment>
-                <button onClick={onClick}>
-                    {   ( Object.keys(formState.errors.get).length > 0 ) 
-                        ? <span> <RiErrorWarningLine/></span> 
-                        : <span> <AiOutlineCheckCircle/> </span>    } 
+                <button className={`row-status-btn ${success ? "success": ""}`} onClick={()=>onClick(formState)}>
+                    <span>
+                    {   
+                        ( Object.keys(formState.errors.get).length > 0 ) 
+                        ? <RiErrorWarningLine/> 
+                        : success ? <AiOutlineCloudSync/>
+                        :<AiOutlineCheckCircle/>    
+                    } 
+                    </span>
                 </button>
             </React.Fragment>
             <React.Fragment>

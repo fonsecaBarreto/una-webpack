@@ -14,6 +14,8 @@
 /* HEADER  */
 .mform-row.mform-header{ 
     position: sticky; top: 0; margin-bottom: 2px;
+    z-index: 1;
+    box-shadow: 0px 1px 1px 0px #00000012;
 }
 
 /* Conteudo */
@@ -27,6 +29,25 @@
 
 }
 
+.row-status-btn{
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%; 
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all .1s;
+}
+ 
+.row-status-btn:hover{
+    background-color: rgba(255, 255, 255, 0.87);
+    color: black;
+}
+
+.row-status-btn.success{
+    background-color: rgb(12, 160, 103);
+    color: white;
+}
+
 /* 2FR */
 .mform-row> section:nth-child(2) {
     width: 100%; height: fit-content;
@@ -36,7 +57,6 @@
 }
 
 /* CELULAS */
-
 .mform-row > section:nth-child(2) > div:nth-child(1) {
     border-left: solid 1px #aaa;
 }
@@ -45,14 +65,17 @@
     cursor: default;
     overflow-x: hidden;
     border-right: solid 1px #aaa;
+    min-width: 198px;
+    border: solid 2px red;
 }
 
 /* Se for o header */
 .mform-row.mform-header > section:nth-child(2) > div {
-    height: 38px;
+    height: 42px;
     text-transform: uppercase;
     line-height: 1em;
     font-size: 16px;
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,14 +94,11 @@
     background-color: var(--main-color);
 }
 
-
 .mform-row > section:nth-child(2) > div:hover{ background-color: rgba(253, 122, 0, 0.05);}
 
 /* 3FR */
 
-.mform-row > section:nth-child(3) {
-
-}
+.mform-row > section:nth-child(3) {}
 
 .mform-row >section:nth-child(3) > button{
     display: flex; align-items: center; justify-content: center;
@@ -87,27 +107,20 @@
     border: none;
     font-size: 18px;
     cursor: pointer;
+    transition: all .1s;
 }
-
 
 .mform-row > section:nth-child(3) > button:hover{
     background-color: rgba(255, 255, 255, 0.87);
 }
 
-
 /* freeeze */
-
-.mform-row.freeze{
-    position: relative;
-
-}
-
+.mform-row.freeze { position: relative; }
 
 .mform-row.freeze::after{
     content: "";
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-color: rgba(142, 156, 151, 0.308);
-
+    background-color: rgba(200, 224, 216, 0.308);
 }

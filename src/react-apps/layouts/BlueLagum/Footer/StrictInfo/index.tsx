@@ -13,12 +13,12 @@ export const StrictInfo = () =>{
                         UNA Compras ....Ltda:
                         <span>
                             Rodovia amaral peixoto, 2511 - km 179 loja 01 - barra de macaé. Macaé-RJ. <br/>
-                            CEP: 27973-030 | CNPJ: 00.000.000/0000-00
+                            CEP: 27973-030 | CNPJ: 30.801.165/0001-23
                         </span>
                     </label>
 
                     <label className="strict-label"> 
-                        Atentimento Comercial:
+                         Comercial:
                         <span> adm@unacompras.com.br </span>
                     </label>
 

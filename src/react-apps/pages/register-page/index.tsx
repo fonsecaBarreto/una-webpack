@@ -6,18 +6,17 @@ import { MakeDialogConfig } from 'fck-react-dialog'
 import ImportCsvModal from '@/react-apps/components/ImportCsvModal'
 import { GrDocumentCsv } from 'react-icons/gr'
 import SwitchButton from '@/react-apps/components/una/switchButton'
-import ProductsTable from './tables/products-table'
-import SuplyTable from './tables/supply-table'
+import ProductsTable from './products-table'
+import SuplyTable from './supply-table'
 import { AiFillShopping } from 'react-icons/ai'
 import { RiInboxArchiveFill } from 'react-icons/ri'
 import { BsCloudCheckFill } from 'react-icons/bs'
 import UseTrigger from '@/react-apps/components/utils/UseTrigger'
 
-
 export const ListDepartamentosPage = () =>{
 
     const [ pageIndex, setPageIndex ] = useState(0);
-    const [ dataFromCsv, setDataFromCsv ] = useState<any[] | null>(null)
+    const [ dataFromCsv, setDataFromCsv ] = useState<any[] | null>([...new Array(20)].map(v=>({}))) //null
     const context = useContext(GlobalContext)
     const saveTrigger = UseTrigger()
 
@@ -31,8 +30,8 @@ export const ListDepartamentosPage = () =>{
     }
 
     const changePage = (n:number) =>{
-        setDataFromCsv(null)
-        setPageIndex(n)
+        setDataFromCsv(null);
+        setPageIndex(n);
     }
 
     return (

@@ -5,7 +5,7 @@ export const LayoutFooterConsideration = (({}) => {
     return (
         <div className="footer-consideration">
             <div className="app-container">
-                <p >Copyright©2021, UnaCompras. Todos os direitos reservados.</p>
+                <p >Copyright©2022, Una Compras. Todos os direitos reservados.</p>
             </div>
         </div>
     )

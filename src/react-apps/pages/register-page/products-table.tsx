@@ -6,7 +6,7 @@ import { produtosService, produtosServices } from '@/services/api/produtos-servi
 import { departamentosService } from '@/services/api/departamentos-service'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { setDepartamentos } from '@/react-apps/store/reducers/departaments/actions'
-import { CsvProdutosDTo_schema, product_headers_schema } from '../schemas'
+import { CsvProdutosDTo_schema, product_headers_schema } from './schemas'
 import UseTrigger from '@/react-apps/components/utils/UseTrigger'
 
 export namespace ProductsTable {
@@ -39,7 +39,7 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ o
     const context = useContext(GlobalContext)
     const [ products, setProducts ] = useState<any[]>([])
     const [ conflicts, setConflicts] = useState<any>({})
-    const [ checkList, setCheckList ] = useState<any>({})
+    const [ checkList, setCheckList ] = useState<string[]>([])
     loadDepartaments()
 
     /* Qual houver um gatilho deve executar a função de salvar */
@@ -60,11 +60,11 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ o
     },[ override_data ])
 
     /* Salvar Produtos */
-    const submitProducts = async (data: any) =>{
+    const submitProducts = async ({data, conflicts, checkList}:any) =>{
 
-        var _checkList_keys = Object.keys(checkList)
-
-        var final_products = data.filter((d: any)=>!_checkList_keys.includes(d._id)).map((d:any)=>{
+        var allowed_products = data.filter((d: any)=> !checkList.includes(d._id))
+        
+        var final_products = allowed_products.map((d:any)=>{
             const { _id, ean, ncm, sku, specification, brand, presentation, category } =d 
             var dto: produtosServices.AddProduct_dto = { 
                 _id, ean, ncm, sku, specification, brand_id: brand.value, presentation_id: presentation.value, sub_category_id: category.value
@@ -72,28 +72,50 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ o
             return dto;
         })
 
-        try{
-            var { conflicts, results } = await produtosService.save_mutiples({products: final_products})
+        if(final_products.length > 0){
 
-            setCheckList((prev: any)=> ({ ...prev, ...results}) );
-
-            if(Object.keys(conflicts).length > 0){
-                context.dialog.push( MakeNotification(()=>-1, ["Certifique conflitos","Certifique-se de que todos os dados são validos"],  "Atenção", NotificationType.FAILURE),)
+            try{
+                var { conflicts, results } = await produtosService.save_mutiples({products: final_products})
                 
-                var flicts = { ...conflicts}
+                var s_conflicts = serializeconflicts(conflicts)
+                let s_checkList = resolveCheckList(results)
                 
-                Object.keys(flicts).map(f=>{
-                    const c = flicts[f];
-                    if(c.brand_id){ c.brand = c.brand_id; delete c.brand_id}
-                    if(c.presentation_id){ c.presentation = c.presentation_id; delete c.presentation_id}
-                    if(c.sub_category_id){ c.category = c.sub_category_id; delete c.sub_category_id}
-                    return c
-                })
+                setConflicts(s_conflicts);
+                setCheckList((prev: any)=> ([ ...prev, ...s_checkList]) );
+                
+            }catch(err){ console.log("err", err) } 
+        }else {
+            context.dialog.push( 
+                MakeNotification( ()=> -1 , [ "Opa!", "Nenhum item encontrado", "Verifique as entradas" ],  
+                    "Atenção", NotificationType.INFO)
+            )
+        }
+    }
 
-                setConflicts(conflicts);
-            }
+    const serializeconflicts = (entry:any)=>{
 
-        }catch(err){ console.log("err", err) } 
+        var conflicts = { ...entry };
+        var conflicts_keys = Object.keys(conflicts);
+        if(conflicts_keys.length == 0) return {}
+
+        context.dialog.push( 
+            MakeNotification( ()=> -1 , [ "Certifique conflitos", "Certifique-se de que todos os dados são validos" ],  
+                "Atenção", NotificationType.FAILURE)
+        )
+        
+        conflicts_keys.map( (key: string)=>{
+            const c = conflicts[key];
+            if(c.brand_id){ c.brand = c.brand_id; delete c.brand_id}
+            if(c.presentation_id){ c.presentation = c.presentation_id; delete c.presentation_id}
+            if(c.sub_category_id){ c.category = c.sub_category_id; delete c.sub_category_id}
+            return
+        })    
+        
+        return conflicts
+    }
+
+    const resolveCheckList = (checkList: any) => {
+        return Object.keys(checkList)
     }
 
     return (
