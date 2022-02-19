@@ -1,6 +1,8 @@
 
 #add-products-page {
     padding: 20px 0;
+    height: calc(100vh - var(--header-height-desktop));
+    padding-bottom: 92px;
 }
 
 .add-products-nav-bar{
@@ -13,8 +15,12 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    height: 100%;
 }
 
+.add-products-container > section:nth-child(2){
+   height: 100%;
+}
 
 .add-products-nav-bar button.nav-header-btn{
     height: 40px;

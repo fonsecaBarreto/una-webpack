@@ -86,8 +86,7 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ o
             }catch(err){ console.log("err", err) } 
         }else {
             context.dialog.push( 
-                MakeNotification( ()=> -1 , [ "Opa!", "Nenhum item encontrado", "Verifique as entradas" ],  
-                    "Atenção", NotificationType.INFO)
+                MakeNotification( ()=> -1 , [ "Opa!", "Nenhum item encontrado", "Verifique as entradas" ], "Atenção", NotificationType.INFO)
             )
         }
     }
@@ -119,16 +118,14 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ o
     }
 
     return (
-        <div>
-            <MultiplesForms 
-                entries={products}
-                conflicts={conflicts}
-                checkList={checkList}
-                trigger={saveTrigger}
-                schema={CsvProdutosDTo_schema} 
-                headers={product_headers_schema}>
-            </MultiplesForms>    
-        </div>
+        <MultiplesForms 
+            entries={products}
+            conflicts={conflicts}
+            checkList={checkList}
+            trigger={saveTrigger}
+            schema={CsvProdutosDTo_schema} 
+            headers={product_headers_schema}>
+        </MultiplesForms>    
     )
 }
 

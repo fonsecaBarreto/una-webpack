@@ -9,10 +9,39 @@
 }
   
 .app-multiples-form{
+    position: relative;
     width: 100%; height: 100%;
-    display: flex;  flex-direction: column; align-items: flex-start; justify-content: flex-start;
     animation-name: turnAround;  animation-duration: .15s;
+    overflow: scroll; 
 }
+/* scroll */
+.app-multiples-form::-webkit-scrollbar {
+    width: 12px;    
+    height: 12px;           
+}
+
+.app-multiples-form::-webkit-scrollbar-track {
+    background: rgb(245, 245, 245);        
+}
+  
+.app-multiples-form::-webkit-scrollbar-thumb {
+    background-color: rgb(194, 194, 194);  
+    border-radius: 18px;      
+    border: solid 2px rgb(245, 245, 245); 
+} 
+
+
+/* grid aqui */
+
+.app-multiples-form > section.mform-grid {
+    position: absolute; top:0; left:0;
+    width: fit-content; height: fit-content;
+    min-width: 100%;
+    display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start;
+    background-color: rgba(255, 255, 255, 0.322);
+}
+
+/* freeze */
 
 .app-multiples-form.freeze {
     position: relative;
@@ -33,26 +62,3 @@
     background-size: 100%;
     opacity: .6;
 }
-
-.app-multiples-form > section.mform-grid {
-    width: 100%; height: 560px;
-    overflow-y: scroll; 
-    overflow-x: scroll!important;
-    background-color: rgba(255, 255, 255, 0.322);
-    border: solid 2px red;
-}
-
-/* 
-.app-multiples-form > section.mform-grid::-webkit-scrollbar {
-    width: 10px;               
-}
-
-.app-multiples-form > section.mform-grid::-webkit-scrollbar-track {
-    background: rgb(247, 247, 247);        
-}
-  
-.app-multiples-form > section.mform-grid::-webkit-scrollbar-thumb {
-    background-color: rgb(224, 224, 224);  
-    border-radius: 20px;      
-    border: solid 2px rgb(247, 247, 247); 
-} */

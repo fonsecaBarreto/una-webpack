@@ -65,8 +65,7 @@
     cursor: default;
     overflow-x: hidden;
     border-right: solid 1px #aaa;
-    min-width: 198px;
-    border: solid 2px red;
+    min-width: 98px;
 }
 
 /* Se for o header */
