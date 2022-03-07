@@ -18,6 +18,8 @@ import queryString from 'query-string'
 import CompanyStaffPanel from './company-staff-panel'
 import CompanyFilesPanel from './company-files-panel'
 import { AiFillPlusCircle } from 'react-icons/ai'
+import { BiCurrentLocation } from 'react-icons/bi'
+import AbrangenciaForm from '@/react-apps/forms/AbrangenciaForm'
 
 
 export const CompanyProfilePage: React.FunctionComponent<any> = ({location, history, match}) => {
@@ -38,6 +40,13 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
             ({onAction}: any) => ( <UserForm company_id={company_id} entry={entry} onAction={onAction} onData={afterStaffUpdated}/> ),
             (v) =>{ history.push({ search: `` });return -1 
             }, "Usuario"))
+    }
+
+    const openAbrangenciaModal = () =>{
+        return context.dialog.push(MakeDialogConfig(
+            ({onAction}: any) => ( <AbrangenciaForm  onAction={onAction}/>), 
+            (v) =>{ history.push({ search: `` }) ;return -1 
+            }, "Abrangência"))
     }
 
     const loadContent = async () =>{
@@ -72,6 +81,10 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
                     return openUserModal(user_entry)
                 }
             }
+        } else if(parsed.coverage){
+            switch(parsed?.coverage){
+                case "1": return openAbrangenciaModal()
+            }
         }
     }
 
@@ -88,6 +101,7 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
                 <PanelContainer 
                     title="Informações da Companhia"  icon={<BsInfoCircle/>} 
                     headerButtons={[
+                        { content: <BiCurrentLocation/>, onClick: () => history.push({ search: `?coverage=${1}` }) },
                         { content: <RiSearch2Fill/>, onClick: () => history.push({ search: `?company=${1}` }) },
                         { content: <BsArchiveFill/>, onClick: () => history.push({ search: `?company=${1}` }) },
                         { content: <RiFileEditFill/>, onClick: () => history.push({ search: `?company=${1}` }) }
