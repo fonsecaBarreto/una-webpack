@@ -38,7 +38,7 @@ const ENDERECO_INITIAL_DATA = {
     bairro: "",
     cidade: "",
     uf: "",
-    cep: "28893693"
+    cep: ""
 }
 
 export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {setLoading: Function}) =>{
