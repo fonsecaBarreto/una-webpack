@@ -1,0 +1,25 @@
+.cepinput-control{
+    position: relative;
+}
+
+.cepinput-control > button{
+    position: absolute;
+    top: 0; bottom: 0;
+    right: 8px;
+    margin: auto;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    border: none;
+    background-color: rgb(224, 224, 224);
+    cursor: pointer;
+    transition: .1s all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.cepinput-control > button:hover{
+    background-color: rgb(235, 235, 235);
+}

@@ -16,7 +16,6 @@ export namespace CompanhiasServices {
 }
 
 export const companhiasServices = {
-
      save: async (params: any) => {
           const data = { ...params };
           const METHOD = data.id ? "PUT" : "POST"
@@ -25,16 +24,35 @@ export const companhiasServices = {
           const resp = await companhiasApi.send({ method: METHOD, url: URL, data }) 
           return resp.data 
      },
-
      list: async (params: CompanhiasServices.ListParams) => {
           const { v="", p= 1, ativo=""} = params
           var query = `?p=${p}&v=${v}&ativo=${ativo}`
           const { data } = await companhiasApi.send({ method: "get", url: `/${query}` }) 
           return data 
      },
-
      find: async (id:string) => {
           const { data } = await companhiasApi.send({ method: "get", url: `/${id}` }) 
+          return data 
+     }
+}
+
+export const coverageServices = {
+
+     save: async (params: { id:number, cidades:string[]}[], company_id:string) => {
+          const data = { ufs: [...params] };
+          const resp = await companhiasApi.send({ 
+               method: "POST",
+               url: `/${company_id}/coverage`, 
+               data 
+          }) 
+          return resp.data 
+     },
+
+     find: async (id:string) => {
+          const { data } = await companhiasApi.send({ 
+               method: "get", 
+               url: `/${id}/coverage` 
+          }) 
           return data 
      }
 }

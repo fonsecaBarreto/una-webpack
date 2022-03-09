@@ -42,9 +42,9 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
             }, "Usuario"))
     }
 
-    const openAbrangenciaModal = () =>{
+    const openAbrangenciaModal = ( company_id:string) =>{
         return context.dialog.push(MakeDialogConfig(
-            ({onAction}: any) => ( <AbrangenciaForm  onAction={onAction}/>), 
+            ({onAction}: any) => ( <AbrangenciaForm  onAction={onAction} company_id={company_id}/>), 
             (v) =>{ history.push({ search: `` }) ;return -1 
             }, "Abrangência"))
     }
@@ -83,7 +83,7 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
             }
         } else if(parsed.coverage){
             switch(parsed?.coverage){
-                case "1": return openAbrangenciaModal()
+                case "1": return openAbrangenciaModal(company.id)
             }
         }
     }
@@ -102,8 +102,6 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
                     title="Informações da Companhia"  icon={<BsInfoCircle/>} 
                     headerButtons={[
                         { content: <BiCurrentLocation/>, onClick: () => history.push({ search: `?coverage=${1}` }) },
-                        { content: <RiSearch2Fill/>, onClick: () => history.push({ search: `?company=${1}` }) },
-                        { content: <BsArchiveFill/>, onClick: () => history.push({ search: `?company=${1}` }) },
                         { content: <RiFileEditFill/>, onClick: () => history.push({ search: `?company=${1}` }) }
                         ]}>
                     <CompanyInfoPanel company={companhia}></CompanyInfoPanel>

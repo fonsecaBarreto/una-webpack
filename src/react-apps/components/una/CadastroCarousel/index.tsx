@@ -1,15 +1,16 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useContext, useEffect} from 'react'
 import './style.css'
 import CarouselFrame from './CarouselFrame'
-import { Controls, Forming } from 'fck-components'
-import { UseStateAdapter } from 'fck-components/lib/Controls'
+import { Controls, Forming } from 'fck-react-input-controls'
+import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import { CadastroCompanhia_schema, CadastroEndereco_schema, CadastroUsuario_schema } from './schemas'
 import { ValidationSchema, Validator } from 'fck-schema-validator'
 import GlobalComponentsContext from '@/react-apps/apps/main/global-components-context'
-import ufs from './ufs.json'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { loginServices } from "@/services/api/login-service"
 import { useHistory } from 'react-router-dom'
+import CepInputControl from '../inputs-control/CepInputControl'
+import { getCitiesByUf, getUfs } from '@/services/ibge'
 
 const validator = new Validator()
 
@@ -31,21 +32,38 @@ const JURIDICO_INITIAL_DATA ={
 }
 const ENDERECO_INITIAL_DATA = {
     rua: "",
+    ibge: "",
     numero: "",
     detalhes: "",
     bairro: "",
     cidade: "",
-    uf: { value:"", label: ""},
-    cep: ""
+    uf: "",
+    cep: "28893693"
 }
 
 export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {setLoading: Function}) =>{
     const history = useHistory()
+    const [ ufs, setUfs ] = useState([])
+    const [ cidades, setCidades ] = useState([])
+
     const GlobalContext = useContext(GlobalComponentsContext)
     const signupState = UseStateAdapter(SIGNUP_INITIAL_DATA)
     const enderecoState = UseStateAdapter(ENDERECO_INITIAL_DATA)
     const juridicoState = UseStateAdapter(JURIDICO_INITIAL_DATA)
     const [ carouselInitialIndex, setCarouselInitialIndex] = useState(-1)
+
+    useEffect(()=>{
+        enderecoState.loading.set(true);
+        getUfs().then((ufs)=>setUfs(ufs.map((u:any)=>({value: u.id, label: u.nome, sigla: u.sigla })))).finally(()=>enderecoState.loading.set(false))
+    },[])
+
+    useEffect(()=>{
+        let uf = enderecoState.data.get["uf"];
+        if(uf =="") return;
+        enderecoState.loading.set(true);
+        getCitiesByUf(uf.value).then( cidades => setCidades(cidades.map((u:any)=>({value: u.id, label: u.nome})))).finally(()=>enderecoState.loading.set(false))
+    },[enderecoState.data.get["uf"]])
+
     const validateFields = async (schema: ValidationSchema, data: any, setErrors: Function) =>{
         const errors = await validator.validate(schema, data)
         if(errors) { setErrors(errors); return -1; }
@@ -99,6 +117,17 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
         } 
     } 
 
+    const handleCep = (result: any) =>{
+        if(!result) return enderecoState.loading.set(false)
+        const { ibge, logradouro, complemento, bairro }  = result
+        const uf_id = (ibge+"").substring(0,2);
+        enderecoState.data.onInput("uf",{ value: uf_id });
+        enderecoState.data.onInput("cidade",{ value: ibge });
+        enderecoState.data.onInput("rua",logradouro);
+        enderecoState.data.onInput("bairro", bairro);
+        enderecoState.data.onInput("detalhes", complemento);
+        enderecoState.loading.set(false);
+    }
 
     const carouselFrames = [
         { title: "Dados Pessoais",
@@ -148,19 +177,19 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
             next: submit,
             nextLabel: "Finalizar",
             content: (
-            <Forming.FormGrid title="" columns={[6, 6, 7, 5, 12]}>
-                <Controls.TextBox 
-                    state={enderecoState} label={"Cep"} name={"cep"} type={Controls.TextBoxTypes.TEXT}  placeHolder={'Exemplo : 123456-123'}  mask="99999-999"  />
-                <Controls.SelectBox 
-                    state={enderecoState} label="UF" name={"uf"} list={ufs.UFS}  > </Controls.SelectBox>
-                <Controls.TextBox placeHolder={'Exemplo: Rua Silva'}
-                    state={enderecoState} label={"Logradouro"} name={"rua"} type={Controls.TextBoxTypes.TEXT}/>
+            <Forming.FormGrid title="" columns={[6, 6, 7, 5, 12]} freeze={enderecoState.loading.get}>
+                <CepInputControl beforeSubmit={()=>enderecoState.loading.set(true)} onData={handleCep} 
+                    value={enderecoState.data.get['cep']} onInput={(v)=>enderecoState.data.onInput('cep', v)}/>
+                <Controls.SelectBox disabled={ufs.length == 0 ? true : false}
+                    state={enderecoState} label="UF" name={"uf"} list={ufs}  > </Controls.SelectBox>
+                <Controls.SelectBox disabled={ cidades.length == 0 ? true : false}
+                    state={enderecoState} label="Cidade" name={"cidade"} list={cidades}  > </Controls.SelectBox>
                 <Controls.TextBox placeHolder={"Exemplo: 99"} 
                     state={enderecoState} label={"Numero"} name={"numero"} type={Controls.TextBoxTypes.TEXT}/>
                 <Controls.TextBox placeHolder={"Exemplo: Bairro das Flores"}
                     state={enderecoState} label={"Bairro "} name={"bairro"} type={Controls.TextBoxTypes.TEXT}/>
                 <Controls.TextBox placeHolder={"Exemplo: Macaé"}
-                    state={enderecoState} label="Cidade" name={"cidade"} type={Controls.TextBoxTypes.TEXT}/> 
+                    state={enderecoState} label="Logradouro" name={"rua"} type={Controls.TextBoxTypes.TEXT}/> 
                 <Controls.TextBox placeHolder={"Exemplo: Proximo a fármacia"}
                     state={enderecoState} label="Complemento " name={"detalhes"} type={Controls.TextBoxTypes.TEXTAREA}/> 
             </Forming.FormGrid>

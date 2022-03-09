@@ -4,6 +4,8 @@ import { Controls, Forming } from 'fck-react-input-controls'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import UnaModalForm from '../components/una/ModalForm'
 import ufs from './ufs.json'
+
+import { searchCep } from '@/services/viacep'
 const INITIAL_DATA= {
     rua: "",
     numero: "",
@@ -27,11 +29,15 @@ export const UserForm: React.FunctionComponent<UserForm.Params> = ({ entry }) =>
         state.data.set(entry ? entry : INITIAL_DATA) 
     },[entry])
 
+    useEffect(()=>{
+        console.log('cep aqui')
+    },[state.data.get])
+
     return (
         <UnaModalForm onSave={()=>{}} onCancel={()=>{}} >
             <Forming.FormGrid title="" columns={[6, 6, 7, 5, 12]}>
-                <Controls.TextBox 
-                    state={state} label={"Cep"} name={"cep"} type={Controls.TextBoxTypes.TEXT}  placeHolder={'Exemplo : 123456-123'}  mask="99999-999"  />
+                <Controls.TextBox state={state} label={"Cep"} name={"cep"} 
+                    type={Controls.TextBoxTypes.TEXT}  placeHolder={'Exemplo : 123456-123'}  mask="99999-999"  />
                 <Controls.SelectBox 
                     state={state} label="UF" name={"uf"} list={ufs.UFS}  > </Controls.SelectBox>
                 <Controls.TextBox placeHolder={'Exemplo: Rua Silva'}

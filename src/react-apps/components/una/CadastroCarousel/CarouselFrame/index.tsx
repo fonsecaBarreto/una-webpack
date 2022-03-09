@@ -24,7 +24,7 @@ export namespace CarouselFrame {
 
 export const CarouselFrame: React.FunctionComponent<any> =  ({ loading, frames, forceIndex }) =>{
 
-    const [ pageIndex, setPageIndex ] = useState(0);
+    const [ pageIndex, setPageIndex ] = useState(2); // 0
     useEffect(()=>{
         if(forceIndex == -1) return;
         setPageIndex(forceIndex)},[forceIndex])
