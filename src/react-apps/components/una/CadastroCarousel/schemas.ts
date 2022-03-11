@@ -24,6 +24,7 @@ export const CadastroEndereco_schema =  builder.create(b=>{
     b.string('detalhes').optional()
     b.string('bairro')
     b.string('cidade')
-    b.string('uf')
+    b.number('uf')
+    b.number('ibge')
     b.string('cep')
 })

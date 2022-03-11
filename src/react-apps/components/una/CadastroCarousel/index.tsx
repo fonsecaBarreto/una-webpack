@@ -72,17 +72,28 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
 
     const submit = async () =>{
 
-        var r = await validateFields( CadastroEndereco_schema, { ...enderecoState.data.get, uf: enderecoState.data.get["uf"].value }, enderecoState.errors.set)
+        // Validar Formulario de endereço
+        var enderecosData = { 
+            ...enderecoState.data.get, 
+            uf: Number(enderecoState.data.get["uf"].value ),
+            ibge: Number(enderecoState.data.get["cidade"].value),
+            cidade: enderecoState.data.get["cidade"].label,
+        }
+        var r = await validateFields( CadastroEndereco_schema, enderecosData, enderecoState.errors.set);
         if(r == -1) return
+
+        // Continua
         setLoading(true);
         signupState.errors.set({})
         enderecoState.errors.set({})
         juridicoState.errors.set({}) 
+
         const data = { 
             usuario: { ...signupState.data.get }, 
             companhia: { ...juridicoState.data.get },
-            endereco: { ...enderecoState.data.get, uf: enderecoState.data.get["uf"].value }, 
+            endereco: enderecosData, 
         }
+
         try{
             const result = await loginServices.signup(data);
             GlobalContext.dialog.push(MakeNotification(()=>-1,[ 
@@ -119,10 +130,10 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
 
     const handleCep = (result: any) =>{
         if(!result) return enderecoState.loading.set(false)
-        const { ibge, logradouro, complemento, bairro }  = result
+        const { ibge, logradouro, complemento, bairro, localidade }  = result
         const uf_id = (ibge+"").substring(0,2);
         enderecoState.data.onInput("uf",{ value: uf_id });
-        enderecoState.data.onInput("cidade",{ value: ibge });
+        enderecoState.data.onInput("cidade",{ value: ibge, label: localidade });
         enderecoState.data.onInput("rua",logradouro);
         enderecoState.data.onInput("bairro", bairro);
         enderecoState.data.onInput("detalhes", complemento);
