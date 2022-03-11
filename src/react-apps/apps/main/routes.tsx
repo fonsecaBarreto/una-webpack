@@ -13,6 +13,7 @@ import CompanhiasPage from "@/react-apps/pages/list-companhias-page";
 import LoginPage from "@/react-apps/pages/login-page";
 import CadastroPage from "@/react-apps/pages/register-page";
 import ProfilePage from "@/react-apps/pages/profile-page";
+import CotacoesPage from '@/react-apps/pages/list-cotacao-page'
 
 export const RouterComponent = () =>{
 
@@ -39,7 +40,6 @@ export const RouterComponent = () =>{
         /* Se retornar um string, o app sera redirecionado para lá */
     }
 
-
     const config: PageRouterConfig[] =[ 
       {
         layout: BlueLagumLayout,
@@ -59,6 +59,7 @@ export const RouterComponent = () =>{
             { path: "mercado", title: "Mercado",  component: DeparamentoPage } ,
             { path: "companhias", title: "Companhias",  component: CompanhiasPage } ,
             { path: "registrar-produtos", title: "Registar Produtos",  component: CadastroPage },
+            { path: "cotacoes", title: "Cotações", component: CotacoesPage },
             { path: "perfil/:id", title: "Perfil Companhia",  component: ProfilePage } ,
             { path: "", title: "Inicio",  component:() => <Redirect to="/mercado"></Redirect> } ,
             { path: "*", title: "404",  component: () => <div><h1>404</h1></div> }

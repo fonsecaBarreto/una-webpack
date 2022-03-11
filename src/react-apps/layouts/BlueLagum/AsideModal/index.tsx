@@ -10,7 +10,7 @@ export namespace BlueLagumAsideModal {
         content: ReactNode,
         footer: ReactNode,
         dir?: "left" | "right",
-        className: string
+        className?: string
     }
 }
 

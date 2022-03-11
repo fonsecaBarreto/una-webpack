@@ -35,9 +35,7 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
     const [ showCart, setShowCart ] = useState(false)
 
     const openCart = () =>{
-
         if(!user){
-
             return Context.dialog.push( MakeDialogConfig(ForbiddenCartModal,
                 (n)=>{
                     switch(n){
@@ -46,7 +44,6 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
                     }
                     return -1;
                 }, "UNA-SE AO JOGO DOS GRANDES"))
-
         }else{
             setShowCart(!showCart) 
         } 
@@ -60,9 +57,7 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
                 <LayoutHeader toggleCart={openCart}></LayoutHeader>
             </header> 
 
-            <main>
-                {children}
-            </main>
+            <main>  {children} </main>
 
             <footer>
                 <LayoutFooter></LayoutFooter>  

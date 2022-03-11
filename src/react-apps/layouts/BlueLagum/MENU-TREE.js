@@ -3,6 +3,7 @@ import React from 'react'
 import { AiFillShop } from 'react-icons/ai'
 import { MdBusiness } from 'react-icons/md'
 import { BsPlusCircleDotted } from 'react-icons/bs'
+import { GiNotebook } from 'react-icons/gi'
 import { CgProfile } from 'react-icons/cg'
 import { UserProfileRole } from '@/domain/views/User'
 
@@ -11,6 +12,7 @@ import { UserProfileRole } from '@/domain/views/User'
 export const ADMIN_TREE = (user) =>{
     if( !user.roles.includes(UserProfileRole.ADMIN) ) return []
     return ([
+        {label:"Cotações", toDo:"/cotacoes", icon:<GiNotebook/>},
         {label:"Companhias", toDo:"/companhias", icon:<MdBusiness/>},
         {label:"Publicar", toDo:"/registrar-produtos", icon:<BsPlusCircleDotted/>},
     ])
