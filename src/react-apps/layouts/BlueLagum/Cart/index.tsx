@@ -68,9 +68,9 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
             });
             context.dialog.push(MakeNotification(()=>{return -1},["Obrigado.", "Cotação realizada com sucesso!"], "Sucesso!", NotificationType.SUCCESS))
             onClose()
+            dispatch(setCart([]))
         }catch(err: any){
             context.dialog.push(MakeNotification(()=>{return -1},[err.mesage ?? "Erro inesperado"], "Erro!", NotificationType.SUCCESS))
-
         }
     }
 
