@@ -3,7 +3,7 @@ import './style.css'
 import { companhiasServices } from '@/services/api/companhias-service'
 import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
-import { setCompanhias } from '@/react-apps/store/reducers/companies/actions'
+import { CompaniesState, setCompanhias } from '@/react-apps/store/reducers/companies'
 import { useDispatch, useSelector } from 'react-redux'
 import CompanyItem from './Item'
 import FiltersNav from './FiltersNav'
@@ -16,27 +16,26 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
 
     const dispatch = useDispatch();
     const context = useContext(GlobalContext)
-    const { companies_listview } = useSelector<any>((state: any)=>state.companies)
+    const ListData: any = useSelector<CompaniesState>((state: any)=>state.companies)
 
+    /* queries change */
     useEffect(()=>{
       if(!location.search) return
       const parsed = queryString.parse(location.search);
       if(parsed?.id) {
         context.dialog.push(MakeDialogConfig(()=><CompanhiaViewModal companhia_id={parsed.id+""} />,()=>{
-          history.push({ search: `` }) 
-          return -1
+          history.push({ search: `` }); return -1;
         }, "Companhias"))
       }
     },[location.search])
 
+    /* Listar Companhias */
     const listCompanhias = (filters: any) =>{
       const v = filters.text_value;
       const ativo = filters.status.length == 0 ? "" : filters.status[0].value
       companhiasServices.list({ v, ativo }).then(resp => { dispatch(setCompanhias(resp, false))})
     }
-
-    const filtersChanged = (filters: any) => { listCompanhias(filters);  }
-    
+    /* actions */
     const handleActions = (key: any, payload: any) =>{
       if(key === "options"){
         context.dialog.push(MakeOptions((n)=>{ 
@@ -57,11 +56,11 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
         <div id="companhias-page">
           <div className='app-container'>
                  <ContentGrid>
-                    <FiltersNav onChange={filtersChanged}/>
+                    <FiltersNav onChange={listCompanhias}/>
                     <ContentPool 
                         initial_mode="inline"
                         itemComponent={CompanyItem} 
-                        list_data={companies_listview} 
+                        list_data={ListData} 
                         dataAlias={"companies"}
                         onAction={handleActions}>
                     </ContentPool> 

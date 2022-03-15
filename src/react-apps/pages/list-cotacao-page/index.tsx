@@ -13,7 +13,6 @@ export const ListCotacaoPage = ()=>{
     useEffect(()=>{ if(ListData.sync == 0 ){ listBudgets() } },[])
 
     const listBudgets = (filters?: any) =>{
-        console.log("Loading budgets here with filters: ", filters)
         budgetServices.list(filters).then(resp => dispatch(setBudgets(resp, false)))
     }
 

@@ -36,8 +36,6 @@ export const BudgetFiltersNav: React.FunctionComponent<BudgetFiltersNav.Params> 
                 onChange={(v: any)=>setFilters( prev => ({...prev, ldate: v }))}  
                 title="Data Limite"></DateControl>
 
-
-                {JSON.stringify(filters)}
           {/*   <SelectorNav 
                 radio={true}
                 title="Status" 
