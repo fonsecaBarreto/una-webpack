@@ -15,7 +15,6 @@ export const INITIAL_PRODUCTS_LISTING_VIEW = {
 const INITIAL_STATE = {
      departaments_struct: { ...INITIAL_DEPARTAMENTOS_STRUCT },
      departaments_struct_loadtry: 0,
-
      products_listingview: { ...INITIAL_PRODUCTS_LISTING_VIEW },
      toSubmit: false
 }

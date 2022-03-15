@@ -24,7 +24,7 @@ const BlueLakeMenu: React.FunctionComponent<BlueLakeMenu.Params> = ({ menuState,
             </section>
             <section>
                 <ul> {      
-                    menuTree.map((p,i) => ( <MenuItem selected={false} config={p} key={i} menuState={menuState}> </MenuItem>))
+                    menuTree.map((p:any,i:number) => ( <MenuItem selected={false} config={p} key={i} menuState={menuState}> </MenuItem>))
                 } </ul> 
             </section> 
             <section>

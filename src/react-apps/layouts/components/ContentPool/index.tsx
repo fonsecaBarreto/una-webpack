@@ -5,11 +5,12 @@ import { ListingView } from '@/domain/views/ListingView'
 import { RiLayoutGridFill } from 'react-icons/ri'
 import { VscThreeBars } from 'react-icons/vsc'
 import LoadingComponent from '@/react-apps/components/una/Loading'
+import { json } from 'stream/consumers'
 
 export namespace ContentPool {
     export type Params = {
         itemComponent: React.FunctionComponent<any>,
-        list_data: ListingView<any>,
+        list_data: ListingView<any, any>,
         onAction: (key?:string, payload?: any)=>void,
         initial_mode?: ListMode
         dataAlias?:string
@@ -21,7 +22,7 @@ export type ListMode = "inline" | "block"
 export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ dataAlias, list_data, itemComponent: ItemComponent, onAction, initial_mode="block" }) =>{
 
     const [ listMode, setListMode ] = useState<ListMode>(initial_mode)
-    const { pageIndex, pages, data, total, length } = list_data
+    const { pageIndex, pages, data, queries, total, length } = list_data
     const [ poolData, setPoolData] = useState<any>([])
     const [ loading, setLoading ] = useState(true)
 
@@ -35,7 +36,9 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ dataA
         <div className="bl-common-content-pool">
 
             <header>
-                <section>  <label> Total: <span> {length}/{total}</span> </label> </section>
+                <section>  
+                    <label> Total: <span> {length}/{total}</span> </label>  
+                </section>
                 <section>
                     <nav>
                         <button onClick={()=>setListMode("block")}> <RiLayoutGridFill/></button>

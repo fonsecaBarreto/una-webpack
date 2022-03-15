@@ -1,0 +1,27 @@
+
+
+.nav-selector-wrapper .nav-selector-wrapper-body ul{
+    width: 100%;
+    list-style-type: none;
+    margin: 0; padding: 0;
+    display: flex; flex-direction: column;
+    gap: 4px;
+}
+
+.nav-selector-wrapper .nav-selector-wrapper-body ul li{
+    display: flex; flex-direction: row; align-items: center;
+    width: 100%; height: 26px;
+    border-radius: 12px;
+    padding-left: 12px;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.nav-selector-wrapper .nav-selector-wrapper-body ul li:hover{
+    color:rgb(216, 84, 8) ;
+}
+
+.nav-selector-wrapper .nav-selector-wrapper-body ul li.selected{
+    background-color: rgba(126, 172, 233, 0.3);
+    position: relative;
+}

@@ -31,14 +31,16 @@ export const budgetServices = {
           const resp = await budgetsApi.send({ method: METHOD, url: URL, data }) 
           return resp.data 
      },
-     list: async (params: BudgetServices.ListParams) => {
-          const { p = 1 } = params;
+     list: async (params: Partial<BudgetServices.ListParams>={}) => {
+          const { p = 1, idate, ldate } = params;
           var query = `?p=${p}`;
-          (["company", "idate", "ldate", "user"]).map( (v:string)=>{
+          if(idate) query+=`&idate=${new Date(idate).getTime()}`;
+          if(ldate) query+=`&ldate=${new Date(ldate).getTime()}`;
+          (["company", "user"]).map( (v:string)=>{
                var filter :any = { ...params }[v];
-               filter.length > 0 && filter.map((f:any)=>{ query+=`&${v}=${f}` });
+               filter?.length > 0 && filter.map((f:any)=>{ query+=`&${v}=${f}` });
           })
-          const { data } = await budgetsApi.send({ method: "get", url: `/${query}` }) 
+          const { data } = await budgetsApi.send({ method: "get", url: `${query}` }) 
           return data 
      }
 }
