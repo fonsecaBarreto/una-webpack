@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './style.css'
 import CartItem from './CartItem'
 import { useSelector, useDispatch} from 'react-redux'
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
 import BlueLagumAsideModal from '../AsideModal'
 import { budgetServices } from '@/services/api/budget-service'
-
+import GlboalContenxt from "@/react-apps/apps/main/global-components-context"
+import { MakeNotification, NotificationType } from 'fck-react-dialog'
 export namespace LayoutCart {
     export type Params = {
         show: boolean,
@@ -39,6 +40,7 @@ const CartFooter = ({total, onSubmit}: {total: number, onSubmit: any}) =>{
 /* Carrinho*/
 export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, onClose }) =>{
 
+    const context = useContext(GlboalContenxt)
     const { user } = useSelector((state: any)=>state.main);
     const { cart } = useSelector((state: any)=>state.carrinho);
     var [ totalProducts, setTotalProducts ]= useState(0);
@@ -59,10 +61,17 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
     }
 
     const submit = async () =>{
-        await budgetServices.save({
-            products: cart.map((c:any)=>({ product_id: c.product.id, quantity: c.qtd})),
-            user_id: user.id
-        })
+        try{
+            await budgetServices.save({
+                products: cart.map((c:any)=>({ product_id: c.product.id, quantity: c.qtd})),
+                company_id: user.company_id
+            });
+            context.dialog.push(MakeNotification(()=>{return -1},["Obrigado.", "Cotação realizada com sucesso!"], "Sucesso!", NotificationType.SUCCESS))
+            onClose()
+        }catch(err: any){
+            context.dialog.push(MakeNotification(()=>{return -1},[err.mesage ?? "Erro inesperado"], "Erro!", NotificationType.SUCCESS))
+
+        }
     }
 
     useEffect(()=>{

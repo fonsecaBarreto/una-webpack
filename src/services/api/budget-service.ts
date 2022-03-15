@@ -2,7 +2,7 @@ import { Product } from '@/domain/views/Product'
 import { global } from '@/services/global-keys'
 import { MakeApiSettings, errorHandler } from './helpers'
 
-const companhiasApi = MakeApiSettings({
+const budgetsApi = MakeApiSettings({
      base_url: `${global.base_url}/budgets`,
      errorHelper: errorHandler, 
      storage_key: global.user_storage_key
@@ -10,19 +10,36 @@ const companhiasApi = MakeApiSettings({
 
 export namespace BudgetServices {
      export type SaveParams = {
-        user_id:string
+        company_id: string,
         products: { product_id: string, quantity: string}[]
+    }
+    export type ListParams = {
+         p: number,
+         user: string[],
+         company: string[],
+         idate: Date,
+         ldate: Date
     }
 }
 
 export const budgetServices = {
      save: async (params: BudgetServices.SaveParams) => {
-          const data = { ...params };
-          console.log(data)
+          const { company_id, ...rest } = params;
+          const data = { ...rest };
           const METHOD =  "POST"
-          const URL = ""
-          const resp = await companhiasApi.send({ method: METHOD, url: URL, data }) 
+          const URL = `/${company_id}`
+          const resp = await budgetsApi.send({ method: METHOD, url: URL, data }) 
           return resp.data 
+     },
+     list: async (params: BudgetServices.ListParams) => {
+          const { p = 1 } = params;
+          var query = `?p=${p}`;
+          (["company", "idate", "ldate", "user"]).map( (v:string)=>{
+               var filter :any = { ...params }[v];
+               filter.length > 0 && filter.map((f:any)=>{ query+=`&${v}=${f}` });
+          })
+          const { data } = await budgetsApi.send({ method: "get", url: `/${query}` }) 
+          return data 
      }
 }
 
