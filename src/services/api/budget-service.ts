@@ -27,7 +27,7 @@ export const budgetServices = {
           const { company_id, ...rest } = params;
           const data = { ...rest };
           const METHOD =  "POST"
-          const URL = `/${company_id}`
+          const URL = `/${company_id}/create`
           const resp = await budgetsApi.send({ method: METHOD, url: URL, data }) 
           return resp.data 
      },
@@ -41,6 +41,10 @@ export const budgetServices = {
                filter?.length > 0 && filter.map((f:any)=>{ query+=`&${v}=${f}` });
           })
           const { data } = await budgetsApi.send({ method: "get", url: `${query}` }) 
+          return data 
+     },
+     find: async (budget_id: string) => {
+          const { data } = await budgetsApi.send({ method: "get", url: `/${budget_id}` }) 
           return data 
      }
 }

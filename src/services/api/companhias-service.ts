@@ -24,8 +24,12 @@ export const companhiasServices = {
           const resp = await companhiasApi.send({ method: METHOD, url: URL, data }) 
           return resp.data 
      },
-     list: async (params: CompanhiasServices.ListParams) => {
-          const { v="", p= 1, ativo=""} = params
+     list: async (params: Partial<CompanhiasServices.ListParams>) => {
+     /*      const { v="", p= 1, ativo=""} = params */
+
+          console.log("parametros", params);
+          return {};
+          
           var query = `?p=${p}&v=${v}&ativo=${ativo}`
           const { data } = await companhiasApi.send({ method: "get", url: `/${query}` }) 
           return data 

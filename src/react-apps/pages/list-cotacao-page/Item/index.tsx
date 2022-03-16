@@ -14,7 +14,7 @@ export namespace BudgetListViewItem {
 
 export const BudgetListViewItem: React.FunctionComponent<BudgetListViewItem.Params> = ({ onClick, item_data, listMode }) =>{
 
-    const { id, created_at, company_id } = item_data
+    const { id, created_at, company, user } = item_data
     return (
         <div className={`list-view-item ${listMode}`} onClick={()=>onClick("options",id)}>
             <div className="list-view-item-content">
@@ -23,7 +23,7 @@ export const BudgetListViewItem: React.FunctionComponent<BudgetListViewItem.Para
                 </section>
 
                 <section>
-                    <span className="list-view-item-name"> {id} - { created_at} - {company_id} </span> 
+                    <span className="list-view-item-name"> N°{id} - { new Date(created_at).toISOString().split('T')[0] } - {company.label} - {user.label}</span> 
                 </section>
 
                 <section>

@@ -1,3 +1,5 @@
+import { LabelView } from "./ListingView";
+
 export interface Budget {
     id: number,
     user_id:string
@@ -13,3 +15,5 @@ export interface BudgetItem {
     quantity: number,
     price: number
 }
+
+

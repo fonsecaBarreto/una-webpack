@@ -18,6 +18,8 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
     const context = useContext(GlobalContext)
     const ListData: any = useSelector<CompaniesState>((state: any)=>state.companies)
 
+ /*    useEffect(()=>{ if(ListData.sync == 0 ){ listCompanhias({}) } },[]) */
+
     /* queries change */
     useEffect(()=>{
       if(!location.search) return
@@ -31,9 +33,7 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
 
     /* Listar Companhias */
     const listCompanhias = (filters: any) =>{
-      const v = filters.text_value;
-      const ativo = filters.status.length == 0 ? "" : filters.status[0].value
-      companhiasServices.list({ v, ativo }).then(resp => { dispatch(setCompanhias(resp, false))})
+      companhiasServices.list(filters).then(resp => { dispatch(setCompanhias(resp, false))})
     }
     /* actions */
     const handleActions = (key: any, payload: any) =>{
