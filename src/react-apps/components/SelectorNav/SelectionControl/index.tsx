@@ -22,9 +22,7 @@ export const SelectionControl: React.FunctionComponent<SelectionControl.Params> 
     const [selectedItems, setSelectedItems ] = useState<SelectionControl.Item[]>(initial_value)
     const selectedItemsRef = useRef(selectedItems)
 
-    useEffect(()=>{
-        setList(items)
-    },[items]) 
+    useEffect(()=>{ setList(items) },[items]) 
 
     const handleClick = (item?: SelectionControl.Item) =>{
         var prev = selectedItemsRef.current;
