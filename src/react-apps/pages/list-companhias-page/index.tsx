@@ -11,16 +11,12 @@ import GlobalContext from  "@/react-apps/apps/main/global-components-context"
 import { MakeDialogConfig, MakeOptions }  from 'fck-react-dialog'
 import CompanhiaViewModal from './modals/CompanhiaView'
 import queryString from 'query-string'
-
+import { CompanyListState } from './ListState'
 export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, history}) => {
 
-    const dispatch = useDispatch();
+    const { listData, handleLoad }  = CompanyListState()
     const context = useContext(GlobalContext)
-    const ListData: any = useSelector<CompaniesState>((state: any)=>state.companies)
 
- /*    useEffect(()=>{ if(ListData.sync == 0 ){ listCompanhias({}) } },[]) */
-
-    /* queries change */
     useEffect(()=>{
       if(!location.search) return
       const parsed = queryString.parse(location.search);
@@ -29,12 +25,8 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
           history.push({ search: `` }); return -1;
         }, "Companhias"))
       }
-    },[location.search])
+    },[location.search]) 
 
-    /* Listar Companhias */
-    const listCompanhias = (filters: any) =>{
-      companhiasServices.list(filters).then(resp => { dispatch(setCompanhias(resp, false))})
-    }
     /* actions */
     const handleActions = (key: any, payload: any) =>{
       if(key === "options"){
@@ -44,23 +36,21 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
             case 1:  history.push(`/perfil/${payload}`);break;
           }
           return -1;
-        }, [
-          {label: "Visualizar"},
-          {label: "Abrir"},
+        }, [ {label: "Visualizar"}, {label: "Abrir"},
         ]))
       }
-      if(key === "+1") return
-    }
+      if(key === "+1") return 
+    } 
 
     return (
         <div id="companhias-page">
           <div className='app-container'>
                  <ContentGrid>
-                    <FiltersNav onChange={listCompanhias}/>
+                    <FiltersNav onChange={handleLoad}/> 
                     <ContentPool 
                         initial_mode="inline"
                         itemComponent={CompanyItem} 
-                        list_data={ListData} 
+                        list_data={listData} 
                         dataAlias={"companies"}
                         onAction={handleActions}>
                     </ContentPool> 

@@ -4,14 +4,18 @@ import Wrapper, { SelectorNavWrapper } from '../Wrapper'
 import { AiOutlineSearch } from 'react-icons/ai'
 export namespace SearchControl {
     export interface Params extends Omit<SelectorNavWrapper.Params, 'children'> {
+        initial_value?: string;
         onClick: (text: string) =>void,
     }
 }   
 
-export const SearchControl: React.FunctionComponent<SearchControl.Params> =  ({ title, onClick }) =>{
+export const SearchControl: React.FunctionComponent<SearchControl.Params> =  ({ title, onClick, initial_value="" }) =>{
 
-    const [ text, setText ] = useState("");
+    const [ text, setText ] = useState(initial_value);
 
+    useEffect(()=>{
+        console.log("Search control foi instanciado")
+    },[])
     const handleClick = () =>{
         onClick(text)
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import './style.css'
 import Item from './Item'
 import Wrapper, { SelectorNavWrapper } from '../Wrapper'
@@ -6,6 +6,7 @@ import Wrapper, { SelectorNavWrapper } from '../Wrapper'
 export namespace SelectionControl {
     export type Item  = { value: string, label: string, parent_id?: string }
     export interface Params extends Omit<SelectorNavWrapper.Params, 'children'> {
+        initial_value?: any[],
         items: Item[],
         onChange: (items: Item[]) =>void,
         hide_values?: string[]
@@ -13,11 +14,13 @@ export namespace SelectionControl {
     }
 }   
 
-export const SelectionControl: React.FunctionComponent<SelectionControl.Params> =  ({ items, title, onChange, max=-1 }) =>{
+export const SelectionControl: React.FunctionComponent<SelectionControl.Params> =  ({ initial_value=[], items, title, onChange, max=-1 }) =>{
     
     const [list, setList ] = useState<any[]>(items)
-    const [selectedItems, setSelectedItems ] = useState<SelectionControl.Item[]>([])
-    useEffect(()=>{setList(items)},[items])
+    const [selectedItems, setSelectedItems ] = useState<SelectionControl.Item[]>(initial_value)
+    const selectedItemsRef = useRef(selectedItems)
+
+    useEffect(()=>{ setList(items) },[items])
 
    /*  useEffect(()=>{},[]) */
    /*  useEffect(()=>{
@@ -29,22 +32,28 @@ export const SelectionControl: React.FunctionComponent<SelectionControl.Params> 
         }
     },[items]) */
 
-    useEffect(()=>{onChange(selectedItems)},[selectedItems])
+ /*    useEffect(()=>{ onChange(selectedItems) },[selectedItems]) */
 
     const handleClick = (item?: SelectionControl.Item) =>{
-        if(!item) return setSelectedItems([])
-        var s_items: any[] = selectedItems;
-        if( (max > 1) 
-            && ( s_items.length + 1 > max  
-                 && ( (s_items.filter(b=>b.value==item.value)).length == 0  ) ) 
-        )return;
-        setSelectedItems((prev)=>{
-            s_items = [ ...prev ];
-            if(max == 1) return [ item ];
-            let sliced =  s_items.filter((c:any)=> c.value !== item.value); 
-            s_items = sliced.length < s_items.length ? sliced : [ ...s_items, item ] 
-            return (s_items)
-        })
+        var prev = selectedItemsRef.current;
+        var s_items: any[] =[];
+
+        if (item) {
+
+            s_items = [ ...prev ]; 
+
+            if ((max > 1) && ( s_items.length + 1 > max && ( (s_items.filter(b=>b.value==item.value)).length == 0  ) ) ) return 
+          
+            if (max == 1) {  s_items = [] }  
+            
+            let sliced = s_items.filter((c:any)=> c.value !== item.value); 
+        
+            s_items = sliced.length < s_items.length ? sliced : [ ...s_items, item ];
+
+        }
+        selectedItemsRef.current = s_items;
+        setSelectedItems(s_items);
+        onChange(selectedItemsRef.current)
     } 
 
     return (
