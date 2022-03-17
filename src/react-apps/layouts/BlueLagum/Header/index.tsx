@@ -7,7 +7,6 @@ import SearchBar from '../SearchBar'
 import OptionsNav from './OptionsNav'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { spliceProdutosQueries } from '@/react-apps/store/reducers/departaments/actions'
 import { useWindowSize } from 'fck-components/lib/utils/hooks'
 
 export namespace PrimaryHeader {
@@ -21,8 +20,10 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
     const dispatch = useDispatch()
     const [ especificacao, setEspecificacao ] = useState("")
     const { width } = useWindowSize()
+
     const toSearch =() => {
-        dispatch(spliceProdutosQueries({ specification: especificacao }))
+        alert("Pesquisa independente deve ser implentada aqui")
+        //dispatch(spliceProdutosQueries({ specification: especificacao }))
     }
 
     return (
@@ -39,7 +40,7 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
                     width > 960 ?
                     <React.Fragment>
                         <section>
-                            <SearchBar value={especificacao} onInput={(v)=>setEspecificacao(v)} onClick={toSearch}></SearchBar>
+                           {/*  <SearchBar value={especificacao} onInput={(v)=>setEspecificacao(v)} onClick={toSearch}></SearchBar> */}
                         </section>
                         <section>
                             <OptionsNav toggleCart={toggleCart}></OptionsNav>

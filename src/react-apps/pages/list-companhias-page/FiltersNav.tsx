@@ -11,10 +11,7 @@ export namespace CompanhiasFiltersNav {
 }
 
 const INITIAL_FILTERS: any = { ativo: [], v: "" }
-  
 const STATUS_LIST = [ { value: "1", label: "Ativo"}, { value: "0", label: "Inativo"} ]
-
-
 
 export const CompanhiasFiltersNav: React.FunctionComponent<CompanhiasFiltersNav.Params> = ({onChange}) =>{
 
@@ -23,7 +20,7 @@ export const CompanhiasFiltersNav: React.FunctionComponent<CompanhiasFiltersNav.
 
     useEffect(()=>{ 
         if(count === 0) { return setCount(1) } 
-        //onChange(filters); //v.length == 0 ? "" : v[0].value
+        onChange(filters); 
     },[filters])
     
     return (
@@ -36,8 +33,6 @@ export const CompanhiasFiltersNav: React.FunctionComponent<CompanhiasFiltersNav.
                 onChange={(v:any[]) => setFilters((prev:any)=>({...prev, ativo: v })) }
                 items={STATUS_LIST}>
             </SelectorNav>
-
-            {JSON.stringify(filters)}
         </AsideFilters>
   )
 }

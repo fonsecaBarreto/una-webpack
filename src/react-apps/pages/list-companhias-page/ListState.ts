@@ -10,9 +10,10 @@ export const CompanyListState = () =>{
 
     useEffect(()=>{ if(listData.sync == 0 ){ handleLoad({}) } },[]) 
     
-
     const handleLoad= (filters: any) =>{
-        companhiasServices.list(filters).then(resp => { dispatch(setCompanhias(resp, false))})
+        var { ativo=[], v="" } =filters
+        ativo = ativo?.length == 0 ? "" : ativo[0].value 
+        companhiasServices.list({ ativo, v }).then(resp => { dispatch(setCompanhias(resp, false))})
     }
 
     return ({ listData, handleLoad })

@@ -1,10 +1,6 @@
 import React, { useContext, useDebugValue, useEffect, useState } from 'react'
-import './style.css'
-import { companhiasServices } from '@/services/api/companhias-service'
 import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
-import { CompaniesState, setCompanhias } from '@/react-apps/store/reducers/companies'
-import { useDispatch, useSelector } from 'react-redux'
 import CompanyItem from './Item'
 import FiltersNav from './FiltersNav'
 import GlobalContext from  "@/react-apps/apps/main/global-components-context"
@@ -12,6 +8,7 @@ import { MakeDialogConfig, MakeOptions }  from 'fck-react-dialog'
 import CompanhiaViewModal from './modals/CompanhiaView'
 import queryString from 'query-string'
 import { CompanyListState } from './ListState'
+
 export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, history}) => {
 
     const { listData, handleLoad }  = CompanyListState()
@@ -45,16 +42,16 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
     return (
         <div id="companhias-page">
           <div className='app-container'>
-                 <ContentGrid>
-                    <FiltersNav onChange={handleLoad}/> 
-                    <ContentPool 
-                        initial_mode="inline"
-                        itemComponent={CompanyItem} 
-                        list_data={listData} 
-                        dataAlias={"companies"}
-                        onAction={handleActions}>
-                    </ContentPool> 
-                </ContentGrid>
+              <ContentGrid>
+                  <FiltersNav onChange={handleLoad}/> 
+                  <ContentPool 
+                      initial_mode="inline"
+                      itemComponent={CompanyItem} 
+                      list_data={listData} 
+                      dataAlias={"companies"}
+                      onAction={handleActions}>
+                  </ContentPool> 
+              </ContentGrid>
             </div> 
         </div>
     )

@@ -5,7 +5,7 @@ import MultiplesForms from '@/react-apps/components/MultiplesForms'
 import { produtosService, produtosServices } from '@/services/api/produtos-service'
 import { departamentosService } from '@/services/api/departamentos-service'
 import { useDispatch, useSelector, useStore } from 'react-redux'
-import { setDepartamentos } from '@/react-apps/store/reducers/departaments/actions'
+import { setDepartaments } from '@/react-apps/store/reducers/mart'
 import { CsvProdutosDTo_schema, product_headers_schema } from './schemas'
 import UseTrigger from '@/react-apps/components/utils/UseTrigger'
 
@@ -19,18 +19,18 @@ export namespace ProductsTable {
 /* Departamentos */
 const loadDepartaments = () =>{
     const dispatch = useDispatch()
-    const { departaments_struct, departaments_struct_loadtry } = useSelector((state: any) => state.departamentos)
+    const { departaments, departaments_loadtry } = useSelector((state: any) => state.departamentos)
     useEffect(()=>{
-        if(departaments_struct_loadtry == 0){
-            departamentosService.list().then(struct =>{dispatch(setDepartamentos(struct))});
+        if(departaments_loadtry == 0){
+            departamentosService.list().then(struct =>{dispatch(setDepartaments(struct))});
             return;
         }
-        product_headers_schema[2].list = departaments_struct.brands;
-        product_headers_schema[3].list = departaments_struct.subCategories;
-        product_headers_schema[4].list = departaments_struct.presentations;
-    },[departaments_struct])
+        product_headers_schema[2].list = departaments.brands;
+        product_headers_schema[3].list = departaments.subCategories;
+        product_headers_schema[4].list = departaments.presentations;
+    },[departaments])
 
-    return{ departaments_struct }
+    return{ departaments }
 }
 
 export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ override_data, trigger }) =>{

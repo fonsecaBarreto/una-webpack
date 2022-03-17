@@ -38,17 +38,18 @@ export const produtosService = {
           return data 
      },
 
-     list: async (params: produtosServices.ListParams) => {
-
-          const {  p= 1, specification="" } = params
+     list: async (params: Partial<produtosServices.ListParams>) => {
+     
+          const {  p= 1, specification="", ...rest } = params
           var query = `?p=${p}&specification=${specification}`;
 
           (["category", "departament", "subCategory", "brand"]).map( (v:string)=>{
-               var filter :any = { ...params }[v];
-               if( filter.length > 0){
-                    filter.map((f:any)=>{ query+=`&${v}=${f}` });
+               var filter :any = { ...rest }[v];
+               if( filter?.length > 0){
+                    filter.map((f:any)=>{ query+=`&${v}=${f.value}` });
                }
           })
+          
 
           const { data } = await produtosApi.send({ method: "get", url: `/${query}` }) 
           return data 

@@ -10,34 +10,25 @@ export namespace SelectionControl {
         items: Item[],
         onChange: (items: Item[]) =>void,
         hide_values?: string[]
-        max?: number
+        max?: number,
+        showChildrenFrom?: string[][],
+        showValuesFrom?: string[]
     }
 }   
 
-export const SelectionControl: React.FunctionComponent<SelectionControl.Params> =  ({ initial_value=[], items, title, onChange, max=-1 }) =>{
+export const SelectionControl: React.FunctionComponent<SelectionControl.Params> =  ({ showChildrenFrom=[[]], showValuesFrom=[], initial_value=[], items, title, onChange, max=-1 }) =>{
     
     const [list, setList ] = useState<any[]>(items)
     const [selectedItems, setSelectedItems ] = useState<SelectionControl.Item[]>(initial_value)
     const selectedItemsRef = useRef(selectedItems)
 
-    useEffect(()=>{ setList(items) },[items])
-
-   /*  useEffect(()=>{},[]) */
-   /*  useEffect(()=>{
-        console.log("aqui os items")
-        if(selectedItems.length > 0) {
-            setSelectedItems((prev)=>{
-                return ([ ...prev.filter((j)=>items.map(j=>j.value).includes(j.value)) ])
-            })
-        }
-    },[items]) */
-
- /*    useEffect(()=>{ onChange(selectedItems) },[selectedItems]) */
+    useEffect(()=>{
+        setList(items)
+    },[items]) 
 
     const handleClick = (item?: SelectionControl.Item) =>{
         var prev = selectedItemsRef.current;
         var s_items: any[] =[];
-
         if (item) {
 
             s_items = [ ...prev ]; 
@@ -60,12 +51,25 @@ export const SelectionControl: React.FunctionComponent<SelectionControl.Params> 
         <Wrapper title={title}>
             <ul>
                 <Item item={{ label: "Todos", value: "" }} onClick={()=>handleClick()} selected={ selectedItems.length === 0 }></Item>
-                { list.map((c:any,i)=>( 
-                    <Item key={i} item={c} 
-                        onClick={()=>handleClick(c)} 
-                        selected={ selectedItems.map((s:any)=>s.value).includes(c.value) }> 
-                    </Item> 
-                ))}
+                { 
+                    list.map((c:any,i)=>{
+
+                        var [ parent ] = showChildrenFrom;
+    
+                        if(
+                            ( parent.length == 0  || (parent.map((j:any)=>j.value)).includes(c.parent_id) )
+                            && 
+                            ( showValuesFrom.length == 0  || (showValuesFrom.includes(c.value) )) 
+                        ){
+                            return (
+                                <Item key={i} item={c} 
+                                    onClick={()=>handleClick(c)} 
+                                    selected={ selectedItems.map((s:any)=>s.value).includes(c.value) }> 
+                                </Item> 
+                            )
+                        }  
+                    })
+                }
             </ul>
         </Wrapper>
     )

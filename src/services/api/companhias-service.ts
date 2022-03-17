@@ -25,6 +25,7 @@ export const companhiasServices = {
           return resp.data 
      },
      list: async (params: Partial<CompanhiasServices.ListParams>) => {
+          console.log(params)
           const { v="", p= 1, ativo=""} = params 
           var query = `?p=${p}&v=${v}&ativo=${ativo}`
           const { data } = await companhiasApi.send({ method: "get", url: `/${query}` }) 

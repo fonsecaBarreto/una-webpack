@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './style.css'
-import { AiOutlineShop, AiOutlineBell, AiOutlinePaperClip } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import { FiEdit } from 'react-icons/fi'
+import { AiOutlineShop } from 'react-icons/ai'
 import { BiBadgeCheck } from 'react-icons/bi'
 import { MdBlock } from 'react-icons/md'
 

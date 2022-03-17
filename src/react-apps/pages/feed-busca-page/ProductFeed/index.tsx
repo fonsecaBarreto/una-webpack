@@ -3,31 +3,17 @@ import './style.css'
 import { useSelector, useDispatch} from 'react-redux'
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
-import { ListingView } from '@/domain/views/ListingView'
-import { Product } from '@/domain/views/Product'
 import { ProductItem } from './item'
 
-export const INITIAL_LISTING_VIEW = {
-    queries: {},
-    total: 0,
-    length: 0,
-    data:[],                 
-    pages: 0,                 
-    pageIndex: 0
+export namespace ProductFeed {
+    export type onRequest = any
+    export type list_data = any
 }
 
-export const ProductFeed: React.FunctionComponent<any> = ({ more, listingView }) =>{
+export const ProductFeed: React.FunctionComponent<any> = ({ onRequest, list_data }) =>{
 
     const dispatch = useDispatch()
-    var [ products, setProducts ] = useState<ListingView<Product[]>>({...INITIAL_LISTING_VIEW})
     const { cart } = useSelector((state: any)=>state.carrinho)
-
-    useEffect(()=>{
-        const data = listingView.data.products
-        var products = { ...listingView}
-        products.data = data
-        setProducts(products)
-    },[listingView]) 
 
     const addToCart =(novo_produto: any) =>  dispatch(pushToCart(novo_produto))
     const rmFromCart =(produto: any) => dispatch(removeFromCart(produto))
@@ -48,9 +34,9 @@ export const ProductFeed: React.FunctionComponent<any> = ({ more, listingView })
                     produto={item_data}
                     toAdd={addToCart}
                     toRemove={rmFromCart} ></ProductItem>)} 
-                list_data={listingView} 
+                list_data={list_data} 
                 dataAlias={"products"}
-                onAction={more}>
+                onAction={onRequest}>
             </ContentPool>
         </div>
     )
