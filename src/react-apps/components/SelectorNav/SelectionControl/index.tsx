@@ -21,10 +21,8 @@ export const SelectionControl: React.FunctionComponent<SelectionControl.Params> 
     const [selectedItems, setSelectedItems ] = useState<SelectionControl.Item[]>(initial_value);
     const selectedItemsRef = useRef(selectedItems)
 
-
     useEffect(()=>{ 
         const [ filterFunction ] = filter;
-        console.log("Alguma coisa mudou", title); 
         var garbage: number[] = [];
         var result = items.filter((item, i)=>{
             if(!filterFunction(item,i)){
@@ -36,13 +34,10 @@ export const SelectionControl: React.FunctionComponent<SelectionControl.Params> 
             }
             return true;
         })
-
         //Desselecionar items
-        
         if(garbage.length){
             var prev = selectedItemsRef.current;
             var list = [ ...prev];
-
             for(let n =0 ; n < garbage.length ; n ++){
                 list.splice(garbage[n],1)
             }
@@ -50,7 +45,6 @@ export const SelectionControl: React.FunctionComponent<SelectionControl.Params> 
             setSelectedItems(list)
             onChange(selectedItemsRef.current) 
         }
-
         setList(result);
     },[items, selectedItems, filter[1]]) 
     

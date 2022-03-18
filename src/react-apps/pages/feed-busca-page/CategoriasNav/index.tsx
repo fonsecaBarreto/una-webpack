@@ -26,14 +26,15 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ l
     var [categories_available, setCategories_available ] = useState<string[]>([])
 
     useEffect(()=>{ setDepartaments_available((filters["departament"].map((j:any)=>j.value)))},[filters['departament']])
+
     useEffect(()=>{ 
-        // Categorias Disponiveis por Departamentos selecionados
         var cat = departaments_struct["categories"].filter((c: any)=>(
-                departaments_available.includes(c.parent_id) 
-                && (filters["category"].length == 0 || filters["category"].map((v:any)=>v.value).includes(c.value) ))
+                ( departaments_available.length == 0 || departaments_available.includes(c.parent_id) )
+                && 
+                (filters["category"].length == 0 || filters["category"].map((v:any)=>v.value).includes(c.value) ))
         ).map((v:any)=>v.value)
         setCategories_available(cat);
-    },[filters['category'], departaments_available])
+    },[ filters['category'], departaments_available])
 
     useEffect(()=>{ 
         if(count === 0) { return setCount(1) } 
@@ -59,7 +60,7 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ l
                 items={departaments_struct.categories}></SelectorNav>
 
              <SelectorNav 
-                filter={[(j:any, i: number): boolean=> ( categories_available.length == 0 || categories_available.includes(j.parent_id) )] }
+                filter={[(j:any, i: number): boolean=> ( categories_available.length == 0 || categories_available.includes(j.parent_id) ), categories_available.length] }
                 title="Sub Categorias" 
                 initial_value={filters["subCategory"]}
                 onChange={(payload: any)=>setFilters((prev:any)=>({...prev, "subCategory": payload })) }  
