@@ -11,19 +11,49 @@ export namespace SelectionControl {
         onChange: (items: Item[]) =>void,
         hide_values?: string[]
         max?: number,
-        showChildrenFrom?: string[][],
-        showValuesFrom?: string[]
+        filter?: [ filterFunction: ( item: Item, index: number) => boolean, trigger?: any]
     }
 }   
 
-export const SelectionControl: React.FunctionComponent<SelectionControl.Params> =  ({ showChildrenFrom=[[]], showValuesFrom=[], initial_value=[], items, title, onChange, max=-1 }) =>{
+export const SelectionControl: React.FunctionComponent<SelectionControl.Params> =  ({ filter=[()=>true, true], initial_value=[], items, title, onChange, max=-1 }) =>{
     
     const [list, setList ] = useState<any[]>(items)
-    const [selectedItems, setSelectedItems ] = useState<SelectionControl.Item[]>(initial_value)
+    const [selectedItems, setSelectedItems ] = useState<SelectionControl.Item[]>(initial_value);
     const selectedItemsRef = useRef(selectedItems)
 
-    useEffect(()=>{ setList(items) },[items]) 
 
+    useEffect(()=>{ 
+        const [ filterFunction ] = filter;
+        console.log("Alguma coisa mudou", title); 
+        var garbage: number[] = [];
+        var result = items.filter((item, i)=>{
+            if(!filterFunction(item,i)){
+                var indexOf = selectedItems.findIndex(j=>j.value ==item.value)
+                if(indexOf != -1) {
+                    garbage.push(indexOf)
+                }
+                return false;
+            }
+            return true;
+        })
+
+        //Desselecionar items
+        
+        if(garbage.length){
+            var prev = selectedItemsRef.current;
+            var list = [ ...prev];
+
+            for(let n =0 ; n < garbage.length ; n ++){
+                list.splice(garbage[n],1)
+            }
+            selectedItemsRef.current = list;
+            setSelectedItems(list)
+            onChange(selectedItemsRef.current) 
+        }
+
+        setList(result);
+    },[items, selectedItems, filter[1]]) 
+    
     const handleClick = (item?: SelectionControl.Item) =>{
         var prev = selectedItemsRef.current;
         var s_items: any[] =[];
@@ -51,21 +81,12 @@ export const SelectionControl: React.FunctionComponent<SelectionControl.Params> 
                 <Item item={{ label: "Todos", value: "" }} onClick={()=>handleClick()} selected={ selectedItems.length === 0 }></Item>
                 { 
                     list.map((c:any,i)=>{
-
-                        var [ parent ] = showChildrenFrom;
-    
-                        if(
-                            ( parent.length == 0  || (parent.map((j:any)=>j.value)).includes(c.parent_id) )
-                            && 
-                            ( showValuesFrom.length == 0  || (showValuesFrom.includes(c.value) )) 
-                        ){
-                            return (
-                                <Item key={i} item={c} 
-                                    onClick={()=>handleClick(c)} 
-                                    selected={ selectedItems.map((s:any)=>s.value).includes(c.value) }> 
-                                </Item> 
-                            )
-                        }  
+                        return ( 
+                            <Item key={i} item={c} 
+                                onClick={()=>handleClick(c)} 
+                                selected={ selectedItems.map((s:any)=>s.value).includes(c.value) }> 
+                            </Item> 
+                        )
                     })
                 }
             </ul>
