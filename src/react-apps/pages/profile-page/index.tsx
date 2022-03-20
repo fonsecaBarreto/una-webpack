@@ -27,6 +27,9 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
     const context = useContext(GlobalContext)
     const [companhia, setCompanhia] = useState<Companhia | null>(null)
     
+
+    useEffect(()=>{ loadContent() },[ location.pathname, location.search ])
+    
     const openCompanyModal = (entry: any) =>{
         return context.dialog.push(MakeDialogConfig(
             ({onAction}: any) => ( <CompanyForm  onData={UpdatedCompanhia}  onAction={onAction}  entry={entry}/>), 
@@ -88,7 +91,6 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
         }
     }
 
-    useEffect(()=>{ loadContent() },[ location.pathname, location.search ])
     
     const UpdatedCompanhia = (data: any) =>{ setCompanhia(prev=>({ ...prev, ...data })) }
     const afterStaffUpdated = (data: any) =>{  }

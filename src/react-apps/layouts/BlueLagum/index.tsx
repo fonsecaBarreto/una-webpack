@@ -27,7 +27,7 @@ export namespace BlueLagumLayout {
     }
 }
 
-const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children, user, menu }) =>{
+const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children, user, menu}) =>{
 
     const menuState = MenuState()
     const history = useHistory()
@@ -57,7 +57,7 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
                 <LayoutHeader toggleCart={openCart}></LayoutHeader>
             </header> 
 
-            <main>  {children} </main>
+            <main> {children} </main>
 
             <footer>
                 <LayoutFooter></LayoutFooter>  

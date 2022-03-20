@@ -12,7 +12,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    height: 32px;
+    min-height: 32px;
+    height: fit-content;
 }
 
 .bl-common-content-pool > header > section{

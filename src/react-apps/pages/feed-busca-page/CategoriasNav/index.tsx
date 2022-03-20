@@ -1,77 +1,86 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './style.css'
-import SelectorNav, { SelectionControl } from '../../../components/SelectorNav/SelectionControl'
+import MultipleSelectionControl from '../../../components/SelectorNav/MultipleSelectionControl'
 import Asidefilters from '@/react-apps/layouts/components/AsideFilters'
-import { INITIAL_DEPARTAMENTOS, MartState, ProductsState } from '@/react-apps/store/reducers/mart'
-import { SearchControl } from '@/react-apps/components/SelectorNav'
-import { IgnorePlugin } from 'webpack'
+import { setDepartaments } from '@/react-apps/store/reducers/mart'
+import { useSelector, useDispatch } from 'react-redux'
+import { departamentosService } from '@/services/api/departamentos-service'
 
 export namespace CategoriasNav {
     export type Params = {
-        loading: boolean,
-        onChange: Function, 
-        departaments_struct: MartState.CategoriesLike,
-        brands_available: string[]
+        values: any,
+        onChange: any,
+        departament_id: string
     }
 }
 
-const INITIAL_FILTERS: ProductsState.Filters = { departament: [], category: [], subCategory: [],  brand: [], v: ""}
+export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ values, departament_id, onChange }) => {
+    const dispatch = useDispatch()
+    const { departaments, loadtry, products } = useSelector( (state: any)=>state.mart);
+    useEffect(()=>{ if(loadtry == 0 ) departamentosService.list().then(data => { dispatch(setDepartaments(data))}); },[])
+    const { categories_available, subCategories_available, brands_available } = products.data 
+    var prevsubCategoryLength = useRef(subCategories_available.length ?? 0)
+    var prevbrandsAvailableLength = useRef(brands_available.length ?? 0)
+    var categoriesAvailableLength = useRef(categories_available.length ?? 0)
 
-export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ loading, onChange, departaments_struct, brands_available=[] }) => {
-    if(!loading) return <span> Loading...</span>
-    
-    const [ count, setCount ] = useState(0);
-    const [ filters, setFilters ] = useState<ProductsState.Filters | any>({ ...INITIAL_FILTERS });
-    var [departaments_available, setDepartaments_available ] = useState<string[]>([])
-    var [categories_available, setCategories_available ] = useState<string[]>([])
+    useEffect(()=>{
+        if(prevsubCategoryLength.current != subCategories_available.length){
+            onChange(values['subCategory'].filter((s:string)=>subCategories_available.map((v:any)=>v.value).includes(s)), "subCategory")
+        }
+        prevsubCategoryLength.current = subCategories_available.length
+    },[subCategories_available])
 
-    useEffect(()=>{ setDepartaments_available((filters["departament"].map((j:any)=>j.value)))},[filters['departament']])
 
-    useEffect(()=>{ 
-        var cat = departaments_struct["categories"].filter((c: any)=>(
-                ( departaments_available.length == 0 || departaments_available.includes(c.parent_id) )
-                && 
-                (filters["category"].length == 0 || filters["category"].map((v:any)=>v.value).includes(c.value) ))
-        ).map((v:any)=>v.value)
-        setCategories_available(cat);
-    },[ filters['category'], departaments_available])
+    useEffect(()=>{
+        if(prevbrandsAvailableLength.current != brands_available.length){
+            onChange(values['brand'].filter((s:string)=>brands_available.map((v:any)=>v.value).includes(s)), "brand")
+        }
+        prevbrandsAvailableLength.current = brands_available.length
+    },[brands_available])
 
-    useEffect(()=>{ 
-        if(count === 0) { return setCount(1) } 
-        onChange(filters); 
-    },[filters])
+
+    useEffect(()=>{
+        if(categoriesAvailableLength.current != categories_available.length){
+            onChange(values['category'].filter((s:string)=>categories_available.map((v:any)=>v.value).includes(s)), "category")
+        }
+        categoriesAvailableLength.current = categories_available.length
+    },[categories_available])
 
     return (
         <Asidefilters>
+             {
+                (loadtry == 0 || !values) ? (
+                    <span> Loading... </span> 
+                ):(
+                    <React.Fragment>
+                        <MultipleSelectionControl 
+                            title="Departamentos" items={departaments.departaments} max={1} 
+                            value={ departament_id == ""? [] : [{ value: departament_id }]}
+                            onChange={(payload: any)=>onChange(payload[0], "departament_id")} >
+                        </MultipleSelectionControl>  
 
-            <SearchControl initial_value={filters["v"]} title="Pesquisa" onClick={ (v:any) => setFilters((prev:any)=>({...prev, v}))}/>
+                        <MultipleSelectionControl 
+                            title="Categorias" items={categories_available}
+                            value={values["category"].map((v:string)=>({value: v}))}
+                            onChange={ (payload: any)=> onChange(payload.map((v:any)=>v.value), "category")} >
+                        </MultipleSelectionControl>
 
-            <SelectorNav 
-                title="Departamentos" 
-                initial_value={ filters["departament"]}
-                onChange={(payload: any)=>setFilters((prev:any)=>({...prev, "departament": payload })) }  
-                items={departaments_struct.departaments}></SelectorNav>
+                        <MultipleSelectionControl 
+                            title="Sub Categorias" items={subCategories_available}
+                            value={values["subCategory"].map((v:string)=>({value: v}))}
+                            onChange={(payload: any)=>{ onChange(payload.map((b:any)=>b.value), "subCategory")}} >
+                        </MultipleSelectionControl>  
 
-            <SelectorNav 
-                filter={[(item:any) =>(departaments_available.length == 0 ) || departaments_available.includes(item.parent_id), departaments_available.length ]}
-                title="Categorias" 
-                initial_value={filters["category"]}
-                onChange={(payload: any)=>setFilters((prev:any)=>({...prev, "category": payload })) }  
-                items={departaments_struct.categories}></SelectorNav>
+                        <MultipleSelectionControl 
+                            title="Marcas" items={brands_available}
+                            value={values["brand"].map((v:string)=>({value: v}))}
+                            onChange={(payload: any)=>{ onChange(payload.map((b:any)=>b.value), "brand")}} >
+                        </MultipleSelectionControl> 
 
-             <SelectorNav 
-                filter={[(j:any, i: number): boolean=> ( categories_available.length == 0 || categories_available.includes(j.parent_id) ), categories_available.length] }
-                title="Sub Categorias" 
-                initial_value={filters["subCategory"]}
-                onChange={(payload: any)=>setFilters((prev:any)=>({...prev, "subCategory": payload })) }  
-                items={departaments_struct.subCategories}></SelectorNav> 
+                    </React.Fragment>
+                )
+            }
 
-            <SelectorNav  
-                title="Marcas"  
-                filter={[(item:any) => brands_available.includes(item.value)]}
-                initial_value={filters["brand"]}
-                onChange={(payload: any)=>setFilters((prev:any)=>({...prev, "brand": payload })) }  
-                items={departaments_struct.brands}></SelectorNav>   
         </Asidefilters>
     )
 }

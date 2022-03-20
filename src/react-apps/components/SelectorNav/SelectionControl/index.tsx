@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import './style.css'
 import Item from './Item'
 import Wrapper, { SelectorNavWrapper } from '../Wrapper'
+import { json } from 'stream/consumers'
 
 export namespace SelectionControl {
     export type Item  = { value: string, label: string, parent_id?: string }
@@ -34,7 +35,6 @@ export const SelectionControl: React.FunctionComponent<SelectionControl.Params> 
             }
             return true;
         })
-        //Desselecionar items
         if(garbage.length){
             var prev = selectedItemsRef.current;
             var list = [ ...prev];

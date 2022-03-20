@@ -4,7 +4,7 @@ import { useSelector, useDispatch} from 'react-redux'
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import { ProductItem } from './item'
-
+import SearchHeader from '../SearchHeader'
 export namespace ProductFeed {
     export type onRequest = any
     export type list_data = any
@@ -27,6 +27,7 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onRequest, list_data
     return (
         <div className="una-product-feed">
             <ContentPool 
+                header={ (queries: any)=>(<SearchHeader queries={queries}/>) }
                 itemComponent={ ({item_data, listMode })=>(
                 <ProductItem 
                     listMode={listMode}

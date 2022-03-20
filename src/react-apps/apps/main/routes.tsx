@@ -56,6 +56,7 @@ export const RouterComponent = () =>{
           layoutParams : { user, menu: true, context },
           prefix: "/",
           routes: [
+            { path: "mercado/:departament_id", title: "Mercado",  component: DeparamentoPage } ,
             { path: "mercado", title: "Mercado",  component: DeparamentoPage } ,
             { path: "companhias", title: "Companhias",  component: CompanhiasPage } ,
             { path: "registrar-produtos", title: "Registar Produtos",  component: CadastroPage },

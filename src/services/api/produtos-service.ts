@@ -10,9 +10,9 @@ const produtosApi = MakeApiSettings({
 export namespace produtosServices {
      export type ListParams = {
           p?: number,
-          specification?: string
+          v?: string
+          departament_id?: string,
           category?: string[]
-          departament?: string[],
           subCategory?: string[],
           brand?: string[]
      }
@@ -39,18 +39,13 @@ export const produtosService = {
      },
 
      list: async (params: Partial<produtosServices.ListParams>) => {
-     
-          const {  p= 1, specification="", ...rest } = params
-          var query = `?p=${p}&specification=${specification}`;
-
-          (["category", "departament", "subCategory", "brand"]).map( (v:string)=>{
-               var filter :any = { ...rest }[v];
-               if( filter?.length > 0){
-                    filter.map((f:any)=>{ query+=`&${v}=${f.value}` });
-               }
-          })
-          
-
+          console.log("parametso", params)
+          const {  p= 1, v="", brand, departament_id, category, subCategory } = params
+          var query = `?p=${p}&specification=${v}`;
+          if(departament_id) query+=`&departament=${departament_id}`;
+          if(category?.length) category.map(c=>{query+=`&category=${c}`});
+          if(subCategory?.length) subCategory.map(c=>{query+=`&subCategory=${c}`});
+          if(brand?.length) brand.map(b=>{query+=`&brand=${b}`});
           const { data } = await produtosApi.send({ method: "get", url: `/${query}` }) 
           return data 
      }

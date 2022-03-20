@@ -5,7 +5,6 @@ import { ListingView } from '@/domain/views/ListingView'
 import { RiLayoutGridFill } from 'react-icons/ri'
 import { VscThreeBars } from 'react-icons/vsc'
 import LoadingComponent from '@/react-apps/components/una/Loading'
-import { json } from 'stream/consumers'
 
 export namespace ContentPool {
     export type Params = {
@@ -13,13 +12,14 @@ export namespace ContentPool {
         list_data: ListingView<any, any>,
         onAction: (key?:string, payload?: any)=>void,
         initial_mode?: ListMode
-        dataAlias?:string
+        dataAlias?:string,
+        header?: (queries: any) => React.ReactNode
     }
 }
 
 export type ListMode = "inline" | "block" 
  
-export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ dataAlias, list_data, itemComponent: ItemComponent, onAction, initial_mode="block" }) =>{
+export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ header, dataAlias, list_data, itemComponent: ItemComponent, onAction, initial_mode="block" }) =>{
 
     const [ listMode, setListMode ] = useState<ListMode>(initial_mode)
     const { pageIndex, pages, data, queries, total, length } = list_data
@@ -37,14 +37,17 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ dataA
 
             <header>
                 <section>  
-                    <label> Total: <span> {length}/{total}</span> </label>  
+                    { header && header(queries)}
                 </section>
+
                 <section>
+                    <label> Total: <span> {length}/{total}</span> </label>  
                     <nav>
                         <button onClick={()=>setListMode("block")}> <RiLayoutGridFill/></button>
                         <button onClick={()=>setListMode("inline")}> <VscThreeBars/></button>
                     </nav>
                 </section>
+
             </header>
 
             <main>

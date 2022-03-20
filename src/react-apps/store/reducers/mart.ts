@@ -7,7 +7,7 @@ export namespace ProductsState {
     export interface Filters extends Record<"departament" | "category" | "subCategory" | "brand", LabelView[]>  {
          v: string
     }
-    export type DataView = { products: any[], brands_available: string[]  }
+    export type DataView = { products: any[], brands_available: LabelView[], categories_available: LabelView[], subCategories_available: LabelView  }
 }
 
 export interface ProductsState extends ListingView< ProductsState.DataView, ProductsState.Filters> {}
@@ -18,18 +18,18 @@ export namespace MartState {
 export interface MartState {
     products: ProductsState
     departaments: MartState.CategoriesLike,
-    departaments_loadtry: number,
+    loadtry: number,
     toSubmit: false
 }
 
 /* initial_values */
 export const INITIAL_DEPARTAMENTOS = { departaments: [], categories: [], subCategories: [],  brands: [], presentations:[]}
-const INITIAL_PRODUCTS = { ...INITIAL_LIST_VIEW({ products: [], brands_available: []}) }
+const INITIAL_PRODUCTS = { ...INITIAL_LIST_VIEW({ products: [], brands_available: [], categories_available: [], subCategories_available:[]}) }
 
 const INITIAL_STATE = {
      products : { ...INITIAL_PRODUCTS },
      departaments: { ...INITIAL_DEPARTAMENTOS },
-     departaments_loadtry: 0
+     loadtry: 0
 }
 
 export const martReducer = (state=INITIAL_STATE, action: any) => {
@@ -38,7 +38,7 @@ export const martReducer = (state=INITIAL_STATE, action: any) => {
                return { 
                     ...state, 
                     departaments: action.payload, 
-                    departaments_loadtry: state.departaments_loadtry + 1 
+                    loadtry: state.loadtry + 1 
                };
           };
           case "SET_PRODUCTS": { 
