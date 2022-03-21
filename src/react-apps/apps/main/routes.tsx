@@ -56,9 +56,13 @@ export const RouterComponent = () =>{
           layoutParams : { user, menu: true, context },
           prefix: "/",
           routes: [
+            /* Mercado */
             { path: "mercado/:departament_id", title: "Mercado",  component: DeparamentoPage } ,
             { path: "mercado", title: "Mercado",  component: DeparamentoPage } ,
+            /* Companies */
+            { path: "companhias/:company_id", title: "Companhias",  component: CompanhiasPage } ,
             { path: "companhias", title: "Companhias",  component: CompanhiasPage } ,
+            /* Regiser product */
             { path: "registrar-produtos", title: "Registar Produtos",  component: CadastroPage },
             { path: "cotacoes", title: "Cotações", component: CotacoesPage },
             { path: "perfil/:id", title: "Perfil Companhia",  component: ProfilePage } ,

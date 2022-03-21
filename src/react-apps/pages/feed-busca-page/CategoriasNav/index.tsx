@@ -14,37 +14,44 @@ export namespace CategoriasNav {
     }
 }
 
+function sameContent(arr1: any[], arr2:any[]) {
+    const set1 = [ ...arr1.map(v=>v.value)];
+    const set2 = [ ...arr2.map(v=>v.value)]
+    let difference = set1.filter(x => !set2.includes(x));
+    var isSame = ( difference?.length != 0 ? false : true)
+    return isSame
+}
+
 export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ values, departament_id, onChange }) => {
     const dispatch = useDispatch()
     const { departaments, loadtry, products } = useSelector( (state: any)=>state.mart);
     useEffect(()=>{ if(loadtry == 0 ) departamentosService.list().then(data => { dispatch(setDepartaments(data))}); },[])
     const { categories_available, subCategories_available, brands_available } = products.data 
-    var prevsubCategoryLength = useRef(subCategories_available.length ?? 0)
-    var prevbrandsAvailableLength = useRef(brands_available.length ?? 0)
-    var categoriesAvailableLength = useRef(categories_available.length ?? 0)
+    var prevCategoriesAvailable= useRef(categories_available) 
+    var prevsubCategoryAvailable = useRef(subCategories_available)
+    var prevbrandsAvailable = useRef(brands_available)
 
     useEffect(()=>{
-        if(prevsubCategoryLength.current != subCategories_available.length){
-            onChange(values['subCategory'].filter((s:string)=>subCategories_available.map((v:any)=>v.value).includes(s)), "subCategory")
-        }
-        prevsubCategoryLength.current = subCategories_available.length
-    },[subCategories_available])
-
-
-    useEffect(()=>{
-        if(prevbrandsAvailableLength.current != brands_available.length){
-            onChange(values['brand'].filter((s:string)=>brands_available.map((v:any)=>v.value).includes(s)), "brand")
-        }
-        prevbrandsAvailableLength.current = brands_available.length
-    },[brands_available])
-
-
-    useEffect(()=>{
-        if(categoriesAvailableLength.current != categories_available.length){
+        if(!sameContent(prevCategoriesAvailable.current, categories_available)){
             onChange(values['category'].filter((s:string)=>categories_available.map((v:any)=>v.value).includes(s)), "category")
         }
-        categoriesAvailableLength.current = categories_available.length
+        prevCategoriesAvailable.current = categories_available
     },[categories_available])
+
+    useEffect(()=>{
+        if(!sameContent(prevsubCategoryAvailable.current, subCategories_available)){
+            onChange(values['subCategory'].filter((s:string)=>subCategories_available.map((v:any)=>v.value).includes(s)), "subCategory")
+        }
+        prevsubCategoryAvailable.current = subCategories_available
+    },[subCategories_available])  
+
+    useEffect(()=>{
+        if(!sameContent(prevbrandsAvailable.current, brands_available)){
+            onChange(values['brand'].filter((s:string)=>brands_available.map((v:any)=>v.value).includes(s)), "brand")
+        }
+        prevbrandsAvailable.current = brands_available
+    },[brands_available])
+
 
     return (
         <Asidefilters>

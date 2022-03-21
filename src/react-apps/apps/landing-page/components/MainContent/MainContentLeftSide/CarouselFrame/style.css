@@ -39,7 +39,6 @@
 }
 
 .login-carousel-frame .login-carousel-frame-section:nth-child(2) > :nth-child(1){ /* body */
-
     animation-name: example;
     animation-duration: .5s;
 }

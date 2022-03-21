@@ -12,7 +12,7 @@ export const SEARCH_HEADER= { category: "array", subCategory:"array", brand: "ar
 
 export const MartPage: FunctionComponent<any> = ({}) => {
     const dispatch = useDispatch();
-    const { parsed: parsed_data, parsedParam, parsedRef,  pushToHistory } = UseSearchAdapter({ search: SEARCH_HEADER, param:"departament_id" })
+    const { parsed: parsed_data, parsedParam,  pushToHistory } = UseSearchAdapter({ search: SEARCH_HEADER, param:"departament_id" })
     const { products } = useSelector( (state: any)=>state.mart);
     
     useEffect(()=>{ if(parsed_data){ handleLoad()} },[parsed_data])
@@ -25,7 +25,6 @@ export const MartPage: FunctionComponent<any> = ({}) => {
                     <CategoriasNav 
                         departament_id={parsedParam?.["departament_id"] ?? ""} 
                         values={ parsed_data } onChange={pushToHistory}> </CategoriasNav> 
-            
                     <ProductFeed onRequest={()=>console.log("teste")} list_data={products} ></ProductFeed>    
                 </ContentGrid> 
             </div> 

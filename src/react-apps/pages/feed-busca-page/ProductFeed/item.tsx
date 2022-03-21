@@ -2,8 +2,8 @@ import React from 'react'
 import ProductImage from "@/public/assets/images/shopping-bag.jpg"
 import CounterControl from '../../../components/una/inputs-control/CounterControl'
 import SubmitButton from '../../../components/una/inputs-control/SubmitButton'
-import { ListMode } from '../../list-companhias-page/Item'
 
+export type ListMode = "inline" | "block" 
 export namespace ProductItem {
     export type Params = {
         toAdd: () => void

@@ -10,23 +10,60 @@
 /* header */
 .bl-common-content-pool > header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr auto;
     align-items: center;
     min-height: 32px;
     height: fit-content;
+    width: 100%;
+    gap: 10px;
 }
 
+
+/* section */
 .bl-common-content-pool > header > section{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    overflow-x: auto;
+}
+
+.bl-common-content-pool > header > section::-webkit-scrollbar {
+    width: 4px;
+    background-color: rgba(241, 241, 241, 0.555);
+}
+ 
+
+.bl-common-content-pool > header > section::-webkit-scrollbar-thumb {
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid rgb(197, 197, 197);  /* creates padding around scroll thumb */
+}
+
+/*  */
+
+.bl-common-content-pool > header > section:nth-child(1){
+    width: 100%;
 }
 
 .bl-common-content-pool > header > section:nth-child(2){
+    width: fit-content;
     display: flex;
     justify-content: flex-end;
+    gap: 12px;
 }
+
+.bl-common-content-pool > header > section:nth-child(2) > label{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+
+.bl-common-content-pool > header > section:nth-child(2) > nav{
+    font-size: 14px;
+    font-weight: bold;
+}
+
 
 .bl-common-content-pool > header > section:nth-child(2) button{
     border: none;
@@ -46,7 +83,14 @@
     width: 100%;
     flex-direction: column;
     display: flex; align-items: center; justify-content: center;
+    gap: 10px;
 }
+
+
+.bl-common-content-pool > main > section{
+    width: 100%;
+}
+
 
 .bl-common-content-pool > main > .bl-common-content-pool-flow{
     width: 100%;
@@ -101,4 +145,34 @@
     margin-top: 32px;
     cursor: pointer;
     margin: auto;
+}
+
+
+/* navigator button */
+.page-navigator-section{
+    width: 100%;
+    background-color: rgb(250, 250, 250); 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border-radius: 2px;
+    padding: 4px 0;
+}
+
+.page-navigator-btn{
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    padding: 3px 6px;
+}
+
+.page-navigator-btn:hover{
+    background-color: aliceblue;
+}
+
+.page-navigator-btn.selected{
+    outline: solid 2px rgb(70, 140, 233);
 }

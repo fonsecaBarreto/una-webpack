@@ -9,7 +9,7 @@ const companhiasApi = MakeApiSettings({
 
 export namespace CompanhiasServices {
      export type ListParams = {
-          ativo?: string,
+          status?: string,
           v?: string
           p?: number
      }
@@ -25,9 +25,8 @@ export const companhiasServices = {
           return resp.data 
      },
      list: async (params: Partial<CompanhiasServices.ListParams>) => {
-          console.log(params)
-          const { v="", p= 1, ativo=""} = params 
-          var query = `?p=${p}&v=${v}&ativo=${ativo}`
+          const { v="", p= 1, status=""} = params 
+          var query = `?p=${p}&v=${v}&ativo=${status}`
           const { data } = await companhiasApi.send({ method: "get", url: `/${query}` }) 
           return data 
      },

@@ -28,7 +28,6 @@ export const UseSearchAdapter = ({ search, param }: SearchAdapter.Params )=>{
                 let searchValue = parsedSearch[k] ?? ((type == "string") ?  "" : []);
                 upcomming_search[k] = type == "array" ?  (Array.isArray(searchValue)) ? searchValue : [ searchValue ]: searchValue+"" 
             })
-            
         }
         if(param) {
             var parsedParams:any = Object.assign({},match.params);

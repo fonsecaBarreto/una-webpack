@@ -30,7 +30,7 @@ export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({value, onI
         <div className="bl-searchbar-input">
         
             <input type="text" 
-                placeholder="Pesquise por produto"
+                placeholder="Pesquise"
                 value={value} 
                 onInput={handleInput} 
                 onKeyDown={handleKeys}></input>
