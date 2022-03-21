@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import './style.css'
 import { AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 import { ListingView } from '@/domain/views/ListingView'
@@ -40,11 +40,20 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ heade
     const [ poolData, setPoolData] = useState<any>([])
     const [ loading, setLoading ] = useState(true)
 
+    const prevIndex = useRef(pageIndex)
+
     useEffect(()=>{
         var data = dataAlias ? list_data.data[dataAlias] : list_data.data
         setPoolData(data)
         if(data.length > 0 ) setLoading(false);
     },[list_data])
+
+    useEffect(()=>{
+        if(prevIndex.current !== pages){
+            onAction("p", 1)
+            prevIndex.current == pages;
+        }
+    },[pages])
 
     return (
         <div className="bl-common-content-pool">

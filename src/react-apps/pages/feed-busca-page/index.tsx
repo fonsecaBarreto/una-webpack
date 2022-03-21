@@ -8,7 +8,7 @@ import { setProducts } from '@/react-apps/store/reducers/mart'
 import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
 import CategoriasNav from './CategoriasNav'
 
-export const SEARCH_HEADER= { category: "array", subCategory:"array", brand: "array", v: "string" };
+export const SEARCH_HEADER= { category: "array", subCategory:"array", brand: "array", v: "string", p: "string" };
 
 export const MartPage: FunctionComponent<any> = ({}) => {
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export const MartPage: FunctionComponent<any> = ({}) => {
                     <CategoriasNav 
                         departament_id={parsedParam?.["departament_id"] ?? ""} 
                         values={ parsed_data } onChange={pushToHistory}> </CategoriasNav> 
-                    <ProductFeed onRequest={()=>console.log("teste")} list_data={products} ></ProductFeed>    
+                    <ProductFeed onAction={(key:string, p: number)=> pushToHistory(p+"", 'p')} list_data={products} ></ProductFeed>    
                 </ContentGrid> 
             </div> 
         </div>

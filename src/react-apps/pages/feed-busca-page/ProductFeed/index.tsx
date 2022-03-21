@@ -10,7 +10,7 @@ export namespace ProductFeed {
     export type list_data = any
 }
 
-export const ProductFeed: React.FunctionComponent<any> = ({ onRequest, list_data }) =>{
+export const ProductFeed: React.FunctionComponent<any> = ({ onAction, list_data }) =>{
 
     const dispatch = useDispatch()
     const { cart } = useSelector((state: any)=>state.carrinho)
@@ -37,7 +37,7 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onRequest, list_data
                     toRemove={rmFromCart} ></ProductItem>)} 
                 list_data={list_data} 
                 dataAlias={"products"}
-                onAction={onRequest}>
+                onAction={onAction}>
             </ContentPool>
         </div>
     )
