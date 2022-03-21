@@ -14,7 +14,7 @@ import CompaniesFeed from './CompaniesFeed'
 export const SEARCH_HEADER= { status:"array", v: "string", p: "string" };
 
 export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, history}) => {
-  
+
     const dispatch = useDispatch()
     const context = useContext(GlobalContext)
     const { parsed: parsedSearch, parsedParam, pushToHistory } = UseSearchAdapter({ search: SEARCH_HEADER, param:"company_id" })
@@ -24,6 +24,7 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
 
     useEffect(()=>{
       if(parsedParam?.["company_id"]){
+        console.log("testnadon",parsedParam)
         context.dialog.push(MakeDialogConfig(()=><CompanhiaViewModal companhia_id={parsedParam?.["company_id"]} />,()=>{
           pushToHistory({value: ""}, "company_id");
           return -1;

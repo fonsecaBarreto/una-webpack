@@ -55,6 +55,9 @@ export const UseSearchAdapter = ({ search, param }: SearchAdapter.Params )=>{
         } else {
             prev_result[where] = payload;
         }
+        if( search?.p  && where != "p" ){
+            prev_result.p = 1;
+        }
 
         var result_search = queryString.stringify(prev_result)
 
