@@ -12,13 +12,14 @@ import qs from 'query-string';
 
 export namespace PrimaryHeader {
     export type Params = {
+        user: any
         toggleCart: () => void,
         menuState: { show: boolean, toggle: Function }
     }
 }
 
 
-export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ toggleCart, menuState })=> {
+export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ user, toggleCart, menuState })=> {
     const history = useHistory();
     const location = useLocation()
     const [ searchText, setSearchText ] = useState("")
@@ -36,7 +37,7 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
             <div className="primary-header-content app-container">
 
                 <section>
-                    <ToggleButton onClick={menuState.toggle}></ToggleButton>
+                   { user && <ToggleButton onClick={menuState.toggle}></ToggleButton>}
                     {
                         (width > 960) && (
                         <Link to="/" className="bluelagum-logo-link">
