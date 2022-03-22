@@ -19,6 +19,7 @@
     transition: all .1s;
     height: 40px;
 }
+
 .una-header-options-nav button:hover{
     border: solid 1px var(--main-color);
     transition: all .12s;

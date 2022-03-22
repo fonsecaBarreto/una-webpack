@@ -3,8 +3,6 @@ import './style.css'
 import { FaUserCircle } from "react-icons/fa"
 import { IoMdArrowDropdown } from 'react-icons/io'
 
-
-
 export namespace UserButton {
   export type Params = {
     user: any,
@@ -17,7 +15,7 @@ export const UserButton: React.FunctionComponent<any> = ({ user, onClick }) =>{
         <React.Fragment>
               <button className="una-header-user-button" onClick={onClick} >
                 { (user) && 
-                  <div>
+                  <div >
                     <span>{user.nome}</span> 
                     <span>{user?.roles[0]}</span> 
                   </div>

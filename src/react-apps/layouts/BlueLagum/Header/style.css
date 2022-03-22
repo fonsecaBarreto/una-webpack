@@ -8,11 +8,10 @@
 .primary-header-content{
     height: 100%; width: 100%;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     grid-template-rows: 1fr;
     align-items: center;
     gap: 5px;
-    align-items: center;
 }
 
 .primary-header-content > section {
@@ -78,14 +77,10 @@
 @media only screen and (max-width: 1024px){
     .primary-header{
         height: var(--header-height-mobile);
-      
     }
-
-
     .primary-header-content .primary-header-title, .primary-header-back-btn{
         color: white!important;
     }
-
 }
 
 

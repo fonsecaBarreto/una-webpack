@@ -19,9 +19,9 @@ export namespace ProductsTable {
 /* Departamentos */
 const loadDepartaments = () =>{
     const dispatch = useDispatch()
-    const { departaments, departaments_loadtry } = useSelector((state: any) => state.departamentos)
+    const { departaments, loadtry } = useSelector((state: any) => state.mart)
     useEffect(()=>{
-        if(departaments_loadtry == 0){
+        if(loadtry == 0){
             departamentosService.list().then(struct =>{dispatch(setDepartaments(struct))});
             return;
         }
@@ -41,22 +41,17 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ o
     const [ conflicts, setConflicts] = useState<any>({})
     const [ checkList, setCheckList ] = useState<string[]>([])
     loadDepartaments()
-
     /* Qual houver um gatilho deve executar a função de salvar */
     useEffect(()=> trigger.setCallBack( () => saveTrigger.execute().then(submitProducts)), [])
 
     /* Ao perceber a entrada de dados */
     useEffect(()=>{ 
         if(!override_data) return setProducts([{}]) // Um item vazio
-
         context.dialog.push(MakeNotification((v)=>{
-
             if(v == 0 ){ setProducts(override_data) }
             else if(v == 1){ setProducts((prev:any[])=>([ ...override_data, ...prev ])) }
             return -1
-
         },["Deseja sobrescrever os dados existentes?"], "Atenção", NotificationType.CONFIRMATION))
-
     },[ override_data ])
 
     /* Salvar Produtos */
@@ -96,12 +91,10 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ o
         var conflicts = { ...entry };
         var conflicts_keys = Object.keys(conflicts);
         if(conflicts_keys.length == 0) return {}
-
         context.dialog.push( 
             MakeNotification( ()=> -1 , [ "Certifique conflitos", "Certifique-se de que todos os dados são validos" ],  
                 "Atenção", NotificationType.FAILURE)
         )
-        
         conflicts_keys.map( (key: string)=>{
             const c = conflicts[key];
             if(c.brand_id){ c.brand = c.brand_id; delete c.brand_id}
@@ -109,23 +102,22 @@ export const ProductsTable: React.FunctionComponent<ProductsTable.Params> = ({ o
             if(c.sub_category_id){ c.category = c.sub_category_id; delete c.sub_category_id}
             return
         })    
-        
         return conflicts
     }
 
-    const resolveCheckList = (checkList: any) => {
-        return Object.keys(checkList)
-    }
+    const resolveCheckList = (checkList: any) =>  Object.keys(checkList)
 
     return (
-        <MultiplesForms 
-            entries={products}
-            conflicts={conflicts}
-            checkList={checkList}
-            trigger={saveTrigger}
-            schema={CsvProdutosDTo_schema} 
-            headers={product_headers_schema}>
-        </MultiplesForms>    
+        <React.Fragment>
+            <MultiplesForms 
+                entries={products}
+                conflicts={conflicts}
+                checkList={checkList}
+                trigger={saveTrigger}
+                schema={CsvProdutosDTo_schema} 
+                headers={product_headers_schema}>
+            </MultiplesForms>  
+        </React.Fragment>
     )
 }
 

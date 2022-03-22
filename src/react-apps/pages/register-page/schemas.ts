@@ -28,7 +28,6 @@ export const product_headers_schema: MultiplesForms.Header[] = [
     { label: "SKU", value: "sku",   columns: 2 }
 ]
 
-
 /* Suplies Models */
 
 export const CsvSupliesDTo_schema = builder.create(b=>{

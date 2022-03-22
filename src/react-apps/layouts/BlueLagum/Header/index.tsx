@@ -13,50 +13,42 @@ import qs from 'query-string';
 export namespace PrimaryHeader {
     export type Params = {
         toggleCart: () => void,
+        menuState: { show: boolean, toggle: Function }
     }
 }
 
-export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ toggleCart })=> {
 
+export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ toggleCart, menuState })=> {
     const history = useHistory();
     const location = useLocation()
-    const [ especificacao, setEspecificacao ] = useState("")
+    const [ searchText, setSearchText ] = useState("")
     const { width } = useWindowSize()
+    const [ showSearchBar, setShowSearchBar ] = useState(false);
 
     const toSearch =() => { 
         const queryParams = qs.parse(location.search);
-        const newQueries = { ...queryParams, v: especificacao};
+        const newQueries = { ...queryParams, v: searchText};
         history.push({ search: qs.stringify(newQueries) });
     }
 
     return (
         <header className="primary-header">
             <div className="primary-header-content app-container">
+
                 <section>
-                   
-                    <Link to="/" className="bluelagum-logo-link">
-                        <img src={LogoImg}></img>  
-                    </Link>
-                </section> 
+                    <ToggleButton onClick={menuState.toggle}></ToggleButton>
+                    {
+                        (width > 960) && (
+                        <Link to="/" className="bluelagum-logo-link">
+                            <img src={LogoImg}></img>  
+                        </Link>)
+                    }
+                </section>
 
-                {
-                    width > 960 ?
-                    <React.Fragment>
-                        <section>
-                        <SearchBar value={especificacao} onInput={(v)=>setEspecificacao(v)} onClick={toSearch}></SearchBar> 
-                        </section>
-                        <section>
-                            <OptionsNav toggleCart={toggleCart}></OptionsNav>
-                        </section>
-                    </React.Fragment> :
-
-                    <React.Fragment>
-                        <section> </section>
-                        <section>
-                            <ToggleButton ></ToggleButton> 
-                        </section>
-                    </React.Fragment>
-                }
+                <section>
+                    <SearchBar value={searchText} onInput={setSearchText} onClick={toSearch}></SearchBar>  
+                    <OptionsNav toggleCart={toggleCart} toggleSearch={()=>setShowSearchBar(true)}></OptionsNav>
+                </section>
             </div> 
         </header> 
     )

@@ -3,6 +3,7 @@ import './style.css'
 import { IoMdCart } from 'react-icons/io'
 import UserButton from './UserButton'
 import CarrinhoButton from './CarrinhoButton'
+import SearchButton from './SearchButton'
 /* global */
 import globalComponent from '@/react-apps/apps/main/global-components-context';
 /* Dialog helpers */
@@ -12,7 +13,7 @@ import { useHistory } from 'react-router-dom'
 //import { Usuario } from '@/domain/views/Usuario'
 import DropDown from "@/react-apps/components/una/DropDown"
 
-export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
+export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart, toggleSearch }) =>{
     const Context: any = useContext(globalComponent);
     const history = useHistory()
     const { cart } = useSelector((state: any)=>state.carrinho)
@@ -38,6 +39,7 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart }) =>{
 
     return (
         <nav className='una-header-options-nav'>
+            <SearchButton onHover={toggleSearch}/>
             <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
             <DropDown options={dropDownoptions} onAction={handleOptions}>
                 <UserButton user={user} onClick={() =>{}}></UserButton>

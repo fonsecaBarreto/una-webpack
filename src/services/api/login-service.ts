@@ -10,7 +10,7 @@ const loginApi = MakeApiSettings({
 export const loginServices = {
 
   signup:async (data: any) => {
-    const result = await loginApi.send({ method: "post", url:"/signup", data }) 
+    await loginApi.send({ method: "post", url:"/signup", data }) 
     return;
   },
 
@@ -21,8 +21,14 @@ export const loginServices = {
   },
   
   verify:async () =>{
-    const { data } = await loginApi.send({method: "post", url:"/verify"}) 
-    return data
+    try{
+
+      const { data } = await loginApi.send({method: "post", url:"/verify"}) 
+      return data
+    }catch(err){
+      localStorage.removeItem(global.user_storage_key);
+      throw err
+    }
   }, 
   
   logout:() =>{

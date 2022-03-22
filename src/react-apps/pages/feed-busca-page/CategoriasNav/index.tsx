@@ -11,6 +11,7 @@ export namespace CategoriasNav {
         values: any,
         onChange: any,
         departament_id: string
+        trigger: any
     }
 }
 
@@ -22,10 +23,14 @@ function sameContent(arr1: any[], arr2:any[]) {
     return isSame
 }
 
-export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ values, departament_id, onChange }) => {
+export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ trigger, values, departament_id, onChange }) => {
     const dispatch = useDispatch()
+    const [ forceFiltersToOpen, setForceFiltersToOpen ] = useState(false)
     const { departaments, loadtry, products } = useSelector( (state: any)=>state.mart);
     useEffect(()=>{ if(loadtry == 0 ) departamentosService.list().then(data => { dispatch(setDepartaments(data))}); },[])
+    
+    useEffect(()=> trigger.setCallBack( () => setForceFiltersToOpen(prev=>!prev) ), [])
+
     const { categories_available, subCategories_available, brands_available } = products.data 
     var prevCategoriesAvailable= useRef(categories_available) 
     var prevsubCategoryAvailable = useRef(subCategories_available)
@@ -52,9 +57,8 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ v
         prevbrandsAvailable.current = brands_available
     },[brands_available])
 
-
     return (
-        <Asidefilters>
+        <Asidefilters toggle={forceFiltersToOpen}>
              {
                 (loadtry == 0 || !values) ? (
                     <span> Loading... </span> 

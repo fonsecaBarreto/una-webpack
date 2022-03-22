@@ -27,9 +27,6 @@ export namespace MultiplesForms {
     }
 }
 
-
-
-
 const validator = new Validator()
 
 export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({ trigger, headers, entries, schema, conflicts, checkList }) =>{

@@ -14,6 +14,7 @@ export namespace ContentPool {
         initial_mode?: ListMode
         dataAlias?:string,
         header?: (queries: any) => React.ReactNode
+        auxHeader?: (queries: any) => React.ReactNode
     }
 }
 
@@ -33,7 +34,7 @@ export const PageNavigator = ({ pages=1, index, onClick}: {onClick:any, pages: n
         </div>
     )
 }
-export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ header, dataAlias, list_data, itemComponent: ItemComponent, onAction, initial_mode="block" }) =>{
+export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ header, auxHeader, dataAlias, list_data, itemComponent: ItemComponent, onAction, initial_mode="block" }) =>{
 
     const [ listMode, setListMode ] = useState<ListMode>(initial_mode)
     const { pageIndex, pages, queries, total, length } = list_data
@@ -53,15 +54,13 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ heade
                 <section>  
                     { header && header(queries)}
                 </section>
-
                 <section>
-                    <label> Total: <span> {length}/{total}</span> </label>  
                     <nav>
+                        { auxHeader && auxHeader(queries) }
                         <button onClick={()=>setListMode("block")}> <RiLayoutGridFill/></button>
                         <button onClick={()=>setListMode("inline")}> <VscThreeBars/></button>
                     </nav>
                 </section>
-
             </header>
 
             <main>

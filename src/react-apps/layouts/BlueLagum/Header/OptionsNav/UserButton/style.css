@@ -32,3 +32,9 @@
     margin: auto;
 }
 
+@media only screen and (max-width: 960px){
+    .una-header-user-button > div:nth-child(1){
+        display: none;
+    }
+    
+}

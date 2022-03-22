@@ -53,8 +53,9 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
         <div className={`blue-lagum ${menu ===true && user ? "bl-aside-menu" : ""}`}>
 
             { (menu ===true && user) && <aside><Menu menuState={menuState} menuTree={RESULT_MENU_TREE(user)} ></Menu></aside> }
+           
             <header>
-                <LayoutHeader toggleCart={openCart}></LayoutHeader>
+                <LayoutHeader user={user} menuState={menuState}  toggleCart={openCart}></LayoutHeader>
             </header> 
 
             <main> {children} </main>

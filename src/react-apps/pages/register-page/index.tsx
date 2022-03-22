@@ -14,7 +14,7 @@ import { BsCloudCheckFill } from 'react-icons/bs'
 import UseTrigger from '@/react-apps/components/utils/UseTrigger'
 import queryString from 'query-string'
 
-export const ListDepartamentosPage: React.FunctionComponent<any> = ({history}) =>{
+export const RegisterPage: React.FunctionComponent<any> = ({history}) =>{
 
     useEffect(()=>{ 
         setDataFromCsv(null);
@@ -62,5 +62,5 @@ export const ListDepartamentosPage: React.FunctionComponent<any> = ({history}) =
     )
 }
 
-export default ListDepartamentosPage
+export default RegisterPage
 

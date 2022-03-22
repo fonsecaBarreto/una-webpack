@@ -36,19 +36,6 @@
     justify-content: flex-end;
 }
 
-.blue-lake-menu.show  > section:nth-child(1).blue-lake-menu-header img{
-    width: 150px;
-    display: inline;
-    margin-left: 0;
-    margin-right: auto;
-    transform: translateY(4px);
-}
-
-.blue-lake-menu> section:nth-child(1).blue-lake-menu-header img{
-    display: none;
-} 
-
-
 .blue-lake-menu > section:nth-child(2){
     padding:  0;
     height: 100%;
@@ -82,7 +69,7 @@
 
     .blue-lake-menu{ 
         display: none; 
-   } 
+    } 
 
     .blue-lake-menu.show { 
         display: grid; 

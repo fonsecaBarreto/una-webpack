@@ -5,8 +5,10 @@ import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import { ProductItem } from './item'
 import SearchHeader from '../SearchHeader'
+import { BsFillFilterSquareFill } from 'react-icons/bs'
+
 export namespace ProductFeed {
-    export type onRequest = any
+    export type onAction = any
     export type list_data = any
 }
 
@@ -28,6 +30,7 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onAction, list_data 
         <div className="una-product-feed">
             <ContentPool 
                 header={ (queries: any)=>(<SearchHeader queries={queries}/>) }
+                auxHeader={(queries: any)=>(<button onClick={ () => onAction("SHOW_FILTERS")}> <BsFillFilterSquareFill/> </button>)}
                 itemComponent={ ({item_data, listMode })=>(
                 <ProductItem 
                     listMode={listMode}

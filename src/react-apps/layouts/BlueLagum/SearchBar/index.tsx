@@ -28,17 +28,12 @@ export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({value, onI
     return (
         
         <div className="bl-searchbar-input">
-        
             <input type="text" 
                 placeholder="Pesquise"
                 value={value} 
                 onInput={handleInput} 
-                onKeyDown={handleKeys}></input>
-
-            <button onClick={search}>
-               <HiSearchCircle></HiSearchCircle>
-            </button>
-    
+                onKeyDown={handleKeys}>
+            </input>
         </div>
     )
 }
