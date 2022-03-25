@@ -2,6 +2,9 @@ import React from 'react'
 import ProductImage from "@/public/assets/images/shopping-bag.jpg"
 import CounterControl from '../../../components/una/inputs-control/CounterControl'
 import SubmitButton from '../../../components/una/inputs-control/SubmitButton'
+import { Link } from 'react-router-dom'
+import { BsCart4 } from 'react-icons/bs'
+import { RiPriceTag2Line } from 'react-icons/ri'
 
 export type ListMode = "inline" | "block" 
 export namespace ProductItem {
@@ -31,15 +34,15 @@ export const ProductItem: React.FunctionComponent<any> = ({produto, toAdd, toRem
             </section>
 
             <section className='product-feed-item-body'>
-                <span className="produto-nome">{specification} </span>
-                <span className="produto-brand">{ean}</span>
-                <span className="produto-brand">{brand.label}</span>
-                <span className="produto-preço">
+                <Link to={`/produto/${ean}`} className="produto-nome">{specification} </Link>
+                <span className="singleline-text produto-ean">{ean}</span>
+                <span className="singleline-text produto-brand"> <RiPriceTag2Line/>{brand.label}</span>
+              {/*   <span className="produto-preço">
                     R$: 00,00
-                </span>
+                </span> */}
             </section>
             <section className='product-feed-item-footer'>
-                { !count ? <SubmitButton  onClick={()=>toAdd(produto)}> Adicionar </SubmitButton>
+                { !count ? <SubmitButton  onClick={()=>toAdd(produto)}> Adicionar <BsCart4/> </SubmitButton>
                 : <CounterControl altType onInput={handleCounterInput} value={count}></CounterControl> } 
             </section>
         </div>

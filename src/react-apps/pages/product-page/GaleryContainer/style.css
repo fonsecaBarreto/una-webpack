@@ -1,0 +1,72 @@
+.una-galery-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    border: solid 2px red;
+}   
+
+.una-galery-container > section {
+    border: solid 2px rgb(102, 255, 0);
+}   
+
+.una-galery-container > section.galery-container-photo-frame {
+    width: 100%;height: 0;
+    padding-bottom: 90%;
+    overflow: hidden;
+    border: solid 2px green!important;
+    background-color: white;
+    position: relative;
+} 
+
+.una-galery-container > section.galery-container-photo-frame > img{
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+    object-fit: cover;
+    border: solid 1px;
+} 
+
+/* carousel */
+
+.una-galery-container > section.calery-container-carousel{
+    display: flex;
+    flex-direction: column;align-items: flex-start; justify-content: flex-start;
+    position: relative;
+    width: 100px; height: 100%;
+}  
+
+.una-galery-container > section.calery-container-carousel > button{
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}  
+
+.una-galery-container > section.calery-container-carousel > nav{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}   
+
+.una-galery-container > section.calery-container-carousel > nav > ul{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: fit-content;
+    border: solid 2px blue;
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    transition: all .1s;
+}   
+
+.una-galery-container > section.calery-container-carousel > nav > ul  li{
+    width: 100px;
+    height: 100px;
+    border: solid 1px #ddd;
+    overflow: hidden;
+} 

@@ -14,6 +14,7 @@ import LoginPage from "@/react-apps/pages/login-page";
 import CadastroPage from "@/react-apps/pages/register-page";
 import ProfilePage from "@/react-apps/pages/profile-page";
 import CotacoesPage from '@/react-apps/pages/list-cotacao-page'
+import ProductPage from '@/react-apps/pages/product-page'
 
 export const RouterComponent = () =>{
 
@@ -62,6 +63,8 @@ export const RouterComponent = () =>{
             /* Companies */
             { path: "companhias/:company_id", title: "Companhias",  component: CompanhiasPage } ,
             { path: "companhias", title: "Companhias",  component: CompanhiasPage } ,
+            /* Product page */
+            { path: "produto/:ean", title: "Produto",  component: ProductPage } ,
             /* Regiser product */
             { path: "registrar-produtos", title: "Registar Produtos",  component: CadastroPage },
             { path: "cotacoes", title: "Cotações", component: CotacoesPage },

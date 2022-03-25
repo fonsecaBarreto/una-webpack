@@ -2,7 +2,8 @@ import React from 'react'
 import { IoIosArrowForward, IoIosArrowUp } from 'react-icons/io'
 import MenuItem, { BlueLakeMenuItem } from './MenuItem'
 import './style.css'
-
+import LogoImg from '@/public/assets/images/logo-alt-dark.png' 
+import { Link } from 'react-router-dom'
 export namespace BlueLakeMenu {
     export type Params = {
         menuState: { show: boolean, toggle: Function }
@@ -20,6 +21,7 @@ const BlueLakeMenu: React.FunctionComponent<BlueLakeMenu.Params> = ({ menuState,
     return (
         <div className={`blue-lake-menu ${menuState.show ? 'show' : ''}`}>
             <section className="blue-lake-menu-header">
+                <Link to="/" className='blue-lake-menu-header-logo'> <img src={LogoImg}></img>   </Link>
                 <ToggleButton onClick={menuState.toggle} positive={menuState.show}></ToggleButton>
             </section>
             <section>
