@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
-import ImageNotFount from "@/public/assets/images/image-not-found.png"
+import ImageNotFount from "@/public/assets/images/shopping-bag.jpg"
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 export namespace GaleryContainer{
     export type Image= {

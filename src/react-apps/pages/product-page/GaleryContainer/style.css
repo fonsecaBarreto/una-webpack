@@ -3,18 +3,15 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: 1fr;
-    border: solid 2px red;
 }   
 
 .una-galery-container > section {
-    border: solid 2px rgb(102, 255, 0);
+
 }   
 
 .una-galery-container > section.galery-container-photo-frame {
     width: 100%;height: 0;
     padding-bottom: 90%;
-    overflow: hidden;
-    border: solid 2px green!important;
     background-color: white;
     position: relative;
 } 
@@ -26,10 +23,10 @@
     margin: auto;
     object-fit: cover;
     border: solid 1px;
+    background-color: white;
 } 
 
 /* carousel */
-
 .una-galery-container > section.calery-container-carousel{
     display: flex;
     flex-direction: column;align-items: flex-start; justify-content: flex-start;
@@ -56,7 +53,6 @@
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: fit-content;
-    border: solid 2px blue;
     text-decoration: none;
     list-style: none;
     padding: 0;

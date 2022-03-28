@@ -47,5 +47,10 @@ export const produtosService = {
           if(brand?.length) brand.map(b=>{query+=`&brand=${b}`});
           const { data } = await produtosApi.send({ method: "get", url: `/${query}` }) 
           return data 
+     },
+     find: async (params: any) => {
+          const { ean } = params
+          const { data } = await produtosApi.send({ method: "get", url: `/${ean}` }) 
+          return data 
      }
 }
