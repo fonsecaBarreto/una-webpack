@@ -12,22 +12,22 @@ import SubmitButton from '@/react-apps/components/una/inputs-control/SubmitButto
 import { pushToCart, removeFromCart } from '@/react-apps/store/reducers/cart/actions'
 import { BsCart4 } from 'react-icons/bs'
 import CounterControl from '@/react-apps/components/una/inputs-control/CounterControl'
-
-//export const SEARCH_HEADER= { status:"array" };
+import ProductBreadCrumbs from './ProductBreadCrumbs'
 
 export const ProductPage: React.FunctionComponent<any> = ({location, history}) => {
 
     const dispatch = useDispatch()
-    const context = useContext(GlobalContext);
-
     const { cart } = useSelector((state: any)=>state.carrinho)
-
     const { parsedParam, pushToHistory } = UseSearchAdapter({ param:"ean" })
     const [ product, setProduct ] = useState<Product|null>(null);
-    useEffect(()=>{ if(parsedParam){ handleLoad()} },[parsedParam])
+    const [ breadCrumbs, setBreadCrumbs] = useState(null);
 
+    useEffect(()=>{ if(parsedParam){ handleLoad()} },[parsedParam])
     const handleLoad= () => {  
-      produtosService.find({ ...parsedParam }).then(data=>setProduct(data?.product ?? null)) 
+      produtosService.find({ ...parsedParam }).then(data=>{
+        setProduct(data?.product ?? null)
+        setBreadCrumbs(data?.breadCrumbs ?? null)
+      }) 
     }
 
     const countProductQtd = (product_id:string) => {
@@ -42,39 +42,30 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
           case -1 : return dispatch(removeFromCart(product))
           default: break;
       }
-
-
   }
 
     return (
         <div id="product-page">
           <div className='app-container'>
             { !product ? (<span> Loading ... </span>) :
-
               <div className='prouct-page-container'>
-                  <section> {"test > test > test"} </section>
-
+                  <ProductBreadCrumbs breadCrumbs={breadCrumbs}/>
                   <section> <GaleryContainer/> </section>
-
                   <section>
-                   
                       <span className='product-page-specification'>{product.specification}</span>
-                      <span className='product-page-brand'>Marca: {product.brand?.label}</span> 
-                      <span className='product-page-ean'> SubCategoria{product.subCategory?.label}</span> 
-                      <span className='product-page-ean'> Apresentação{product.presentation?.label}</span>  
-                      <span className='product-page-ean'>EAN: {product.ean}</span> 
-                      <span className='product-page-ean'>NCM: {product.ncm}</span> 
-                      <span className='product-page-ean'>SKU: {product.sku}</span> 
+                      <span className='product-page-brand'> <label>Marca:</label> {product.brand?.label}</span> 
+                      <span className='product-page-presentation'><label> Apresentação:</label> {product.presentation?.label}</span>  
+                      
+                      <span className='product-page-code'>EAN: {product.ean}</span> 
+                      <span className='product-page-code'>NCM: {product.ncm}</span> 
+                      <span className='product-page-code'>SKU: {product.sku}</span> 
 
                       <div className='product-page-cart-option'>
                         { !countProductQtd(product.id) ? <SubmitButton  onClick={()=>handleClick(1, product)}> Adicionar <BsCart4/> </SubmitButton>
                         : <CounterControl altType onInput={(n)=>handleClick(n,product)} value={countProductQtd(product.id)}></CounterControl> } 
                       </div>
-                 
                   </section>
-
                   <section>
-                      
                     <span>
 
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 

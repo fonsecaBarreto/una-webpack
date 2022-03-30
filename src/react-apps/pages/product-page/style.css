@@ -10,11 +10,18 @@
     display: grid;
     grid-template-columns: 6fr 7fr;
     grid-template-rows: auto auto auto;
-    gap: 12px;
+    gap: 6px;
+  
 }
 
 #product-page .prouct-page-container > section{
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 6px;
+}
 
+#product-page .prouct-page-container > section:nth-child(1){
+    background-color: rgba(255, 255, 255, 0);
+    padding: 2px;
 }
 
 #product-page .prouct-page-container > section:nth-child(1){
@@ -30,38 +37,42 @@
 /* INFORMAÇÕES DO ITEM AQUI */
 #product-page .prouct-page-container > section:nth-child(3){
     grid-column: span 1;
-    padding: 20px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 4px;
-
 }
 
 #product-page .prouct-page-container > section:nth-child(3) .product-page-cart-option{
     margin-bottom: 0;
     margin-top: auto;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    margin-right: 0;
+    margin-left: auto;
+    width: fit-content;
 }
 
-#product-page .prouct-page-container > section:nth-child(3) > span{
-    
-
+.prouct-page-container > section:nth-child(3) > span > label{
+    font-weight: bold;
 }
 
 .prouct-page-container > section:nth-child(3) .product-page-specification{
-    font-size: 26px;
+    font-size: 22px;
 }
- .prouct-page-container > section:nth-child(3) .product-page-brand{
+
+.prouct-page-container > section:nth-child(3) .product-page-brand{
     font-size: 14px;
 }
 
-#product-page .prouct-page-container > section:nth-child(3) .product-page-ean{
+.prouct-page-container > section:nth-child(3) .product-page-presentation{
     font-size: 14px;
+}
+
+
+#product-page .prouct-page-container > section:nth-child(3) .product-page-code{
+    font-size: 12px;
+    color: #999;
 }
 
 #product-page .prouct-page-container > section:nth-child(3){
