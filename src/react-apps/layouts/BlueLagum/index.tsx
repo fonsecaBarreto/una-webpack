@@ -11,6 +11,9 @@ import ForbiddenCartModal from '../../components/Modals/ForbiddenCart'
 import { useHistory } from 'react-router-dom'
 import Menu from './Menu'
 import { RESULT_MENU_TREE } from './MENU-TREE'
+import GodModeNotify from './GodModeNotify'
+import { useDispatch } from 'react-redux'
+import { setGodMode } from '@/react-apps/store/reducers/main/actions'
 
 const MenuState = () =>{
     const [ show, setShow ] = useState(false)
@@ -23,12 +26,13 @@ export namespace BlueLagumLayout {
         children: ReactNode,
         menu?: boolean,
         user?: any,
-
+        god_mode?: boolean
     }
 }
 
-const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children, user, menu}) =>{
+const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children, user, menu, god_mode}) =>{
 
+    const dispatch = useDispatch()
     const menuState = MenuState()
     const history = useHistory()
     const Context: any = useContext(globalComponent);
@@ -62,7 +66,10 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
 
             <footer>
                 <LayoutFooter></LayoutFooter>  
-            </footer>  
+            </footer> 
+            
+            <GodModeNotify show={god_mode ?? false}
+            exit={()=>{dispatch(setGodMode(false))}}></GodModeNotify>
 
             <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart>
 

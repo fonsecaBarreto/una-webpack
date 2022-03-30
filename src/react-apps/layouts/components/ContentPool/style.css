@@ -5,8 +5,9 @@
 
 /* header */
 .bl-common-content-pool > header {
-    display: grid; grid-template-columns: 1fr auto; align-items: center;
-    width: 100%; height: fit-content; min-height: 32px; gap: 10px;
+    display: grid; grid-template-columns: 1fr auto; 
+    align-items: center;
+    width: 100%; height: fit-content; min-height: 32px; gap: 8px;
 }
 
 /* section */
@@ -20,7 +21,7 @@
 }
 
 .bl-common-content-pool > header > section:nth-child(2){
-    justify-content: flex-end;gap: 12px;
+    justify-content: flex-end; gap: 12px;
     width: fit-content;
 }
 
@@ -28,10 +29,11 @@
     font-size: 14px;
     font-weight: bold;
 }
+
 /* right side */
 .bl-common-content-pool > header > section:nth-child(2) > nav{
     width: 100%;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     display: flex;
     justify-content: flex-end;
@@ -40,14 +42,29 @@
 
 .bl-common-content-pool > header > section:nth-child(2) > nav button{
     border: none;
-    width: 36px;height: 36px;
+    display: flex; align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
     cursor: pointer;
     background-color: white;
-    box-shadow: 0px 2px 1px #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 1px #ddd;
+    border: solid 1px #ddd;
+    position: relative;
 }
 
-.bl-common-content-pool > header > section:nth-child(2) button:hover{
-    background-color: rgb(214, 214, 214);
+.bl-common-content-pool > header > section:nth-child(2) button:after{
+    display: none;
+    content: "";
+    position: absolute;
+    top:0; left: 0;
+    width: 100%; height: 100%;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.bl-common-content-pool > header > section:nth-child(2) button:hover::after{
+    display: inline;
 }
 
 /* section */
@@ -59,11 +76,9 @@
     gap: 10px;
 }
 
-
 .bl-common-content-pool > main > section{
     width: 100%;
 }
-
 
 .bl-common-content-pool > main > .bl-common-content-pool-flow{
     width: 100%;
@@ -78,16 +93,16 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto;
 }
-
+/* 
 @media screen  and (max-width: 1600px){
     .bl-common-content-pool > main>  .bl-common-content-pool-flow{
         grid-template-columns: repeat(4, 1fr);
     }
-}
+} */
 
 @media screen  and (max-width: 1440px){
     .bl-common-content-pool > main >.bl-common-content-pool-flow{
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 

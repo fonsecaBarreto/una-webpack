@@ -5,6 +5,7 @@ import SubmitButton from '../../../components/una/inputs-control/SubmitButton'
 import { Link } from 'react-router-dom'
 import { BsCart4 } from 'react-icons/bs'
 import { RiPriceTag2Line } from 'react-icons/ri'
+import { FaBars } from 'react-icons/fa'
 
 export type ListMode = "inline" | "block" 
 export namespace ProductItem {
@@ -12,11 +13,13 @@ export namespace ProductItem {
         toAdd: () => void
         toRemove: () => void,
         count: number,
-        listMode: ListMode
+        listMode: ListMode,
+        showOptions: boolean,
+        onAction: () => void
     }
 }
 
-export const ProductItem: React.FunctionComponent<any> = ({produto, toAdd, toRemove, count, listMode }) =>{
+export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, toAdd, toRemove, count, listMode }) =>{
     const { specification, image, brand, ean } = produto
 
     const handleCounterInput = (n:number) =>{
@@ -29,6 +32,8 @@ export const ProductItem: React.FunctionComponent<any> = ({produto, toAdd, toRem
     return (
         <div className={`product-feed-item ${listMode}`}>
 
+            { showOptions && <button onClick={()=>onAction("SHOW_OPTIONS")} className='product-feed-options'> <FaBars/> </button> }
+            
             <section className='product-feed-item-img-vp'> 
                 <img alt="Ilustração do produto" src={ProductImage}></img>
             </section>
@@ -37,10 +42,8 @@ export const ProductItem: React.FunctionComponent<any> = ({produto, toAdd, toRem
                 <Link to={`/produto/${ean}`} className="produto-nome">{specification} </Link>
                 <span className="singleline-text produto-ean">{ean}</span>
                 <span className="singleline-text produto-brand"> <RiPriceTag2Line/>{brand.label}</span>
-              {/*   <span className="produto-preço">
-                    R$: 00,00
-                </span> */}
             </section>
+
             <section className='product-feed-item-footer'>
                 { !count ? <SubmitButton  onClick={()=>toAdd(produto)}> Adicionar <BsCart4/> </SubmitButton>
                 : <CounterControl altType onInput={handleCounterInput} value={count}></CounterControl> } 

@@ -10,6 +10,12 @@ export const setLoading = (value = false) => ({
     payload: value 
 })
 
+export const setGodMode = (value = false) => ({
+    type: "SET_GOD_MODE",
+    payload: value 
+})
+
+
 export const setCurrentPage = (payload ) => {
     
     const title = payload.title || INITIAL_CURRENT_PAGE.title

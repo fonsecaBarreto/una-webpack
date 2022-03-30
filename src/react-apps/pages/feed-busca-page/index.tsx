@@ -1,6 +1,5 @@
-import React, { useEffect, useState, FunctionComponent } from 'react'
+import React, { useEffect, useState, FunctionComponent, useContext } from 'react'
 import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
-//import CategoriasNav from '@/react-apps/pages/feed-busca-page/CategoriasNav'
 import ProductFeed from '@/react-apps/pages/feed-busca-page/ProductFeed'
 import { useDispatch, useSelector } from 'react-redux'
 import { produtosService } from "@/services/api/produtos-service"
@@ -8,10 +7,14 @@ import { setProducts } from '@/react-apps/store/reducers/mart'
 import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
 import CategoriasNav from './CategoriasNav'
 import UseTrigger from '@/react-apps/components/utils/UseTrigger'
-
+import GlobalContenxt from '@/react-apps/apps/main/global-components-context'
+import { MakeNotification, NotificationType } from 'fck-react-dialog'
+import { setGodMode } from '@/react-apps/store/reducers/main/actions'
 export const SEARCH_HEADER= { category: "array", subCategory:"array", brand: "array", v: "string", p: "string" };
 
 export const MartPage: FunctionComponent<any> = ({}) => {
+
+    const context = useContext(GlobalContenxt);
     const dispatch = useDispatch();
     const { parsed: parsed_data, parsedParam,  pushToHistory } = UseSearchAdapter({ search: SEARCH_HEADER, param:"departament_id" })
     const { products } = useSelector( (state: any)=>state.mart);
@@ -27,6 +30,14 @@ export const MartPage: FunctionComponent<any> = ({}) => {
             break;
             case "SHOW_FILTERS": 
                 filterTrigger.execute()
+            break;
+            case "ADMINS_MODE":
+                context.dialog.push(MakeNotification((n)=>{
+                    if(n === 0){
+                        dispatch(setGodMode(true))
+                    }
+                    return -1
+                },["Você está prestes a entrar no modo administrador", "tem certeza disso?"],"Atenção", NotificationType.CONFIRMATION))
             break;
         }
     }

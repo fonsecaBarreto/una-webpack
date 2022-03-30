@@ -66,9 +66,7 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ heade
             <main>
                 { loading ?  <LoadingComponent></LoadingComponent> :
                 <React.Fragment>
-
-                    <section> <PageNavigator pages={pages} index={pageIndex} onClick={(index: number) => {onAction("p", index)}} />  </section> 
-
+                    
                     <section className={`bl-common-content-pool-flow ${listMode}`}>   
                         {
                             poolData.length > 0 && poolData.map( (d: any, i: number) =>{

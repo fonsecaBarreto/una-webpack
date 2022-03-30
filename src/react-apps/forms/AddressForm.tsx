@@ -5,7 +5,6 @@ import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import UnaModalForm from '../components/una/ModalForm'
 import ufs from './ufs.json'
 
-import { searchCep } from '@/services/viacep'
 const INITIAL_DATA= {
     rua: "",
     numero: "",
@@ -25,13 +24,7 @@ export namespace UserForm{
 export const UserForm: React.FunctionComponent<UserForm.Params> = ({ entry }) =>{
     const state = UseStateAdapter(INITIAL_DATA)
 
-    useEffect(()=>{ 
-        state.data.set(entry ? entry : INITIAL_DATA) 
-    },[entry])
-
-    useEffect(()=>{
-        console.log('cep aqui')
-    },[state.data.get])
+    useEffect(()=>{ state.data.set(entry ? entry : INITIAL_DATA) },[entry])
 
     return (
         <UnaModalForm onSave={()=>{}} onCancel={()=>{}} >

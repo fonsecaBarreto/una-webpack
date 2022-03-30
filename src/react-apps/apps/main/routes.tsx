@@ -20,7 +20,7 @@ export const RouterComponent = () =>{
 
     const context = useContext(globalContext) 
     const dispatch = useDispatch()
-    var { user }  = useSelector((state:any)=>state.main) 
+    var { user, god_mode }  = useSelector((state:any)=>state.main) 
 
     const beforeEach = async () =>{
         context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
@@ -44,7 +44,7 @@ export const RouterComponent = () =>{
     const config: PageRouterConfig[] =[ 
       {
         layout: BlueLagumLayout,
-        layoutParams: {user, menu: false},
+        layoutParams: { user, menu: false },
         prefix: "/login",  
         routes: [
             { path: "", title: "Login",  component: LoginPage } ,
@@ -54,7 +54,7 @@ export const RouterComponent = () =>{
 
       {
           layout: BlueLagumLayout,
-          layoutParams : { user, menu: true, context },
+          layoutParams : { user, menu: true, god_mode, context },
           prefix: "/",
           routes: [
             /* Mercado */
