@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "build": "rimraf dist/* && webpack --config ./.webpack/webpack.prod.config.js",
-    "dev": "webpack-dev-server --config ./.webpack/webpack.dev.config --host 192.168.1.103",
+    "dev": "webpack-dev-server --config ./.webpack/webpack.dev.config --host 10.0.10.217",
     "dev:server": "npm run dev && nodemon server.js",
     "start": "node server.js",
     "test": "jest --passWithNoTests --runInBand --no-cache --silent",
