@@ -32,7 +32,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     return (
         <div className={`product-feed-item ${listMode}`}>
 
-            { showOptions && <button onClick={()=>onAction("SHOW_OPTIONS")} className='product-feed-options'> <FaBars/> </button> }
+            { showOptions && <button onClick={()=>onAction("UPDATE_PRODUCT", produto)} className='product-feed-options'> <FaBars/> </button> }
             
             <section className='product-feed-item-img-vp'> 
                 <img alt="Ilustração do produto" src={ProductImage}></img>

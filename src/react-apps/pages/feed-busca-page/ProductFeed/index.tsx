@@ -32,12 +32,7 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onAction, list_data 
         return item?.qtd ?? 0;
     }
     
-    const handleAction = (action:any) =>{
-        if(action === "SHOW_OPTIONS"){
-            //context.dialog.push(MakeDialogConfig(()=>(<ProductForm entry={{}} onAction={()=>{}} onData={()=>{}}/>),()=>{},"Produto"))
-            //context.dialog.push(MakeOptions(()=>{`0`},[{ label: "Editar" }],"Opções"))
-        }
-    }
+
 
     return (
         <div className="una-product-feed">
@@ -63,7 +58,7 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onAction, list_data 
                 )}
                 itemComponent={ ({item_data, listMode })=>(
                 <ProductItem 
-                    onAction={handleAction}
+                    onAction={onAction}
                     showOptions={god_mode}
                     listMode={listMode}
                     count={countProductQtd(item_data.id)} 

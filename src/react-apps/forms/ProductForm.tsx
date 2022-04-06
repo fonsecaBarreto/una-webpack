@@ -41,18 +41,16 @@ export const ProductForm: React.FunctionComponent<ProductForm.Params> = ({ entry
         state.loading.set(true)
         state.errors.clear()
         try{
-            
             const { presentation, subCategory, brand, ...rest} = state.data.get;
             const payload = { ...rest,
                 brand_id: brand?.value ?? "",
                 sub_category_id: subCategory?.value ?? "",
                 presentation_id: presentation?.value ?? "",
             }   
-        
             const data = await produtosService.upsert(payload)
-            onAction(-1);
             onData(data)
             context.dialog.push(MakeNotification(() =>{ return -1 },[ "Salvo com sucesso!"],"Sucesso!",NotificationType.SUCCESS))
+            onAction(-1);
         }catch(err:any){ 
             if (err.params) {  
                 if(err.params?.brand_id) { err.params.brand = err.params.brand_id}

@@ -39,7 +39,10 @@ export const MartPage: FunctionComponent<any> = ({}) => {
                 },["Você está prestes a entrar no modo administrador", "tem certeza disso?"],"Atenção", NotificationType.CONFIRMATION))
             break;
             case "ADD_PRODUCT":
-                context.dialog.push(MakeDialogConfig(()=>(<ProductForm  departaments={departaments} entry={{}} onAction={()=>{}} onData={()=>{}}/>),()=>{},"Novo Produto"))
+                context.dialog.push(MakeDialogConfig(({onAction})=>(<ProductForm departaments={departaments} entry={{}} onAction={onAction} onData={()=>{}}/>),()=>-1,"Novo Produto"))
+            ;break;
+            case "UPDATE_PRODUCT":
+                context.dialog.push(MakeDialogConfig(({onAction})=>(<ProductForm departaments={departaments} entry={p} onAction={onAction} onData={()=>{}}/>),()=>-1,"Atualizar Produto"))
             ;break
         }
     }
