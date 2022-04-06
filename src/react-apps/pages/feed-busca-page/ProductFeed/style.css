@@ -112,7 +112,13 @@
     font-size: 15px;
 }
 .admin-mode-button{
-    font-size: 21px;
+    font-size: 22px;
     background-color: rgb(223, 37, 78)!important;
     color: white
+}
+
+.admin-mode-button.add{
+
+    background-color: var(--main-color)!important;
+
 }

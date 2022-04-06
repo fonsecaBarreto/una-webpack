@@ -4,12 +4,13 @@ import { useSelector, useDispatch} from 'react-redux'
 import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import { ProductItem } from './item'
-import SearchHeader from '../SearchHeader'
+import SearchHeader, { LabelRow } from '../SearchHeader'
 import { BsFillFilterSquareFill } from 'react-icons/bs'
 import { MdAdminPanelSettings } from 'react-icons/md'
 import GlobalContext from '@/react-apps/apps/main/global-components-context'
 import { MakeDialogConfig, MakeOptions } from 'fck-react-dialog'
 import ProductForm from '@/react-apps/forms/ProductForm'
+import { AiOutlinePlusSquare } from 'react-icons/ai'
 export namespace ProductFeed {
     export type onAction = any
     export type list_data = any
@@ -33,21 +34,28 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onAction, list_data 
     
     const handleAction = (action:any) =>{
         if(action === "SHOW_OPTIONS"){
-            context.dialog.push(MakeDialogConfig(()=>(<ProductForm entry={{}} onAction={()=>{}} onData={()=>{}}/>),()=>{},"Produto"))
+            //context.dialog.push(MakeDialogConfig(()=>(<ProductForm entry={{}} onAction={()=>{}} onData={()=>{}}/>),()=>{},"Produto"))
             //context.dialog.push(MakeOptions(()=>{`0`},[{ label: "Editar" }],"Opções"))
         }
     }
 
-    
     return (
         <div className="una-product-feed">
+            
             <ContentPool 
                 header={ (queries: any)=>(<SearchHeader  queries={queries}/>) }
                 auxHeader={(queries: any)=>(
                     <React.Fragment>
                         { 
                             (user && user.roles.includes("ADMIN")) &&
-                            <button className='admin-mode-button' onClick={ () => onAction("ADMINS_MODE")}> <MdAdminPanelSettings/> </button>
+                            <React.Fragment> 
+                                { 
+                                 god_mode ? 
+                                 <button className='admin-mode-button.add' onClick={ () => onAction("ADD_PRODUCT")}> <AiOutlinePlusSquare/> </button>
+                                 : 
+                                 <button className='admin-mode-button' onClick={ () => onAction("ADMINS_MODE")}> <MdAdminPanelSettings/> </button>
+                                }
+                            </React.Fragment>
                         } 
 
                         <button className='mobile-only' onClick={ () => onAction("SHOW_FILTERS")}> <BsFillFilterSquareFill/> </button>

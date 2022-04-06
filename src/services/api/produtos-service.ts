@@ -26,11 +26,17 @@ export namespace produtosServices {
           ncm: string
           ean: string
           sku:string
-      }
+     }
 
+     export type AddProductDTO = Omit<AddProduct_dto, "_id">
 }
 
 export const produtosService = {
+
+     upsert: async ( params: produtosServices.AddProductDTO | any ) => {
+          const { data } = await produtosApi.send({ method: "put", url: `/`, data: params}) 
+          return data 
+     },
 
      save_mutiples: async ( params: { products: produtosServices.AddProduct_dto[]}) => {
           const { products } = params

@@ -32,9 +32,7 @@ export const CompanyForm: React.FunctionComponent<CompanyForm.Params> = ({ entry
     const context = useContext(Globalcontext)
     const state = UseStateAdapter(INITIAL_DATA)
 
-    useEffect(()=>{ 
-        state.data.set(entry ? entry : INITIAL_DATA) 
-    },[entry])
+    useEffect(()=>{ state.data.set(entry ? entry : INITIAL_DATA) },[entry])
 
     const submit = async () =>{
         state.loading.set(true)

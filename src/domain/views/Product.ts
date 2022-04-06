@@ -2,7 +2,6 @@
 import { LabelView } from "./ListingView";
 
 export interface Product {
-    id: string
     ncm: string
     ean: string
     sku:string
