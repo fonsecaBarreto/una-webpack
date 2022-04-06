@@ -3,6 +3,7 @@ import Routes from './routes'
 import './style.css'
 import { DialogStack }  from 'fck-react-dialog'
 import MyContext from './global-components-context';
+import MediaPlayListModal from "@/react-apps/components/Modals/MediaPlayList";
 
 export const MyApplication = () =>{
     const [ StackComponent, StackState ] = DialogStack();
@@ -11,7 +12,7 @@ export const MyApplication = () =>{
         <MyContext.Provider value={{ dialog: StackState, app: appRef }}>
             <div id="App" ref={appRef} > 
                 <Routes></Routes> 
-                <StackComponent></StackComponent>  
+                <StackComponent></StackComponent>
             </div>
         </MyContext.Provider>
     )

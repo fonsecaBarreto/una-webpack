@@ -71,7 +71,6 @@ export const RouterComponent = () =>{
             { path: "perfil/:id", title: "Perfil Companhia",  component: ProfilePage } ,
             { path: "", title: "Inicio",  component:() => <Redirect to="/mercado"></Redirect> } ,
             { path: "*", title: "404",  component: () => <div><h1>404</h1></div> }
-         
           ],
           beforeEach
       },

@@ -6,9 +6,9 @@ import { BsPlusCircleDotted } from 'react-icons/bs'
 import { GiNotebook } from 'react-icons/gi'
 import { CgProfile } from 'react-icons/cg'
 import { IoLogoWhatsapp } from 'react-icons/io'
-
-
 import { UserProfileRole } from '@/domain/views/User'
+import { loginServices } from "@/services/api/login-service"
+import { ImExit } from "react-icons/im"
 
 export const ADMIN_TREE = (user) =>{
     if( !user.roles.includes(UserProfileRole.ADMIN) ) return []
@@ -22,7 +22,7 @@ export const ADMIN_TREE = (user) =>{
 export const COMMON_TREE = (user) => ([
     {label:"Mercado", toDo:"/mercado", icon:<AiFillShop/>},
     {label:"Perfil", toDo:`/perfil/${user.company_id}`, icon:<CgProfile/>},
-    {label:"Whatsapp", toDo: () =>  window.open('https://wa.me/5548999999999', '_blank'), icon:<IoLogoWhatsapp/>},
+    {label:"Whatsapp", toDo: () =>  window.open('https://wa.me/5522992317557', '_blank'), icon:<IoLogoWhatsapp/>},
     {label:"Sair", toDo:loginServices.logout, icon:<ImExit/>}
 ])
 

@@ -12,6 +12,7 @@ import { MakeDialogConfig, MakeNotification, NotificationType } from 'fck-react-
 import { setGodMode } from '@/react-apps/store/reducers/main/actions'
 import ProductForm from '@/react-apps/forms/ProductForm'
 import { departamentosService } from '@/services/api/departamentos-service'
+import MediaPlayListModal from '@/react-apps/components/Modals/MediaPlayList'
 export const SEARCH_HEADER= { category: "array", subCategory:"array", brand: "array", v: "string", p: "string" };
 
 export const MartPage: FunctionComponent<any> = ({}) => {
@@ -50,13 +51,14 @@ export const MartPage: FunctionComponent<any> = ({}) => {
     return (
         <div id="departamento-page">
             <div className='app-container'>
-                <ContentGrid>
+               <MediaPlayListModal></MediaPlayListModal> 
+                {/* <ContentGrid>
                     <CategoriasNav 
                         trigger={filterTrigger}
                         departament_id={parsedParam?.["departament_id"] ?? ""} 
                         values={ parsed_data } onChange={pushToHistory}> </CategoriasNav> 
                     <ProductFeed onAction={handleActions} list_data={products} ></ProductFeed>    
-                </ContentGrid> 
+                </ContentGrid>  */}
             </div> 
         </div>
     )

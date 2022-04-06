@@ -21,6 +21,13 @@ export const filesService = {
         return data 
     },
 
+    uploadUserImage: async (files: File[], type: "product") => {
+        const formData = new FormData();
+        files.map(f=>{  formData.append('images', f) })
+        const { data } = await filesApi.send({method: "post", url:`/upload/images/${type}`, data: formData });
+        return data
+    },
+
     uploadCompanyDocument: async (file: File, company_id: string, document_type: "contrato_social"|"inscricao_estadual") => {
         const formData = new FormData();
         formData.append('document', file)

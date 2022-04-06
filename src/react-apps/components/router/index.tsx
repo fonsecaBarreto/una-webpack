@@ -46,7 +46,7 @@ export function AppRouter({ pages }: { pages: PageRouterConfig[]}){
 		<Router>
 			<Switch>
                 { Rendered }
-			</Switch>
+			</Switch> 
 		</Router> 
 	)
 }
