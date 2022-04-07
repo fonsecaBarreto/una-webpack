@@ -10,7 +10,9 @@ const filesApi = MakeApiSettings({
 export const mediaPlayListService = {
 
     save: async (images: string[], id?: string, ) => {
-        const { data } = await filesApi.send({method: "post", url:`/`, data: { images } });
+        const METHOD= !id ? "POST" : "PUT" 
+        const URL = !id ? `/` : `/${id}`
+        const { data } = await filesApi.send({method: METHOD, url:URL, data: { images } });
         return data
     },
     find: async (id: string ) => {

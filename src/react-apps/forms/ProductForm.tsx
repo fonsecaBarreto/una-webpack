@@ -3,13 +3,26 @@ import "./style.css"
 import { Controls, Forming } from 'fck-react-input-controls'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import UnaModalForm from '../components/una/ModalForm'
-import { BiBadgeCheck } from 'react-icons/bi'
-import { MdBlock } from 'react-icons/md'
-
+/* import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
+ */
 //import { companhiasServices } from '@/services/api/companhias-service'
 import Globalcontext from '@/react-apps/apps/main/global-components-context'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { produtosService } from '@/services/api/produtos-service'
+import MediaPlayListModal from '../components/Modals/MediaPlayList'
+
+//
+/* 
+ useEffect(() => {
+        if(parsedQueries?.playlist){
+            mediaPlayListService.find(parsedQueries?.playlist).then(r=>{
+                console.log("loaded playlist", r)
+                setImages(r.images)
+            })
+            //
+        }
+    }, [ parsedQueries]
+ */
 
 const INITIAL_DATA= {
     brand: "",
@@ -63,7 +76,8 @@ export const ProductForm: React.FunctionComponent<ProductForm.Params> = ({ entry
 
     return (
         <UnaModalForm onSave={submit} onCancel={()=>{ onAction(-1)}}  >
-            <Forming.FormGrid title="" columns={[4,4,4,12,12,12,12]} freeze={state.loading.get}>
+            <Forming.FormGrid title="" columns={[12, 4,4,4,12,12,12,12]} freeze={state.loading.get}>
+                <MediaPlayListModal playlist_id={undefined}></MediaPlayListModal>
                 <Controls.TextBox state={state} label="EAN" name={"ean"} type={Controls.TextBoxTypes.TEXT} /> 
                 <Controls.TextBox state={state} label="NCM" name={"ncm"} type={Controls.TextBoxTypes.TEXT} /> 
                 <Controls.TextBox state={state} label="SKU" name={"sku"} type={Controls.TextBoxTypes.TEXT} /> 

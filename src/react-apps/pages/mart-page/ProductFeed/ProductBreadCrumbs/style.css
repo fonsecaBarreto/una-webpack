@@ -1,0 +1,14 @@
+ul.product-page-bread-crumbs{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    gap: 4px;
+}
+
+ul.product-page-bread-crumbs > li{
+    display: inline-block;
+    list-style-type:none;
+    font-size: 14;
+}

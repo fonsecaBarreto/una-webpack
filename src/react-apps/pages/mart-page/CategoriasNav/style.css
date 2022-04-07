@@ -1,0 +1,11 @@
+
+.nav-categorias-aside{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: white;
+    border-radius: 8px;
+    padding: 4px;
+}

@@ -8,7 +8,7 @@ import { loginServices } from '@/services/api/login-service'
 import { Redirect } from "react-router-dom";
 
 /* pages */
-import DeparamentoPage from "../../pages/feed-busca-page";
+import MartPage from "../../pages/mart-page";
 import CompanhiasPage from "@/react-apps/pages/list-companhias-page";
 import LoginPage from "@/react-apps/pages/login-page";
 import CadastroPage from "@/react-apps/pages/register-page";
@@ -58,8 +58,8 @@ export const RouterComponent = () =>{
           prefix: "/",
           routes: [
             /* Mercado */
-            { path: "mercado/:departament_id", title: "Mercado",  component: DeparamentoPage } ,
-            { path: "mercado", title: "Mercado",  component: DeparamentoPage } ,
+            { path: "mercado/:departament_id", title: "Mercado",  component: MartPage } ,
+            { path: "mercado", title: "Mercado",  component: MartPage } ,
             /* Companies */
             { path: "companhias/:company_id", title: "Companhias",  component: CompanhiasPage } ,
             { path: "companhias", title: "Companhias",  component: CompanhiasPage } ,
