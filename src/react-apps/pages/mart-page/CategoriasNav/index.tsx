@@ -29,63 +29,57 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ f
     const dispatch = useDispatch()
     const [ forceFiltersToOpen, setForceFiltersToOpen ] = useState(false)
     const { departaments, loadtry, products } = useSelector( (state: any)=>state.mart);
-    useEffect(()=>{ if(loadtry == 0 ) departamentosService.list().then(data => { dispatch(setDepartaments(data))}); },[])
-    useEffect(()=> trigger.setCallBack( () => setForceFiltersToOpen(prev=>!prev) ), [])
 
     const { categories_available, subCategories_available, brands_available } = products.data 
 
-    var prevCategoriesAvailable= useRef(categories_available) 
-    var prevsubCategoryAvailable = useRef(subCategories_available)
-    var prevbrandsAvailable = useRef(brands_available)
+    var prevsubCategoryAvailable = useRef(subCategories_available);
+    var prevbrandsAvailable = useRef(brands_available);
 
-    useEffect(()=>{
-        if(!sameContent(prevCategoriesAvailable.current, categories_available)){
-            var categorias_selecionadas =  values['category'];
-            var categorias_filtradas = categorias_selecionadas.filter((s:string)=>categories_available.map((v:any)=>v.value).includes(s))
-            onChange( "category",categorias_filtradas)
-        }
-        if(!sameContent(prevsubCategoryAvailable.current, subCategories_available)){
-            var subCategorias_selecionadas = values["subCategory"];
-            onChange("subCategory",subCategorias_selecionadas.filter((s:string)=>subCategories_available.map((v:any)=>v.value).includes(s)))
-        }
+      useEffect(()=>{ if(loadtry == 0 ) departamentosService.list().then(data => { dispatch(setDepartaments(data))}); },[])
+    useEffect(()=> trigger.setCallBack( () => setForceFiltersToOpen(prev=>!prev) ), [])
+    useEffect(()=>{ retifyUnavailables()},[products])
 
-        if(!sameContent(prevbrandsAvailable.current, brands_available)){
-            var brands_selecionadas = values["brand"];
-            onChange("brand", brands_selecionadas.filter((s:string)=>brands_available.map((v:any)=>v.value).includes(s)))
-        }
-        
+    const retifyUnavailables = () => {
+    
+        var changed =false, departaments:any = {}
+
+        if(!sameContent(prevsubCategoryAvailable.current, subCategories_available )
+            || !sameContent(prevbrandsAvailable.current, brands_available) ) {changed= true;}
+
+        departaments["subCategory"] = values?.["subCategory"].filter((s:string)=>subCategories_available.map((v:any)=>v.value).includes(s));
+        departaments["brand"] = values?.["brand"].filter((s:string)=>brands_available.map((v:any)=>v.value).includes(s));
+    
         prevbrandsAvailable.current = brands_available
         prevsubCategoryAvailable.current = subCategories_available
-        prevCategoriesAvailable.current = categories_available
-    },[products])
+
+        if(changed == true){ onChange(departaments) }
+
+    }
+    
 
     return (
         <Asidefilters toggle={forceFiltersToOpen} loading={freeze}>
              {
                 (loadtry == 0 || !values) ? ( <span> Carregando... </span>  ):(
                     <React.Fragment>
-                        <MultipleSelectionControl 
-                            title="Departamentos" items={departaments.departaments} max={1} 
+                        <MultipleSelectionControl title="Departamentos" items={departaments.departaments} max={1} 
                             value={ departament_id == "" ? [] : [{ value: departament_id }]}
-                            onChange={(p: any)=> onChange("departament_id", p.map((b: any)=>b.value))} >
+                            onChange={(p: any)=> onChange( { departament_id : p.map((b: any)=>b.value) }, true)} >
                         </MultipleSelectionControl>  
 
-                       <MultipleSelectionControl 
-                            title="Categorias" items={categories_available}
+                       <MultipleSelectionControl title="Categorias" items={categories_available}
                             value={values["category"].map((v:string)=>({value: v}))}
-                            onChange={(p: any)=>  onChange("category", p.map((b: any)=>b.value))} >
+                            onChange={(p: any)=>  onChange({ category: p.map((b: any)=>b.value )})} >
                         </MultipleSelectionControl>
 
-                        <MultipleSelectionControl 
-                            title="Sub Categorias" items={subCategories_available}
+                        <MultipleSelectionControl title="Sub Categorias" items={subCategories_available}
                             value={values["subCategory"].map((v:string)=>({value: v}))}
-                            onChange={(p: any)=>{ onChange("subCategory", p.map((b: any)=>b.value))}} >
+                            onChange={(p: any)=>{ onChange({ subCategory: p.map((b: any)=>b.value)})}} >
                         </MultipleSelectionControl>  
        
-                        <MultipleSelectionControl 
-                            title="Marcas" items={brands_available}
+                        <MultipleSelectionControl title="Marcas" items={brands_available}
                             value={values["brand"].map((v:string)=>({value: v}))}
-                            onChange={(p: any)=>{ onChange("brand", p.map((b: any)=>b.value))}} >
+                            onChange={(p: any)=>{ onChange({ brand: p.map((b: any)=>b.value) })}} >
                         </MultipleSelectionControl>  
                     </React.Fragment>
                 )
@@ -95,27 +89,3 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ f
     )
 }
 export default CategoriasNav
-
-    /*
-
-
-useEffect(()=>{
-        if(!sameContent(prevCategoriesAvailable.current, categories_available)){
-            onChange( "category", values['category'].filter((s:string)=>categories_available.map((v:any)=>v.value).includes(s)).map((b:any)=>b.value))
-        }
-        prevCategoriesAvailable.current = categories_available
-    },[categories_available]) */
-/*  
-    useEffect(()=>{
-        if(!sameContent(prevsubCategoryAvailable.current, subCategories_available)){
-            onChange("subCategory", values['subCategory'].filter((s:string)=>subCategories_available.map((v:any)=>v.value).includes(s)).map((b:any)=>b.value))
-        }
-        prevsubCategoryAvailable.current = subCategories_available
-    },[subCategories_available])  
-
-    useEffect(()=>{
-        if(!sameContent(prevbrandsAvailable.current, brands_available)){
-            onChange("brand", values['brand'].filter((s:string)=>brands_available.map((v:any)=>v.value).includes(s)).map((b:any)=>b.value))
-        }
-        prevbrandsAvailable.current = brands_available
-    },[brands_available]) */

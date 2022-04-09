@@ -7,17 +7,18 @@ export namespace FiltersAsideNav {
     export type Params = {
         children?: ReactNode
         toggle?: boolean
+        loading: boolean
     }
 }
 
-export const FiltersAsideNav: React.FunctionComponent<FiltersAsideNav.Params> = ({ children, toggle = false }) => {
+export const FiltersAsideNav: React.FunctionComponent<FiltersAsideNav.Params> = ({ loading, children, toggle = false }) => {
 
     const { width } = useWindowSize()
     const [ showFilters, setShowFilters ] = useState<boolean>(false)
     useEffect(()=>{ setShowFilters(!showFilters) },[toggle]);
     return (
-        <aside className='filter-aside-nav'>
-            {   width > 950 &&  <span>  {children}  </span>}
+        <aside className={`filter-aside-nav ${!loading ? ""  : "filters-is-loading"}`}>
+            {   width > 950 &&  <span>  {children}  </span>} 
             <BlueLagumAsideModal className='mobile-only' show={showFilters}  onClose={()=>setShowFilters(false)}
                 content={ children }
                 footer={<span></span> }

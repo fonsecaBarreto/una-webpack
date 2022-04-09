@@ -13,34 +13,51 @@ import { setGodMode } from '@/react-apps/store/reducers/main/actions'
 import ProductForm from '@/react-apps/forms/ProductForm'
 import { departamentosService } from '@/services/api/departamentos-service'
 
-export const SEARCH_HEADER= { category: "m", subCategory:"m", brand: "m", v: "s", p: "s", ean: "s" };
-export const PARAMS_HEADER = ["departament_id"];
+export const SEARCH_HEADER= { 
+    params : [ "departament_id" ],
+    search : [ "category", "subCategory", "brand", "v", "p", "ean" ]
+};
+
 export const MartPage: FunctionComponent<any> = ({}) => {
 
-    const dispatch = useDispatch();
-    const filterTrigger = UseTrigger();
+    const { parsedSearch, parsedParams, pushToHistory } = UseSearchAdapter({ header: SEARCH_HEADER })
     const [ isLoading, setIsLoading ] = useState(false);
-    const { parsedSearch, parsedParam, pushParam, pushSearch } = UseSearchAdapter({ search: SEARCH_HEADER, params: PARAMS_HEADER })
+    const filterTrigger = UseTrigger();
+    const dispatch = useDispatch();
 
-    useEffect(()=>{ handleSearch() },[parsedSearch, parsedParam])
+    useEffect(()=>{ handleSearch() },[parsedSearch, parsedParams])
 
     const handleSearch = async () => {
-     
-       /*  if(!parsed_data) return;
-        if(parsed_data.ean) {
-            const product = parsed_data.ean === "NOVO" ? {} : await produtosService.find({ean: parsed_data.ean})
-            context.dialog.push(MakeDialogConfig(
-                ({onAction})=>( <ProductForm departaments={departaments} entry={product.product} onAction={onAction} onData={()=>{}}/>
-                ),()=>{ pushToHistory("", 'ean'); }, parsed_data.ean ? "Atualizar Produto" : "Novo Produto")
-            );
-        }else{
-            */
         setIsLoading(true)
-        produtosService.list({ ...parsedSearch, ...parsedParam}).then( r => dispatch(setProducts(r)))
+        produtosService.list({ ...parsedSearch, ...parsedParams}).then( r => dispatch(setProducts(r)))
         .finally(()=>{ setIsLoading(false) })
     }
 
-    /* const handleActions = (key:string, p: any) =>{
+    const handleFilterChange = (arg: object, clear: boolean) => { pushToHistory(arg, clear) }
+
+    return (
+        <div id="departamento-page">
+            <div className='app-container'>
+                 <ContentGrid>
+                    
+                    <CategoriasNav 
+                        freeze={isLoading} trigger={filterTrigger} departament_id={parsedParams?.["departament_id"] ?? ""} 
+                        values={ parsedSearch } onChange={handleFilterChange}> </CategoriasNav>
+                    <div>
+                        { JSON.stringify(parsedSearch) }
+                        { JSON.stringify(parsedParams) }
+                    </div>
+                        { /*
+                    <ProductFeed onAction={handleActions} list_data={products} ></ProductFeed>  */}   
+                </ContentGrid> 
+            </div> 
+        </div>
+    )
+}
+
+export default MartPage
+
+  /* const handleActions = (key:string, p: any) =>{
         switch(key){
             case "p": pushToHistory(p+"", 'p'); break;
             case "SHOW_FILTERS": filterTrigger.execute();break;
@@ -54,26 +71,13 @@ export const MartPage: FunctionComponent<any> = ({}) => {
         }
     } */
 
-    const handleFilterChange = (k: string, p: string[]) => {
-        if (PARAMS_HEADER.includes(k)){  pushParam(k, p[0] ?? "") }
-        else { pushSearch(k, p) }
-    }
 
-    return (
-        <div id="departamento-page">
-            <div className='app-container'>
-                 <ContentGrid>
-                    <CategoriasNav freeze={isLoading} trigger={filterTrigger} departament_id={parsedParam?.["departament_id"] ?? ""} 
-                        values={ parsedSearch } onChange={handleFilterChange}> </CategoriasNav>  
-
-                        { /*
-                    <ProductFeed onAction={handleActions} list_data={products} ></ProductFeed>  */}   
-                </ContentGrid> 
-            </div> 
-        </div>
-    )
-}
-
-export default MartPage
-
- 
+       /*  if(!parsed_data) return;
+        if(parsed_data.ean) {
+            const product = parsed_data.ean === "NOVO" ? {} : await produtosService.find({ean: parsed_data.ean})
+            context.dialog.push(MakeDialogConfig(
+                ({onAction})=>( <ProductForm departaments={departaments} entry={product.product} onAction={onAction} onData={()=>{}}/>
+                ),()=>{ pushToHistory("", 'ean'); }, parsed_data.ean ? "Atualizar Produto" : "Novo Produto")
+            );
+        }else{
+            */

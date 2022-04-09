@@ -3,61 +3,56 @@ import queryString from 'query-string'
 import { useHistory, useRouteMatch } from 'react-router-dom'
 
 export namespace SearchAdapter {
-    export type Params = {
-        search?:  Record<any, "m" | "s" | string >,
-        params?: string[]
-    }
+    export type Params = { header :Record<"params" | "search",  string[] > }
 }
 
-export const UseSearchAdapter = ({ search, params }: SearchAdapter.Params )=>{
+export const UseSearchAdapter = ({ header={ params : [], search: [] } }: SearchAdapter.Params )=>{
 
-    const history = useHistory()
-    const match = useRouteMatch()
+    const history = useHistory(), match = useRouteMatch();
     const [ parsedSearch, setParsedSearch] = useState<any>(null)
-    const [ parsedParam, setParsedParam ] = useState<any>(null) 
+    const [ parsedParams, setParsedParams ] = useState<any>(null) 
     const searchRef = useRef(parsedSearch)
+    const paramsRef = useRef(parsedParams)
     
     useEffect(() => handleUrl(), [ location.search, location.pathname ])
 
     const handleUrl = () => {
         var upcomming_params, upcomming_search: any = {}
-        if(search){
-            var parsedSearch: any = queryString.parse(location.search);
-            Object.keys(search).map((k,i)=>{
-                let type = search[k]
-                let searchValue = parsedSearch[k] ?? ((type == "s") ?  "" : []);
-                upcomming_search[k] = type == "m" ?  (Array.isArray(searchValue)) ? searchValue : [ searchValue ]: searchValue; 
-            })
-            setParsedSearch(upcomming_search)
-            searchRef.current = upcomming_search;
-        }
-        if(params) {
-            var parsedParams:any = Object.assign({}, match.params);
-            params.map((p,i)=>  upcomming_params = { [p]: parsedParams[p] ?? "" })
-            setParsedParam(upcomming_params)
-        }
-    }
     
-    const pushSearch= ( key: string, value: any ) =>{
-        var result_search = { ...searchRef.current };
-        var value = value ?? "";
-        result_search[key] = value;
-        if( search?.p  && key != "p" ){ result_search.p = 1; }
-        return history.replace({ search: queryString.stringify(result_search) })
+        var parsedSearch: any = queryString.parse(location.search);
+        var parsedParams: any = Object.assign({}, match.params);
+
+        header.search.map((k,i)=>{
+            let value = parsedSearch[k] ?? [];
+            upcomming_search[k] = Array.isArray(value) ? value : [ value ]; 
+        })
+        
+        header.params.map((k,i)=> upcomming_params = { [k]: parsedParams[k] ?? "" } ) 
+
+        setParsedSearch(upcomming_search);
+        setParsedParams(upcomming_params);
+        searchRef.current = upcomming_search; 
+        paramsRef.current = upcomming_params;
     }
 
-    const pushParam = ( key: string, payload: any ) =>{
-        var result_search = { ...searchRef.current };
-        var result_params = "";
-        var value = payload ?? "";
-        if(params?.includes(key)){
-            result_params = `${match.path.split("/:")[0]}/${value}`
-        } 
-        if( search?.p  && key != "p" ){ result_search.p = 1; }
-        return history.replace({ search: queryString.stringify(result_search), pathname: `${result_params}` }) 
-    }
+    const pushToHistory = (struct: any, clear: boolean= false ) => {
+        var params_result = !clear ? {...paramsRef.current} : {},
+        search_result = !clear ? { ...searchRef.current } : {};
+         
+        Object.keys(struct).map((k: string,i)=>{
+            var value: any = struct[k];
+            if (header.params.includes(k)){
+                params_result[k]= value[0] ?? ""
+            } else if (header.search.includes(k)){
+                search_result[k]= value ?? []
+            }
+        })
 
-    return ({ parsedSearch, parsedParam, pushSearch, pushParam })
+        var str_params = ""
+        Object.keys(params_result).map(p=> str_params+= "/"+  params_result[p] ?? "");
+        history.replace({ search:  queryString.stringify(search_result), pathname: `${match.path.split("/:")[0]}${str_params}` }) 
+    }
+    return ({ parsedSearch, parsedParams, pushToHistory })
 }
 
 
