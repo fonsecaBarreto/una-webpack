@@ -1,7 +1,7 @@
 
 .products-search-header{
     display: flex; flex-direction: column; align-items:flex-start; justify-content: flex-start;
-    gap: 4px;
+    gap: 2px;
     width: 100%;
     max-width: 100%;
     overflow-x: auto;
@@ -23,9 +23,8 @@
     font-size: 14px;
     line-height: 1em;
     border-radius: 1px;
-    background-color: white;
     padding: 3px 8px;
-    gap: 6px;
+    gap: 5px;
 }
 
 .search-header-label-row > label{

@@ -1,4 +1,5 @@
 import { global } from '@/services/global-keys'
+import { filesService } from './files-service'
 import { MakeApiSettings, errorHandler } from './helpers'
 
 const filesApi = MakeApiSettings({
@@ -18,5 +19,12 @@ export const mediaPlayListService = {
     find: async (id: string ) => {
         const { data } = await filesApi.send({method: "get", url:`/${id}` });
         return data
+    },
+    getImageSrc: async(id: string) => {
+        var playlist = await mediaPlayListService.find(id)
+        if(!playlist) return null;
+        var image = playlist.images[0];
+        const src= image.name + "/" + image.src[1].width + ".jpeg"
+        return filesService.get_public_images_url(src);
     }
 }

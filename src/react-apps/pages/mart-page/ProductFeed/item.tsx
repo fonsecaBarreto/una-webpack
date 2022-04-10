@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import ProductImage from "@/public/assets/images/shopping-bag.jpg"
-import CounterControl from '../../../components/una/inputs-control/CounterControl'
+import React, { useState, useEffect } from 'react'
+import ProductImage from "@/public/assets/images/product/empty.svg"
 import { Link } from 'react-router-dom'
 import { RiPriceTag2Line } from 'react-icons/ri'
-import { FaBars } from 'react-icons/fa'
-import { IoIosAddCircleOutline } from 'react-icons/io'
 import AddCartButton from './AddCartButton'
+import { BsThreeDotsVertical } from 'react-icons/bs'
+import { mediaPlayListService } from '@/services/api/media-playlist'
 
 export type ListMode = "inline" | "block" 
 export namespace ProductItem {
@@ -20,9 +19,13 @@ export namespace ProductItem {
 
 export const ProductImageSection: React.FunctionComponent<any> = ({playlist_id}) =>{
     const [ image, setImage ] = useState(ProductImage);
+    useEffect(()=> {
+        if(!playlist_id) return;
+        mediaPlayListService.getImageSrc(playlist_id).then(setImage)
+    }, [playlist_id])
     return (
         <section className='product-feed-item-img-vp'> 
-            <img alt="Ilustração do produto" src={ProductImage}></img>
+            <img alt="Ilustração do produto" src={image}></img>
         </section>
     )
 }
@@ -40,9 +43,9 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     return (
         <div className={`product-feed-item ${listMode}`}>
 
-            { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <FaBars/> </button> }
+            { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <BsThreeDotsVertical/> </button> }
             
-            <ProductImageSection/>
+            <ProductImageSection playlist_id={produto.media_playlist_id} />
 
             <section className='product-feed-item-body'>
                 <Link to={`/produto/${ean}`} className="produto-nome">{specification} </Link>
