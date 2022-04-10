@@ -1,13 +1,13 @@
 export const INITIAL_CURRENT_PAGE = {
   title: "",
-  breadCrumbs: [  ],
+  breadCrumbs: [],
   icon: null
 }
 
 const INITIAL_STATE = {
   user: null,
   loading: false,
-  god_mode: false,
+  god_mode: true,
   currentPage:  { ...INITIAL_CURRENT_PAGE }
 }
 

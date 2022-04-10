@@ -10,6 +10,9 @@ import Globalcontext from '@/react-apps/apps/main/global-components-context'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { produtosService } from '@/services/api/produtos-service'
 import MediaPlayListModal from '../components/Modals/MediaPlayList'
+import { departamentosService } from '@/services/api/departamentos-service'
+import { useDispatch, useSelector } from 'react-redux'
+import { setDepartaments } from '../store/reducers/mart'
 
 //
 /* 
@@ -32,23 +35,34 @@ const INITIAL_DATA= {
     ncm: "",
     ean: "",
     sku: "",
-    image: null,
+    media_playlist_id: ""
 }
 
 export namespace ProductForm{
     export type Params = {
-        entry: any,
+        entry: any | null,
         onData: any,
-        onAction: any,
-        departaments : any
+        onAction: any
     }
 }
 
-export const ProductForm: React.FunctionComponent<ProductForm.Params> = ({ entry={}, onAction, onData, departaments}) =>{
+export const ProductForm: React.FunctionComponent<ProductForm.Params> = ({ entry=null, onAction, onData}) =>{
+    
+    const { departaments, loadtry } = useSelector( (state: any)=>state.mart);
+    const state: any = UseStateAdapter(INITIAL_DATA)
     const context = useContext(Globalcontext)
-    const state = UseStateAdapter(INITIAL_DATA)
+    const dispatch = useDispatch();
 
-    useEffect(()=>{ state.data.set({ ...INITIAL_DATA, ...entry }) },[entry])
+    useEffect(()=>{ if(loadtry == 0 ) departamentosService.list().then(data => { dispatch(setDepartaments(data))}); },[loadtry])
+
+    useEffect(()=>{
+        if(entry !== null) return state.data.set({ ...INITIAL_DATA, ...entry }) 
+    },[entry])
+
+    const handleMediaPlayListResult =(result: any) => {
+        if(!result) return;
+        state.data.onInput("media_playlist_id", result.id)
+    }
 
     const submit = async () =>{
         state.loading.set(true)
@@ -75,18 +89,22 @@ export const ProductForm: React.FunctionComponent<ProductForm.Params> = ({ entry
     }
 
     return (
-        <UnaModalForm onSave={submit} onCancel={()=>{ onAction(-1)}}  >
-            <Forming.FormGrid title="" columns={[12, 4,4,4,12,12,12,12]} freeze={state.loading.get}>
-                <MediaPlayListModal playlist_id={undefined}></MediaPlayListModal>
-                <Controls.TextBox state={state} label="EAN" name={"ean"} type={Controls.TextBoxTypes.TEXT} /> 
-                <Controls.TextBox state={state} label="NCM" name={"ncm"} type={Controls.TextBoxTypes.TEXT} /> 
-                <Controls.TextBox state={state} label="SKU" name={"sku"} type={Controls.TextBoxTypes.TEXT} /> 
-                <Controls.TextBox placeHolder="Exemplo: Farinha da marca Una" state={state} label="Especificação " name={"specification"}  type={Controls.TextBoxTypes.TEXTAREA}/>
-                <Controls.SelectBox state={state} label="Marca" name={"brand"} list={departaments.brands ?? []}  /> 
-                <Controls.SelectBox state={state} label="Apresentação" name={"presentation"} list={departaments.presentations ?? []}  /> 
-                <Controls.SelectBox state={state} label="Categoria" name={"subCategory"} list={departaments.subCategories ?? []}  /> 
-            </Forming.FormGrid>
-        </UnaModalForm>
+        <React.Fragment>
+            {!departaments ? "Carregando ..." :
+            <UnaModalForm onSave={submit} onCancel={()=>{ onAction(-1)}}  >
+                <Forming.FormGrid title="" columns={[12, 4,4,4,12,12,12,12]} freeze={state.loading.get}>
+                    <MediaPlayListModal onData={handleMediaPlayListResult} playlist_id={state.data.get["media_playlist_id"]}></MediaPlayListModal> 
+                    <Controls.TextBox state={state} label="EAN" name={"ean"} type={Controls.TextBoxTypes.TEXT} /> 
+                    <Controls.TextBox state={state} label="NCM" name={"ncm"} type={Controls.TextBoxTypes.TEXT} /> 
+                    <Controls.TextBox state={state} label="SKU" name={"sku"} type={Controls.TextBoxTypes.TEXT} /> 
+                    <Controls.TextBox placeHolder="Exemplo: Farinha da marca Una" state={state} label="Especificação " name={"specification"}  type={Controls.TextBoxTypes.TEXTAREA}/>
+                    <Controls.SelectBox state={state} label="Marca" name={"brand"} list={departaments.brands ?? []}  /> 
+                    <Controls.SelectBox state={state} label="Apresentação" name={"presentation"} list={departaments.presentations ?? []}  /> 
+                    <Controls.SelectBox state={state} label="Categoria" name={"subCategory"} list={departaments.subCategories ?? []}  /> 
+                </Forming.FormGrid>
+            </UnaModalForm>
+            }
+        </React.Fragment>
     )
 }
 

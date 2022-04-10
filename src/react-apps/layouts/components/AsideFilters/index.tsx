@@ -19,7 +19,7 @@ export const FiltersAsideNav: React.FunctionComponent<FiltersAsideNav.Params> = 
     return (
         <aside className={`filter-aside-nav ${!loading ? ""  : "filters-is-loading"}`}>
             {   width > 950 &&  <span>  {children}  </span>} 
-            <BlueLagumAsideModal className='mobile-only' show={showFilters}  onClose={()=>setShowFilters(false)}
+            <BlueLagumAsideModal loading={loading} className='mobile-only' show={showFilters}  onClose={()=>setShowFilters(false)}
                 content={ children }
                 footer={<span></span> }
                 title='Filtros'

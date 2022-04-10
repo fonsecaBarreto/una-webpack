@@ -21,7 +21,8 @@ export namespace produtosServices {
           _id: string,
           brand_id:string
           presentation_id:string
-          sub_category_id: string
+          sub_category_id: string,
+          media_playlist_id: string,
           specification: string
           ncm: string
           ean: string

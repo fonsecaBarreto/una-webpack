@@ -9,7 +9,9 @@ const filesApi = MakeApiSettings({
 
 export const filesService = {
 
-
+    get_public_images_url(name: string){
+        return (`${global.base_url}/files/public-images?v=${name}`)
+    },
     get_url: (name: string) => {
         const token = localStorage.getItem(global.user_storage_key)
         return (`${global.base_url}/files?v=${name}&a=${token}`)

@@ -5,6 +5,7 @@ import Asidefilters from '@/react-apps/layouts/components/AsideFilters'
 import { setDepartaments } from '@/react-apps/store/reducers/mart'
 import { useSelector, useDispatch } from 'react-redux'
 import { departamentosService } from '@/services/api/departamentos-service'
+import { RiPriceTag2Fill, RiPriceTag2Line, RiPriceTagFill, RiPriceTagLine } from 'react-icons/ri'
 
 export namespace CategoriasNav {
     export type Params = {
@@ -35,7 +36,7 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ f
     var prevsubCategoryAvailable = useRef(subCategories_available);
     var prevbrandsAvailable = useRef(brands_available);
 
-      useEffect(()=>{ if(loadtry == 0 ) departamentosService.list().then(data => { dispatch(setDepartaments(data))}); },[])
+    useEffect(()=>{ if(loadtry == 0 ) departamentosService.list().then(data => { dispatch(setDepartaments(data))}); },[])
     useEffect(()=> trigger.setCallBack( () => setForceFiltersToOpen(prev=>!prev) ), [])
     useEffect(()=>{ retifyUnavailables()},[products])
 
@@ -62,22 +63,22 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ f
              {
                 (loadtry == 0 || !values) ? ( <span> Carregando... </span>  ):(
                     <React.Fragment>
-                        <MultipleSelectionControl title="Departamentos" items={departaments.departaments} max={1} 
+                        <MultipleSelectionControl icon={<RiPriceTagLine/>} title="Departamentos" items={departaments.departaments} max={1} 
                             value={ departament_id == "" ? [] : [{ value: departament_id }]}
                             onChange={(p: any)=> onChange( { departament_id : p.map((b: any)=>b.value) }, true)} >
                         </MultipleSelectionControl>  
 
-                       <MultipleSelectionControl title="Categorias" items={categories_available}
+                       <MultipleSelectionControl icon={<RiPriceTagFill/>} title="Categorias" items={categories_available}
                             value={values["category"].map((v:string)=>({value: v}))}
                             onChange={(p: any)=>  onChange({ category: p.map((b: any)=>b.value )})} >
                         </MultipleSelectionControl>
 
-                        <MultipleSelectionControl title="Sub Categorias" items={subCategories_available}
+                        <MultipleSelectionControl icon={<RiPriceTag2Fill/>} title="Sub Categorias" items={subCategories_available}
                             value={values["subCategory"].map((v:string)=>({value: v}))}
                             onChange={(p: any)=>{ onChange({ subCategory: p.map((b: any)=>b.value)})}} >
                         </MultipleSelectionControl>  
        
-                        <MultipleSelectionControl title="Marcas" items={brands_available}
+                        <MultipleSelectionControl icon={<RiPriceTag2Line/>} title="Marcas" items={brands_available}
                             value={values["brand"].map((v:string)=>({value: v}))}
                             onChange={(p: any)=>{ onChange({ brand: p.map((b: any)=>b.value) })}} >
                         </MultipleSelectionControl>  

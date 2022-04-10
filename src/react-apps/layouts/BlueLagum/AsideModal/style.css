@@ -20,6 +20,15 @@
     animation-timing-function: ease;
 }
 
+.bl-aside-modal-overflow.bl-aside-loading::after{
+    content: "";
+    position: absolute;
+    top: 0; left: -0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.56);
+}
+
 .bl-aside-modal-overflow .bl-aside-modal{
     width: 400px; height: 100%;
     background-color: rgb(255, 255, 255);

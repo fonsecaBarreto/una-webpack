@@ -12,16 +12,16 @@ import { MakeDialogConfig, MakeOptions } from 'fck-react-dialog'
 import ProductForm from '@/react-apps/forms/ProductForm'
 import { AiOutlinePlusSquare } from 'react-icons/ai'
 export namespace ProductFeed {
-    export type onAction = any
-    export type list_data = any
+    export type onChange = any
 }
 
-export const ProductFeed: React.FunctionComponent<any> = ({ onAction, list_data }) =>{
+export const ProductFeed: React.FunctionComponent<any> = ({ onChange }) =>{
 
     const dispatch = useDispatch();
     const context = useContext(GlobalContext)
     const { cart } = useSelector((state: any)=>state.carrinho)
     const { user, god_mode } = useSelector((state: any)=>state.main)
+    const { products } = useSelector( (state: any)=>state.mart);
 
     const addToCart =(novo_produto: any) =>  dispatch(pushToCart(novo_produto))
     const rmFromCart =(produto: any) => dispatch(removeFromCart(produto))
@@ -31,8 +31,6 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onAction, list_data 
         const item = cart[item_index];
         return item?.qtd ?? 0;
     }
-    
-
 
     return (
         <div className="una-product-feed">
@@ -46,28 +44,28 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onAction, list_data 
                             <React.Fragment> 
                                 { 
                                  god_mode ? 
-                                 <button className='admin-mode-button.add' onClick={ () => onAction("ADD_PRODUCT")}> <AiOutlinePlusSquare/> </button>
+                                 <button className='admin-mode-button.add' onClick={ () => onChange("ADMIN", "new")}> <AiOutlinePlusSquare/> </button>
                                  : 
-                                 <button className='admin-mode-button' onClick={ () => onAction("ADMINS_MODE")}> <MdAdminPanelSettings/> </button>
+                                 <button className='admin-mode-button' onClick={ () => onChange("GOD_MODE")}> <MdAdminPanelSettings/> </button>
                                 }
                             </React.Fragment>
                         } 
 
-                        <button className='mobile-only' onClick={ () => onAction("SHOW_FILTERS")}> <BsFillFilterSquareFill/> </button>
+                        <button className='mobile-only' onClick={ () => onChange("SHOW_FILTERS")}> <BsFillFilterSquareFill/> </button>
                     </React.Fragment>
                 )}
                 itemComponent={ ({item_data, listMode })=>(
                 <ProductItem 
-                    onAction={onAction}
+                    onAction={onChange}
                     showOptions={god_mode}
                     listMode={listMode}
                     count={countProductQtd(item_data.id)} 
                     produto={item_data}
                     toAdd={addToCart}
                     toRemove={rmFromCart} ></ProductItem>)} 
-                list_data={list_data} 
+                list_data={products} 
                 dataAlias={"products"}
-                onAction={onAction}>
+                onAction={onChange}>
             </ContentPool>
         </div>
     )

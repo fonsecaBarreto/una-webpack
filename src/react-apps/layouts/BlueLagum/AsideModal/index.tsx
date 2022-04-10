@@ -4,6 +4,7 @@ import { RiCloseFill } from "react-icons/ri"
 
 export namespace BlueLagumAsideModal {
     export type Params = {
+        loading: boolean,
         title:string
         show: boolean,
         onClose: () => void,
@@ -14,12 +15,12 @@ export namespace BlueLagumAsideModal {
     }
 }
 
-export const BlueLagumAsideModal: React.FunctionComponent<BlueLagumAsideModal.Params> = ({ show, onClose, content, footer, title, dir="right", className }) =>{
+export const BlueLagumAsideModal: React.FunctionComponent<BlueLagumAsideModal.Params> = ({ show, loading, onClose, content, footer, title, dir="right", className }) =>{
     return (
 
         <React.Fragment>
             
-           { show && <div className={`bl-aside-modal-overflow ${className}`} 
+           { show && <div className={`bl-aside-modal-overflow ${className} ${loading ? "bl-aside-loading" : ""}`} 
                 style={{ justifyContent: dir == "right" ? "flex-end" : "flex-start"  }}>
 
 

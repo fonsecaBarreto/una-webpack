@@ -1,11 +1,10 @@
 import React from 'react'
 import ProductImage from "@/public/assets/images/shopping-bag.jpg"
 import CounterControl from '../../../components/una/inputs-control/CounterControl'
-import SubmitButton from '../../../components/una/inputs-control/SubmitButton'
 import { Link } from 'react-router-dom'
-import { BsCart4 } from 'react-icons/bs'
 import { RiPriceTag2Line } from 'react-icons/ri'
 import { FaBars } from 'react-icons/fa'
+import { IoIosAddCircleOutline } from 'react-icons/io'
 
 export type ListMode = "inline" | "block" 
 export namespace ProductItem {
@@ -32,7 +31,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     return (
         <div className={`product-feed-item ${listMode}`}>
 
-            { showOptions && <button onClick={()=>onAction("UPDATE_PRODUCT", produto)} className='product-feed-options'> <FaBars/> </button> }
+            { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <FaBars/> </button> }
             
             <section className='product-feed-item-img-vp'> 
                 <img alt="Ilustração do produto" src={ProductImage}></img>
@@ -45,7 +44,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
             </section>
 
             <section className='product-feed-item-footer'>
-                { !count ? <SubmitButton  onClick={()=>toAdd(produto)}> Adicionar <BsCart4/> </SubmitButton>
+                { !count ? <button  onClick={()=>toAdd(produto)}> Adicionar <IoIosAddCircleOutline/> </button>
                 : <CounterControl altType onInput={handleCounterInput} value={count}></CounterControl> } 
             </section>
         </div>

@@ -75,7 +75,7 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ heade
                         }
                     </section>
 
-                    <section> <PageNavigator pages={pages} index={pageIndex} onClick={(index: number) => {onAction("p", index)}} />  </section> 
+                    <section> <PageNavigator pages={pages} index={pageIndex} onClick={(index: number) => {onAction("SET_PAGE", index)}} />  </section> 
 
                 </React.Fragment>}
             </main>

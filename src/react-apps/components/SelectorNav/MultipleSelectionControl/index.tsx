@@ -7,6 +7,7 @@ export namespace MultipleSelectionControl {
     export type Item  = { value: string, label: string, parent_id?: string }
     export interface Params extends Omit<SelectorNavWrapper.Params, 'children'> {
         title: string,
+        icon?: any,
         value?: any[],
         items: Item[],
         onChange: (arg:any) =>void,
@@ -14,7 +15,7 @@ export namespace MultipleSelectionControl {
     }
 }   
 
-export const MultipleSelectionControl: React.FunctionComponent<MultipleSelectionControl.Params> =  ({ value=[], title, items, onChange, max=-1 }) =>{
+export const MultipleSelectionControl: React.FunctionComponent<MultipleSelectionControl.Params> =  ({ value=[], icon, title, items, onChange, max=-1 }) =>{
     
     const [ list, setList ] = useState<any[]>(items)
     useEffect(()=>{ setList([ ...items]) },[items]) 
@@ -41,7 +42,7 @@ export const MultipleSelectionControl: React.FunctionComponent<MultipleSelection
     } 
 
     return (
-        <Wrapper title={title}>
+        <Wrapper icon={icon} title={title}>
             <ul>
                 <Item item={{ label: "Todos", value: "" }} onClick={()=>handleClick()} selected={ value.length === 0 }></Item>
                 { 
