@@ -2,32 +2,46 @@ import React, { useEffect, useState } from 'react'
 import './style.css'
 import ImageNotFount from "@/public/assets/images/shopping-bag.jpg"
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
+import { mediaPlayListService } from '@/services/api/media-playlist'
+import { filesService } from '@/services/api/files-service'
+
 export namespace GaleryContainer{
     export type Image= {
-        key: string
+        name: string, 
+        alt: string,
+        ratio: number,
+        src: { width: number, size: number, contentType: string }[]
+        user_id: string,
     }
+    
     export type Params ={
-        imgs: any[]
+        imgs: Image[]
     }
 }
 
-export const PhotoFrame: React.FunctionComponent<any> = ({ entry }) => {
-    const [image, setimage ] = useState<any>(null);
+export const PhotoFrame: React.FunctionComponent<any> = ({ img }) => {
+    const [image, setimage ] = useState<{ url: string }>({ url: ImageNotFount });
+
     useEffect(()=>{
         setimage((prev:any)=>{
-            if(!entry?.key) return ImageNotFount;
-            return entry.key
+            if(!img) return { url: ImageNotFount};
+            return { ...img, url:  filesService.get_public_images_url( img.name + "/" + img.src[2].width + ".jpeg") }
         })
-    },[entry])
+    },[img])
+
     return (
         <section className="galery-container-photo-frame">
-             <img src={image}></img> 
+             <img src={image?.url}></img> 
         </section>
     )
 } 
 
-export const GaleryCarousel: React.FunctionComponent<any> = ({ imgs, onClick }) =>{
+export const GaleryCarousel: React.FunctionComponent<any> = ({ imgs=[], onClick }) =>{
     const [offset, setOffset] = useState(0)
+
+    const getUrl = (img: any) =>{
+        return filesService.get_public_images_url( img.name + "/" + img.src[0].width + ".jpeg") 
+    }
 
     const handleClick = (n: number) =>{
         setOffset( (prev: any)=>{
@@ -36,19 +50,19 @@ export const GaleryCarousel: React.FunctionComponent<any> = ({ imgs, onClick }) 
             return r;
         })
     }
+
     return (
         <section className='calery-container-carousel'>
             <button onClick={()=>handleClick(-1)}> <MdOutlineKeyboardArrowUp/> </button> 
             <nav>
                 <ul style={{top: `${offset * 100}px`}}>
-                    {
-                        imgs.map((img: any, i: number)=>{
-                            return ( 
-                                <li onClick={()=>onClick(i)}>
-                                     <img src={img.key}></img> 
-                                </li>)
-                        })
-                    }
+                {
+                    imgs.length > 0 && imgs.map((img: any, i: number)=>(
+                        <li key={i} onClick={()=>onClick(i)}>
+                            <img src={ getUrl(img)}></img> 
+                        </li>
+                    ))
+                }
                 </ul>
             </nav>
          <button onClick={()=>handleClick(1)}> <MdOutlineKeyboardArrowDown/> </button>
@@ -56,32 +70,26 @@ export const GaleryCarousel: React.FunctionComponent<any> = ({ imgs, onClick }) 
     )
 }
 
-export const GaleryContainer = () =>{
+export const GaleryContainer = ({ playlist_id }:any) =>{
 
-    const photos = [
-        {key: "nome_dafoto1"},
-        {key: "nome_dafoto2"},
-        {key: "nome_dafoto3"},
-        {key: "nome_dafoto4"},
-        {key: "nome_dafoto5"},
-        {key: "nome_dafoto6"},
-        {key: "nome_dafoto7"},
-        {key: "nome_dafoto8"},
-        {key: "nome_dafoto9"},
-    ]
-
+    const [ images, setImages ] = useState([])
     const [ index, setIndex ] = useState(0);
     const [ currentImage, setCurrentImage ] = useState<GaleryContainer.Image | null>(null);
 
+    useEffect(() => {
+        if(!playlist_id) return;
+        mediaPlayListService.find(playlist_id).then(r=>{ setImages(r.images)})
+    }, [ playlist_id])
+
     useEffect(()=>{
-        const selected  = photos[index] ?? null
+        const selected  = images[index] ?? null
         setCurrentImage(selected)
-    },[index])
+    },[index, images])
 
     return (
         <div className='una-galery-container'>
-            <GaleryCarousel imgs={photos} onClick={(i:number)=>setIndex(i)}></GaleryCarousel>
-            <PhotoFrame img={currentImage}>  </PhotoFrame> 
+            <GaleryCarousel imgs={images} onClick={(i:number)=>setIndex(i)}></GaleryCarousel>
+            <PhotoFrame img={currentImage}/> 
         </div>
     )
 

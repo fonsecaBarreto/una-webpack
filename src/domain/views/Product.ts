@@ -13,6 +13,7 @@ export interface Product {
     brand: LabelView
     presentation: LabelView
     subCategory: LabelView
+    media_playlist_id: string
 }
 
 export interface Brand {
