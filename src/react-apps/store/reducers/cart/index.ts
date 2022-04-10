@@ -1,8 +1,21 @@
-import { IgnorePlugin } from "webpack";
-import { CartItem, Product } from "./actions";
+
+
+export namespace CartState {
+     export type  Product = any;
+
+     export type CartItem = {
+          product: Product,
+          qtd: number
+     }
+}
+
+export interface CartState {
+     cart :  CartState.CartItem[]
+}
+
 
 const INITIAL_STATE = {
-     cart: [] as CartItem[],
+     cart: [] as CartState.CartItem[],
 }
    
 export const carrinhoReducer = (state=INITIAL_STATE, action: any) => {
@@ -13,7 +26,7 @@ export const carrinhoReducer = (state=INITIAL_STATE, action: any) => {
           case "PUSH_TO_CART": {
                var cart= [ ...state.cart ]
                var product: any = action.payload;
-               const indexOf = cart.map((p: CartItem) => p.product.id).indexOf(product.id);
+               const indexOf = cart.map((p: CartState.CartItem) => p.product.ean).indexOf(product.ean);
                if (indexOf > -1){
                     cart[indexOf].qtd+=1; }
                else {
@@ -22,7 +35,7 @@ export const carrinhoReducer = (state=INITIAL_STATE, action: any) => {
           };
           case "REMOVE_FROM_CART": {
                var cart= [ ...state.cart ];
-               const indexOf = cart.map((p: CartItem) => p.product.id).indexOf(action.payload.id);
+               const indexOf = cart.map((p: CartState.CartItem) => p.product.ean).indexOf(action.payload.ean);
                if(indexOf > -1){
                     var item = cart[indexOf]
                     item.qtd -= 1 ;
@@ -34,3 +47,21 @@ export const carrinhoReducer = (state=INITIAL_STATE, action: any) => {
           default: return state
      }
 }
+
+/* actions */
+
+export const setCart = (products: CartState.Product)=> ({
+     type: "SET_CART",
+     payload: products
+})
+
+export const pushToCart = ( product: CartState.Product ) => ({
+     type: "PUSH_TO_CART",
+     payload: product
+})
+ 
+export const removeFromCart = (product: CartState.Product) => ({
+     type: "REMOVE_FROM_CART",
+     payload: product
+})
+ 

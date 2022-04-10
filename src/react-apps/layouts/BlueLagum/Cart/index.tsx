@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import './style.css'
 import CartItem from './CartItem'
 import { useSelector, useDispatch} from 'react-redux'
-import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
+import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart"
 import BlueLagumAsideModal from '../AsideModal'
 import { budgetServices } from '@/services/api/budget-service'
 import GlboalContenxt from "@/react-apps/apps/main/global-components-context"
@@ -79,7 +79,7 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
     },[cart])
 
     return (
-        <BlueLagumAsideModal show={show} title="Carrinho" onClose={onClose} dir="right"
+        <BlueLagumAsideModal loading={false} show={show} title="Carrinho" onClose={onClose} dir="right"
             footer={ <CartFooter onSubmit={submit} total={totalProducts}/> }
             content={<CartContent cart={cart} add={addToCart} rm={rmFromCart}></CartContent> }>
         </BlueLagumAsideModal>

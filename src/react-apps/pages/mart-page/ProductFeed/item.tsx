@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ProductImage from "@/public/assets/images/shopping-bag.jpg"
 import CounterControl from '../../../components/una/inputs-control/CounterControl'
 import { Link } from 'react-router-dom'
 import { RiPriceTag2Line } from 'react-icons/ri'
 import { FaBars } from 'react-icons/fa'
 import { IoIosAddCircleOutline } from 'react-icons/io'
+import AddCartButton from './AddCartButton'
 
 export type ListMode = "inline" | "block" 
 export namespace ProductItem {
     export type Params = {
-        toAdd: () => void
-        toRemove: () => void,
+        onChange: () => void
         count: number,
         listMode: ListMode,
         showOptions: boolean,
@@ -18,13 +18,22 @@ export namespace ProductItem {
     }
 }
 
-export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, toAdd, toRemove, count, listMode }) =>{
+export const ProductImageSection: React.FunctionComponent<any> = ({playlist_id}) =>{
+    const [ image, setImage ] = useState(ProductImage);
+    return (
+        <section className='product-feed-item-img-vp'> 
+            <img alt="Ilustração do produto" src={ProductImage}></img>
+        </section>
+    )
+}
+
+export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, onChange, count, listMode }) =>{
     const { specification, image, brand, ean } = produto
 
     const handleCounterInput = (n:number) =>{
         switch(n){
-            case -1 : return toRemove(produto)
-            case 1 : return toAdd(produto)
+            case -1 : return onChange("REMOVE",produto);
+            case +1 : return onChange("ADD",produto);
             default: break;
         }
     }
@@ -33,9 +42,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
 
             { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <FaBars/> </button> }
             
-            <section className='product-feed-item-img-vp'> 
-                <img alt="Ilustração do produto" src={ProductImage}></img>
-            </section>
+            <ProductImageSection/>
 
             <section className='product-feed-item-body'>
                 <Link to={`/produto/${ean}`} className="produto-nome">{specification} </Link>
@@ -44,8 +51,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
             </section>
 
             <section className='product-feed-item-footer'>
-                { !count ? <button  onClick={()=>toAdd(produto)}> Adicionar <IoIosAddCircleOutline/> </button>
-                : <CounterControl altType onInput={handleCounterInput} value={count}></CounterControl> } 
+                <AddCartButton value={count} onChange={handleCounterInput}></AddCartButton>
             </section>
         </div>
     )

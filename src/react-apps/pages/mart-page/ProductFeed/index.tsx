@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './style.css'
 import { useSelector, useDispatch} from 'react-redux'
-import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart/actions"
+import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart"
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import { ProductItem } from './item'
 import SearchHeader, { LabelRow } from '../SearchHeader'
@@ -23,11 +23,15 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onChange }) =>{
     const { user, god_mode } = useSelector((state: any)=>state.main)
     const { products } = useSelector( (state: any)=>state.mart);
 
-    const addToCart =(novo_produto: any) =>  dispatch(pushToCart(novo_produto))
-    const rmFromCart =(produto: any) => dispatch(removeFromCart(produto))
+    const handleItemChange = (a: string, p: any) =>{
+        switch(a){
+            case "ADD":  dispatch(pushToCart(p)); break;
+            case "REMOVE":  dispatch(removeFromCart(p)); break;
+        }
+    }
     
-    const countProductQtd = (product_id:string) => {
-        const item_index = cart.map((c:any)=> c.product.id ).indexOf(product_id);
+    const countProductQtd = (ean:string) => {
+        const item_index = cart.map((c:any)=> c.product.ean ).indexOf(ean);
         const item = cart[item_index];
         return item?.qtd ?? 0;
     }
@@ -44,7 +48,9 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onChange }) =>{
                             <React.Fragment> 
                                 { 
                                  god_mode ? 
-                                 <button className='admin-mode-button.add' onClick={ () => onChange("ADMIN", "new")}> <AiOutlinePlusSquare/> </button>
+                                 <button className='admin-mode-button.add' onClick={ () => onChange("ADMIN", "new")}> 
+                                    <AiOutlinePlusSquare/>
+                                 </button>
                                  : 
                                  <button className='admin-mode-button' onClick={ () => onChange("GOD_MODE")}> <MdAdminPanelSettings/> </button>
                                 }
@@ -59,10 +65,10 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onChange }) =>{
                     onAction={onChange}
                     showOptions={god_mode}
                     listMode={listMode}
-                    count={countProductQtd(item_data.id)} 
+                    count={countProductQtd(item_data.ean)} 
                     produto={item_data}
-                    toAdd={addToCart}
-                    toRemove={rmFromCart} ></ProductItem>)} 
+                    onChange={handleItemChange}
+                    ></ProductItem>)} 
                 list_data={products} 
                 dataAlias={"products"}
                 onAction={onChange}>
