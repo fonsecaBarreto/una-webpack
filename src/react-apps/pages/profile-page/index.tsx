@@ -3,7 +3,7 @@ import './style.css'
 import { Companhia } from '@/domain/views/Company'
 import { companhiasServices } from '@/services/api/companhias-service'
 import PanelContainer from '../../components/una/panel-container'
-import { BsArchiveFill, BsInfoCircle } from 'react-icons/bs'
+import { BsInfoCircle } from 'react-icons/bs'
 import { MdGroups, MdOutlineLocationOn } from 'react-icons/md'
 import { CgFileDocument } from 'react-icons/cg'
 import CompanyAddressesPanel from './company-addresses-panel'
@@ -21,13 +21,10 @@ import { AiFillPlusCircle } from 'react-icons/ai'
 import { BiCurrentLocation } from 'react-icons/bi'
 import AbrangenciaForm from '@/react-apps/forms/AbrangenciaForm'
 
-
 export const CompanyProfilePage: React.FunctionComponent<any> = ({location, history, match}) => {
 
     const context = useContext(GlobalContext)
     const [companhia, setCompanhia] = useState<Companhia | null>(null)
-    
-
     useEffect(()=>{ loadContent() },[ location.pathname, location.search ])
     
     const openCompanyModal = (entry: any) =>{
@@ -38,7 +35,6 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
     }
 
     const openUserModal = (entry: any, company_id?:string) =>{
-
         return context.dialog.push(MakeDialogConfig(
             ({onAction}: any) => ( <UserForm company_id={company_id} entry={entry} onAction={onAction} onData={afterStaffUpdated}/> ),
             (v) =>{ history.push({ search: `` });return -1 
@@ -55,9 +51,7 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
     const loadContent = async () =>{
 
         const { id: company_id } = match.params;
-
         var company: any = companhia;
-
         if(!company || company?.id != company_id){
             let company_data = await companhiasServices.find(company_id)
             if(company_data) {
@@ -65,7 +59,6 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
                 setCompanhia(company_data);
             }
         }
-        /* Baixado as informações da Companhias, devem ser verificadas as querystrings */
 
         if(!company || !location.search) return
         const parsed = queryString.parse(location.search);
@@ -91,7 +84,6 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
         }
     }
 
-    
     const UpdatedCompanhia = (data: any) =>{ setCompanhia(prev=>({ ...prev, ...data })) }
     const afterStaffUpdated = (data: any) =>{  }
     
