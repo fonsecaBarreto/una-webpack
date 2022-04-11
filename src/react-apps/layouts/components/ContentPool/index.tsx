@@ -20,7 +20,6 @@ export namespace ContentPool {
 
 export type ListMode = "inline" | "block" 
  
-
 export const PageNavigator = ({ pages=1, index, onClick}: {onClick:any, pages: number, index: number}) =>{
     return (
         <div className='page-navigator-section'>
@@ -33,6 +32,7 @@ export const PageNavigator = ({ pages=1, index, onClick}: {onClick:any, pages: n
         </div>
     )
 }
+
 export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ header, auxHeader, dataAlias, list_data, itemComponent: ItemComponent, onAction, initial_mode="block" }) =>{
 
     const [ listMode, setListMode ] = useState<ListMode>(initial_mode)

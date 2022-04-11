@@ -63,7 +63,7 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
     const submit = async () =>{
         try{
             await budgetServices.save({
-                products: cart.map((c:any)=>({ product_id: c.product.id, quantity: c.qtd})),
+                products: cart.map((c:any)=>({ ean: c.product.ean, quantity: c.qtd})),
                 company_id: user.company_id
             });
             context.dialog.push(MakeNotification(()=>{return -1},["Obrigado.", "Cotação realizada com sucesso!"], "Sucesso!", NotificationType.SUCCESS))

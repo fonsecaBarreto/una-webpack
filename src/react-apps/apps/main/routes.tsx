@@ -9,11 +9,11 @@ import { Redirect } from "react-router-dom";
 
 /* pages */
 import MartPage from "../../pages/mart-page";
-import CompanhiasPage from "@/react-apps/pages/list-companhias-page";
+import CompaniesPage from "@/react-apps/pages/companies-page";
 import LoginPage from "@/react-apps/pages/login-page";
 import CadastroPage from "@/react-apps/pages/register-page";
 import ProfilePage from "@/react-apps/pages/profile-page";
-import CotacoesPage from '@/react-apps/pages/list-cotacao-page'
+import CotacoesPage from '@/react-apps/pages/budgets-page'
 import ProductPage from '@/react-apps/pages/product-page'
 
 export const RouterComponent = () =>{
@@ -61,8 +61,8 @@ export const RouterComponent = () =>{
             { path: "mercado/:departament_id", title: "Mercado",  component: MartPage } ,
             { path: "mercado", title: "Mercado",  component: MartPage } ,
             /* Companies */
-            { path: "companhias/:company_id", title: "Companhias",  component: CompanhiasPage } ,
-            { path: "companhias", title: "Companhias",  component: CompanhiasPage } ,
+            { path: "companhias/:company_id", title: "Companhias",  component: CompaniesPage } ,
+            { path: "companhias", title: "Companhias",  component: CompaniesPage } ,
             /* Product page */
             { path: "produto/:ean", title: "Produto",  component: ProductPage } ,
             /* Regiser product */

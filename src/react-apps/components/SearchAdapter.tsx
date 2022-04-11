@@ -36,6 +36,7 @@ export const UseSearchAdapter = ({ header={ params : [], search: [] } }: SearchA
     }
 
     const pushToHistory = (struct: any, clear: boolean= false ) => {
+
         var params_result = !clear ? {...paramsRef.current} : {},
         search_result = !clear ? { ...searchRef.current } : {};
          

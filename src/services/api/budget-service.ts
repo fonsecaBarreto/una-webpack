@@ -11,7 +11,7 @@ const budgetsApi = MakeApiSettings({
 export namespace BudgetServices {
      export type SaveParams = {
         company_id: string,
-        products: { product_id: string, quantity: string}[]
+        products: { ean: string, quantity: string}[]
     }
     export type ListParams = {
          p: number,

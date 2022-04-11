@@ -18,7 +18,7 @@ export const ListViewItem: React.FunctionComponent<ListViewItem.Params> = ({ onC
 
     const { id, nomeFantasia, telefoneComercial, ativo } = item_data
     return (
-        <div className={`list-view-item ${listMode}`} onClick={()=>onClick("options",id)}>
+        <div className={`list-view-item ${listMode}`} onClick={()=>onClick("OPTIONS",id)}>
             <div className="list-view-item-content">
                 <section className="list-view-item-icon">
                     <AiOutlineShop></AiOutlineShop>
