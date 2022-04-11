@@ -32,11 +32,8 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
         const newQueries = { ...queryParams, v: searchText};
         history.push({ search: qs.stringify(newQueries) });
     }
-
-
-    useEffect(()=>{
-        if(width >960){ setShowSearchBar(false)}
-    },[width])
+    
+    useEffect(()=>{ if(width >960){ setShowSearchBar(false)} },[width])
 
     return (
         <header className="primary-header">

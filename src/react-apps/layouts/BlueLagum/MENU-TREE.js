@@ -24,10 +24,10 @@ export const USER_TREE = (user) =>{
         {label:"Sair", toDo:loginServices.logout, icon:<ImExit/>}
     ]
 
- 
+    var result = []
     if(user.roles.includes(UserProfileRole.ADMIN)) result = [ ...result, ...admins];
 
-    var result = [ ...result, ...users]
+    result = [ ...result, ...users]
 
     return result;
 }
