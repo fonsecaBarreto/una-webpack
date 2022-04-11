@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './style.css'
 import {Link} from 'react-router-dom'
 import { IoIosArrowForward } from 'react-icons/io'
+import { AiFillHome } from 'react-icons/ai'
 
 const INITIAL_LABEL_VIEW = {
     value: "", label: ""
@@ -32,7 +33,7 @@ export const ProductBreadCrumbs:React.FunctionComponent<any> = ({breadCrumbs}) =
     return (
         <section> 
             <ul className='product-page-bread-crumbs'>
-                <li> <Link to={`/mercado`}>Mercado</Link> </li> 
+                <li> <Link to={`/mercado`}> <AiFillHome/> Mercado</Link> </li> 
                 <IoIosArrowForward/>
                 <li> <Link to={`${departament.value}`}>{departament.label}</Link> </li> 
                 <IoIosArrowForward/>

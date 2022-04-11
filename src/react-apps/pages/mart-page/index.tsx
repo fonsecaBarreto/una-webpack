@@ -12,6 +12,8 @@ import { MakeDialogConfig, MakeNotification, NotificationType } from 'fck-react-
 import { setGodMode } from '@/react-apps/store/reducers/main/actions'
 import ProductForm from '@/react-apps/forms/ProductForm'
 import { setLoading } from "@/react-apps/store/reducers/main/actions"
+import BannerTest from "@/public/assets/images/product/banner-test.svg"
+import BannerTest2 from "@/public/assets/images/product/banner-test-2.svg"
 
 export const SEARCH_HEADER= { 
     params : [ "departament_id" ],
@@ -67,7 +69,8 @@ export const MartPage: FunctionComponent<any> = ({}) => {
     return (
         <div id="departamento-page">
             <div className='app-container'>
-                 <ContentGrid>
+                {/* <img src={BannerTest}></img> */}
+                <ContentGrid>
                     <CategoriasNav 
                         freeze={isLoading} trigger={filterTrigger} departament_id={parsedParams?.["departament_id"] ?? ""} 
                         values={ parsedSearch } onChange={handleFilterChange}> </CategoriasNav>

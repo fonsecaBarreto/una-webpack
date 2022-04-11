@@ -30,7 +30,6 @@ export const ListCotacaoPage = ({ history }: any)=>{
         
       },[location.search])
 
-
     const listBudgets = (filters?: any) =>{
         budgetServices.list(filters).then(resp => dispatch(setBudgets(resp, false)))
     }

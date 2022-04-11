@@ -14,6 +14,7 @@ import { RESULT_MENU_TREE } from './MENU-TREE'
 import GodModeNotify from './GodModeNotify'
 import { useDispatch } from 'react-redux'
 import { setGodMode } from '@/react-apps/store/reducers/main/actions'
+import DepartamentHeader from './DepartamentsHeader'
 
 const MenuState = () =>{
     const [ show, setShow ] = useState(false)
@@ -54,22 +55,23 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
     }
 
     return (
-        <div className={`blue-lagum ${menu ===true && user ? "bl-aside-menu" : ""}`}>
+        <div className={`blue-lagum ${ (menu ===true) ? "bl-aside-menu" : ""}`}>
 
-            { (menu ===true && user) && <aside> <Menu menuState={menuState} menuTree={RESULT_MENU_TREE(user)} ></Menu> </aside> }
+            { (menu ===true ) && <aside> <Menu user={user} menuState={menuState} menuTree={RESULT_MENU_TREE(user)} ></Menu> </aside> }
            
             <header>
                 <LayoutHeader user={user} menuState={menuState}  toggleCart={openCart}></LayoutHeader>
             </header> 
-
-            <main> {children} </main>
+            <main>
+                <DepartamentHeader></DepartamentHeader>
+                {children} 
+            </main>
 
             <footer>
                 <LayoutFooter></LayoutFooter>  
             </footer> 
             
-            <GodModeNotify show={god_mode ?? false}
-            exit={()=>{dispatch(setGodMode(false))}}></GodModeNotify>
+            <GodModeNotify show={god_mode ?? false} exit={()=>{dispatch(setGodMode(false))}}></GodModeNotify>
 
             <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart>
 

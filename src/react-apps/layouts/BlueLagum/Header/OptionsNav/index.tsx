@@ -39,7 +39,7 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart, toggleSea
 
     return (
         <nav className='una-header-options-nav'>
-            <SearchButton onHover={toggleSearch}/>
+            <SearchButton onClick={toggleSearch} className="mobile-only"/>
             <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
             <DropDown options={dropDownoptions} onAction={handleOptions}>
                 <UserButton user={user} onClick={() =>{}}></UserButton>

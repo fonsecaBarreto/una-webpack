@@ -3,6 +3,7 @@
     height: var(--header-height-desktop);
     background-color: var(--main-color);
     background-color: rgb(253, 253, 253);
+    box-shadow: 0 1px 3px 2px #33333311;
 }
 
 .primary-header-content{
@@ -11,7 +12,7 @@
     grid-template-columns: auto 1fr;
     grid-template-rows: 1fr;
     align-items: center;
-    gap: 5px;
+    gap: 12px;
 }
 
 .primary-header-content > section {
@@ -82,13 +83,5 @@
         color: white!important;
     }
 }
-
-
-/* @media only screen and (max-width: 756px){
-    .bluelagum-logo{
-       height: calc(var(--header-height-desktop) - 50px) 
-    }
-}
- */
 
 

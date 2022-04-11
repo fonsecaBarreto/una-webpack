@@ -13,6 +13,7 @@ import { pushToCart, removeFromCart } from '@/react-apps/store/reducers/cart'
 import { BsCart4 } from 'react-icons/bs'
 import CounterControl from '@/react-apps/components/una/inputs-control/CounterControl'
 import ProductBreadCrumbs from './ProductBreadCrumbs'
+import AddCartButton from '../mart-page/ProductFeed/AddCartButton'
 
 const SEARCH_HEADER = {
   params: [ "ean"],
@@ -22,11 +23,16 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
 
   const dispatch = useDispatch()
   const { cart } = useSelector((state: any)=>state.carrinho)
+  const [ count, setCount ] = useState(0)
   const { parsedParams, parsedSearch, pushToHistory } = UseSearchAdapter({ header : SEARCH_HEADER})
   const [ product, setProduct ] = useState<Product|null>(null);
   const [ breadCrumbs, setBreadCrumbs] = useState(null);
 
   useEffect(()=>{ if(parsedParams){ handleLoad()} },[parsedParams])
+
+  useEffect(()=>{
+    if(product?.ean) return setCount(countProductQtd(product.ean))
+  },[cart])
 
   const handleLoad= () => {
     produtosService.find({ ...parsedParams }).then(data=>{
@@ -35,20 +41,20 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
     }) 
   }
 
-  const countProductQtd = (product_id:string) => {
-    /* const item_index = cart.map((c:any)=> c.product.id ).indexOf(product_id);
+  const countProductQtd = (ean:string) => {
+    const item_index = cart.map((c:any)=> c.product.ean ).indexOf(ean);
     const item = cart[item_index];
-    return item?.qtd ?? 0; */
-    return 0;
+    console.log("found item", item)
+    return item?.qtd ?? 0;
   }
 
-  const handleClick = (n:number, product:any) =>{
-    switch(n){
-        case 1 : return  dispatch(pushToCart(product))
-        case -1 : return dispatch(removeFromCart(product))
-        default: break;
+  const handleAdd = (a: number) =>{
+    switch(a){
+        case +1:  dispatch(pushToCart(a)); break;
+        case -1:  dispatch(removeFromCart(a)); break;
     }
   }
+
 
   return (
     <div id="product-page">
@@ -67,18 +73,11 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
                 <span className='product-page-code'>SKU: {product.sku}</span> 
               </div>
               <div>
-                <span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Fusce scelerisque, erat a ullamcorper lacinia, felis risus ultrices enim, id tincidunt erat risus ac nisi. 
-                    Quisque consequat magna aliquam lobortis elementum.
-                    Donec eleifend congue sem, sed congue nunc venenatis vel. 
-                    Cras sed mi eu mauris auctor dictum in quis justo. 
-                </span>
+               
               </div>
-                
                 <div className='product-page-cart-option'>
-                  { !countProductQtd(product.ean) ? <SubmitButton  onClick={()=>handleClick(1, product)}> Adicionar <BsCart4/> </SubmitButton>
-                  : <CounterControl altType onInput={(n)=>handleClick(n,product)} value={countProductQtd(product.ean)}></CounterControl> } 
+                  <button>Informações </button>
+                  <AddCartButton value={count} onChange={handleAdd}></AddCartButton>
                 </div>
             </section>
             <section>
@@ -88,11 +87,12 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
                   Quisque consequat magna aliquam lobortis elementum.
                   Donec eleifend congue sem, sed congue nunc venenatis vel. 
                   Cras sed mi eu mauris auctor dictum in quis justo. 
-                  Phasellus tincidunt gravida purus, sit amet ultricies mi facilisis imperdiet. Mauris in blandit erat, sed fringilla est. 
-                  Nunc scelerisque gravida mauris nec mattis. Aenean vehicula turpis et luctus gravida. Suspendisse ac vehicula felis. 
-                  Vestibulum convallis sem eget neque suscipit, vel aliquam tortor aliquet. Maecenas aliquam posuere ligula. 
-                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; 
-                  Morbi justo nibh, interdum sed tempor ac, scelerisque in ante. Sed ut varius lorem, sit amet accumsan nibh. 
+              </span>
+            </section>
+
+            <section>
+              <span>
+                  aqui especificaçãoes do produto
               </span>
             </section>
           </div>

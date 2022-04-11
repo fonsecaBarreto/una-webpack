@@ -22,7 +22,6 @@ export type ListMode = "inline" | "block"
  
 
 export const PageNavigator = ({ pages=1, index, onClick}: {onClick:any, pages: number, index: number}) =>{
-
     return (
         <div className='page-navigator-section'>
             <button disabled={index == 1} className='page-navigator-btn' onClick={()=>onClick(index-1)}> <AiOutlineArrowLeft/> </button>

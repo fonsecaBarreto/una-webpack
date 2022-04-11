@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style.css'
 import CounterControl from '@/react-apps/components/una/inputs-control/CounterControl'
-import ShoopingBagImage from "@/public/assets/images/shopping-bag.jpg"
+import EmptyImage from "@/public/assets/images/product/empty.svg"
 
 export namespace CartItem {
     export type Params = {
@@ -12,6 +12,7 @@ export namespace CartItem {
 }
 export const CartItem: React.FunctionComponent<CartItem.Params> = ({item, toAdd, toRemove}) =>{
 
+    const [ image, setImage ] = useState(EmptyImage)
     const { product, qtd } = item
 
     const handleCounterInput = (n:number) =>{
@@ -26,11 +27,11 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item, toAdd,
         <div className='layout-cart-item'>
 
             <section>
-                <img src={ShoopingBagImage}></img>
+                <img src={image}></img>
             </section>
 
             <section>
-                <span>{ product.especificacao} </span>
+                <span>{ product.specification} </span>
                 <span> R$:00,00 </span>
             </section>
 

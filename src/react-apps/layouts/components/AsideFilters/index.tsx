@@ -14,8 +14,8 @@ export namespace FiltersAsideNav {
 export const FiltersAsideNav: React.FunctionComponent<FiltersAsideNav.Params> = ({ loading, children, toggle = false }) => {
 
     const { width } = useWindowSize()
-    const [ showFilters, setShowFilters ] = useState<boolean>(false)
-    useEffect(()=>{ setShowFilters(!showFilters) },[toggle]);
+    const [ showFilters, setShowFilters ] = useState<boolean>(true)
+    useEffect(()=>{ setShowFilters(!showFilters) },[toggle]); 
     return (
         <aside className={`filter-aside-nav ${!loading ? ""  : "filters-is-loading"}`}>
             {   width > 950 &&  <span>  {children}  </span>} 

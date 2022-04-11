@@ -18,6 +18,7 @@
     height: 52px;
     border-radius: 2px;
     color: rgba(235, 235, 235, 0.95); 
+    color: #333;
     width: 100%;
 }
 
@@ -41,5 +42,6 @@
     transition: all .02s ease-in;
     background-color: rgba(0, 0, 0, 0.1);
     color: rgb(255, 255, 255);
+    color: #111;
 }
 

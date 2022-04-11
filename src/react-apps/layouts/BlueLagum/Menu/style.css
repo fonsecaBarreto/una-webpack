@@ -5,21 +5,22 @@
     opacity: 1; }
 }
   
-
 .blue-lake-menu{
     overflow: hidden;
     width: var(--menu-width); height: 100vh;
     display: grid; grid-template-columns: 1fr;grid-template-rows: auto 1fr auto;
     align-items: flex-start;
     justify-content: flex-start;
-    background: rgb(43,157,245);
-    background: linear-gradient(180deg, rgb(32, 149, 238) 0%, rgba(1,110,195,1) 35%, rgba(0,103,184,1) 100%);
+    background-color: white;
+    border-right: solid 1px #ddd;
+    color: #333;
 }
 
 .blue-lake-menu.show {
     animation-name: menuAppears;
     animation-duration: .2s;
-    width: var(--menu-width-expanded); }
+    width: var(--menu-width-expanded); 
+}
 
 .blue-lake-menu > section{
     width: 100%; overflow-y: auto; overflow-x: hidden;
@@ -46,14 +47,10 @@
 }
 
 .blue-lake-menu > section:nth-child(2) ul{
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
     text-decoration: none;
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0;
-    gap: 2px;
+    padding: 0; gap: 2px;
 }
 
 .blue-lake-menu-toggle-button{
@@ -64,28 +61,31 @@
     cursor: pointer;
     background-color: transparent;
     font-size: 22px;
-    color: #f1f1f1;
-    border: solid 1px #efefef;
+    border: solid 1px #ccc;
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 @media only screen and (max-width: 1024px){  
-
     .blue-lake-menu{ 
         display: none; 
+        background: rgb(43,157,245);
+        background: linear-gradient(180deg, rgb(32, 149, 238) 0%, rgba(1,110,195,1) 35%, rgba(0,103,184,1) 100%);
+        color: white!important;
     } 
-
     .blue-lake-menu.show { 
         display: grid; 
     }  
-     /* show logo */
     .blue-lake-menu.show > section:nth-child(1).blue-lake-menu-header .blue-lake-menu-header-logo{
         width: 100%;
         display: flex; align-items: center; justify-content: center;
     }
+    .blue-lake-menu.show > section:nth-child(1).blue-lake-menu-header .blue-lake-menu-header-logo > img{
+        width: calc(100% - 36px);
+    }
 }
 
-@media only screen and (max-width: 760px){  
+@media only screen and (max-width: 760px){
+  
     .blue-lake-menu.show { 
         width: 80vw;
     }  

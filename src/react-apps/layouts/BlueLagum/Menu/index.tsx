@@ -4,20 +4,25 @@ import MenuItem, { BlueLakeMenuItem } from './MenuItem'
 import './style.css'
 import LogoImg from '@/public/assets/images/logo-alt-dark.png' 
 import { Link } from 'react-router-dom'
+import { RiMenu4Line, RiMenu5Fill } from 'react-icons/ri'
+import { CgMenuLeft } from 'react-icons/cg'
+import UserComponent from './UserComponent'
+
 export namespace BlueLakeMenu {
     export type Params = {
         menuState: { show: boolean, toggle: Function }
-        menuTree: any //BlueLakeMenuItem.Config[]
+        menuTree: any, //BlueLakeMenuItem.Config[]
+        user: any
     }
 }
 
 export const ToggleButton: React.FunctionComponent<any>  = ({ onClick, positive }) => {
     return (
-        <button className={`blue-lake-menu-toggle-button`} onClick={onClick && onClick}> {positive ? <IoIosArrowForward/> : <IoIosArrowUp/> }</button>
+        <button className={`blue-lake-menu-toggle-button`} onClick={onClick && onClick}> { !positive ? <RiMenu5Fill/> : <CgMenuLeft/> }</button>
     )
 }
 
-const BlueLakeMenu: React.FunctionComponent<BlueLakeMenu.Params> = ({ menuState, menuTree }) =>{
+const BlueLakeMenu: React.FunctionComponent<BlueLakeMenu.Params> = ({ menuState, menuTree, user }) =>{
     return (
         <div className={`blue-lake-menu ${menuState.show ? 'show' : ''}`}>
             <section className="blue-lake-menu-header">
@@ -30,7 +35,7 @@ const BlueLakeMenu: React.FunctionComponent<BlueLakeMenu.Params> = ({ menuState,
                 } </ul> 
             </section> 
             <section>
-               {/*  <UserComponent menuState={menuState} user={user}></UserComponent> */}
+                { user && <UserComponent menuState={menuState} user={user}/>}
             </section> 
         </div>
     )

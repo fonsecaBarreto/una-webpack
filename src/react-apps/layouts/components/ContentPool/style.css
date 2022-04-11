@@ -67,8 +67,6 @@
     display: inline;
 }
 
-/* section */
-
 .bl-common-content-pool > main{
     width: 100%;
     flex-direction: column;

@@ -8,9 +8,8 @@ import SearchHeader, { LabelRow } from '../SearchHeader'
 import { BsFillFilterSquareFill } from 'react-icons/bs'
 import { MdAdminPanelSettings } from 'react-icons/md'
 import GlobalContext from '@/react-apps/apps/main/global-components-context'
-import { MakeDialogConfig, MakeOptions } from 'fck-react-dialog'
-import ProductForm from '@/react-apps/forms/ProductForm'
 import { AiOutlinePlusSquare } from 'react-icons/ai'
+
 export namespace ProductFeed {
     export type onChange = any
 }
