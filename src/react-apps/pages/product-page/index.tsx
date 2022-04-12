@@ -50,7 +50,6 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
                 <span className='product-page-code'>SKU: {product.sku}</span> 
               </div>
               <div>
-               
               </div>
                 <div className='product-page-cart-option'>
                   <AddCartButton value={cartHandler.count(product?.ean)} height={"42px"}

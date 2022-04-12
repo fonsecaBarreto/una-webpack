@@ -15,7 +15,7 @@ import { setGodMode } from '@/react-apps/store/reducers/main/actions'
 import DepartamentHeader from './DepartamentsHeader'
 
 const MenuState = () =>{
-    const [ show, setShow ] = useState(false)
+    const [ show, setShow ] = useState(true)
     const toggle = () => { setShow(!show)  }
     return { show, toggle}
 }

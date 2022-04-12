@@ -13,7 +13,7 @@
     justify-content: flex-start;
     background-color: white;
     border-right: solid 1px #ddd;
-    color: #333;
+    color: var(--main-color);
 }
 
 .blue-lake-menu.show {

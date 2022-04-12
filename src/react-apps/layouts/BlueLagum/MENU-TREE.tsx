@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { AiFillShop, AiOutlinePlusSquare } from 'react-icons/ai'
-import { MdBusiness } from 'react-icons/md'
+import { MdAdminPanelSettings, MdBusiness } from 'react-icons/md'
 import { GiNotebook } from 'react-icons/gi'
 import { CgProfile } from 'react-icons/cg'
 import { IoLogoWhatsapp } from 'react-icons/io'
@@ -14,23 +14,23 @@ export type MenuItemConfig = {
     children?: MenuItemConfig[]
 }
 
+
 export const USER_TREE = (user: any) =>{
 
     if(!user) return []
     const admins = [
         { label:"Cotações", toDo:"/cotacoes", icon:<GiNotebook/>},
-        { label:"Companhias", toDo:"/companhias", icon:<MdBusiness/>}
+        { label:"Companhias", toDo:"/companhias", icon:<MdBusiness/>},
     ]
 
     const users = [
         {label:"Perfil", toDo:`/perfil/${user.company_id}`, icon:<CgProfile/>},
-        {label:"Sair", toDo:loginServices.logout, icon:<ImExit/>}
     ]
 
     var result: MenuItemConfig[] = []
     if(user.roles.includes(UserProfileRole.ADMIN)) result = [ ...result, ...admins];
 
-    result = [ ...result, ...users]
+    result = [ ...users, ...result]
 
     return result;
 }

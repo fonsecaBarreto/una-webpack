@@ -1,7 +1,7 @@
 .blue-lagum {
     --header-height-desktop: 58px;
     --header-height-mobile: 58px;
-    --menu-width-expanded: 260px;
+    --menu-width-expanded: 240px;
     --menu-width: 60px;
     position: relative; 
     z-index: 0; width: 100%; height: fit-content;
