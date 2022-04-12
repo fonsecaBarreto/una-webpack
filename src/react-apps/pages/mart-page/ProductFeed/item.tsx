@@ -8,23 +8,22 @@ import { mediaPlayListService } from '@/services/api/media-playlist'
 import { UseCartHandler } from '@/react-apps/store/reducers/cart/handler'
 
 export type ListMode = "inline" | "block" 
+
 export namespace ProductItem {
-    export type Params = {
-        onChange: () => void
-        count: number,
-        listMode: ListMode,
-        showOptions: boolean,
-        onAction: () => void
-    }
+    export type Params = { onChange: () => void, listMode: ListMode, showOptions: boolean }
 }
 
-export const ProductImageSection: React.FunctionComponent<any> = ({playlist_id}) =>{
+export const ProductImageSection: React.FunctionComponent<any> = ({ playlist_id }) =>{
+    
     const [ image, setImage ] = useState(ProductImage);
+
  
     useEffect(()=> {
+        console.log("playlist_id changed", playlist_id)
         if(!playlist_id) return;
         mediaPlayListService.getImageSrc(playlist_id).then(setImage)
     }, [playlist_id])
+
     return (
         <section className='product-feed-item-img-vp'> 
             <img alt="Ilustração do produto" src={image}></img>
@@ -32,8 +31,9 @@ export const ProductImageSection: React.FunctionComponent<any> = ({playlist_id})
     )
 }
 
-export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, onChange, count, listMode }) =>{
-    const { specification, image, brand, ean } = produto
+export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, listMode }) =>{
+    
+    const { ean, specification, brand, media_playlist_id } = produto
     const cartHandler = UseCartHandler()
 
     return (
@@ -41,10 +41,10 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
 
             { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <BsThreeDotsVertical/> </button> }
             
-            <ProductImageSection playlist_id={produto.media_playlist_id} />
+            <ProductImageSection playlist_id={media_playlist_id} />
 
             <section className='product-feed-item-body'>
-                <Link to={`/produto/${ean}`} className="produto-nome">{specification} </Link>
+                <Link to={`/produto/${ean}`} className="produto-nome"> {specification} </Link>
                 <span className="singleline-text produto-ean">{ean}</span>
                 <span className="singleline-text produto-brand"> <RiPriceTag2Line/>{brand.label}</span>
             </section>
@@ -52,8 +52,8 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
             <section className='product-feed-item-footer'>
 
             <AddCartButton fill={true} value={cartHandler.count(ean)} 
-                     onChange={(n:number)=>{cartHandler.push(n, produto)}}></AddCartButton>
-                
+                onChange={(n:number)=>{cartHandler.push(n, produto)}}></AddCartButton>
+
             </section>
         </div>
     )

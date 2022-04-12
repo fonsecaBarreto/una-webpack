@@ -73,19 +73,19 @@
 @media only screen and (max-width: 1024px){  
     .blue-lake-menu{ 
         display: none; 
-        background: rgb(43,157,245);
+      /*   background: rgb(43,157,245);
         background: linear-gradient(180deg, rgb(32, 149, 238) 0%, rgba(1,110,195,1) 35%, rgba(0,103,184,1) 100%);
-        color: white!important;
+        color: white!important; */
     } 
     .blue-lake-menu.show { 
         display: grid; 
     }  
     .blue-lake-menu.show > section:nth-child(1).blue-lake-menu-header .blue-lake-menu-header-logo{
         width: 100%;
-        display: flex; align-items: center; justify-content: center;
+        display: flex; align-items: center; justify-content: flex-start;
     }
     .blue-lake-menu.show > section:nth-child(1).blue-lake-menu-header .blue-lake-menu-header-logo > img{
-        width: calc(100% - 36px);
+        width: 160px;
     }
 }
 

@@ -6,7 +6,7 @@ export const INITIAL_CURRENT_PAGE = {
 
 const INITIAL_STATE = {
   user: null,
-  loading: true,
+  loading: false,
   god_mode: false,
   currentPage:  { ...INITIAL_CURRENT_PAGE }
 }
