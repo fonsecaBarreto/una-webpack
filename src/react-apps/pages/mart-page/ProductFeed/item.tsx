@@ -17,9 +17,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ playlist_id 
     
     const [ image, setImage ] = useState(ProductImage);
 
- 
     useEffect(()=> {
-        console.log("playlist_id changed", playlist_id)
         if(!playlist_id) return;
         mediaPlayListService.getImageSrc(playlist_id).then(setImage)
     }, [playlist_id])

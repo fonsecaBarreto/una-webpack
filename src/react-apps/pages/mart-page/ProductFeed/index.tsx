@@ -39,7 +39,11 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onChange }) =>{
                     </React.Fragment>
                 )}
                 itemComponent={ ({item_data, listMode })=> (
-                    <ProductItem showOptions={god_mode} listMode={listMode} produto={item_data} ></ProductItem>
+                    <ProductItem 
+                        showOptions={god_mode} 
+                        listMode={listMode} produto={item_data} 
+                        onAction={onChange}
+                    ></ProductItem>
                 )}>
             </ContentPool>
         </div>

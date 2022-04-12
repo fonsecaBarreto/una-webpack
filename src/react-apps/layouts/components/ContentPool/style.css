@@ -1,19 +1,22 @@
 .bl-common-content-pool{
-    display: grid; grid-template-columns: 1fr; grid-template-rows: auto;
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto;
     width: 100%; gap: 10px; 
 }
 
 /* header */
 .bl-common-content-pool > header {
-    display: grid; grid-template-columns: 1fr auto; 
-    align-items: center;
-    width: 100%; height: fit-content; min-height: 32px; gap: 8px;
+    display: grid; grid-template-columns: 1fr auto; align-items: center;
+    width: 100%; height: fit-content; 
+    column-gap: 8px;
 }
 
 /* section */
 .bl-common-content-pool > header > section{
     display: flex; flex-direction: row; align-items: center; justify-content: flex-start;
     overflow-x: auto;
+    height: fit-content;
 }
 
 .bl-common-content-pool > header > section:nth-child(1){
@@ -91,12 +94,6 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto;
 }
-/* 
-@media screen  and (max-width: 1600px){
-    .bl-common-content-pool > main>  .bl-common-content-pool-flow{
-        grid-template-columns: repeat(4, 1fr);
-    }
-} */
 
 @media screen  and (max-width: 1440px){
     .bl-common-content-pool > main >.bl-common-content-pool-flow{
@@ -105,14 +102,16 @@
 }
 
 @media screen  and (max-width: 1024px){
+
     .bl-common-content-pool > main > .bl-common-content-pool-flow{
         grid-template-columns: repeat(2, 1fr);
     }
     /* header */
     .bl-common-content-pool > header {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        gap: 2px;
+        grid-template-rows: auto auto;
+        gap: 0;
+        row-gap: 2px;
     }
 
     .bl-common-content-pool > header > section:nth-child(2){
@@ -127,29 +126,6 @@
         width: 42px;height: 42px;
     }
 }
-
-/* READ MORE BUTTON */
-
-.una-product-feed >section:nth-child(3){
-    width: 100%;
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: flex-start;
-}
-
-
-.bl-common-content-plus-btn{
-    display: flex; align-items: center; justify-content: center;
-    width: 56px;  height: 56px;
-    font-size: 24px;
-    border-radius: 50%;
-    background-color: var(--main-color);
-    color: white;
-    border: none;
-    margin-top: 32px;
-    cursor: pointer;
-    margin: auto;
-}
-
 
 /* navigator button */
 .page-navigator-section{
