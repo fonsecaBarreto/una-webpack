@@ -17,7 +17,6 @@ export const PanelContainer: React.FunctionComponent<PanelContainer.Params> = ({
     return (
         <div className='una-panel-container'>
             <header> 
-                <button> <MdKeyboardArrowDown/> </button>
                 {icon} <span>  {title} </span>
 
                 { 

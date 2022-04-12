@@ -40,7 +40,7 @@ export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ className
                 onInput={handleInput} 
                 onKeyDown={handleKeys}>
             </input>
-            <button className='bl-search-button'><FiSearch/></button> 
+            <button onClick={search} className='bl-search-button'><FiSearch/></button> 
         </div>
     )
 }
