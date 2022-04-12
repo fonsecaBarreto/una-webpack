@@ -1,7 +1,5 @@
 .bl-common-content-pool{
-    display: grid; 
-    grid-template-columns: 1fr; 
-    grid-template-rows: auto;
+    display: grid; grid-template-columns: 1fr; grid-template-rows: auto;
     width: 100%; gap: 10px; 
 }
 
@@ -102,6 +100,12 @@
 }
 
 @media screen  and (max-width: 1024px){
+    .bl-common-content-pool > main >.bl-common-content-pool-flow{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen  and (max-width: 756px){
 
     .bl-common-content-pool > main > .bl-common-content-pool-flow{
         grid-template-columns: repeat(2, 1fr);

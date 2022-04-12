@@ -7,10 +7,8 @@ import LayoutCart from './Cart'
 import globalComponent from '@/react-apps/apps/main/global-components-context';
 import { MakeDialogConfig } from 'fck-react-dialog'
 import ForbiddenCartModal from '../../components/Modals/ForbiddenCart'
-
 import { useHistory } from 'react-router-dom'
 import Menu from './Menu'
-import { RESULT_MENU_TREE } from './MENU-TREE'
 import GodModeNotify from './GodModeNotify'
 import { useDispatch } from 'react-redux'
 import { setGodMode } from '@/react-apps/store/reducers/main/actions'
@@ -44,8 +42,8 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
             return Context.dialog.push( MakeDialogConfig(ForbiddenCartModal,
                 (n)=>{
                     switch(n){
-                        case 1: history.push("/login?v=singin");break;
-                        case 2: history.push("/login?v=signup");break;
+                        case 1: history.push("/login?v=singin"); break;
+                        case 2: history.push("/login?v=signup"); break;
                     }
                     return -1;
                 }, "UNA-SE AO JOGO DOS GRANDES"))
@@ -57,22 +55,20 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
     return (
         <div className={`blue-lagum ${ (menu ===true) ? "bl-aside-menu" : ""}`}>
 
-            { (menu ===true ) && <aside> <Menu user={user} menuState={menuState} menuTree={RESULT_MENU_TREE(user)} ></Menu> </aside> }
+            { (menu ===true ) && <aside> <Menu user={user} menuState={menuState} ></Menu> </aside> }
             
             <header>
-                <LayoutHeader user={user} menuState={menuState}  toggleCart={openCart}></LayoutHeader>
+                <LayoutHeader user={user} menuState={menuState} toggleCart={openCart}></LayoutHeader>
             </header> 
             <main>
                 <DepartamentHeader></DepartamentHeader>
                 {children} 
             </main>
-
             <footer>
                 <LayoutFooter></LayoutFooter>  
             </footer> 
             
             <GodModeNotify show={god_mode ?? false} exit={()=>{dispatch(setGodMode(false))}}></GodModeNotify>
-
             <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart>
 
         </div>
