@@ -7,6 +7,7 @@ import BlueLagumAsideModal from '../AsideModal'
 import { budgetServices } from '@/services/api/budget-service'
 import GlboalContenxt from "@/react-apps/apps/main/global-components-context"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
+import { setLoading } from '@/react-apps/store/reducers/main/actions'
 export namespace LayoutCart {
     export type Params = {
         show: boolean,
@@ -15,11 +16,11 @@ export namespace LayoutCart {
 }
 
 /* Conteudo */
-const CartContent = ({ cart, add, rm}: {cart:any, add:  (product: any) => void, rm:  (product: any) => void}) =>{
+const CartContent = ({ cart}: {cart:any}) =>{
     return (
         <React.Fragment> {  
             cart.length > 0 && cart.map((c: any, i:number)=> {
-                return (<CartItem key={i} item={c} toAdd={add} toRemove={rm}></CartItem>)
+                return (<CartItem key={i} item={c}></CartItem>)
             })
         } </React.Fragment>
     )
@@ -46,14 +47,6 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
     var [ totalProducts, setTotalProducts ]= useState(0);
     const dispatch = useDispatch();
 
-    const addToCart =(novo_produto: any) =>{
-        dispatch(pushToCart(novo_produto))
-    }
-
-    const rmFromCart =(produto: any) =>{
-        dispatch(removeFromCart(produto))
-    }
-
     const getTotalItems = () =>{
         var total =0;
         cart.map((c:any)=>{ total+=c.qtd })
@@ -62,6 +55,7 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
 
     const submit = async () =>{
         try{
+            dispatch(setLoading(true))
             await budgetServices.save({
                 products: cart.map((c:any)=>({ ean: c.product.ean, quantity: c.qtd})),
                 company_id: user.company_id
@@ -72,16 +66,17 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
         }catch(err: any){
             context.dialog.push(MakeNotification(()=>{return -1},[err.mesage ?? "Erro inesperado"], "Erro!", NotificationType.SUCCESS))
         }
+        finally{
+            dispatch(setLoading(false))
+        }
     }
 
-    useEffect(()=>{
-        getTotalItems()
-    },[cart])
+    useEffect(()=>{ getTotalItems() },[cart])
 
     return (
         <BlueLagumAsideModal loading={false} show={show} title="Carrinho" onClose={onClose} dir="right"
             footer={ <CartFooter onSubmit={submit} total={totalProducts}/> }
-            content={<CartContent cart={cart} add={addToCart} rm={rmFromCart}></CartContent> }>
+            content={<CartContent cart={cart}></CartContent> }>
         </BlueLagumAsideModal>
     )
 }

@@ -69,7 +69,8 @@ export const MartPage: FunctionComponent<any> = ({}) => {
     return (
         <div id="departamento-page">
             <div className='app-container'>
-                {/* <img src={BannerTest}></img> */}
+
+                {parsedParams?.["departament_id"] === "padaria" && <img src={BannerTest}></img> }
                 <ContentGrid>
                     <CategoriasNav 
                         freeze={isLoading} trigger={filterTrigger} departament_id={parsedParams?.["departament_id"] ?? ""} 
