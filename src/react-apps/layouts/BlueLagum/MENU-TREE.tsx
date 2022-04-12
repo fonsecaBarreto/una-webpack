@@ -10,10 +10,10 @@ import { loginServices } from "@/services/api/login-service"
 import { ImExit } from "react-icons/im"
 
 export type MenuItemConfig = {
-    label: string, icon: any, toDo: any,  
+    label: string, icon: any, toDo: any, 
+    className?:string, 
     children?: MenuItemConfig[]
 }
-
 
 export const USER_TREE = (user: any) =>{
 
@@ -36,11 +36,14 @@ export const USER_TREE = (user: any) =>{
 }
 
 export const PUBLIC_TREE = (user: any) => ([
-    {label:"Mercado", toDo:"/mercado", icon:<AiFillShop/>},
-    {label:"Whatsapp", toDo: () =>  window.open('https://wa.me/5522992317557', '_blank'), icon:<IoLogoWhatsapp/>}
+    {label:"Mercado", toDo:"/mercado", icon:<AiFillShop/>}
 ])
 
-export const RESULT_MENU_TREE = (user:any) => ([  ...PUBLIC_TREE(user), ...USER_TREE(user),])
+export const RESULT_MENU_TREE = (user:any) => ([  
+    ...PUBLIC_TREE(user), 
+    ...USER_TREE(user),
+    { className:"zap-green", label:"Whatsapp", toDo: () =>  window.open('https://wa.me/5522992317557', '_blank'), icon:<IoLogoWhatsapp/>}
+])
 
 
 export default RESULT_MENU_TREE

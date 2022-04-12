@@ -21,6 +21,11 @@
     width: 100%;
 }
 
+.common-menu-item.zap-green .common-menu-item-row{
+    color: #25D366!important;
+}
+
+
 .common-menu-item .common-menu-item-row:nth-child(1) > :nth-child(2){
     display: none;
 }
@@ -39,8 +44,16 @@
 
 .common-menu-item .common-menu-item-row:hover {
     transition: all .02s ease-in;
-    background-color: rgba(0, 0, 0, 0.1);
-    color: rgb(255, 255, 255);
-    color: #111;
+    background-color: rgba(144, 168, 236, 0.2);
+}
+
+.common-menu-item-row-body {
+    display: none;
+    height: fit-content;
+    background-color: rgba(144, 168, 236, 0.2);
+}
+
+.common-menu-item-row-body.expand {
+    display: flex;
 }
 

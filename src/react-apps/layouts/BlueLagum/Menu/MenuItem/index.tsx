@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react'
 import './style.css'
 import { useHistory } from 'react-router-dom'
 import './style.css'
+import { MenuItemConfig } from '../../MENU-TREE'
 
 export namespace BlueLakeMenuItem {
-    export type Config = { label: string, toDo: () => void | string, icon: any}
+    export type Config = MenuItemConfig
     export type Params = {
         config: Config
         selected: boolean,
-        menuState: { show: boolean, toggle: Function}
     }
 }
 
-const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config, selected, menuState }) =>{
+const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config, selected }) =>{
 
+    const [expand, setExpand] = useState(true)
     const history = useHistory()
    
-    const { label, icon, toDo } = config
+    const { label, icon, toDo, className } = config
 
     const handleClick = () => { 
         if(typeof toDo == "string") return history.push(toDo);
@@ -24,11 +25,14 @@ const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config, se
     } 
 
     return (
-    <li className={`common-menu-item ${selected ? 'selected' : ''}`} > 
+    <li className={`common-menu-item ${selected ? 'selected' : '' } ${className ? className : ""}`} > 
     
-        <span  className="common-menu-item-row" onClick={() => handleClick()} >
+        <span className="common-menu-item-row" onClick={() => handleClick()} >
             <span className="common-menu-ico"> {icon && icon}  </span>
             <span> {label} </span>
+        </span>
+        <span className={`common-menu-item-row-body ${expand ? "expand" : ""}`} >
+          {/*   <MenuItem config={{icon: null, label:"teste",toDo: () =>{} }} selected={false}></MenuItem> */}
         </span>
 
     </li>)
