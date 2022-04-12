@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
-import ImageNotFount from "@/public/assets/images/shopping-bag.jpg"
+import ImageNotFount from "@/public/assets/images/product/empty.svg"
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { mediaPlayListService } from '@/services/api/media-playlist'
 import { filesService } from '@/services/api/files-service'

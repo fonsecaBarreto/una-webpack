@@ -1,6 +1,10 @@
 .una-add-cart-control{
-    width: 100%; height: 36px;
+    width: 200px; height: 36px;
     padding: 2px;
+    
+}
+.una-add-cart-control.fill{
+    width: 100%!important;
 }
 
 .una-add-cart-control > button{
@@ -23,5 +27,29 @@
     background-color: rgba(255, 255, 255, 0.2);
     position: absolute; top: 0; left: 0;
     width: 100%; height: 100%;
+}
 
+/* counter */
+
+.una-add-cart-control-counter{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-between;
+    border-radius: 12px;
+    width: 100%;height: 100%;
+}
+
+.una-add-cart-control-counter{
+}
+
+.una-add-cart-control-counter > button{
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    border: none;
+    color: white;
+    cursor: pointer;
+    opacity: .9;
 }

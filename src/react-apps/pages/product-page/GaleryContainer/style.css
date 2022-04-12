@@ -18,7 +18,7 @@
 
 .una-galery-container > section.galery-container-photo-frame > img{
     position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;
-    width: 1050%; height: 100%;
+    width: 100%; height: auto;
     object-fit: cover;
     background-color: white;
 } 

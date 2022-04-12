@@ -3,36 +3,28 @@ import "./style.css"
 import GlobalContext from  "@/react-apps/apps/main/global-components-context"
 import { MakeDialogConfig, MakeOptions }  from 'fck-react-dialog'
 import { useDispatch, useSelector } from 'react-redux'
-import { CompaniesState, setCompanhias } from '@/react-apps/store/reducers/companies'
 import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
 import { produtosService } from '@/services/api/produtos-service'
 import GaleryContainer from './GaleryContainer'
 import { Product } from '@/domain/views/Product'
-import SubmitButton from '@/react-apps/components/una/inputs-control/SubmitButton'
 import { pushToCart, removeFromCart } from '@/react-apps/store/reducers/cart'
-import { BsCart4 } from 'react-icons/bs'
-import CounterControl from '@/react-apps/components/una/inputs-control/CounterControl'
 import ProductBreadCrumbs from './ProductBreadCrumbs'
 import AddCartButton from '../mart-page/ProductFeed/AddCartButton'
+import { UseCartHandler } from "@/react-apps/store/reducers/cart/handler"
 
 const SEARCH_HEADER = {
   params: [ "ean"],
   search: []
 }
+
 export const ProductPage: React.FunctionComponent<any> = ({location, history}) => {
 
-  const dispatch = useDispatch()
-  const { cart } = useSelector((state: any)=>state.carrinho)
-  const [ count, setCount ] = useState(0)
+  const cartHandler = UseCartHandler()
   const { parsedParams, parsedSearch, pushToHistory } = UseSearchAdapter({ header : SEARCH_HEADER})
   const [ product, setProduct ] = useState<Product|null>(null);
   const [ breadCrumbs, setBreadCrumbs] = useState(null);
 
   useEffect(()=>{ if(parsedParams){ handleLoad()} },[parsedParams])
-
-  useEffect(()=>{
-    if(product?.ean) return setCount(countProductQtd(product.ean))
-  },[cart])
 
   const handleLoad= () => {
     produtosService.find({ ...parsedParams }).then(data=>{
@@ -40,21 +32,6 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
       setBreadCrumbs(data?.breadCrumbs ?? null)
     }) 
   }
-
-  const countProductQtd = (ean:string) => {
-    const item_index = cart.map((c:any)=> c.product.ean ).indexOf(ean);
-    const item = cart[item_index];
-    console.log("found item", item)
-    return item?.qtd ?? 0;
-  }
-
-  const handleAdd = (a: number) =>{
-    switch(a){
-        case +1:  dispatch(pushToCart(a)); break;
-        case -1:  dispatch(removeFromCart(a)); break;
-    }
-  }
-
 
   return (
     <div id="product-page">
@@ -76,8 +53,8 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
                
               </div>
                 <div className='product-page-cart-option'>
-                  <button>Informações </button>
-                  <AddCartButton value={count} onChange={handleAdd}></AddCartButton>
+                  <AddCartButton value={cartHandler.count(product?.ean)} height={"42px"}
+                    onChange={(n:number)=>{cartHandler.push(n, product)}}></AddCartButton>
                 </div>
             </section>
             <section>

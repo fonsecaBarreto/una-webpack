@@ -5,6 +5,7 @@ import { RiPriceTag2Line } from 'react-icons/ri'
 import AddCartButton from './AddCartButton'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { mediaPlayListService } from '@/services/api/media-playlist'
+import { UseCartHandler } from '@/react-apps/store/reducers/cart/handler'
 
 export type ListMode = "inline" | "block" 
 export namespace ProductItem {
@@ -19,6 +20,7 @@ export namespace ProductItem {
 
 export const ProductImageSection: React.FunctionComponent<any> = ({playlist_id}) =>{
     const [ image, setImage ] = useState(ProductImage);
+ 
     useEffect(()=> {
         if(!playlist_id) return;
         mediaPlayListService.getImageSrc(playlist_id).then(setImage)
@@ -32,14 +34,8 @@ export const ProductImageSection: React.FunctionComponent<any> = ({playlist_id})
 
 export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, onChange, count, listMode }) =>{
     const { specification, image, brand, ean } = produto
+    const cartHandler = UseCartHandler()
 
-    const handleCounterInput = (n:number) =>{
-        switch(n){
-            case -1 : return onChange("REMOVE",produto);
-            case +1 : return onChange("ADD",produto);
-            default: break;
-        }
-    }
     return (
         <div className={`product-feed-item ${listMode}`}>
 
@@ -54,7 +50,10 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
             </section>
 
             <section className='product-feed-item-footer'>
-                <AddCartButton value={count} onChange={handleCounterInput}></AddCartButton>
+
+            <AddCartButton fill={true} value={cartHandler.count(ean)} 
+                     onChange={(n:number)=>{cartHandler.push(n, produto)}}></AddCartButton>
+                
             </section>
         </div>
     )
