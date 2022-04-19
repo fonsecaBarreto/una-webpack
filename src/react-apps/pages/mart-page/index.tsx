@@ -13,14 +13,13 @@ import { setGodMode } from '@/react-apps/store/reducers/main/actions'
 import ProductForm from '@/react-apps/forms/ProductForm'
 import { setLoading } from "@/react-apps/store/reducers/main/actions"
 import BannerTest from "@/public/assets/images/product/banner-test.svg"
-import BannerTest2 from "@/public/assets/images/product/banner-test-2.svg"
 
 export const SEARCH_HEADER= { 
     params : [ "departament_id" ],
     search : [ "category", "subCategory", "brand", "v", "p", "admin-item" ]
 };
 
-export const MartPage: FunctionComponent<any> = ({}) => {
+export const MartPage: FunctionComponent<any> = ({ history}) => {
 
     const { parsedSearch, parsedParams, pushToHistory } = UseSearchAdapter({ header: SEARCH_HEADER })
     const [ isLoading, setIsLoading ] = useState(false);
@@ -56,6 +55,7 @@ export const MartPage: FunctionComponent<any> = ({}) => {
 
     const handleActions = (key:string, p: any) =>{
         switch(key){
+            case "HISTORY": history.push("/registro");break;
             case "SET_PAGE": pushToHistory({p: p+""}); break;
             case "SHOW_FILTERS": filterTrigger.execute();break;
             case "ADMIN": pushToHistory({ "admin-item": p }); break;
@@ -69,7 +69,6 @@ export const MartPage: FunctionComponent<any> = ({}) => {
     return (
         <div id="departamento-page">
             <div className='app-container'>
-
                 {parsedParams?.["departament_id"] === "padaria" && <img src={BannerTest}></img> }
                 <ContentGrid>
                     <CategoriasNav 

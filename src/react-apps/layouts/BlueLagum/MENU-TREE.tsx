@@ -1,13 +1,14 @@
 
 import React from 'react'
 import { AiFillShop, AiOutlinePlusSquare } from 'react-icons/ai'
-import { MdAdminPanelSettings, MdBusiness } from 'react-icons/md'
+import { MdAdminPanelSettings, MdBusiness, MdPlusOne } from 'react-icons/md'
 import { GiNotebook } from 'react-icons/gi'
 import { CgProfile } from 'react-icons/cg'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { UserProfileRole } from '@/domain/views/User'
 import { loginServices } from "@/services/api/login-service"
 import { ImExit } from "react-icons/im"
+import { BsFillPlusSquareFill } from 'react-icons/bs'
 
 export type MenuItemConfig = {
     label: string, icon: any, toDo: any, 
@@ -19,8 +20,9 @@ export const USER_TREE = (user: any) =>{
 
     if(!user) return []
     const admins = [
-        { label:"Cotações", toDo:"/cotacoes", icon:<GiNotebook/>},
-        { label:"Companhias", toDo:"/companhias", icon:<MdBusiness/>},
+        { label:"Cotações", toDo:"/cotacoes", icon: <GiNotebook/>},
+        { label:"Companhias", toDo:"/companhias", icon: <MdBusiness/>},
+        { label:"Registro", toDo:"/registro", icon: <AiOutlinePlusSquare/>},
     ]
 
     const users = [

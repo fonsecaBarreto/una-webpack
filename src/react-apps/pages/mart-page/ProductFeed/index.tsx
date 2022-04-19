@@ -17,9 +17,7 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onChange }) =>{
 
     return (
         <div className="una-product-feed">
-            <ContentPool 
-                list_data={products} 
-                dataAlias={"products"}
+            <ContentPool list_data={products} dataAlias={"products"}
                 onAction={onChange}
                 header={ (queries: any)=>(<SearchHeader  queries={queries}/>) }
                 auxHeader={(queries: any)=>(
@@ -28,9 +26,11 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onChange }) =>{
                             (user && user.roles.includes("ADMIN")) &&
                             <React.Fragment> 
                                 { god_mode ? 
-                                 <button className='admin-mode-button.add' onClick={ () => onChange("ADMIN", "new")}> 
-                                    <AiOutlinePlusSquare/>
-                                 </button>
+                                    <React.Fragment>
+                                        <button className='admin-mode-button.add' onClick={ () => onChange("HISTORY", "registro")}> 
+                                            <AiOutlinePlusSquare/>
+                                        </button>
+                                    </React.Fragment>
                                  :  <button className='admin-mode-button' onClick={ () => onChange("GOD_MODE")}> <MdAdminPanelSettings/> </button>
                                 }
                             </React.Fragment>

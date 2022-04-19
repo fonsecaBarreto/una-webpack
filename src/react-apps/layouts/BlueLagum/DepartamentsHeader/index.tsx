@@ -26,7 +26,7 @@ export const DepartamentHeader = () => {
                             <IoMdArrowDropdown/>
                             Todos departamentos</Link>
                     </DepartamentDropDown> 
-                    <DepartamentDropDown>
+                {/*     <DepartamentDropDown>
                         <Link className='dep-link' to="/mercado/padaria"> 
                             <MdBakeryDining></MdBakeryDining>
                             Padaria
@@ -39,7 +39,7 @@ export const DepartamentHeader = () => {
                     </DepartamentDropDown> 
                     <DepartamentDropDown>
                         <Link className='dep-link' to="/mercado/mercearia"> <RiShoppingBasketLine/>Mercearia </Link>
-                    </DepartamentDropDown> 
+                    </DepartamentDropDown>  */}
                 </nav>
             </div>
         </header>

@@ -14,6 +14,17 @@ import { BsCloudCheckFill } from 'react-icons/bs'
 import UseTrigger from '@/react-apps/components/utils/UseTrigger'
 import queryString from 'query-string'
 
+const ITEMS = [
+   { value: "products", label: "Produtos" },
+   { value: "supplies", label: "Fornecimento" },
+   { value: "categories", label: "Categorias" },
+   { value: "brands", label: "Marcas" },
+]
+
+const METHODS = [
+    { value: "create", label: "Novo" },
+    { value: "list", label: "Listar" },
+]
 export const RegisterPage: React.FunctionComponent<any> = ({history}) =>{
 
     useEffect(()=>{ 
@@ -41,10 +52,17 @@ export const RegisterPage: React.FunctionComponent<any> = ({history}) =>{
             <div className='add-products-container app-container'>
                 
                 <section className='add-products-nav-bar'>
-                    <SwitchButton value={pageIndex} onInput={()=>history.push({ search: `?v=${pageIndex == 0 ? "supply" : "products"}`  })}> 
-                        <React.Fragment> <AiFillShopping/>  Produtos </React.Fragment>
-                        <React.Fragment> <RiInboxArchiveFill/> Fornecimento </React.Fragment>
-                    </SwitchButton>
+                    <select>
+                        {ITEMS.map((p: any, i:number)=>{
+                            return ( <option value={p.value}>{p.label}</option>)
+                        })}
+                    </select>
+
+                    <select>
+                        {METHODS.map((p: any, i:number)=>{
+                            return ( <option value={p.value}>{p.label}</option>)
+                        })}
+                    </select>
                     <button className="nav-header-btn" onClick={openImportCsvModal}> <GrDocumentCsv/> Upload .CSV  </button> 
                     <button className="nav-header-btn nav-header-btn-save" onClick={saveTrigger.execute}> <BsCloudCheckFill/> Salvar </button>
                 </section>
