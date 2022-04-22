@@ -18,7 +18,6 @@ export const SuplyTable: React.FunctionComponent<SuplyTable.Params> = ({override
 
     const saveTrigger = UseTrigger();
     const context = useContext(GlobalContext);
-
     const [ supplies, setSupplies ] = useState<any[]>([{}])
     const [ conflicts, setConflicts] = useState<any>({})
     const [ checkList, setCheckList ] = useState<string[]>([])
@@ -37,8 +36,6 @@ export const SuplyTable: React.FunctionComponent<SuplyTable.Params> = ({override
 
     /* Salvar Fornecimento */
     const submitSaveSuplies = async ({data, conflicts, checkList}:any) =>{
-
-
         console.log("data:", data,"\nconflitos: ", conflicts,"\n check:", checkList)
         var allowed_supplies = data.filter((d: any)=> !checkList.includes(d._id))
         

@@ -1,0 +1,25 @@
+.una-soft-page{
+    width: 100%; height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+.una-soft-page > header{
+    position: sticky;top: 0; left: 0;
+    display: flex; flex-direction: row; align-items: center; justify-content: flex-start;
+    gap: 8px;
+    width: 100%; height: 100%;
+}
+
+.una-soft-page > header > section .una-sp-back-btn{
+    width: 100%; height: 100%;
+    border: none;
+}
+
+/* Main */
+.una-soft-page > main{
+    background-color: rgb(233, 233, 121);
+    width: 100%; height: 100%;
+
+}

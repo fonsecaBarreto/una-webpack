@@ -2,24 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './style.css'
 import { Forming } from "fck-react-input-controls"
 import { budgetServices } from '@/services/api/budget-service'
-import { BudgetItem } from '@/domain/views/Budget'
+import { Budget, BudgetItem } from '@/domain/views/Budget'
 import { LabelView } from '@/domain/views/ListingView'
 import { json } from 'stream/consumers'
 
 export namespace BudgetView {
-
-    export interface BudgetProductItem extends BudgetItem {
-        product: any, 
-    }
-
-    export type Params = { 
-        budget_id: string
-    }
+    export interface BudgetProductItem extends BudgetItem { product: any }
+    export type Params = { budget_id: string }
     export type View  ={
-        id: number;
-        amount: number;
-        created_at: Date;
-        updated_at: Date;
+        budget: Budget
         items: BudgetProductItem[];
         user: LabelView
         company: LabelView
@@ -51,11 +42,11 @@ export const BudgetView: React.FunctionComponent<BudgetView.Params> = ({ budget_
             <React.Fragment>
                 <section>
                     <div className='flex-column'>
-                        <Forming.LabelWrapper label='Numero'>{budget.id}</Forming.LabelWrapper>
+                        <Forming.LabelWrapper label='Numero'>{budget.budget.id}</Forming.LabelWrapper>
                         <Forming.LabelWrapper label='Companhia'>{budget?.company?.label}</Forming.LabelWrapper>
                         <Forming.LabelWrapper label='Usuario'>{budget?.user?.label}</Forming.LabelWrapper>
-                        <Forming.LabelWrapper label='Total (R$)'>{budget.amount}</Forming.LabelWrapper>
-                        <Forming.LabelWrapper label='Data '>{budget.created_at}</Forming.LabelWrapper>
+                        <Forming.LabelWrapper label='Total (R$)'>{budget.budget.amount}</Forming.LabelWrapper>
+                        <Forming.LabelWrapper label='Data '>{budget.budget.created_at}</Forming.LabelWrapper>
                     </div> 
 
                     <div className='budget-view-budget-items'>

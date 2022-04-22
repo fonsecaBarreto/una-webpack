@@ -8,6 +8,7 @@ import { budgetServices } from '@/services/api/budget-service'
 import GlboalContenxt from "@/react-apps/apps/main/global-components-context"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { setLoading } from '@/react-apps/store/reducers/main/actions'
+
 export namespace LayoutCart {
     export type Params = {
         show: boolean,
@@ -32,9 +33,9 @@ const CartFooter = ({total, onSubmit}: {total: number, onSubmit: any}) =>{
         <div className='bl-cart-footer'>
             <div className='bl-cart-resume'>
                 <span> Total: { total } </span>
-                <span className='bl-cart-resume-value'> R$: 00,00</span>
+                <span className='bl-cart-resume-value'> ... </span>
             </div>
-            <button onClick={onSubmit}> Finalizar </button>
+            <button className='cart-budget-button' onClick={onSubmit}> Solicitar orçamento </button>
         </div>
     </React.Fragment>)
 }
@@ -60,7 +61,7 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
                 products: cart.map((c:any)=>({ ean: c.product.ean, quantity: c.qtd})),
                 company_id: user.company_id
             });
-            context.dialog.push(MakeNotification(()=>{return -1},["Obrigado.", "Cotação realizada com sucesso!"], "Sucesso!", NotificationType.SUCCESS))
+            context.dialog.push(MakeNotification(()=>{return -1},["Obrigado.", "Estamos negociando com fornedores para garantir o melhor preço!","aguarde o nosso contato em até 24 horas."], "Sucesso!", NotificationType.SUCCESS))
             onClose()
             dispatch(setCart([]))
         }catch(err: any){

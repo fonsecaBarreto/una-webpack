@@ -9,6 +9,7 @@ import { useData } from '../utils/UseData'
 import Globalcontext from '@/react-apps/apps/main/global-components-context'
 import { MakeDialogConfig } from 'fck-react-dialog'
 import FormModal from './FormModal'
+
 export namespace MultiplesForms {
     export type Header = {  
         label: string, 

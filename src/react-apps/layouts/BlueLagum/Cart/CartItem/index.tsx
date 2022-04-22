@@ -10,6 +10,7 @@ export namespace CartItem {
         item: any
     }
 }
+
 export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
 
     const cartHandler = UseCartHandler()
@@ -25,13 +26,12 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
 
             <section>
                 <span>{ product.specification} </span>
-                <span> R$:00,00 </span>
+                <span>{ product.ean }</span>
             </section>
 
             <section>
                 <AddCartButton fill={true} value={cartHandler.count(product?.ean)} 
                      onChange={(n:number)=>{cartHandler.push(n, product)}}></AddCartButton>
-                <span>R$: 00,00 </span>
             </section>
            
         </div>

@@ -1,0 +1,40 @@
+.una-company-type-selector{
+    position: relative;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 6px;
+}
+
+
+.una-company-type-selector > span{
+    color: #333;
+    margin: 16px 0 12px;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.una-company-type-selector > button{
+    display: flex;flex-direction: row;align-items: center;justify-content: center;
+    width: 100%;height:56px;
+    border-radius: 12px;
+    font-size: 20px;
+
+    background-color: rgb(228, 238, 241);
+    border: solid 1px #ddd;
+}
+
+.una-company-type-selector > button.cts-selected{
+    background-color: var(--main-color);
+    color:white;
+    font-weight: bold;
+}
+
+.una-company-type-selector > button:hover{
+    cursor: pointer;
+    outline: solid 2px rgba(29, 95, 194, 0.4);
+}

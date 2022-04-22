@@ -62,14 +62,14 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
             </header> 
             <main>
                 <DepartamentHeader></DepartamentHeader>
-                {children} 
+               {children}
             </main>
             <footer>
                 <LayoutFooter></LayoutFooter>  
             </footer> 
             
             <GodModeNotify show={god_mode ?? false} exit={()=>{dispatch(setGodMode(false))}}></GodModeNotify>
-            <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart>
+            <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart> 
 
         </div>
     )

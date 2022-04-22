@@ -11,8 +11,11 @@ import { loginServices } from "@/services/api/login-service"
 import { useHistory } from 'react-router-dom'
 import CepInputControl from '../inputs-control/CepInputControl'
 import { getCitiesByUf, getUfs } from '@/services/ibge'
+import CompanyTypeSelector from './CompanyType'
 
 const validator = new Validator()
+
+
 
 const SIGNUP_INITIAL_DATA = {
     nome: "",
@@ -28,7 +31,9 @@ const JURIDICO_INITIAL_DATA ={
     cnpj: "",
     emailFinanceiro: "",
     inscricaoEstadual: "",
-    telefoneComercial: ""
+    telefoneComercial: "",
+    isVendor: false,
+    isMart: false,
 }
 const ENDERECO_INITIAL_DATA = {
     rua: "",
@@ -95,31 +100,28 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
         }
 
         try{
-            const result = await loginServices.signup(data);
+            await loginServices.signup(data);
             GlobalContext.dialog.push(MakeNotification(()=>-1,[ 
                 "Bem Vindo a UNA Compras",
                 "Cadastro efetuado com successo!", 
                 "Obrigado pela confiança, entraremos em contato em breve!"], "Sucesso!", NotificationType.SUCCESS));
-
             history.push("/login?v=signin");
-
         }catch(err:any){
             GlobalContext.dialog.push(MakeNotification(()=>-1,[ err?.message ], "Algo Errado", NotificationType.FAILURE))
             setCarouselInitialIndex(-1);
-
             if(err.params) {
                 let paramsKeys = Object.keys(err.params);
                 let signUpParams = Object.keys(signupState.data.get)
                 var signUpFormIntersection = paramsKeys.filter((x) => (signUpParams.indexOf(x) != -1));
                 if(signUpFormIntersection.length > 0 ){ 
                     signupState.errors.set(err.params)
-                    return setCarouselInitialIndex(0)
+                    return setCarouselInitialIndex(1)
                 }
                 let juridicoStateParams = Object.keys(juridicoState.data.get)
                 var juridicoFormIntersection = paramsKeys.filter((x) => (juridicoStateParams.indexOf(x) != -1));
                 if(juridicoFormIntersection.length > 0 ){ 
                     juridicoState.errors.set(err.params)
-                    return setCarouselInitialIndex(1)
+                    return setCarouselInitialIndex(2)
                 }
             }
 
@@ -141,6 +143,19 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
     }
 
     const carouselFrames = [
+        { title: "Conte-nos um pouco sobre o seu negócio.",
+            next: async () => {
+                return 1;
+            },
+            content:  
+            <React.Fragment>
+                <CompanyTypeSelector onChange={(n:any)=>{
+                    console.log("hanged type", n)
+                    juridicoState.data.onInput("isVendor", n == 0 ? false :true)
+                    juridicoState.data.onInput("isMart", n == 0 ? true : false)
+                }}></CompanyTypeSelector>
+            </React.Fragment>
+        },
         { title: "Dados Pessoais",
             next: async () => {
                 const n = await validateFields(CadastroUsuario_schema, Object.assign({}, signupState.data.get), signupState.errors.set)

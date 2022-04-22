@@ -28,16 +28,3 @@ export const product_headers_schema: MultiplesForms.Header[] = [
     { label: "SKU", value: "sku",   columns: 2 }
 ]
 
-/* Suplies Models */
-
-export const CsvSupliesDTo_schema = builder.create(b=>{
-    b.string('ean').description("EAN")
-    b.number('suggested_price').description("Preço")
-    b.number('stock').description("Quantidade em estoque").optional()
-})
-
-export const suply_headers_schema: MultiplesForms.Header[] = [   
-    { label: "EAN *", value: "ean", type: "text" }, 
-    { label: "Preço sugerido *", value: "suggested_price" },
-    { label: "Estoque *", value: "stock" },
-]
