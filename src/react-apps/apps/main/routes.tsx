@@ -66,6 +66,7 @@ export const RouterComponent = () =>{
             /* Product page */
             { path: "produto/:ean", title: "Produto",  component: ProductPage } ,
             /* Regiser product */
+            { path: "registro/:p", title: "Registar",  component: CadastroPage },
             { path: "registro", title: "Registar",  component: CadastroPage },
             { path: "cotacoes", title: "Cotações", component: CotacoesPage },
             { path: "perfil/:id", title: "Perfil Companhia",  component: ProfilePage } ,

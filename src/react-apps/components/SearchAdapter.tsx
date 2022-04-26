@@ -48,7 +48,6 @@ export const UseSearchAdapter = ({ header={ params : [], search: [] } }: SearchA
                 search_result[k]= value ?? []
             }
         })
-
         var str_params = ""
         Object.keys(params_result).map(p=> str_params+= "/"+  params_result[p] ?? "");
         history.replace({ search:  queryString.stringify(search_result), pathname: `${match.path.split("/:")[0]}${str_params}` }) 

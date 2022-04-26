@@ -1,7 +1,8 @@
 #adm-register-page, #adm-register-page > * { box-sizing: border-box;}
 /* container */
 .adm-register-page-container{
-    display: flex; flex-direction: column; gap: 16px;height: 100%;
+    display: flex; flex-direction: column; gap: 12px;height: 100%;
+    padding-top: 22px;
 }
 
 /* container > sections */
@@ -9,10 +10,9 @@
     display: flex;flex-direction: row;
     width: 100%;
     gap: 10px;
-    border: solid 2px red;
+    height: 42px;
 }
 
 .adm-register-page-container .adm-register-page-content{
     height: 100%;
-    border: solid 1px blue;
 }
