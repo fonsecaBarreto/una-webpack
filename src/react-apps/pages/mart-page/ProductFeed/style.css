@@ -47,12 +47,16 @@
     padding-bottom: 80%;
     height: 0;
     overflow: hidden;
+    background-color: #fff;
 }
 
 .una-product-feed .product-feed-item .product-feed-item-img-vp img{
     position: absolute; top: 0; left:0; right: 0; bottom: 0; margin: auto;
-    width: 100%; object-fit: cover;
-    transition: all .18s;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: all .15s;
+    background-color: #fff;
 }
 
 /* Item hover */
