@@ -22,7 +22,7 @@ export const USER_TREE = (user: any) =>{
     const admins = [
         { label:"Cotações", toDo:"/cotacoes", icon: <GiNotebook/>},
         { label:"Companhias", toDo:"/companhias", icon: <MdBusiness/>},
-        /* { label:"Registro", toDo:"/registro", icon: <AiOutlinePlusSquare/>}, */
+        { label:"Registro", toDo:"/registro", icon: <AiOutlinePlusSquare/>}
     ]
 
     const users = [

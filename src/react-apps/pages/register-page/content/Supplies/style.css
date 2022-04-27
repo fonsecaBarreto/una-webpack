@@ -1,0 +1,13 @@
+.supply-register-page{
+}
+
+.supply-register-page > button{
+    margin: 2px 5px 2px 0;
+    min-width: 82px;
+    background-color: white;
+    border: solid 1px #aaa;
+    height: 36px;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+}

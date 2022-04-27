@@ -8,20 +8,18 @@ const suppliesApi = MakeApiSettings({
 })
 
 export namespace SuppliesServices {
-  
      export type SaveSupply_dto = {
           ean: string
-          stock: number,
-          suggested_price: number
+          price: number,
+          expiration: Date
      }
-
 }
 
 export const suppliesServices = {
 
-     save_multiples: async ( params: { supplies: SuppliesServices.SaveSupply_dto[]}) => {
+     save_multiples: async ( params: { supplies: SuppliesServices.SaveSupply_dto[]}, company_id:string) => {
           const { supplies } = params
-          const { data } = await suppliesApi.send({ method: "post", url: `/`, data: { supplies } }) 
+          const { data } = await suppliesApi.send({ method: "post", url: `/${company_id}`, data: { supplies } }) 
           return data 
      },
 

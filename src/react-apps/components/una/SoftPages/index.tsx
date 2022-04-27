@@ -46,18 +46,18 @@ export const SoftPages: React.FunctionComponent<SoftPage.Params> = ({children, p
         <div className='una-soft-page'>
             <header>
                 <section>
-                    <button className='una-sp-back-btn'> Voltar</button>
+                    {/* <button className='una-sp-back-btn'> Voltar</button> */}
                 </section>
                 <section>
-                    <span> {pageProps && pageProps["title"]} </span>
-                    <span> ... </span>
+                  {/*   <span> {pageProps && pageProps["title"]} </span> */}
+
                 </section>
                 <section>
-                    {   ( pageProps?.["options"] ) && 
+                   {/*  {   ( pageProps?.["options"] ) && 
                         pageProps["options"].map((b: any, i: number)=> (
                             <button key={i} onClick={()=> {
                                 pageProps?.onChange && pageProps.onChange(b.value)}}> {b.label}</button>)
-                    )}
+                    )} */}
                 </section>
             </header>
             <main>

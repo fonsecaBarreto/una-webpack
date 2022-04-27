@@ -23,8 +23,6 @@ const HISTORY_HEADER = {
 }
 
 export const RegisterPage: React.FunctionComponent<any> = ({history}) =>{
-
-
     const searchAdapter = UseSearchAdapter({ header: HISTORY_HEADER })
     const { pushToHistory, parsedParams, parsedSearch } = searchAdapter 
     const handlePageSection = (e: any) => pushToHistory({ p:[e.target.value]}) 
@@ -44,7 +42,8 @@ export const RegisterPage: React.FunctionComponent<any> = ({history}) =>{
                     </header>
                     <section className='adm-register-page-content'>
                         <Softpages page={parsedParams["p"]}>
-                            <PageWrapper name="supplies" title="Fornecimento" options={[{value: "csv", label:"upload .CSV"}]} onChange={handleChange}>
+                            <PageWrapper name="supplies" title="Fornecimento" 
+                                options={[{value: "csv", label:"upload .CSV"}]} onChange={handleChange}>
                                 <SuppliesContent/> 
                             </PageWrapper>
                         </Softpages>
@@ -67,9 +66,4 @@ export default RegisterPage
                             </PageWrapper>
 
 
-<select>
-{METHODS.map((p: any, i:number)=>{
-    return ( <option value={p.value}>{p.label}</option>)
-})}
-</select>
  */}

@@ -32,7 +32,7 @@
     "fck-react-dialog": "^1.0.4",
     "fck-react-input-controls": "^1.0.1",
     "fck-schema-validator": "^1.2.8",
-    "fck-table-forms": "^1.0.0",
+    "fck-table-forms": "^1.0.1",
     "query-string": "^7.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
