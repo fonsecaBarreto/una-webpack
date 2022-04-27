@@ -6,6 +6,7 @@ import AddCartButton from './AddCartButton'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { mediaPlayListService } from '@/services/api/media-playlist'
 import { UseCartHandler } from '@/react-apps/store/reducers/cart/handler'
+import { filesService } from '@/services/api/files-service'
 
 export type ListMode = "inline" | "block" 
 
@@ -13,14 +14,16 @@ export namespace ProductItem {
     export type Params = { onChange: () => void, listMode: ListMode, showOptions: boolean }
 }
 
-export const ProductImageSection: React.FunctionComponent<any> = ({ playlist_id }) =>{
+export const ProductImageSection: React.FunctionComponent<any> = ({ playlist }) =>{
     
     const [ image, setImage ] = useState(ProductImage);
 
     useEffect(()=> {
-        if(!playlist_id) return;
-        mediaPlayListService.getImageSrc(playlist_id).then(setImage)
-    }, [playlist_id])
+        if(!playlist) return;
+        var image = playlist.images[0];
+        const src= image + "/" + "320.jpeg";
+        setImage(filesService.get_public_images_url(src))
+    }, [playlist])
 
     return (
         <section className='product-feed-item-img-vp'> 
@@ -31,7 +34,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ playlist_id 
 
 export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, listMode }) =>{
     
-    const { ean, specification, brand, media_playlist_id } = produto
+    const { ean, specification, brand, media_playlist_id, mediaPlayList} = produto
     const cartHandler = UseCartHandler()
 
     return (
@@ -39,7 +42,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
 
             { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <BsThreeDotsVertical/> </button> }
             
-            <ProductImageSection playlist_id={media_playlist_id} />
+            <ProductImageSection playlist={mediaPlayList} />
 
             <section className='product-feed-item-body'>
                 <Link to={`/produto/${ean}`} className="produto-nome"> {specification} </Link>
