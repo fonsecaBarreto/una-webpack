@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "prod:start": "cross-env NODE_ENV=production pm2-runtime server.js",
+    "prod:start": "pm2 start server.js -- --production",
     "build": "rimraf dist/* && webpack --config ./.webpack/webpack.prod.config.js",
     "dev": "webpack-dev-server --config ./.webpack/webpack.dev.config --host 10.0.10.217",
     "dev:server": "npm run dev && nodemon server.js",
