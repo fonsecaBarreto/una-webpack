@@ -16,6 +16,8 @@ import ProfilePage from "@/react-apps/pages/profile-page";
 import CotacoesPage from '@/react-apps/pages/budgets-page'
 import ProductPage from '@/react-apps/pages/product-page'
 
+
+
 export const RouterComponent = () =>{
 
     const context = useContext(globalContext) 

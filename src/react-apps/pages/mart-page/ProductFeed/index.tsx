@@ -25,13 +25,12 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onChange }) =>{
                         { 
                             (user && user.roles.includes("ADMIN")) &&
                             <React.Fragment> 
-                                { god_mode ? 
+                                { ( god_mode ) &&
                                     <React.Fragment>
                                         <button className='admin-mode-button.add' onClick={ () => onChange("HISTORY", "registro")}> 
                                             <AiOutlinePlusSquare/>
                                         </button>
                                     </React.Fragment>
-                                 :  <button className='admin-mode-button' onClick={ () => onChange("GOD_MODE")}> <MdAdminPanelSettings/> </button>
                                 }
                             </React.Fragment>
                         } 

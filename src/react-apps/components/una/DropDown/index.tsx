@@ -4,7 +4,7 @@ import './style.css'
 export namespace DropDown {
     export type Options = {
         label: string,
-        value: number
+        value: string
     }
     export type Params = {
         children : ReactNode

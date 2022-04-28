@@ -8,31 +8,44 @@ import SearchButton from './SearchButton'
 import globalComponent from '@/react-apps/apps/main/global-components-context';
 /* Dialog helpers */
 import { loginServices } from "@/services/api/login-service"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 //import { Usuario } from '@/domain/views/Usuario'
 import DropDown from "@/react-apps/components/una/DropDown"
+import { MakeNotification, NotificationType } from 'fck-react-dialog'
+import { setGodMode } from '@/react-apps/store/reducers/main/actions'
+import { UserProfileRole } from '@/domain/views/User'
 
 export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart, toggleSearch }) =>{
-    const Context: any = useContext(globalComponent);
+    const context: any = useContext(globalComponent);
+    const dispatch = useDispatch()
     const history = useHistory()
     const { cart } = useSelector((state: any)=>state.carrinho)
     const { user } = useSelector((state: any)=>state.main)
 
-    var dropDownoptions: DropDown.Options[] = (
-    user ? [  { label: "Sair", value: 3 } ]
-    : [ { label: "Entrar", value: 0}, { label: "Cadastrar-se", value : 1}])
+    const handleGodMode = () => {
+        context.dialog.push(MakeNotification((n)=>{
+            if(n === 0){ dispatch(setGodMode(true))} return -1;
+        },["Você está prestes a entrar no modo administrador", "tem certeza disso?"],"Atenção", NotificationType.CONFIRMATION))
+    }
+
+    var DROP_DOWN_OPTIONS: DropDown.Options[] = [];
     
-    const handleOptions = (n:number) =>{
-        if(!user){
-            switch(n){
-                case 0:  history.push("/login?v=signin");break;
-                case 1: history.push("/login?v=signup");break;
-            }
-        }else{
-            switch(n){
-                case 3: loginServices.logout();break;
-            }
+    if(user){
+        DROP_DOWN_OPTIONS = [ { label: "Sair", value: "SAIR" }];
+        if(user.roles.includes(UserProfileRole.ADMIN)){
+            DROP_DOWN_OPTIONS = [ ...DROP_DOWN_OPTIONS, { label:"SUPER USUARIO", value: "GOD_MODE"}]
+        }
+    }else{
+        DROP_DOWN_OPTIONS = [ { label: "Entrar", value: "SIGNIN"}, { label: "Cadastrar-se", value : "SINGUP"}];
+    }
+    
+    const handleOptions = (n:string) =>{
+        switch(n){
+            case "SAIR": loginServices.logout();break;
+            case "GOD_MODE": handleGodMode(); break;
+            case "SIGNIN": history.push("/login?v=signin");break;
+            case "SINGUP": history.push("/login?v=signup");break;
         }
         return -1
     }
@@ -41,7 +54,7 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart, toggleSea
         <nav className='una-header-options-nav'>
             <SearchButton onClick={toggleSearch} className="mobile-only"/>
             <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
-            <DropDown options={dropDownoptions} onAction={handleOptions}>
+            <DropDown options={DROP_DOWN_OPTIONS} onAction={handleOptions}>
                 <UserButton user={user} onClick={() =>{}}></UserButton>
             </DropDown>
         </nav>
