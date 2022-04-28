@@ -4,8 +4,9 @@
     100% {transform: scale(1)  translateY(0);}
 }
 
-.una-drop-down-container{
+.una-drop-down-container, .una-drop-down-container * {
     position: relative;
+    box-sizing: border-box;
 }
 
 .una-drop-down-container .una-drop-down-content{
@@ -36,10 +37,8 @@
     height: 32px;
     border-radius: 0!important;
     white-space: nowrap;
-    border-bottom: solid 1px #ddd;
 }
 
 .una-drop-down-container .una-drop-down-content button:hover{
-    color: var(--main-color);
     background-color: rgb(245, 245, 245);
 }

@@ -27,6 +27,7 @@
 
 #departamento-content-grid > section.una-gradiente-loading{
     position: relative;
+    min-height: 100vh;
 }
 #departamento-content-grid > section.una-gradiente-loading::after{
     content: "";
@@ -37,7 +38,7 @@
     background-size: 400% 400% !important;
     animation: change 4s ease-in-out infinite!important;
     transition: all .1s!important;
-    opacity: .7;
+    opacity: .93;
     border-radius: 5px;
 }
 

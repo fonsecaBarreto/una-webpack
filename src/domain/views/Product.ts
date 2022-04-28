@@ -11,7 +11,7 @@ export interface Product {
     sub_category_id: string
     specification: string
     brand: LabelView
-    presentation: LabelView
+    presentation: any
     subCategory: LabelView
     media_playlist_id: string
 }

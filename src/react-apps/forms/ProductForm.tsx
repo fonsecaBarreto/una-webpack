@@ -14,19 +14,6 @@ import { departamentosService } from '@/services/api/departamentos-service'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDepartaments } from '../store/reducers/mart'
 
-//
-/* 
- useEffect(() => {
-        if(parsedQueries?.playlist){
-            mediaPlayListService.find(parsedQueries?.playlist).then(r=>{
-                console.log("loaded playlist", r)
-                setImages(r.images)
-            })
-            //
-        }
-    }, [ parsedQueries]
- */
-
 const INITIAL_DATA= {
     brand: "",
     presentation: "",

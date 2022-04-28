@@ -44,7 +44,19 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
               <div>
                 <span className='product-page-specification'>{product.specification}</span>
                 <span className='product-page-brand'> <label>Marca:</label> {product.brand?.label}</span> 
-                {/* <span className='product-page-presentation'><label> Apresentação:</label> {product.presentation?.label}</span>   */}
+             
+                  <span className='product-page-presentation'>
+                    <label> Peso:</label> {product.presentation?.weight}
+                  </span>
+
+                  <span className='product-page-presentation'>
+                    <label> volume:</label> {product.presentation?.volume}
+                  </span>
+
+                  <span className='product-page-presentation'>
+                    <label> Quantidade:</label> {product.presentation?.quantity}
+                  </span>
+                  
                 <span className='product-page-code'>EAN: {product.ean}</span> 
                 <span className='product-page-code'>NCM: {product.ncm}</span> 
                 <span className='product-page-code'>SKU: {product.sku}</span> 

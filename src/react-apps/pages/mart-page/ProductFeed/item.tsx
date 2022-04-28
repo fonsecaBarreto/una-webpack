@@ -14,16 +14,16 @@ export namespace ProductItem {
     export type Params = { onChange: () => void, listMode: ListMode, showOptions: boolean }
 }
 
-export const ProductImageSection: React.FunctionComponent<any> = ({ playlist }) =>{
+export const ProductImageSection: React.FunctionComponent<any> = ({ images }) =>{
     
     const [ image, setImage ] = useState(ProductImage);
 
     useEffect(()=> {
-        if(!playlist) return;
-        var image = playlist.images[0];
+        if(images.length == 0) return;
+        var image = images[0];
         const src= image + "/" + "320.jpeg";
         setImage(filesService.get_public_images_url(src))
-    }, [playlist])
+    }, [images])
 
     return (
         <section className='product-feed-item-img-vp'> 
@@ -34,7 +34,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ playlist }) 
 
 export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, listMode }) =>{
     
-    const { ean, specification, brand, media_playlist_id, mediaPlayList} = produto
+    const { ean, specification, brand, presentation, images} = produto
     const cartHandler = UseCartHandler()
 
     return (
@@ -42,10 +42,11 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
 
             { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <BsThreeDotsVertical/> </button> }
             
-            <ProductImageSection playlist={mediaPlayList} />
+            <ProductImageSection images={images} />
 
             <section className='product-feed-item-body'>
                 <Link to={`/produto/${ean}`} className="produto-nome"> {specification} </Link>
+                <span className="singleline-text produto-ean"> Contém: {presentation.quantity} unidades</span>
                 <span className="singleline-text produto-ean">{ean}</span>
                 <span className="singleline-text produto-brand"> <RiPriceTag2Line/>{brand.label}</span>
             </section>
