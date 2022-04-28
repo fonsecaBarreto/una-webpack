@@ -15,10 +15,11 @@ export const CompanyAddressesPanel: React.FunctionComponent<any> = ({addresses})
                                 <img src={MapImage}></img>
                             </section>
                             <section>
-                                <Forming.LabelWrapper label='CEP'>{cep}</Forming.LabelWrapper>
-                                <Forming.LabelWrapper label='Endereço'>{rua}, {numero} - {bairro} </Forming.LabelWrapper>
-                                <Forming.LabelWrapper label='Cidade'> {cidade}- {uf}</Forming.LabelWrapper>
-                                <Forming.LabelWrapper label='detalhes'>{detalhes}</Forming.LabelWrapper>
+                                <span>
+                                    {cep} {rua} {numero}, {bairro}, {cidade}- {uf} 
+                                </span>
+                                <span> {detalhes}</span>
+                                    
                             </section>
                         </div>
                     )}) 

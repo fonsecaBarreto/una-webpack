@@ -1,12 +1,12 @@
 import FlexLabelColumn from '@/react-apps/components/una/panel-container/FlexLabelColumn'
 import React from 'react'
 import './style.css'
-import ShopImage from "@assets/images/shop.png"
+import CompanyAddressesPanel from '../company-addresses-panel'
 export const CompanyInfoPanel: React.FunctionComponent<any> =({company}) =>{
     return (
         <div className='company-info-panel'>
             <section>
-                <img src={ShopImage}></img>
+                <CompanyAddressesPanel addresses={company.addresses }></CompanyAddressesPanel>
             </section>
             <section className='company-info-panel-content'>
                 <FlexLabelColumn label='Nome Fantasia'>{company.nomeFantasia}</FlexLabelColumn>

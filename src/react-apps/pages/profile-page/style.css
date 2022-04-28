@@ -1,10 +1,9 @@
+#company-profile-page{
+    padding-top: 32px;
+}
 .company-container{
-    padding-top: 20px;
-    padding-bottom: 160px;
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.9);
-    /* gap: 8px; */
 }
 
 
