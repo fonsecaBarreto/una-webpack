@@ -79,22 +79,20 @@
     color: #999;
 }
 
-#product-page .prouct-page-container > section:nth-child(3){
-    content: "Informçãoes do item";
-    grid-column: span 1;
-
-}
-/* descrição do item */
-
 #product-page .prouct-page-container > section:nth-child(4){
     grid-column: span 2;
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
 }
-#product-page .prouct-page-container > section:nth-child(4) > span{
-    color: #333;
 
+.company-supply-component{
+    background-color: white;
+    padding: 6px;
+    border-radius: 2px;
 }
+/* descrição do item */
 
 @media only screen and (max-width: 960px){
 
@@ -110,11 +108,9 @@
         grid-column: span 2;
 
     }
-
-   
-    #product-page .prouct-page-container{
-    
-       /*  grid-template-columns: 1fr; */
-       
-    }
 }
+
+
+
+/* company-supply-component */
+

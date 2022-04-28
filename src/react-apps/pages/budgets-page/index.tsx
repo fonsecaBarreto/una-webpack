@@ -43,7 +43,7 @@ export const ListCotacaoPage = ({ history }: any)=>{
     return (
         <div id="budgets-page">
             <div className='app-container'>
-                <ContentGrid>
+                <ContentGrid loading={ListData.sync == 0}>
                     <FiltersNav onChange={listBudgets}/>
                     <ContentPool 
                         initial_mode="inline"

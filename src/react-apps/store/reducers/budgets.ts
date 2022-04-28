@@ -17,7 +17,7 @@ export const BudgetsReducer = (state=INITIAL_STATE, action: any) => {
                var prev_data: any = { ...state.data }
                var budgets = toAppendData ? [ ...prev_data.budgets, ...content.data.budgets]: [...content.data.budgets]
                content.data["budgets"] = budgets;
-               return ({ ...state, ...content }) ; 
+               return ({ ...state, ...content, sync: state.sync+1 }) ; 
           };
 
           default: return state

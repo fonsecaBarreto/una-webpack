@@ -11,10 +11,20 @@ import { pushToCart, removeFromCart } from '@/react-apps/store/reducers/cart'
 import ProductBreadCrumbs from './ProductBreadCrumbs'
 import AddCartButton from '../mart-page/ProductFeed/AddCartButton'
 import { UseCartHandler } from "@/react-apps/store/reducers/cart/handler"
+import { Link } from 'react-router-dom'
 
 const SEARCH_HEADER = {
   params: [ "ean"],
   search: []
+}
+
+export const CompanySupply: React.FunctionComponent<any> = ({supply}) => {
+  return (
+  <div className='company-supply-component'> 
+    <label> <Link to="">{supply.company.label}</Link></label> <br></br>
+    <label> Preço: <span>R$: {supply.price}</span></label> <br></br>
+    <label> Validade do preço: <span>{new Date(supply.expiration).toISOString().split('T')[0]}</span></label> <br></br>
+  </div>)
 }
 
 export const ProductPage: React.FunctionComponent<any> = ({location, history}) => {
@@ -23,6 +33,7 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
   const { parsedParams, parsedSearch, pushToHistory } = UseSearchAdapter({ header : SEARCH_HEADER})
   const [ product, setProduct ] = useState<Product|null>(null);
   const [ breadCrumbs, setBreadCrumbs] = useState(null);
+  const [ supplies, setSupplies ] = useState([])
 
   useEffect(()=>{ if(parsedParams){ handleLoad()} },[parsedParams])
 
@@ -30,6 +41,7 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
     produtosService.find({ ...parsedParams }).then(data=>{
       setProduct(data?.product ?? null)
       setBreadCrumbs(data?.breadCrumbs ?? null)
+      setSupplies(data.supplies)
     }) 
   }
 
@@ -69,16 +81,12 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
                 </div>
             </section>
             <section>
-              <span>
-                
-              </span>
+
+                { (supplies.length > 0) && supplies.map((s: any)=>{
+                  return ( <CompanySupply supply={s}/>) 
+                }) }
             </section>
 
-            <section>
-              <span>
-                  
-              </span>
-            </section>
           </div>
           }
       </div>

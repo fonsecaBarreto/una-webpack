@@ -38,12 +38,10 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ heade
     const [ listMode, setListMode ] = useState<ListMode>(initial_mode)
     const { pageIndex, pages, queries, total, length } = list_data
     const [ poolData, setPoolData] = useState<any>([])
-    const [ loading, setLoading ] = useState(true)
 
     useEffect(()=>{
         var data = dataAlias ? list_data.data[dataAlias] : list_data.data
         setPoolData(data)
-        if(data.length > 0 ) setLoading(false);
     },[list_data])
 
     return (
@@ -63,20 +61,14 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ heade
             </header>
 
             <main>
-                { loading ?  <LoadingComponent></LoadingComponent> :
-                <React.Fragment>
-                    
-                    <section className={`bl-common-content-pool-flow ${listMode}`}>   
-                        {
-                            poolData.length > 0 && poolData.map( (d: any, i: number) =>{
-                                return (<ItemComponent listMode={listMode} key={i} item_data={d} onClick={onAction}></ItemComponent> )
-                            })
-                        }
-                    </section>
-
-                    <section> <PageNavigator pages={pages} index={pageIndex} onClick={(index: number) => {onAction("SET_PAGE", index)}} />  </section> 
-
-                </React.Fragment>}
+                <section className={`bl-common-content-pool-flow ${listMode}`}>   
+                    {
+                        poolData.length > 0 && poolData.map( (d: any, i: number) =>{
+                            return (<ItemComponent listMode={listMode} key={i} item_data={d} onClick={onAction}></ItemComponent> )
+                        })
+                    }
+                </section>
+                <section> <PageNavigator pages={pages} index={pageIndex} onClick={(index: number) => {onAction("SET_PAGE", index)}} />  </section> 
             </main>
         </div>
     )
