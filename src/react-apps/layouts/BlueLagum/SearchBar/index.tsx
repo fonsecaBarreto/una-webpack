@@ -1,8 +1,6 @@
 
 import React, { useState } from 'react'
 import './style.css'
-import { HiSearchCircle } from 'react-icons/hi'
-import { FaRegTimesCircle, FaTimes } from 'react-icons/fa'
 import { FiSearch } from 'react-icons/fi'
 import { GrClose } from 'react-icons/gr'
 

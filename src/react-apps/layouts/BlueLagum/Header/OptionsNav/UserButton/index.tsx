@@ -14,14 +14,21 @@ export const UserButton: React.FunctionComponent<any> = ({ user, onClick }) =>{
     return (
         <React.Fragment>
               <button className="una-header-user-button" onClick={onClick} >
-                { (user) && 
-                  <div >
-                    <span>{user.nome}</span> 
-                    <span>{user?.roles[0]}</span> 
-                  </div>
-                }
                 <FaUserCircle></FaUserCircle>
-                <IoMdArrowDropdown></IoMdArrowDropdown>
+                <div >
+                  { 
+                    (user) ? 
+                    <React.Fragment>
+                        <span>{user.nome}</span> 
+                        <span>{user?.roles[0]}</span> 
+                    </React.Fragment>
+                    :
+                    <React.Fragment>
+                        <span>Cadastre-se</span> 
+                        <span>Gratuitamente</span> 
+                    </React.Fragment>
+                  }
+                </div>
               </button>
         </React.Fragment>
     )

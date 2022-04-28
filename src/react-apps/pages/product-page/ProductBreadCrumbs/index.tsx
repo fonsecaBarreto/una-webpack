@@ -33,7 +33,7 @@ export const ProductBreadCrumbs:React.FunctionComponent<any> = ({breadCrumbs}) =
     return (
         <section> 
             <ul className='product-page-bread-crumbs'>
-                <li> <Link to={`/mercado`}> <AiFillHome/> Mercado</Link> </li> 
+                <li> <Link to={`/mercado`}> <AiFillHome/></Link> </li> 
                 <IoIosArrowForward/>
                 <li> <Link to={`${departament.value}`}>{departament.label}</Link> </li> 
                 <IoIosArrowForward/>

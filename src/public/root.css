@@ -1,7 +1,7 @@
 :root {
     --main-color: #007CDC;
     --main-light-color: #1388e2;
-    --main-bg-color: rgb(229, 235, 245);
+    --main-bg-color: rgb(233, 238, 247);
     --second-color: rgb(8, 62, 122);
 }
 
@@ -38,7 +38,7 @@ body {
 
 .app-container{
     width: 100%;
-    max-width: 1440px;
+    max-width: 1240px;
     padding: 0 22px;
     margin: auto;
 }

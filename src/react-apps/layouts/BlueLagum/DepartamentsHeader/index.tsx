@@ -9,9 +9,7 @@ import './style.css'
 export const DepartamentDropDown: FunctionComponent<any> = ({children}) => {
     return (
         <div className='departament-dropdown'>
-            
             {children}
-         
         </div>
     )
 }
@@ -26,20 +24,14 @@ export const DepartamentHeader = () => {
                             <IoMdArrowDropdown/>
                             Todos departamentos</Link>
                     </DepartamentDropDown> 
-                {/*     <DepartamentDropDown>
+                       <DepartamentDropDown>
                         <Link className='dep-link' to="/mercado/padaria"> 
-                            <MdBakeryDining></MdBakeryDining>
-                            Padaria
-                         </Link>
+                            <MdBakeryDining></MdBakeryDining>Padaria </Link>
                     </DepartamentDropDown> 
+                  
                     <DepartamentDropDown>
-                        <Link className='dep-link' to="/mercado/hortifruti">
-                            <GiFruitBowl/>
-                             Hortifruti </Link>
-                    </DepartamentDropDown> 
-                    <DepartamentDropDown>
-                        <Link className='dep-link' to="/mercado/mercearia"> <RiShoppingBasketLine/>Mercearia </Link>
-                    </DepartamentDropDown>  */}
+                        <Link className='dep-link' to="/mercado/mercado"> <RiShoppingBasketLine/> Mercado </Link>
+                    </DepartamentDropDown>  
                 </nav>
             </div>
         </header>

@@ -1,6 +1,7 @@
 .bl-departament-header{
-    background: rgb(43,157,245);
-    background: linear-gradient(180deg, rgb(22, 131, 214) 0%, rgb(4, 113, 197) 35%, rgb(4, 116, 201) 100%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgb(225, 235, 243) 0%, rgb(240, 245, 245) 35%, rgb(233, 235, 238) 100%);
+    border-bottom: solid 1px #ccc;
 }
 
 .bl-departament-header > div > nav{
@@ -13,10 +14,11 @@
 }
 
 .bl-departament-header > div > nav::-webkit-scrollbar {
-    height: 0px;
+    height: 0px!important;
 }
 
 .departament-dropdown{
+    position: relative;
     padding: 0 20px;
     border-right: solid 1px #ccc;
     cursor: pointer;
@@ -29,12 +31,12 @@
 .departament-dropdown :nth-child(1){
     display: flex; flex-direction: row; justify-content: flex-start;
     align-items: center;
-    color: white;
+    color: #333;
     gap: 4px;
 }
 
 .departament-dropdown .dep-link{
     white-space: nowrap;
     text-decoration: none;
-    color: white;
+    color: #333;
 }

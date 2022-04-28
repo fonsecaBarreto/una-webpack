@@ -44,7 +44,7 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
               <div>
                 <span className='product-page-specification'>{product.specification}</span>
                 <span className='product-page-brand'> <label>Marca:</label> {product.brand?.label}</span> 
-                <span className='product-page-presentation'><label> Apresentação:</label> {product.presentation?.label}</span>  
+                {/* <span className='product-page-presentation'><label> Apresentação:</label> {product.presentation?.label}</span>   */}
                 <span className='product-page-code'>EAN: {product.ean}</span> 
                 <span className='product-page-code'>NCM: {product.ncm}</span> 
                 <span className='product-page-code'>SKU: {product.sku}</span> 
@@ -58,17 +58,13 @@ export const ProductPage: React.FunctionComponent<any> = ({location, history}) =
             </section>
             <section>
               <span>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  Fusce scelerisque, erat a ullamcorper lacinia, felis risus ultrices enim, id tincidunt erat risus ac nisi. 
-                  Quisque consequat magna aliquam lobortis elementum.
-                  Donec eleifend congue sem, sed congue nunc venenatis vel. 
-                  Cras sed mi eu mauris auctor dictum in quis justo. 
+                
               </span>
             </section>
 
             <section>
               <span>
-                  aqui especificaçãoes do produto
+                  
               </span>
             </section>
           </div>

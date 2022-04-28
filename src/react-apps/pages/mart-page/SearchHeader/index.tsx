@@ -39,7 +39,7 @@ export const SearchHeader: React.FunctionComponent<any>= ({queries}) =>{
                 label={"Pesquisa: "} list={  queries?.specification ?[ {label: queries?.specification }] : []}  emptyAlias="..."></LabelRow>
             </span>
 
-            <span className='products-search-header-row'> 
+            {/* <span className='products-search-header-row'> 
                 <LabelRow icon={<RiPriceTag2Fill/>} label={"Departamentos: "} list={ queries?.departament ?? []}  emptyAlias="Todos"></LabelRow>
                 <span className="products-search-arrow-divider"> <RiArrowDropRightLine/> </span>
                 <LabelRow list={ queries?.category ?? []} emptyAlias="Todas"></LabelRow>
@@ -49,7 +49,7 @@ export const SearchHeader: React.FunctionComponent<any>= ({queries}) =>{
 
             <span className='products-search-header-row'> 
                 <LabelRow icon={<RiPriceTag2Line/>} label={"Marcas: "} list={ queries?.brand ?? []} emptyAlias="Todas"></LabelRow>
-            </span> 
+            </span>  */}
         </div>
     )
 }
