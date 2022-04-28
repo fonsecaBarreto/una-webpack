@@ -9,17 +9,20 @@ export namespace BlueLakeMenuItem {
     export type Params = {
         config: Config
         selected: boolean,
+        menuState: any
     }
 }
 
-const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config, selected }) =>{
+const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config, selected, menuState}) =>{
 
-    const [expand, setExpand] = useState(true)
+    const [expand, setExpand] = useState(false)
     const history = useHistory()
    
-    const { label, icon, toDo, className } = config
+    const { label, icon, toDo, className, childs } = config
 
     const handleClick = () => { 
+        if(!menuState.show) menuState.toggle();
+        if(!toDo && childs.length > 0 ) return setExpand(prev=>!prev)
         if(typeof toDo == "string") return history.push(toDo);
         return toDo()
     } 
@@ -31,9 +34,16 @@ const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config, se
             <span className="common-menu-ico"> {icon && icon}  </span>
             <span> {label} </span>
         </span>
-        <span className={`common-menu-item-row-body ${expand ? "expand" : ""}`} >
-          {/*   <MenuItem config={{icon: null, label:"teste",toDo: () =>{} }} selected={false}></MenuItem> */}
-        </span>
+        {
+            (childs) &&
+            <span className={`common-menu-item-row-body ${expand ? "expand" : ""}`} >
+                {
+                    childs.map((c:any, i)=>{
+                      return ( <MenuItem key={i} config={c} selected={false} menuState={menuState}></MenuItem> )
+                    })
+                }
+            </span>
+        }
 
     </li>)
 }

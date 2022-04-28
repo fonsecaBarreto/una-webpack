@@ -7,13 +7,18 @@ import { CgProfile } from 'react-icons/cg'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { UserProfileRole } from '@/domain/views/User'
 import { loginServices } from "@/services/api/login-service"
-import { ImExit } from "react-icons/im"
+import { ImExit, ImProfile} from "react-icons/im"
+import { FaUser } from "react-icons/fa"
+import { RiProfileFill } from "react-icons/ri"
+
 import { BsFillPlusSquareFill } from 'react-icons/bs'
 
 export type MenuItemConfig = {
-    label: string, icon: any, toDo: any, 
+    label: string, 
+    icon: any, 
+    toDo?: any, 
     className?:string, 
-    children?: MenuItemConfig[]
+    childs?: MenuItemConfig[]
 }
 
 
@@ -27,7 +32,10 @@ export const USER_TREE = (user: any) =>{
     ]
 
     const users = [
-        {label:"Perfil", toDo:`/perfil/${user.company_id}`, icon:<CgProfile/>},
+        {label:"Perfil", icon:<ImProfile/>, childs: [
+            { label:"Usuario", /* toDo:`/perfil/usuarios/${user.id}` */ icon: <FaUser/>},
+            { label:"Companhia",  toDo:`/perfil/companhias/${user.company_id}`, icon: <RiProfileFill/>},
+        ]},
     ]
 
     var result: MenuItemConfig[] = []

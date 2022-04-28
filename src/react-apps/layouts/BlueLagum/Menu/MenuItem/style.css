@@ -51,10 +51,26 @@
 .common-menu-item-row-body {
     display: none;
     height: fit-content;
-    background-color: rgba(144, 168, 236, 0.2);
+    background-color: rgba(144, 168, 236, 0.3);
 }
+
+/*  body */
 
 .common-menu-item-row-body.expand {
     display: flex;
+    flex-direction: column;
 }
+
+.common-menu-item-row-body.expand > .common-menu-item .common-menu-item-row{
+    height: 42px;
+    font-size: 15px;
+    background-color: rgba(232,232,232);
+    color:#333;
+}
+
+.common-menu-item-row-body.expand > .common-menu-item .common-menu-item-row:hover {
+    transition: all .02s ease-in;
+    background-color: rgba(144, 168, 236, 0.2);
+}
+
 
