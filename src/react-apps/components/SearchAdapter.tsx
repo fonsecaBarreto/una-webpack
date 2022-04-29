@@ -11,12 +11,13 @@ export const UseSearchAdapter = ({ header={ params : [], search: [] } }: SearchA
     const history = useHistory(), match = useRouteMatch();
     const [ parsedSearch, setParsedSearch] = useState<any>(null)
     const [ parsedParams, setParsedParams ] = useState<any>(null) 
-    const searchRef = useRef(parsedSearch)
-    const paramsRef = useRef(parsedParams)
-    
+    const searchRef = useRef(parsedSearch);
+    const paramsRef = useRef(parsedParams);
+
     useEffect(() => handleUrl(), [ location.search, location.pathname ])
 
     const handleUrl = () => {
+        
         var upcomming_params, upcomming_search: any = {}
     
         var parsedSearch: any = queryString.parse(location.search);
@@ -31,8 +32,10 @@ export const UseSearchAdapter = ({ header={ params : [], search: [] } }: SearchA
 
         setParsedSearch(upcomming_search);
         setParsedParams(upcomming_params);
+
         searchRef.current = upcomming_search; 
         paramsRef.current = upcomming_params;
+
     }
 
     const pushToHistory = (struct: any, clear: boolean= false ) => {
@@ -52,6 +55,7 @@ export const UseSearchAdapter = ({ header={ params : [], search: [] } }: SearchA
         Object.keys(params_result).map(p=> str_params+= "/"+  params_result[p] ?? "");
         history.replace({ search:  queryString.stringify(search_result), pathname: `${match.path.split("/:")[0]}${str_params}` }) 
     }
+    
     return ({ parsedSearch, parsedParams, pushToHistory })
 }
 

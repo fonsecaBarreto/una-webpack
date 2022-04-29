@@ -28,30 +28,27 @@ const INITIAL_DATA= {
 export namespace UserForm{
     export type Params = {
         entry: any,
-        onData: any
         onAction: any,
         company_id: any
     }
 }
 
-export const UserForm: React.FunctionComponent<UserForm.Params> = ({ entry, onAction, onData, company_id }) =>{
+export const UserForm: React.FunctionComponent<UserForm.Params> = ({ entry, onAction, company_id }) =>{
     const context = useContext(Globalcontext)
     const state = UseStateAdapter(INITIAL_DATA)
     const [page, setPage] = useState(0);
 
     useEffect(()=>{ 
         if(!entry) return state.data.set(INITIAL_DATA);
-        console.log(entry)
         var roles = entry.roles.map((r:string)=> (USER_PROFILE_ROLES[ USER_PROFILE_ROLES.findIndex((v:any)=>v.value==r)])    );
-        console.log("roles", roles)
         return state.data.set({ ...entry, roles}) 
     },[entry])
 
     const submit = async ()=>{
-        state.loading.set(true)
-        state.errors.clear()
 
-        const { senha, senhaConfirmacao } = state.data.get
+        state.loading.set(true);
+        state.errors.clear();
+        const { senha, senhaConfirmacao } = state.data.get;
 
         if(senha != senhaConfirmacao){ 
             state.errors.set({ senhaConfirmacao: "Senhas não batem!" })
@@ -62,8 +59,8 @@ export const UserForm: React.FunctionComponent<UserForm.Params> = ({ entry, onAc
 
         try{
             const data = await usersServices.save(body);
+            context.dialog.push(MakeNotification(() =>{ return -1 }, [ "Salvo com sucesso!" ], "Sucesso!", NotificationType.SUCCESS))
             onAction(-1);
-            context.dialog.push(MakeNotification(() =>{ return -1 },[ "Salvo com sucesso!"],"Sucesso!",NotificationType.SUCCESS))
         }catch(err:any){
             if (err.params) {  
                 state.errors.set(err.params) ;
@@ -76,7 +73,6 @@ export const UserForm: React.FunctionComponent<UserForm.Params> = ({ entry, onAc
 
     const jumpPage = () =>{
         if(state.data.get["id"]) return submit();
-
         if(page == 0){
             setPage(prev=>prev+1)
         }else if(page == 1){
@@ -110,7 +106,7 @@ export const UserInfoForm = ({state}: { state: any}) =>{
 
     return (  
         <Forming.FormGrid title="Informações gerais" columns={[8,4,12,12,12]}>
-            
+             
             <Controls.TextBox  placeHolder="Exemplo: Casimiro Miguel Ferreira"
                 state={state} label={"Nome"} name={"nome"} type={Controls.TextBoxTypes.TEXT}/>
             
@@ -133,7 +129,7 @@ export const UserInfoForm = ({state}: { state: any}) =>{
 
             <Forming.InputWrapper label={"Papeis"}>
                 {
-                    USER_PROFILE_ROLES.map(p=>( 
+                    USER_PROFILE_ROLES.map((p:any)=>( 
                         <CheckBoxControl 
                             key={p.value} 
                             selected={state.data.get['roles'].includes(p)} 
@@ -141,8 +137,8 @@ export const UserInfoForm = ({state}: { state: any}) =>{
                             value={p}/> 
                     ))
                 }                   
-            </Forming.InputWrapper>
-
+            </Forming.InputWrapper> 
+ 
         </Forming.FormGrid> 
     )
 }

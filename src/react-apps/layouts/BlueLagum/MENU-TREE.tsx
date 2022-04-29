@@ -33,7 +33,7 @@ export const USER_TREE = (user: any) =>{
 
     const users = [
         {label:"Perfil", icon:<ImProfile/>, childs: [
-            { label:"Usuario", /* toDo:`/perfil/usuarios/${user.id}` */ icon: <FaUser/>},
+          /*   { label:"Usuario", toDo:`/perfil/usuarios/${user.id}`, icon: <FaUser/>}, */
             { label:"Companhia",  toDo:`/perfil/companhias/${user.company_id}`, icon: <RiProfileFill/>},
         ]},
     ]

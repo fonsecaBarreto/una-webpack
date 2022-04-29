@@ -45,7 +45,7 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
           context.dialog.push(MakeOptions((n)=>{ 
             switch(n){
               case 0:  pushToHistory({"company_id": [payload]}); break;
-              case 1:  history.push(`/perfil/${payload}`); break; 
+              case 1:  history.push(`/perfil/companhias/${payload}`); break; 
             }
             return -1;
           }, [ {label: "Visualizar"}, {label: "Abrir"}]))

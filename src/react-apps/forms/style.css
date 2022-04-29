@@ -1,21 +1,13 @@
 .una-forms {
-    width: 720px;
+    width: 100%;
+    margin: auto;
 }
-
-@media screen and (max-width: 960px) {
-    .una-forms {
-        width: 100%;
-    }
-}
-
-/* move */
 
 .una-company-status-button{
     height: 100%;
     width: 100%!important;
     display: flex; align-items: center; justify-content: center;
     gap: 6px; font-size: 18px;
-    
 }
 
 .una-company-status-button.active{

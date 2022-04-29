@@ -22,13 +22,13 @@ const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config, se
 
     const handleClick = () => { 
         if(!menuState.show) menuState.toggle();
-        if(!toDo && childs.length > 0 ) return setExpand(prev=>!prev)
+        if(!toDo && childs && childs.length > 0 ) return setExpand(prev=>!prev)
         if(typeof toDo == "string") return history.push(toDo);
         return toDo()
     } 
 
     return (
-    <li className={`common-menu-item ${selected ? 'selected' : '' } ${className ? className : ""}`} > 
+    <div className={`common-menu-item ${selected ? 'selected' : '' } ${className ? className : ""}`} > 
     
         <span className="common-menu-item-row" onClick={() => handleClick()} >
             <span className="common-menu-ico"> {icon && icon}  </span>
@@ -45,7 +45,7 @@ const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config, se
             </span>
         }
 
-    </li>)
+    </div>)
 }
 
 export default MenuItem
