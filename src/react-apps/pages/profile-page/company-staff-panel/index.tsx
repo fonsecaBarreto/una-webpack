@@ -2,7 +2,6 @@ import React from 'react'
 import './style.css'
 import UserImage from "@assets/images/user.png"
 
-
 export namespace CompanyStaffPanel {
     export type Params ={
         staff: any[],
@@ -13,26 +12,23 @@ export namespace CompanyStaffPanel {
 export const CompanyStaffPanel: React.FunctionComponent<CompanyStaffPanel.Params> =({staff, onItemClick}) =>{
     return (
         <div className='company-staff-panel'>
-            <div className='company-staff-list' >
-                {   
-                    staff.map((user:any)=>{ 
-                        const { id, nome, telefone, roles, cpf} = user
-                        return (
-                            <div key={user.id} onClick={()=>onItemClick(id)} className="company-user-item"> 
-                                <section>
-                                    <img src={UserImage}></img>
-                                    <div className='company-user-item-main-content'>
-                                        <span> {nome} - {telefone} -{cpf}</span>
-                                        <span> { JSON.stringify(roles) }</span>
-                                    </div>
-                                </section>
-                            </div>)
-                    }) 
-                } 
-            </div>
-    </div>
+            {   
+                staff.map((user:any)=>{ 
+                    const { id, nome, telefone, email} = user
+                    return (
+                        <div key={user.id} onClick={()=>onItemClick(id)} className="company-user-item"> 
+                            <section>
+                                <img src={UserImage}></img>
+                                <div className='company-user-item-main-content'>
+                                    <span> {nome} - {telefone} - {email}</span>
+                                </div>
+                            </section>
+                        </div>
+                    )
+                }) 
+            } 
+        </div>
     )
 }
-
 
 export default CompanyStaffPanel

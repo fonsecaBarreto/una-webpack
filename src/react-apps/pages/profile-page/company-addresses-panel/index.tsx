@@ -1,7 +1,7 @@
 import { Forming } from 'fck-react-input-controls'
-import React, {useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './style.css'
-import MapImage from '@/public/assets/images/map.png'
+import MapImage from '@/public/assets/images/buildings.png'
 export const CompanyAddressesPanel: React.FunctionComponent<any> = ({addresses}) =>{
 
     return (

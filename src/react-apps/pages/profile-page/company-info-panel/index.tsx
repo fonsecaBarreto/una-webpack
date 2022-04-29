@@ -13,6 +13,8 @@ export const CompanyInfoPanel: React.FunctionComponent<any> =({company}) =>{
                 <FlexLabelColumn label='Razão Social'>{company.razaoSocial}</FlexLabelColumn>
                 <FlexLabelColumn label='CNPJ'>{company.cnpj}</FlexLabelColumn>
                 <FlexLabelColumn label='E-mail Financeiro'>{company.emailFinanceiro}</FlexLabelColumn>
+            </section>
+            <section className='company-info-panel-content'>
                 <FlexLabelColumn label='Telefone Comercial'>{company.telefoneComercial}</FlexLabelColumn>
                 <FlexLabelColumn label='Incrição Estadual'>{company.inscricaoEstadual}</FlexLabelColumn>
                 <FlexLabelColumn label='status'>{company.ativo ? "Ativo": "Inativo"}</FlexLabelColumn> 

@@ -11,27 +11,26 @@ import CompanyInfoPanel from './company-info-panel'
 import LoadingPage from "@/react-apps/components/una/Loading/presentation/LoadingPage"
 import CompanyForm from "@/react-apps/forms/CompanyForm"
 import UserForm from '@/react-apps/forms/UserForm'
-import { RiFileEditFill, RiSearch2Fill } from 'react-icons/ri'
+import { RiEditCircleFill, RiFileEditFill, RiSearch2Fill } from 'react-icons/ri'
 import GlobalContext from "@/react-apps/apps/main/global-components-context"
 import { MakeDialogConfig, OnActionFunction } from 'fck-react-dialog'
 import queryString from 'query-string'
 import CompanyStaffPanel from './company-staff-panel'
 import CompanyFilesPanel from './company-files-panel'
 import { AiFillPlusCircle } from 'react-icons/ai'
-import { BiCurrentLocation } from 'react-icons/bi'
+import { HiDotsCircleHorizontal } from 'react-icons/hi'
 import AbrangenciaForm from '@/react-apps/forms/AbrangenciaForm'
 import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
-import { LoadingComponent } from 'fck-components/lib/utils'
 
 const SEARCH_HEADER = {
-    params: [ "company_id"],
-    search: []
+    params: [ "company_id", ],
+    search: [ 'edit' ]
 }
 
 export const CompanyProfilePage: React.FunctionComponent<any> = ({location, history, match}) => {
 
     const context = useContext(GlobalContext)
-    const [company, setCompany] = useState<Companhia | null>(null)
+    const [ company, setCompany ] = useState<Companhia | null>(null)
     const { parsedParams, parsedSearch, pushToHistory } = UseSearchAdapter({header: SEARCH_HEADER})
     
     useEffect(()=>{
@@ -39,42 +38,58 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
         const { company_id } = parsedParams;
         companhiasServices.find(company_id).then(setCompany)
     },[parsedParams])
+
+    useEffect(()=>{
+        if(!parsedSearch) return;
+        const { edit } = parsedSearch;
+        if(edit == 1) { openCompanyModal(company) }
+    },[parsedSearch])
+
+    const openCompanyModal = (entry: any) =>{
+        return context.dialog.push(MakeDialogConfig(
+            ({onAction}: any) => ( <CompanyForm  onData={()=>{}} onAction={onAction} entry={entry}/>), 
+                (v) =>{ pushToHistory({ edit: null }) ; return -1 
+            }, "Informações da Companhia"))
+    }
+    /*
+
+    const openUserModal = (entry: any, company_id?:string) =>{
+        return context.dialog.push(MakeDialogConfig(
+            ({onAction}: any) => ( <UserForm company_id={company_id} entry={entry} onAction={onAction} onData={afterStaffUpdated}/> ),
+            (v) =>{ history.push({ search: `` });return -1 
+            }, "Usuario"))
+    }
+
+    const openAbrangenciaModal = ( company_id:string) =>{
+        return context.dialog.push(MakeDialogConfig(
+            ({onAction}: any) => ( <AbrangenciaForm  onAction={onAction} company_id={company_id}/>), 
+            (v) =>{ history.push({ search: `` }) ;return -1 
+            }, "Abrangência"))
+    }
+ */
     return (
         <div id="company-profile-page"> 
             <div className='company-container app-container'>
-
-                    { (!company) ? <LoadingPage></LoadingPage> : 
-                        <React.Fragment>
-
-                            <PanelContainer title="Informações da Companhia"  icon={<BsInfoCircle/>} 
-                                headerButtons={[
-                                    { content: <BiCurrentLocation/>, onClick: () => history.push({ search: `?coverage=${1}` }) },
-                                    { content: <RiFileEditFill/>, onClick: () => history.push({ search: `?company=${1}` }) }
-                                    ]}>
-
-                                <CompanyInfoPanel company={company}></CompanyInfoPanel>
-                            </PanelContainer> 
-
-                            <PanelContainer title="Pessoal" icon={<MdGroups/>} 
-                                headerButtons={[{ onClick: () => history.push({ search: `?user=${1}` }), content: <AiFillPlusCircle/> }]}>
-                                <CompanyStaffPanel staff={company.staff} onItemClick={(user_id: string) =>  history.push({ search: `?user=${user_id}`}) }></CompanyStaffPanel>
-                            </PanelContainer> ]
-
-                        </React.Fragment>
-                        
-                    }
-                {/*}
-
-
-
-
-<PanelContainer title="documentos" icon={<CgFileDocument/>}>
-<CompanyFilesPanel documents={companhia?.documents} company_id={companhia.id}></CompanyFilesPanel>
-</PanelContainer>   */}
-           
+                { (!company) ? <LoadingPage></LoadingPage> : 
+                    <React.Fragment>
+                        <PanelContainer title="Informações da Companhia"  icon={<BsInfoCircle/>} 
+                            headerButtons={[ { content: <HiDotsCircleHorizontal/>, onClick: () => history.push({ search: `?edit=${1}` }) }]}>
+                            <CompanyInfoPanel company={company}></CompanyInfoPanel>
+                        </PanelContainer> 
+                        <PanelContainer title="Pessoal" icon={<MdGroups/>} 
+                            headerButtons={[{ onClick: () => history.push({ search: `?user=${1}` }), content: <AiFillPlusCircle/> }]}>
+                            <CompanyStaffPanel staff={company.staff} onItemClick={(user_id: string) =>  history.push({ search: `?user=${user_id}`}) }></CompanyStaffPanel>
+                        </PanelContainer>
+                        <PanelContainer title="documentos" icon={<CgFileDocument/>}>
+                            <CompanyFilesPanel documents={company?.documents} company_id={company.id}></CompanyFilesPanel>
+                        </PanelContainer>
+                    </React.Fragment> 
+                }
             </div>
         </div>
     )
 }
 
 export default CompanyProfilePage
+
+    /*  { content: <BiCurrentLocation/>, onClick: () => history.push({ search: `?coverage=${1}` }) }, */

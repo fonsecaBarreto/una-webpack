@@ -1,7 +1,5 @@
 import React, { ReactNode } from 'react'
-import { MdKeyboardArrowDown } from 'react-icons/md'
 import "./style.css"
-
 
 export namespace PanelContainer {
     export type buttonsConfig = { content: ReactNode, onClick: any }
@@ -16,23 +14,16 @@ export namespace PanelContainer {
 export const PanelContainer: React.FunctionComponent<PanelContainer.Params> = ({ children, title, icon, headerButtons }) =>{
     return (
         <div className='una-panel-container'>
-            <header> 
-                {icon} <span>  {title} </span>
-
-                { 
-                    headerButtons && 
-                    <section className='header-side-content'>
-                    {
+            <header> {icon} <span> {title} </span>
+                { headerButtons && 
+                    <section className='header-side-content'> {
                         headerButtons.map(({ content, onClick }, i)=>{
                             return (  <button onClick={onClick} key={i}> { content } </button>
                         )})
-                    }
-                    </section>
+                    } </section>
                 }
             </header>
-            <section>   
-                {children}
-            </section>
+            <section> {children} </section>
         </div>
     )
 }
