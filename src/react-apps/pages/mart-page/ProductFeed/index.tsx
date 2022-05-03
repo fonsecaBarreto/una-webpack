@@ -5,7 +5,6 @@ import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import { ProductItem } from './item'
 import SearchHeader, { LabelRow } from '../SearchHeader'
 import { BsFillFilterSquareFill } from 'react-icons/bs'
-import { MdAdminPanelSettings } from 'react-icons/md'
 import { AiOutlinePlusSquare } from 'react-icons/ai'
 
 export namespace ProductFeed { export type onChange = any }

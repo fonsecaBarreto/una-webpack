@@ -24,59 +24,44 @@
     border: solid 1px #ddd
 }
 
-.una-product-feed .product-feed-item  .product-feed-options:hover{
+.product-feed-item  .product-feed-options:hover{
     background-color: rgba(255, 255, 255, 0.8);
 }
-
-
-.una-product-feed .product-feed-item.block { flex-direction: column; }
-
-.una-product-feed .product-feed-item.inline { flex-direction: row; }
-
-.una-product-feed .product-feed-item:hover {
-    outline: solid 3px rgba(43, 102, 228, 0.1); 
-}
-
-.una-product-feed .product-feed-item.inline .product-feed-item-img-vp{
-    display: none;
-}
+.product-feed-item.block { flex-direction: column; }
+.product-feed-item.inline { flex-direction: row; }
+.product-feed-item:hover { outline: solid 3px rgba(43, 102, 228, 0.1); }
+.product-feed-item.inline .product-feed-item-img-vp { display: none; }
 
 .una-product-feed .product-feed-item.block .product-feed-item-img-vp{
     position: relative;
-    width: 100%;
+    width: 100%;  height: 0;
     padding-bottom: 80%;
-    height: 0;
     overflow: hidden;
     background-color: #fff;
 }
 
-.una-product-feed .product-feed-item .product-feed-item-img-vp img{
+.product-feed-item .product-feed-item-img-vp img{
     position: absolute; top: 0; left:0; right: 0; bottom: 0; margin: auto;
-    width: 100%;
-    height: auto;
+    width: 100%; height: auto; 
     object-fit: cover;
     transition: all .15s;
     background-color: #fff;
 }
 
 /* Item hover */
-
 .una-product-feed .product-feed-item:hover .product-feed-item-img-vp img{
     box-shadow: 0px 2px 2px #0001;
     transform: scale(1.05);
 }
 
-.una-product-feed .product-feed-item .product-feed-item-body {
-    height: fit-content;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 4px 0;
+/* body */
+.product-feed-item .product-feed-item-body {
+    width: 100%; height: fit-content;
+    display: flex; flex-direction: column; align-items: flex-start;
+    gap: 4px; padding: 4px 0;
 }
 
-.una-product-feed .product-feed-item .product-feed-item-body .produto-nome{
+.product-feed-item .product-feed-item-body .produto-nome{
     font-size: 14px;  line-height: 1.1em;
     white-space: normal; text-align: left;
     height: 32px;
@@ -90,7 +75,50 @@
     text-decoration: none;
 }
 
-.una-product-feed .product-feed-item .product-feed-item-body .singleline-text {
+.una-product-feed .product-feed-item .product-feed-item-body > div{
+    display: flex; flex-direction: column; align-items: flex-start;
+}
+
+/* Preços container */
+
+.product-feed-item-body > div.product-feed-item-prices{
+    gap: 2px; 
+    padding: 3px 0;
+}
+
+.product-feed-item-body > div.product-feed-item-prices span{
+}
+
+.product-feed-item-body > div.product-feed-item-prices span:nth-child(1){
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--main-color);
+    line-height: 22px;
+}
+
+.product-feed-item-body > div.product-feed-item-prices span:nth-child(1).priceless{
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    padding: 3px 8px;
+    background-color: grey;
+}
+
+
+.product-feed-item-body > div.product-feed-item-prices span:nth-child(2){
+    font-size: 12px;
+    color: var(--second-color);
+}
+
+
+
+/* info container */
+
+.product-feed-item .product-feed-item-body > div:nth-child(2){
+    
+}
+
+.product-feed-item .product-feed-item-body > div:nth-child(2) > span {
     line-height: 1em;
     white-space: normal; text-align: left;
     display: block;  display: -webkit-box;
@@ -99,12 +127,12 @@
     text-decoration: none;
 }
 
-.una-product-feed .product-feed-item .product-feed-item-body .produto-ean{
+.product-feed-item-body .produto-ean{
     font-size: 12px;  line-height: 1em; height: 12px;
     color: #777;
 }
 
-.una-product-feed .product-feed-item .product-feed-item-body  .produto-brand{
+.product-feed-item-body  .produto-brand{
     font-size: 14px;  line-height: 1.15em; height: 14px;
     color: #444;
     display: flex;
@@ -113,6 +141,11 @@
     align-content: center;
     justify-content: flex-start;
 }
+
+
+
+
+/* foooter */
 
 .product-feed-item-footer{
     height: fit-content;
@@ -126,3 +159,4 @@
 .admin-mode-button.add{
     background-color: var(--main-color)!important;
 }
+

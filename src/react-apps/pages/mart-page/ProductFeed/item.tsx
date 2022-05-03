@@ -34,9 +34,26 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images }) =>
 
 export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, listMode }) =>{
     
-    const { ean, specification, brand, presentation, images} = produto
+    const [ prices, setPrices ] = useState([0,0])
+    const { ean, specification, brand, presentation, images, supplies} = produto
     const cartHandler = UseCartHandler()
 
+    useEffect(()=>{
+        if(supplies?.length > 0 ){
+            let maior:number =-1, menor: number = -1;
+
+            for(let n = 0 ; n < supplies.length ; n ++ ){
+                let {price}  = supplies[n]
+                if(maior == -1){
+                    maior = price, menor = price;
+                }else{
+                    maior = price > maior ? price : maior;
+                    menor = price < menor ? price : menor;
+                }
+            }
+            setPrices([menor, maior]);
+        }
+    },[ supplies])
     return (
         <div className={`product-feed-item ${listMode}`}>
 
@@ -46,9 +63,26 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
 
             <section className='product-feed-item-body'>
                 <Link to={`/produto/${ean}`} className="produto-nome"> {specification} </Link>
-                <span className="singleline-text produto-ean"> Contém: {presentation.quantity} unidades</span>
-                <span className="singleline-text produto-ean">{ean}</span>
-                <span className="singleline-text produto-brand"> <RiPriceTag2Line/>{brand.label}</span>
+                <div className='product-feed-item-prices'>
+                    <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>
+                       {    prices[0] == 0 ?
+                            <React.Fragment>
+                               Indisponível
+                            </React.Fragment>
+                            :
+                            <React.Fragment>
+                                R$: {prices[0].toFixed(2)}
+                            </React.Fragment>
+                        }
+                    
+                    </span>
+                    <span>orfertas de {prices[0].toFixed(2)} até {prices[1].toFixed(2)}</span>
+                </div>
+                <div>
+                    <span className="produto-ean"> Contém: {presentation.quantity} unidades</span>
+                    <span className="produto-ean">{ean}</span>
+                    <span className="produto-brand"> <RiPriceTag2Line/>{brand.label}</span>
+                </div>
             </section>
 
             <section className='product-feed-item-footer'>
