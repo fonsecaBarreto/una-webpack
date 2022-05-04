@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
-import Routes from './routes'
+import React, { useEffect, useRef } from "react";
 import './style.css'
+import Routes from './routes' 
 import { DialogStack }  from 'fck-react-dialog'
 import MyContext from './global-components-context';
 import { useSelector } from "react-redux";

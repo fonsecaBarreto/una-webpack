@@ -17,7 +17,7 @@ const SIGNIN_INITIAL_DATA = {
     senha: ""
 }
 
-export const LoginPage = () =>{
+export const LoginPage: React.FunctionComponent<any> = (props) =>{
     const GlobalContext = useContext(globalContext)
     const [ isLoading, setIsLoading ] = useState(false)
     const history = useHistory()

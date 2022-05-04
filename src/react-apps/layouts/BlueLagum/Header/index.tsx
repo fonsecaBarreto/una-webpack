@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react'
 import './style.css'
 import ToggleButton from "../../components/ToggleButton"
 import LogoImg from '@/public/assets/images/logo.svg' 
-import SearchBar from '../SearchBar'
+import SearchBar from '../../components/SearchBar'
 import OptionsNav from './OptionsNav'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,7 +18,6 @@ export namespace PrimaryHeader {
         menuState: { show: boolean, toggle: Function }
     }
 }
-
 
 export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ user, toggleCart, menuState })=> {
     const history = useHistory();

@@ -21,6 +21,7 @@
     "paths": {
       "@/*": [ "./*"],
       "@assets/*": [ "./public/assets/*"],
+      "@pages/*": ["./react-apps/pages/*"],
       "@main/*": ["./react-apps/apps/main/*"]
     }
   },

@@ -5,6 +5,11 @@ export const setUser = (value = null) => ({
     payload: value
 })
 
+export const setUserAddress = (value = null) => ({
+    type: "SET_USER_ADDRESS",
+    payload: value
+})
+
 export const setLoading = (value = false) => ({
     type: "SET_LOADING",
     payload: value 

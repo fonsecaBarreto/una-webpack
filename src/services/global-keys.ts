@@ -5,5 +5,6 @@ const API_URL="https://api.unacompras.com.br/api/v1"
 
 export const global = {
   user_storage_key: "una-compras",
+  location_storage_key: "una-compas-localidade",
   base_url: `${API_URL}`
 }

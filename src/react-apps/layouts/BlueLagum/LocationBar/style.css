@@ -1,0 +1,22 @@
+.bl-location-bar{
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgb(225, 235, 243) 0%, rgb(240, 245, 245) 35%, rgb(233, 235, 238) 100%);
+    border-bottom: solid 1px #ccc;
+}
+
+.bl-location-bar > div > nav{
+    display: flex; align-items: center; justify-content: flex-start;
+    height: var(--aux-header-height);
+    overflow-x: scroll; overflow-y: hidden;
+}
+
+
+.bl-location-bar > div > nav::-webkit-scrollbar {
+    height: 0px!important;
+}
+
+
+/* selector */
+.bl-location-selector{
+  display: flex; gap: 10px;
+}

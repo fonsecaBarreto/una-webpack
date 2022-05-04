@@ -10,6 +10,7 @@
             "alias": {
                 "@": "./src",
                 "@main": "./src/react-apps/apps/main",
+                "@pages": "./src/react-apps/pages",
                 "@assets": "./src/public/assets"
             }
         }]
