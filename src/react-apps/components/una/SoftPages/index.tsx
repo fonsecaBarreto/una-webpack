@@ -15,7 +15,6 @@ export namespace SoftPage {
             name: string,
             title?:string,
             onChange?: any
-            options: LabelView[]
         }
     }
 }
@@ -37,7 +36,6 @@ export const SoftPages: React.FunctionComponent<SoftPage.Params> = ({children, p
                 current = child;
             }
         })
-
         setCurrentPage(current);
         setPageProps(current ? current.props: null)
     },[page])
@@ -45,20 +43,7 @@ export const SoftPages: React.FunctionComponent<SoftPage.Params> = ({children, p
     return (
         <div className='una-soft-page'>
             <header>
-                <section>
-                    {/* <button className='una-sp-back-btn'> Voltar</button> */}
-                </section>
-                <section>
-                  {/*   <span> {pageProps && pageProps["title"]} </span> */}
-
-                </section>
-                <section>
-                   {/*  {   ( pageProps?.["options"] ) && 
-                        pageProps["options"].map((b: any, i: number)=> (
-                            <button key={i} onClick={()=> {
-                                pageProps?.onChange && pageProps.onChange(b.value)}}> {b.label}</button>)
-                    )} */}
-                </section>
+                
             </header>
             <main>
                 { currentPage && ( React.cloneElement(currentPage)) }

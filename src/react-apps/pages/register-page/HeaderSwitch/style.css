@@ -1,0 +1,28 @@
+.bl-header-switch{
+    display: flex; flex-direction: row;align-items: center;
+    gap: 10px;
+    border: solid 1px #ddd;
+}
+
+.bl-header-switch > section{
+    display: flex; flex-direction: row;align-items: center;
+}
+
+.bl-header-switch > section > select{
+    height: 42px;
+    padding: 0 12px;
+    width: fit-content;
+    border: solid 1px #aaa;
+    border-radius: 3px;
+    background-color: white;
+}
+
+/* .bl-header-switch > section:nth-child(2){
+    gap: 2px;
+ }
+
+.bl-header-switch > section:nth-child(2) > button{
+    height: 42px;
+    width: fit-content;
+    padding: 0 12px;
+ } */

@@ -16,9 +16,13 @@ export namespace SuppliesServices {
 }
 
 export const suppliesServices = {
-
      save_multiples: async ( params: { supplies: SuppliesServices.SaveSupply_dto[]}, company_id:string) => {
-          const { supplies } = params
+          var { supplies } = params;
+          if(Object.keys(supplies).length > 0 ){
+               supplies = supplies.map((d: any)=>{
+                   return({ ...d, ean: (d.ean+"").replace(/[^\d]+/g,'')})
+               })
+          }
           const { data } = await suppliesApi.send({ method: "post", url: `/${company_id}`, data: { supplies } }) 
           return data 
      },

@@ -1,14 +1,7 @@
-import MultiplesForms from '@/react-apps/components/MultiplesForms'
-import { builder } from 'fck-schema-validator'
-
-export const CsvSupliesDTo_schema = builder.create(b=>{
-    b.string('ean').description("EAN")
-    b.number('suggested_price').description("Preço")
-    b.number('stock').description("Quantidade em estoque").optional()
-})
-
-export const suply_headers_schema: MultiplesForms.Header[] = [   
-    { label: "EAN *", value: "ean", type: "text" }, 
-    { label: "Preço sugerido *", value: "suggested_price" },
-    { label: "Estoque *", value: "stock" },
+export const SUPPLIES_TABLE_HEADER: any = [
+    { label: "EAN", value: "ean", columns: 3 },
+    { label: "Preço", value: "price", columns: 3 },
+    { label: "Validade", value: "expiration", columns: 3, convert: "date" }
 ]
+
+export const CSV_HEADER = [ "ean", "price", "expiration" ]

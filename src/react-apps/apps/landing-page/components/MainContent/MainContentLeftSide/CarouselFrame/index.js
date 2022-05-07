@@ -8,7 +8,6 @@ export default ({children, title, pageStruct, forceIndex, setForceIndex, loading
 
     useEffect(()=>{
         if(forceIndex === null) return
-        console.log("forceIndex",forceIndex)
         setPageIndex(forceIndex)
         setForceIndex(null)
     },[forceIndex])

@@ -1,67 +1,40 @@
 import React, { useContext, useEffect, useState } from 'react'
-import "./style.css"
 import TableForms from "fck-table-forms"
-import CsvModal from '@/react-apps/components/ImportCsvModal'
-import { UseSearchAdapter } from '@/react-apps/components/SearchAdapter'
-import { ContextReplacementPlugin } from 'webpack'
-
 import { MakeDialogConfig, MakeNotification, NotificationType } from 'fck-react-dialog'
-import ImportCsvModal from '@/react-apps/components/ImportCsvModal'
 import GlobalContext from "@/react-apps/apps/main/global-components-context"
-import { parse } from 'path'
 import { suppliesServices } from '@/services/api/supplies-services'
 import SuppliesCompaniesModal from './CompaniesModal'
-import { GrDocumentCsv } from 'react-icons/gr'
-import { MdSend } from 'react-icons/md'
+import { CSV_HEADER, SUPPLIES_TABLE_HEADER } from "./schemas"
+import ImportCsvModal from '@/react-apps/components/ImportCsvModal'
+import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
 
-const SUPPLIES_HEADER = [
-    { label: "EAN", value: "ean", columns: 3 },
-    { label: "Preço", value: "price", columns: 3 },
-    { label: "Validade", value: "expiration", columns: 3 }
-]
+export const AddSuppliesTable:React.FunctionComponent<any> = ({onChange}) =>{
 
-const CSV_HEADER = [ "ean", "price", "expiration" ]
-
-const HISTORY_HEADER = {
-    search: [ "csv" ],
-    params: [ "p" ]
-}
-
-const ErrorLogPanel = ({errors}: any) =>{
-
-    return (
-    
-        <div>
-            { Object.keys(errors).length == 0 ? "Nenhum erro encontrado":
-
-                <ul>
-                    { 
-                        Object.keys(errors).map((e:any) => {
-                            const err = errors[e]
-                            return (
-                                <li>
-                                    <span> {e}</span> 
-                                    <span> {JSON.stringify(err)}</span>
-                                </li>
-                            )
-                    })
-                    }
-                </ul>
-            }
-
-        </div>
-    )
-}
-export const SuppliesContent:React.FunctionComponent<any> = ({}) =>{
- 
     const context: any = useContext(GlobalContext)
-    const [ initialData, setInitialData ] = useState([])
-    const [ errors, setErrors ] = useState({})
-    const { parsedSearch, pushToHistory } = UseSearchAdapter({ header: HISTORY_HEADER })
+    const [ initialData, setInititalData ] = useState<any>([])
+    const [ errors, setErrors ] = useState<any>(null)
     const [ resultData, setResultData ] = useState(null);
-    
-    const submit =async() => {
+    const { parsedSearch, appendToHistory } = UseSearchAdapter({header: { search: ["o"]}})
 
+    //useEffect(()=> { if(parsedSearch?.o[0] == "CSV"){ openImportCsvModal()} },[parsedSearch])
+
+    const openImportCsvModal = () =>{
+        return (
+            context.dialog.push(MakeDialogConfig( ({onAction}) => <ImportCsvModal onAction={onAction} headers={CSV_HEADER} />, (data: any) => {
+                if(data !== -1) { setInititalData(data)}
+                //appendToHistory({o:[]});
+                return -1;
+            }, "Upload produtos via .CSV"))
+        )
+    }
+
+    const handleTableData = (data: any) => {
+        setResultData(data)
+        setInititalData(null)
+        setErrors(null) 
+    }
+
+    const submit =async() => {
         context.dialog.push(MakeDialogConfig(({onAction}: any)=><SuppliesCompaniesModal onAction={onAction}></SuppliesCompaniesModal>, async (n:any)=> {
             if(n !== -1) { 
               try{
@@ -75,7 +48,6 @@ export const SuppliesContent:React.FunctionComponent<any> = ({}) =>{
                         context.dialog.push(MakeNotification(()=>-1,["Fornecimento atualizado com sucesso"], "Sucesso", NotificationType.SUCCESS)) 
                     }
                 }catch(err){
-                    console.log(err)
                     context.dialog.push(MakeNotification(()=>-1,["Erro inesperado"], "Falha", NotificationType.FAILURE)) 
                 } 
             }
@@ -83,29 +55,18 @@ export const SuppliesContent:React.FunctionComponent<any> = ({}) =>{
         } ))
     }
 
-    useEffect(()=>{
-        if(parsedSearch){
-            const { csv } = parsedSearch;
-            if(csv.length > 0 && csv[0] == 1){ openCsvReader() }
-        } 
-    },[ parsedSearch]) 
-
-    const openCsvReader = () =>{
-        context.dialog.push(MakeDialogConfig(({onAction}: any)=><ImportCsvModal headers={CSV_HEADER} onAction={onAction}></ImportCsvModal>,(n:any)=> {
-            if(n !== -1) { setInitialData(n); } 
-            pushToHistory({ csv:null })
-            return -1
-        } ))
-    }
-
     return (
-        <div className='supply-register-page'> 
-            <button onClick={()=>pushToHistory({"csv": 1})}> Upload CSV  <GrDocumentCsv></GrDocumentCsv></button>
-            <button onClick={submit}> Enviar <MdSend></MdSend> </button>
-            <TableForms errors={errors} entries={initialData} headers={SUPPLIES_HEADER} onChange={setResultData} ></TableForms>
-            <ErrorLogPanel errors={errors}/>
-        </div>
+        <React.Fragment>
+            <button onClick={openImportCsvModal}> Upload Csv </button>
+            <button onClick={submit}> Salvar </button>
+           <TableForms errors={errors} entries={initialData} headers={SUPPLIES_TABLE_HEADER} onChange={handleTableData} ></TableForms>
+        </React.Fragment>
     )
 }
 
-export default SuppliesContent
+export const ListSupplies : React.FunctionComponent<any> = () =>{
+    return (
+        <div> teste </div>
+    )
+}
+

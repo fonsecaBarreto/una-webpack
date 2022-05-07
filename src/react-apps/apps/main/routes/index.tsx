@@ -25,9 +25,9 @@ export function AppRouter({ }){
     const beforeEach = async () => {
 
       context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
-      dispatch(setLoading(true));
-
+      
       if(!user){ 
+        dispatch(setLoading(true));
         loginServices.verify()
           .then((user)=> dispatch(setUser(user)))
           .finally(()=> dispatch(setLoading(false)))

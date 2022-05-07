@@ -21,14 +21,16 @@ export const ROUTES = [
   /* /products */
   { path: "/produto/:ean", title: "Produto",  component: ProductPage } ,
   /* ADMINS */
-  { path: "/registro/:p", title: "Registar",  component: CadastroPage },
-  { path: "/registro", title: "Registar",  component: CadastroPage },
+  /* registro */
+  { path: "/registro/:section", title: "Registar",  component: CadastroPage },
+  { path: "/registro", title: "Registar", component: CadastroPage },
+/*   component:() => <Redirect to="/registro/fornecimento"></Redirect> } */
+  /* cotações */
   { path: "/cotacoes", title: "Cotações", component: CotacoesPage },
   { path: "/perfil/usuario/:user_id", title: "Perfil Companhia",  component: ProfilePage } ,
   { path: "/perfil/companhias/:company_id", title: "Perfil Companhia",  component: ProfilePage },
   { path: "/login", title: "Login",  component: LoginPage } ,
   /* REDIRECTS */
   { path: "/", title: "Inicio",  component:() => <Redirect to="/mercado"></Redirect> } ,
- /*  { path: "*", title: "404",  component: () => <div><h1>404</h1></div> }, */
-
+ /*  { path: "*", title: "404",  component: () => <div><h1>404</h1></div> } */
 ]
