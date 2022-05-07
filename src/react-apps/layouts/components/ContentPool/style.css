@@ -72,8 +72,7 @@
     width: 100%;
     flex-direction: column;
     display: flex; align-items: center; justify-content: center;
-    gap: 10px;
-}
+    gap: 10px;}
 
 .bl-common-content-pool > main > section{
     width: 100%;
@@ -85,7 +84,8 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: auto;
-    gap: 6px;
+    gap: 7px;
+    row-gap: 12px;
 }
 
 .bl-common-content-pool > main > .bl-common-content-pool-flow.inline{

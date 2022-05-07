@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ProductImage from "@/public/assets/images/product/empty.svg"
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { RiPriceTag2Line } from 'react-icons/ri'
 import AddCartButton from './AddCartButton'
 import { BsThreeDotsVertical } from 'react-icons/bs'
@@ -34,6 +34,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images }) =>
 
 export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, listMode }) =>{
     
+    const history = useHistory()
     const [ prices, setPrices ] = useState([0,0])
     const { ean, specification, brand, presentation, images, supplies} = produto
     const cartHandler = UseCartHandler()
@@ -55,41 +56,34 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
         }
     },[ supplies])
     return (
-        <div className={`product-feed-item ${listMode}`}>
-
+        <div className={`product-feed-item ${listMode}`} onClick={()=>history.push(`/produto/${ean}`)}>
             { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <BsThreeDotsVertical/> </button> }
-            
             <ProductImageSection images={images} />
-
             <section className='product-feed-item-body'>
-                <Link to={`/produto/${ean}`} className="produto-nome"> {specification} </Link>
+                <span className="produto-nome"> {specification} </span>
                 <div className='product-feed-item-prices'>
                     <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>
                        {    prices[0] == 0 ?
+                            <React.Fragment> Preço sobre orçamento </React.Fragment> :
+                            <React.Fragment>  R$: {prices[0].toFixed(2)} </React.Fragment>
+                        }
+                    </span>
+                    <span>
+                        { prices[0] != prices[1] && 
                             <React.Fragment>
-                               Indisponível
-                            </React.Fragment>
-                            :
-                            <React.Fragment>
-                                R$: {prices[0].toFixed(2)}
+                                {`orfertas de ${prices[0].toFixed(2)} até ${prices[1].toFixed(2)}`}
                             </React.Fragment>
                         }
-                    
                     </span>
-                    <span>orfertas de {prices[0].toFixed(2)} até {prices[1].toFixed(2)}</span>
                 </div>
-                <div>
-                    <span className="produto-ean"> Contém: {presentation.quantity} unidades</span>
-                    <span className="produto-ean">{ean}</span>
-                    <span className="produto-brand"> <RiPriceTag2Line/>{brand.label}</span>
-                </div>
+          
+                <div> <span className="produto-ean">{ean}</span> </div>
+                
             </section>
-
             <section className='product-feed-item-footer'>
 
-            <AddCartButton fill={true} value={cartHandler.count(ean)} 
-                onChange={(n:number)=>{cartHandler.push(n, produto)}}></AddCartButton>
-
+               {/*  <AddCartButton fill={true} value={cartHandler.count(ean)} 
+                    onChange={(n:number)=>{cartHandler.push(n, produto)}}></AddCartButton> */}
             </section>
         </div>
     )
