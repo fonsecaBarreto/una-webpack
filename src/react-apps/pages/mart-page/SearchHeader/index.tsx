@@ -34,10 +34,10 @@ export const LabelRow = ({label, list, icon, emptyAlias="*"}:{icon?:ReactNode, e
 export const SearchHeader: React.FunctionComponent<any>= ({queries}) =>{
     return (
         <div className='products-search-header'>
-            <span className='products-search-header-row' > 
+         {/*    <span className='products-search-header-row' > 
                 <LabelRow icon={<FaSearch/>}
                 label={"Pesquisa: "} list={  queries?.specification ?[ {label: queries?.specification }] : []}  emptyAlias="..."></LabelRow>
-            </span>
+            </span> */}
 
             {/* <span className='products-search-header-row'> 
                 <LabelRow icon={<RiPriceTag2Fill/>} label={"Departamentos: "} list={ queries?.departament ?? []}  emptyAlias="Todos"></LabelRow>

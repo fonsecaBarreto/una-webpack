@@ -63,22 +63,22 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ f
              {
                 (loadtry == 0 || !values) ? ( <span> Carregando... </span>  ):(
                     <React.Fragment>
-                        <MultipleSelectionControl icon={<RiPriceTagLine/>} title="Departamentos" items={departaments.departaments} max={1} 
+                        <MultipleSelectionControl title="Departamentos" items={departaments.departaments} max={1} 
                             value={ departament_id == "" ? [] : [{ value: departament_id }]}
                             onChange={(p: any)=> onChange( { departament_id : p.map((b: any)=>b.value) }, true)} >
                         </MultipleSelectionControl>  
 
-                       <MultipleSelectionControl icon={<RiPriceTagFill/>} title="Categorias" items={categories_available}
+                       <MultipleSelectionControl title="Categorias" items={categories_available}
                             value={values["category"].map((v:string)=>({value: v}))}
                             onChange={(p: any)=>  onChange({ category: p.map((b: any)=>b.value )})} >
                         </MultipleSelectionControl>
 
-                        <MultipleSelectionControl icon={<RiPriceTag2Fill/>} title="Sub Categorias" items={subCategories_available}
+                        <MultipleSelectionControl title="Sub Categorias" items={subCategories_available}
                             value={values["subCategory"].map((v:string)=>({value: v}))}
                             onChange={(p: any)=>{ onChange({ subCategory: p.map((b: any)=>b.value)})}} >
                         </MultipleSelectionControl>  
        
-                        <MultipleSelectionControl icon={<RiPriceTag2Line/>} title="Marcas" items={brands_available}
+                        <MultipleSelectionControl title="Marcas" items={brands_available}
                             value={values["brand"].map((v:string)=>({value: v}))}
                             onChange={(p: any)=>{ onChange({ brand: p.map((b: any)=>b.value) })}} >
                         </MultipleSelectionControl>  

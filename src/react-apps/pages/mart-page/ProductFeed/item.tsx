@@ -2,13 +2,19 @@ import React, { useState, useEffect } from 'react'
 import ProductImage from "@/public/assets/images/product/empty.svg"
 import { Link, useHistory } from 'react-router-dom'
 import { RiPriceTag2Line } from 'react-icons/ri'
-import AddCartButton from './AddCartButton'
+import AddCartButton, { ProductFeedCartButton } from './AddCartButton'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { mediaPlayListService } from '@/services/api/media-playlist'
 import { UseCartHandler } from '@/react-apps/store/reducers/cart/handler'
 import { filesService } from '@/services/api/files-service'
+import { HiPlusCircle } from 'react-icons/hi'
+import { FaCartPlus } from 'react-icons/fa'
+import { MdOutlineAddCircle, MdOutlineAddShoppingCart } from 'react-icons/md'
 
-export type ListMode = "inline" | "block" 
+export type ListMode = "inline" | "block"
+
+
+
 
 export namespace ProductItem {
     export type Params = { onChange: () => void, listMode: ListMode, showOptions: boolean }
@@ -56,10 +62,14 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
         }
     },[ supplies])
     return (
-        <div className={`product-feed-item ${listMode}`} onClick={()=>history.push(`/produto/${ean}`)}>
+        <div className={`product-feed-item ${listMode}`} onClick={()=>{/* history.push(`/produto/${ean}`) */ }}>
             { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <BsThreeDotsVertical/> </button> }
+            <ProductFeedCartButton 
+                onChange={(n:number)=>{cartHandler.push(n, produto)}}
+                value={cartHandler.count(ean)} />
             <ProductImageSection images={images} />
             <section className='product-feed-item-body'>
+
                 <span className="produto-nome"> {specification} </span>
                 <div className='product-feed-item-prices'>
                     <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>

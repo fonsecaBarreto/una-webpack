@@ -1,11 +1,11 @@
 
 /* item */
 .una-product-feed .product-feed-item {
+    position: relative;
     display: flex; flex-direction: column; gap: 6px;
     background-color: white;
     border-radius: 2px;
     overflow: hidden;
-    position: relative;
     border: solid 1px #ddd;
     cursor: pointer;
 }
@@ -24,12 +24,12 @@
     width: 100%;  height: 0;
     padding-bottom: 75%;
     overflow: hidden;
-    background-color: #fff;
+    background-color: rgb(235, 235, 235);
 }
 
 .product-feed-item .product-feed-item-img-vp img{
     position: absolute; top: 0; left:0; right: 0; bottom: 0; margin: auto;
-    width: 100%; height: auto; 
+    width: auto; height: 100%; 
     object-fit: cover;
     transition: all .8s;
     background-color: #fff;
@@ -146,11 +146,7 @@
     background-color: var(--main-color)!important;
 }
 
-
-
-/* options */
-
-.una-product-feed .product-feed-item  .product-feed-options{
+/* .una-product-feed .product-feed-item  .product-feed-options{
     position: absolute; top: 10px; left: 10px; width: 32px; height: 32px;
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: inset 1px 0px #5554;
@@ -164,4 +160,4 @@
 
 .product-feed-item  .product-feed-options:hover{
     background-color: rgba(255, 255, 255, 0.8);
-}
+} */

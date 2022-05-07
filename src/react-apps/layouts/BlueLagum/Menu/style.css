@@ -33,9 +33,6 @@
 .blue-lake-menu > section:nth-child(1).blue-lake-menu-header{
     padding: 4px 12px;
     display: flex; flex-direction: row; align-items: center; justify-content: center;
-    border-bottom: solid 1px #ccc;
-/*     background: rgb(255, 255, 255);
-    background: linear-gradient(180deg, rgb(225, 235, 243) 0%, rgb(240, 245, 245) 35%, rgb(233, 235, 238) 100%); */
 }
 
 .blue-lake-menu > section:nth-child(1).blue-lake-menu-header .blue-lake-menu-header-logo{

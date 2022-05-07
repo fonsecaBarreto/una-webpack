@@ -8,9 +8,7 @@ import { CgMenuLeft } from 'react-icons/cg'
 import UserComponent from './UserComponent'
 import MenuTree, { MenuItemConfig } from '../MENU-TREE'
 import GlobalContext from "@/react-apps/apps/main/global-components-context"
-import { MakeNotification } from 'fck-react-dialog'
 import { useDispatch } from 'react-redux'
-import { setGodMode } from '@/react-apps/store/reducers/main/actions'
 export namespace BlueLakeMenu {
     export type Params = {
         menuState: { show: boolean, toggle: any }
@@ -19,18 +17,17 @@ export namespace BlueLakeMenu {
 }
 
 const BlueLakeMenu: React.FunctionComponent<BlueLakeMenu.Params> = ({ menuState, user }) =>{
-
-    const context = useContext(GlobalContext);
-    const dispatch = useDispatch();
-
     return (
         <div className={`blue-lake-menu ${menuState.show ? 'show' : ''}`}>
+
             <section className="blue-lake-menu-header">
+                
                 <Link to="/" className='blue-lake-menu-header-logo'> <img src={LogoImg}></img>   </Link>
                 <button className={`blue-lake-menu-toggle-button`} 
                     onClick={menuState.toggle}> { !menuState.show ? <RiMenu5Fill/> : <CgMenuLeft/> }
                 </button>
             </section>
+
             <section>
                 <ul> { 
                     MenuTree(user).map((p:any,i:number) =>{ 

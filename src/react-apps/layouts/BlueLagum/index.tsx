@@ -59,11 +59,11 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
             { (menu ===true ) && <aside> <Menu user={user} menuState={menuState} ></Menu> </aside> }
             
             <header>
-                <LocationBar></LocationBar>
                 <LayoutHeader user={user} menuState={menuState} toggleCart={openCart}></LayoutHeader>
+                <LocationBar></LocationBar>
             </header> 
             <main>
-                <DepartamentHeader></DepartamentHeader>
+               {/*  <DepartamentHeader></DepartamentHeader> */}
                {children}
             </main>
             <footer>
