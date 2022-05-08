@@ -38,7 +38,7 @@ body {
 
 .app-container{
     width: 100%;
-    max-width: 1340px;
+    max-width: 1440px;
     padding: 0 22px;
     margin: auto;
 }
@@ -53,9 +53,18 @@ body {
 
 @media only screen and (max-width: 960px){
     .desktop-only{ display: none!important; }
-   .app-container, .app-padding { padding: 0 12px; } 
+    .app-container, .app-padding { padding: 0 12px; } 
 }
 
 .ml-auto  {  margin-left: auto; }
 .m-auto  {  margin: auto; }
 .mr-0 { margin-right: 0; }
+
+.unselectable {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    display: flex;
+    flex-direction: column;
+}

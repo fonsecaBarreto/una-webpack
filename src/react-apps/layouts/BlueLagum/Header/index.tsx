@@ -6,7 +6,6 @@ import LogoImg from '@/public/assets/images/logo.svg'
 import SearchBar from '../../components/SearchBar'
 import OptionsNav from './OptionsNav'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { useWindowSize } from 'fck-components/lib/utils/hooks'
 import qs from 'query-string';
 import { useEffect } from 'react'
@@ -15,11 +14,11 @@ export namespace PrimaryHeader {
     export type Params = {
         user: any
         toggleCart: () => void,
-        menuState: { show: boolean, toggle: Function }
+        menuContext: any
     }
 }
 
-export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ user, toggleCart, menuState })=> {
+export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ user, toggleCart, menuContext })=> {
     const history = useHistory();
     const location = useLocation()
     const [ searchText, setSearchText ] = useState("")
@@ -39,7 +38,7 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
             <div className="primary-header-content app-container">
 
                 <section>
-                    <ToggleButton onClick={menuState.toggle}></ToggleButton>
+                    <ToggleButton onClick={menuContext.toggleMenu}></ToggleButton>
                     <Link to="/" className="bluelagum-logo-link desktop-only">
                         <img src={LogoImg}/>  
                     </Link>

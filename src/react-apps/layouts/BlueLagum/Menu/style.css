@@ -1,8 +1,4 @@
-@keyframes menuAppears {
-    0% { transform: translateX(-100%) ; opacity: 0; };
-    100% {  transform: translateX(0); opacity: 1; }
-}
-  
+
 .blue-lake-menu{
     overflow: hidden;
     width: var(--menu-width); height: 100%;
@@ -11,14 +7,13 @@
     justify-content: flex-start;
     border-right: solid 1px #ddd;
     color: var(--main-color);
+    background-color: white;
 }
 
 .blue-lake-menu.show {
     animation-name: menuAppears;
     animation-duration: .2s;
     width: var(--menu-width-expanded); 
-    background: rgb(255, 255, 255);
-    background: linear-gradient(0deg, rgb(225, 235, 243) 0%, rgb(240, 245, 245) 95%, rgb(232, 224, 248) 100%);
 }
 
 .blue-lake-menu > section{
@@ -72,6 +67,16 @@
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+@media only screen and (max-width: 1444px){  
+    .blue-lake-menu.show { 
+        position: fixed;
+        top: calc( var(--header-height-desktop) + var(--aux-header-height) );
+        height: calc( 100vh - var(--header-height-desktop) - var(--aux-header-height)); 
+    }  
+}
+
+
+
 @media only screen and (max-width: 1024px){  
 
 
@@ -93,6 +98,10 @@
     } 
     .blue-lake-menu.show { 
         display: grid; 
+        background: rgb(255, 255, 255);
+        background: linear-gradient(0deg, rgb(225, 235, 243) 0%, rgb(240, 245, 245) 95%, rgb(232, 224, 248) 100%);
+        top: 0;
+        height: 100vh;
     }  
     .blue-lake-menu.show > section:nth-child(1).blue-lake-menu-header .blue-lake-menu-header-logo{
         width: 100%;

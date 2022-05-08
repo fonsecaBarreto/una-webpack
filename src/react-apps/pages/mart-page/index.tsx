@@ -72,7 +72,7 @@ export const MartPage: FunctionComponent<any> = ({ history}) => {
                     <CategoriasNav 
                         freeze={false} trigger={filterTrigger} departament_id={parsedParams?.["departament_id"] ?? ""} 
                         values={ parsedSearch } onChange={handleFilterChange}> </CategoriasNav>
-                    <ProductFeed onChange={handleActions} ></ProductFeed>  
+                   {/*  <ProductFeed onChange={handleActions} ></ProductFeed>   */}
                 </ContentGrid> 
             </div> 
         </div>

@@ -1,0 +1,88 @@
+@keyframes menuAppears {
+    0% { transform: translateX(-100%) ; opacity: 0; };
+    100% {  transform: translateX(0); opacity: 1; }
+}
+  
+.blao-menu{
+    position: fixed;
+    top: 0; left: 0;
+    display: grid; grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    width: 0; height: 100vh;
+    overflow: hidden;
+    z-index: 99;
+    background-color: white;
+    box-shadow: 0px 2px 3px #00000033;
+}
+
+.blao-menu.show {
+    animation-name: menuAppears;
+    animation-duration: .2s;
+    width: var(--menu-width-expanded); 
+}
+
+/* HEADER */
+.blao-menu > header{
+    height: calc( var(--header-height-desktop) + var(--aux-header-height) );
+    background: #0052D4;  /* fallback for old browsers */
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    background: -webkit-linear-gradient(to right, #0052D4, #4364F7, #0052D4);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0052D4, #4364F7, #0052D4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 0 16px;
+}
+
+.blao-menu-toggle-button{
+    display: flex; align-items: center; justify-content: center; 
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 22px;
+    border: solid 2px #efefef;
+    color: white;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    margin-right: 0; margin-left: auto;
+}
+
+
+/* MAIN */
+
+.blao-menu > main{}
+
+.blao-menu > main > nav{
+    position: relative;
+    width: 100%; height: 100%;
+    overflow-y: auto;
+    display: flex;
+}
+
+.blao-menu main > nav::-webkit-scrollbar {
+    width: 4px;
+} 
+
+.blao-menu main > nav::-webkit-scrollbar-track{
+    background: rgb(236, 236, 236); 
+}
+
+.blao-menu main > nav::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);    /* color of the scroll thumb */
+    border-radius: 5px;       /* roundness of the scroll thumb */
+    border: 1px solid rgb(255, 255, 255);  /* creates padding around scroll thumb */
+
+}
+
+/* listing */
+.blao-menu main > nav > ul{
+    width: 100%; height: fit-content;
+    text-decoration: none;
+    list-style: none;
+    padding: 0; 
+    margin-top: 0;
+    margin-bottom: auto;
+}
+
+/* FOOTER */
+.blao-menu > footer{
+    height: 32px;
+}

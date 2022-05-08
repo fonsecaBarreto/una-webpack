@@ -1,0 +1,50 @@
+
+
+
+.blue-lake-aside-overflow-menu-item{
+    height: fit-content; width: 100%;
+    cursor: pointer;
+    width: 100%;
+}
+
+.blue-lake-aside-overflow-menu-item:hover{
+    background-color: rgba(38, 107, 255, 0.12);
+    transition: all .02s ease-in;
+}
+
+.blue-lake-aside-overflow-menu-item > div:nth-child(1){
+    position: relative;
+    display: flex; flex-direction: row;  align-items: center; justify-content: flex-start;
+    padding: 0 20px; gap: 10px; 
+    width:100%; height: 56px;
+    font-size: 20px; line-height: 1em;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--second-color);
+    cursor: pointer;
+}
+
+
+/* .common-menu-item-row-body {
+    display: none;
+    height: fit-content;
+    background-color: rgba(144, 168, 236, 0.3);
+}
+
+
+.common-menu-item-row-body.expand {
+    display: flex;
+    flex-direction: column;
+}
+
+.common-menu-item-row-body.expand > .common-menu-item .common-menu-item-row{
+    height: 42px;
+    font-size: 15px;
+    background-color: rgba(232,232,232);
+    color:#333;
+}
+
+.common-menu-item-row-body.expand > .common-menu-item .common-menu-item-row:hover {
+    transition: all .02s ease-in;
+    background-color: rgba(144, 168, 236, 0.2);
+} */

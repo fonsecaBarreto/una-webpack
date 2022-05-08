@@ -1,26 +1,12 @@
 import React from 'react'
 import './style.css'
-import UserImage from '@assets/images/user.png' 
+import UserImage from '@assets/images/user2.png' 
 import { ImExit } from 'react-icons/im'
 import { loginServices } from '@/services/api/login-service'
 
-const UserComponent:React.FunctionComponent<any> = ({ menuState, user }) =>{
-
-    const handleClick = () =>{
-        if(menuState.show == false ){
-            menuState.setShow(true)
-        }
-    }
-
-/* 
-    context.dialog.push(MakeNotification((n)=>{
-        if(n === 0){ dispatch(setGodMode(true))} return -1;
-    },["Você está prestes a entrar no modo administrador", "tem certeza disso?"],"Atenção", NotificationType.CONFIRMATION))
-
-    { label:"Administrador", toDo: ()=>alert("Voce esta prestes a entrar no modo admin"), icon:<MdAdminPanelSettings/>}
- */
+const UserComponent:React.FunctionComponent<any> = ({ user, menuState }) =>{
     return (
-        <div className="common-menu-user-component" onClick={handleClick}>
+        <div className="common-menu-user-component">
             
             <img src={UserImage}/>
 
