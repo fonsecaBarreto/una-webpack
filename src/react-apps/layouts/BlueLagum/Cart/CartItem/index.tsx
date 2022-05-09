@@ -29,10 +29,10 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
                 <span>{ product.ean }</span>
             </section>
 
-            <section>
+            {/* <section>
                 <AddCartButton fill={true} value={cartHandler.count(product?.ean)} 
                      onChange={(n:number)=>{cartHandler.push(n, product)}}></AddCartButton>
-            </section>
+            </section> */}
            
         </div>
     )

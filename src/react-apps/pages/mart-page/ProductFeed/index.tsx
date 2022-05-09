@@ -17,6 +17,7 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onChange }) =>{
     return (
         <div className="una-product-feed">
             <ContentPool list_data={products} dataAlias={"products"}
+
                 onAction={onChange}
                 header={ (queries: any)=>(<SearchHeader  queries={queries}/>) }
                 auxHeader={(queries: any)=>(

@@ -71,33 +71,41 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     return (
         <div className={`product-feed-item ${listMode}`} >
             { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <BsThreeDotsVertical/> </button> }
-            <ProductFeedCartButton 
-                onChange={(n:number)=>{handleClick("CART", n)}}
-                value={cartHandler.count(ean)} />
-            <ProductImageSection images={images}/>
-            <section className='product-feed-item-body' onClick={()=>{ handleClick("MOVE")}}>
-
-                <span className="produto-nome"> {specification} </span>
-                <div className='product-feed-item-prices'>
-                    <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>
-                       {    prices[0] == 0 ?
-                            <React.Fragment> Preço sobre orçamento </React.Fragment> :
-                            <React.Fragment>  R$: {prices[0].toFixed(2)} </React.Fragment>
-                        }
-                    </span>
-                    <span>
-                        { prices[0] != prices[1] && 
-                            <React.Fragment>
-                                {`orfertas de ${prices[0].toFixed(2)} até ${prices[1].toFixed(2)}`}
-                            </React.Fragment>
-                        }
-                    </span>
-                </div>      
-            </section>
-            <section className='product-feed-item-footer'>
-                <button onClick={() => handleClick("COPY")}> <MdContentCopy></MdContentCopy></button>
-                <span ref={eanRef} className="produto-ean">{ean}</span> 
-            </section>
+            <ProductFeedCartButton onChange={(n:number)=>{handleClick("CART", n)}} value={cartHandler.count(ean)} />
+            
+            {listMode == "block" ?
+            <React.Fragment>
+                <section> <ProductImageSection images={images}/>  </section>
+                <section className='product-feed-item-body' onClick={()=>{ handleClick("MOVE")}}>
+                    <span className="produto-nome"> {specification} </span>
+                    <div className='product-feed-item-prices'>
+                        <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>
+                            {    prices[0] == 0 ?
+                                <React.Fragment> Preço sobre orçamento </React.Fragment> :
+                                <React.Fragment>  R$: {prices[0].toFixed(2)} </React.Fragment>
+                            }
+                        </span>
+                        <span>
+                            { prices[0] != prices[1] &&  <React.Fragment> {`orfertas de ${prices[0].toFixed(2)} até ${prices[1].toFixed(2)}`} </React.Fragment>}
+                        </span>
+                    </div>      
+                </section>
+                <section className='product-feed-item-footer'>
+                    {   (listMode == "block") &&
+                        <React.Fragment>
+                            <button onClick={() => handleClick("COPY")}> <MdContentCopy></MdContentCopy></button>
+                            <span ref={eanRef} className="produto-ean">{ean}</span>
+                        </React.Fragment>
+                    }
+                </section>
+            </React.Fragment>
+            :
+            <React.Fragment>
+                <span> {specification} </span>
+            </React.Fragment>
+        
+        }
+          
         </div>
     )
 }

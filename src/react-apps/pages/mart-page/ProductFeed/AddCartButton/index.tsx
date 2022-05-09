@@ -1,9 +1,5 @@
 import React from 'react'
 import './style.css'
-import { IoIosAddCircleOutline } from 'react-icons/io'
-import { MdExposurePlus1, MdOutlineAddCircle } from 'react-icons/md'
-import { FaPlus, FaShoppingBasket } from 'react-icons/fa'
-import { RiShoppingBasketFill } from 'react-icons/ri'
 import { BsCartPlus } from 'react-icons/bs'
 
 export namespace AddCartButton{
