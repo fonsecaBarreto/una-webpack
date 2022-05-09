@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useEffect, useState } from 'react'
+import React, { ReactNode, useContext, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
 import Guard from './Guard';
@@ -22,8 +22,17 @@ export function AppRouter({ }){
     const dispatch = useDispatch()
     var { user, god_mode, user_address } = useSelector((state:any)=>state.main) 
 
-    const beforeEach = async () => {
+    useEffect(()=>{
+      if(user){
+        const addressStorage = user.company.addresses[0]
+        if(addressStorage) dispatch(setUserAddress(addressStorage)) ;
+      }else{
+        const addressStorage: any = localStorage.getItem(global.location_storage_key);
+        if(addressStorage) dispatch(setUserAddress(JSON.parse(addressStorage))) 
+      }
+    },[user])
 
+    const beforeEach = async () => {
       context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
       
       if(!user){ 
@@ -32,20 +41,13 @@ export function AppRouter({ }){
           .then((user)=> dispatch(setUser(user)))
           .finally(()=> dispatch(setLoading(false)))
       }
-      
-      if(!user_address){
-        const addressStorage: any = localStorage.getItem(global.location_storage_key);
-        if(addressStorage) dispatch(setUserAddress(JSON.parse(addressStorage)))
-      }
-
       return null /* Se retornar um string, o app sera redirecionado para lá */
-
     }
 
     return ( 
 		<Router>
 			<Switch>
-        <BlueLagumLayout user={user} menu={true} god_mode={god_mode}>
+        <BlueLagumLayout user={user} god_mode={god_mode}>
           <Switch>     
             {
               ROUTES.map(({component: Component, ...rest }, i:number )=> (

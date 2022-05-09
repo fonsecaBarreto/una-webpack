@@ -50,7 +50,7 @@ const PrimaryLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({childr
         <div className={`blue-lagum bl-aside-menu`}>
 
             {/* Menu */}
-            <AsideOverflowMenu context={menuContext}></AsideOverflowMenu>
+            <AsideOverflowMenu user={user} context={menuContext}></AsideOverflowMenu>
             <aside> <AsideStaticMenu context={menuContext}></AsideStaticMenu> </aside>
             <header>
                 <LayoutHeader user={user} menuContext={menuContext} toggleCart={openCart}></LayoutHeader>

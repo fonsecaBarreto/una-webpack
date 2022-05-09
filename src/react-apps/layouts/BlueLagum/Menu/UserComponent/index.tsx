@@ -4,18 +4,24 @@ import UserImage from '@assets/images/user2.png'
 import { ImExit } from 'react-icons/im'
 import { loginServices } from '@/services/api/login-service'
 
-const UserComponent:React.FunctionComponent<any> = ({ user, menuState }) =>{
+const UserComponent:React.FunctionComponent<any> = ({ user }) =>{
     return (
         <div className="common-menu-user-component">
-            
             <img src={UserImage}/>
-
-            { (menuState.show == true &&  user )&& 
-                <React.Fragment>
-                    <span> { user.nome || "Nome do Usuario" } </span>
-                    { user && <button onClick={loginServices.logout}> <ImExit></ImExit>  Sair </button> }
-                </React.Fragment>
-            }
+            <div >
+                  { 
+                    (user) ? 
+                    <React.Fragment>
+                        <span>{user.nome}</span> 
+                        <span>{user?.roles[0]}</span> 
+                    </React.Fragment>
+                    :
+                    <React.Fragment>
+                        <span>Cadastre-se</span> 
+                        <span>Gratuitamente</span> 
+                    </React.Fragment>
+                  }
+                </div>
         </div>
     )
 }

@@ -6,8 +6,9 @@
     background-color: white;
     border-radius: 2px;
     overflow: hidden;
-    border: solid 1px #ddd;
+    border: solid 1px #ccc;
     cursor: pointer;
+    box-shadow: 0px 1px 2px #0002;
 }
 
 .una-product-feed .product-feed-item:hover {
@@ -26,6 +27,15 @@
     overflow: hidden;
     background-color: rgb(235, 235, 235);
 }
+.una-product-feed .product-feed-item.block .product-feed-item-img-vp::after{
+    content: "";  position: absolute; top: 0; left: 0;
+    width: 100%; height: 0;
+    padding-bottom: 40%;
+    overflow: hidden;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,0.16) 0%, rgba(0,0,0,0.06) 68%, rgba(255, 255, 255, 0) 100%);
+    transition: all .6s;
+}
 
 .product-feed-item .product-feed-item-img-vp img{
     position: absolute; top: 0; left:0; right: 0; bottom: 0; margin: auto;
@@ -33,14 +43,22 @@
     object-fit: cover;
     transition: all .8s;
     background-color: #fff;
-    transform: scale(1.08);
+    transform: scale(1.09);
 }
 
 /* Item hover */
+
+.una-product-feed .product-feed-item:hover .product-feed-item-img-vp::after{
+    background: linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.01) 68%, rgba(255, 255, 255, 0) 100%);
+}
+
+
 .una-product-feed .product-feed-item:hover .product-feed-item-img-vp img{
     box-shadow: 0px 2px 2px #0001;
     transform: scale(1);
 }
+
+
 
 /* body */
 .product-feed-item .product-feed-item-body {
@@ -62,6 +80,10 @@
     color: #222!important;
     text-decoration: none;
     margin-bottom: 2px;
+}
+
+.product-feed-item .product-feed-item-body .produto-nome:hover{
+    text-decoration: underline;
 }
 
 .una-product-feed .product-feed-item .product-feed-item-body > div{
@@ -94,11 +116,14 @@
 
 .product-feed-item-body > div.product-feed-item-prices span:nth-child(1).priceless{
     font-weight: bold;
-    color: white;
-    background-color: grey;
-    font-size: 14px; 
-    padding: 0 12px;
-    display: flex; flex-direction: row; align-items: center;
+    color: rgb(122, 122, 122);
+    font-size: 12px; line-height: 8px;
+    text-transform: uppercase;
+    width: 100%;
+    border-radius: 6px;
+    border: solid 2px rgb(150, 150, 150);
+    background-color: rgba(34, 34, 34, 0.05);
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
 }
 
 /* info container */
@@ -116,10 +141,7 @@
     text-decoration: none;
 }
 
-.product-feed-item-body .produto-ean{
-    font-size: 12px;  line-height: 1em; height: 12px;
-    color: #777;
-}
+
 
 .product-feed-item-body  .produto-brand{
     font-size: 14px;  line-height: 1.15em; height: 14px;
@@ -134,8 +156,29 @@
 /* foooter */
 
 .product-feed-item-footer{
-    height: fit-content;
+    display: flex; align-items: center; justify-content: flex-start;
+    background-color: #718ab3;
+    width: 100%;  height: fit-content;
+    color: white; font-weight: bold;
+    padding: 2px;
+    cursor: default;
 }
+
+.product-feed-item-footer > button{
+    display: flex; align-items: center; justify-content: center;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+}
+
+.product-feed-item-footer .produto-ean{
+   font-size: 12px;  line-height: 1em;
+   cursor: text;
+}
+
+
+/* outros */
 
 .admin-mode-button{
     background-color: rgb(223, 37, 78)!important;
@@ -146,7 +189,7 @@
     background-color: var(--main-color)!important;
 }
 
-/* .una-product-feed .product-feed-item  .product-feed-options{
+.una-product-feed .product-feed-item  .product-feed-options{
     position: absolute; top: 10px; left: 10px; width: 32px; height: 32px;
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: inset 1px 0px #5554;
@@ -160,4 +203,4 @@
 
 .product-feed-item  .product-feed-options:hover{
     background-color: rgba(255, 255, 255, 0.8);
-} */
+} 

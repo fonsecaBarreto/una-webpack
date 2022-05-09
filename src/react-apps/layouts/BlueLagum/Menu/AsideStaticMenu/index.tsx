@@ -2,18 +2,25 @@ import React from 'react'
 import "./style.css"
 import { BlueLakeMenu } from '..'
 import { BiArrowToTop } from 'react-icons/bi'
+import { useHistory } from 'react-router-dom'
 
-const MenuItem: React.FunctionComponent<any> = ({ icon, onHover }) =>{
+const MenuItem: React.FunctionComponent<any> = ({ icon, toDo, onClick }) =>{
+
     return (
-    <li onMouseEnter={onHover} className={`blue-lake-aside-static-menu-item`} > 
+    <li onClick={onClick} className={`blue-lake-aside-static-menu-item`} > 
         <span> {icon && icon}  </span>
     </li>)
 }
 
 export const AsideStaticMenu = ({context}: { context: BlueLakeMenu.Result}) =>{
-    const handleChange = () =>{
-        /* context.toggleMenu() */
-    }
+
+    const history = useHistory();
+
+    const handleClick = (toDo: any) => { 
+        if(typeof toDo == "string") return history.push(toDo);
+        return toDo()
+    } 
+
     return (
     <div className='blue-lake-aside-static-menu'> 
         <header>
@@ -23,7 +30,7 @@ export const AsideStaticMenu = ({context}: { context: BlueLakeMenu.Result}) =>{
                     <ul>
                         { 
                             context.tree.map((p:any,i:number) => ( 
-                                <MenuItem icon={p.icon} onHover={handleChange} key={i}> </MenuItem>)
+                                <MenuItem icon={p.icon} onClick={() =>handleClick(p.toDo)} key={i}> </MenuItem>)
                             )
                         } 
                     </ul> 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ProductImage from "@/public/assets/images/product/empty.svg"
 import { Link, useHistory } from 'react-router-dom'
 import { RiPriceTag2Line } from 'react-icons/ri'
@@ -9,18 +9,16 @@ import { UseCartHandler } from '@/react-apps/store/reducers/cart/handler'
 import { filesService } from '@/services/api/files-service'
 import { HiPlusCircle } from 'react-icons/hi'
 import { FaCartPlus } from 'react-icons/fa'
-import { MdOutlineAddCircle, MdOutlineAddShoppingCart } from 'react-icons/md'
+import { MdContentCopy, MdOutlineAddCircle, MdOutlineAddShoppingCart } from 'react-icons/md'
+import copy from 'copy-to-clipboard';
 
 export type ListMode = "inline" | "block"
-
-
-
 
 export namespace ProductItem {
     export type Params = { onChange: () => void, listMode: ListMode, showOptions: boolean }
 }
 
-export const ProductImageSection: React.FunctionComponent<any> = ({ images }) =>{
+export const ProductImageSection: React.FunctionComponent<any> = ({ images, onClick }) =>{
     
     const [ image, setImage ] = useState(ProductImage);
 
@@ -32,7 +30,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images }) =>
     }, [images])
 
     return (
-        <section className='product-feed-item-img-vp'> 
+        <section className='product-feed-item-img-vp' onClick={onClick}> 
             <img alt="Ilustração do produto" src={image}></img>
         </section>
     )
@@ -44,7 +42,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     const [ prices, setPrices ] = useState([0,0])
     const { ean, specification, brand, presentation, images, supplies} = produto
     const cartHandler = UseCartHandler()
-
+    const eanRef = useRef<any>(null)
     useEffect(()=>{
         if(supplies?.length > 0 ){
             let maior:number =-1, menor: number = -1;
@@ -61,14 +59,23 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
             setPrices([menor, maior]);
         }
     },[ supplies])
+
+    const handleClick = (k: string, p?:any) =>{
+        switch(k){
+            case "COPY": copy(ean); break;
+            case "MOVE": history.push(`/produto/${ean}`) ;break;
+            case "CART": cartHandler.push(p, produto); break;
+        }
+    }
+
     return (
-        <div className={`product-feed-item ${listMode}`} onClick={()=>{/* history.push(`/produto/${ean}`) */ }}>
+        <div className={`product-feed-item ${listMode}`} >
             { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <BsThreeDotsVertical/> </button> }
             <ProductFeedCartButton 
-                onChange={(n:number)=>{cartHandler.push(n, produto)}}
+                onChange={(n:number)=>{handleClick("CART", n)}}
                 value={cartHandler.count(ean)} />
-            <ProductImageSection images={images} />
-            <section className='product-feed-item-body'>
+            <ProductImageSection images={images}/>
+            <section className='product-feed-item-body' onClick={()=>{ handleClick("MOVE")}}>
 
                 <span className="produto-nome"> {specification} </span>
                 <div className='product-feed-item-prices'>
@@ -85,15 +92,11 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                             </React.Fragment>
                         }
                     </span>
-                </div>
-          
-                <div> <span className="produto-ean">{ean}</span> </div>
-                
+                </div>      
             </section>
             <section className='product-feed-item-footer'>
-
-               {/*  <AddCartButton fill={true} value={cartHandler.count(ean)} 
-                    onChange={(n:number)=>{cartHandler.push(n, produto)}}></AddCartButton> */}
+                <button onClick={() => handleClick("COPY")}> <MdContentCopy></MdContentCopy></button>
+                <span ref={eanRef} className="produto-ean">{ean}</span> 
             </section>
         </div>
     )

@@ -2,7 +2,7 @@
 import React, { useContext, useState } from 'react'
 import './style.css'
 import ToggleButton from "../../components/ToggleButton"
-import LogoImg from '@/public/assets/images/logo.svg' 
+import LogoImg from '@/public/assets/images/logotest.svg' 
 import SearchBar from '../../components/SearchBar'
 import OptionsNav from './OptionsNav'
 import { Link, useHistory, useLocation } from 'react-router-dom'
