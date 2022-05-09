@@ -31,17 +31,18 @@ export const ProductBreadCrumbs:React.FunctionComponent<any> = ({breadCrumbs}) =
     },[breadCrumbs])
 
     return (
-        <section> 
-            <ul className='product-page-bread-crumbs'>
+        <nav className='product-page-bread-crumbs'> 
+            <ul >
                 <li> <Link to={`/mercado`}> <AiFillHome/></Link> </li> 
-                <IoIosArrowForward/>
+                &#8250;
                 <li> <Link to={`${departament.value}`}>{departament.label}</Link> </li> 
-                <IoIosArrowForward/>
+                &#8250;
                 <li> <Link to={`${category.value}`}>{category.label}</Link> </li> 
-                <IoIosArrowForward/>
+                &#8250;
                 <li> <Link to={`${subCategory.value}`}>{subCategory.label}</Link> </li> 
-            </ul>   
-         </section>
+            </ul> 
+        </nav>   
+     
     )
 }
 

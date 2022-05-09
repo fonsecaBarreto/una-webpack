@@ -18,7 +18,11 @@
 
 .una-header-user-button > div > span:nth-child(1){
     font-size: 15px;
+    height: 15px;
+    overflow: hidden;
     font-weight: bold;
+    white-space: normal;
+    text-overflow: ellipsis;
 }
 
 

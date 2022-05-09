@@ -1,7 +1,6 @@
 import React from 'react'
 import './style.css'
 import { FaUserCircle } from "react-icons/fa"
-import { IoMdArrowDropdown } from 'react-icons/io'
 
 export namespace UserButton {
   export type Params = {

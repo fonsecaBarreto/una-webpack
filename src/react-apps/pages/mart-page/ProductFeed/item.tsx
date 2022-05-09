@@ -36,7 +36,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images, onCl
     )
 }
 
-export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, listMode }) =>{
+export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, listMode , showPrices}) =>{
     
     const history = useHistory()
     const [ prices, setPrices ] = useState([0,0])
@@ -78,17 +78,29 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                 <section> <ProductImageSection images={images}/>  </section>
                 <section className='product-feed-item-body' onClick={()=>{ handleClick("MOVE")}}>
                     <span className="produto-nome"> {specification} </span>
-                    <div className='product-feed-item-prices'>
-                        <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>
-                            {    prices[0] == 0 ?
-                                <React.Fragment> Preço sobre orçamento </React.Fragment> :
-                                <React.Fragment>  R$: {prices[0].toFixed(2)} </React.Fragment>
-                            }
-                        </span>
-                        <span>
-                            { prices[0] != prices[1] &&  <React.Fragment> {`orfertas de ${prices[0].toFixed(2)} até ${prices[1].toFixed(2)}`} </React.Fragment>}
-                        </span>
-                    </div>      
+
+                        { showPrices ?
+                            <div className='product-feed-item-prices'>
+                                <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>
+                                    {    prices[0] == 0 ?
+                                        <React.Fragment> Preço sobre orçamento </React.Fragment> :
+                                        <React.Fragment>  R$: {prices[0].toFixed(2)} </React.Fragment>
+                                    }
+                                </span>
+                                <span>
+                                    { prices[0] != prices[1] &&  <React.Fragment> {`orfertas de ${prices[0].toFixed(2)} até ${prices[1].toFixed(2)}`} </React.Fragment>}
+                                </span>
+                            </div> 
+                            :
+                            <div className='product-feed-item-prices'>
+                                <span >
+                                    Cadastre-se
+                                </span>
+                                <span>
+                                 para descobrir as ofertas
+                                </span>
+                            </div> 
+                        }
                 </section>
                 <section className='product-feed-item-footer'>
                     {   (listMode == "block") &&

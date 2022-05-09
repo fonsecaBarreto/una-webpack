@@ -9,15 +9,16 @@ export namespace DropDown {
     export type Params = {
         children : ReactNode
         options?: Options[],
-        onAction: Function
+        onAction: Function,
+        className: string
     }
 }
 
-export const DropDown: FC<DropDown.Params> =  ({ children, options, onAction }) =>{
+export const DropDown: FC<DropDown.Params> =  ({ children, options, onAction, className }) =>{
 
     const [active, setActive ] = useState(false)
     return (
-        <div className="una-drop-down-container" onClick={() => setActive(!active)}  onMouseLeave={()=>setActive(false)}>  
+        <div className={`una-drop-down-container ${className}`} onClick={() => setActive(!active)}  onMouseLeave={()=>setActive(false)}>  
             { children }
             <div className={`una-drop-down-content ${active ? 'show' : ''}`}>
                 { options && options.map((o: any, i:number) =>{

@@ -1,7 +1,7 @@
 .bl-searchbar-input{
     position: relative;
     display: flex; flex-direction: row; align-items: center; 
-    width: 100%; max-width: 600px;  height: 38px;
+    width: 100%; max-width: 500px;  height: 38px;
     border-radius: 4px;
     overflow: hidden;   
     margin-right: 0;

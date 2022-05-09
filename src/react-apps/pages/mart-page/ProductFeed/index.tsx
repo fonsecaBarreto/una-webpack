@@ -39,6 +39,7 @@ export const ProductFeed: React.FunctionComponent<any> = ({ onChange }) =>{
                 )}
                 itemComponent={ ({item_data, listMode })=> (
                     <ProductItem 
+                        showPrices={user}
                         showOptions={god_mode} 
                         listMode={listMode} produto={item_data} 
                         onAction={onChange}
