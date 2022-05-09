@@ -1,46 +1,57 @@
-import React, { FunctionComponent, useContext } from 'react'
+import React, { FunctionComponent, useContext, useEffect } from 'react'
 import { GrLocation } from 'react-icons/gr'
 import './style.css'
 import CepModal from "../../components/CepModal"
 import GlobalContenxt from "@/react-apps/apps/main/global-components-context"
 import { MakeDialogConfig } from 'fck-react-dialog'
 import { useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { global } from "@/services/global-keys"
+import { useDispatch, useSelector } from 'react-redux'
+import { SessionLocation } from '@/domain/SessionLocation'
+import { setSessionAddress } from '@/react-apps/store/reducers/main/actions'
 
-export const LocationSelector: React.FunctionComponent<any> = ({ onChange }) => {
-    return (
-        <button className='bl-location-selector' onClick={onChange}>
-            <span> <GrLocation/> </span>
-            <span> Selecione a sua localidade </span>
-        </button>
-    )
-}
 export const LocationBar = () => {
 
     const history = useHistory()
     const context = useContext(GlobalContenxt);
-    const { user_address } = useSelector((state:any)=>state.main)
+    const dispatch = useDispatch()
+    const { user, session_address } = useSelector((state:any)=>state.main)
 
-    const handleModalResult = (r:any) =>{
-        if(r == -1) return -1;
-        switch(r[0]){
-            case "SIGNIN": history.push("login?v=signin"); break;
-            case "LOCATION":localStorage.setItem(global.location_storage_key,JSON.stringify(r[1])); break;
-            default: return -1;
-        }
-        return -1;
+    useEffect(()=>captureLocationFromStorage(),[])
+
+    const captureLocationFromStorage = () => {
+        var sessionLocation = SessionLocation.get()
+        dispatch(setSessionAddress(sessionLocation)) ;
     }
+
+    const captureLocationFromUser= () => {
+        const {cep, ibge, cidade, uf } = user.company.addresses[0]
+        var sessionLocation  = new SessionLocation(cep, ibge,`${ cidade} - ${uf}`)
+        dispatch(setSessionAddress(sessionLocation)) ;
+    } 
+
     const openModal  =() =>{
-        context.dialog.push(MakeDialogConfig(
-            ({onAction})=>(<CepModal onChange={onAction}></CepModal>),
-            handleModalResult, "Selecione a sua localidade "
+        context.dialog.push(MakeDialogConfig( ({onAction})=>(<CepModal user={user} onChange={onAction}></CepModal>), 
+        (r:any) =>{
+            switch(r){
+                case "SIGNIN" :
+                    if(!user){ history.push("login?v=signin")}
+                    else { captureLocationFromUser()};
+                break;
+                case "UPDATE": captureLocationFromStorage(); break;
+            };
+            return -1;
+
+        },( "Selecione a sua localidade ")
     ))}
+
     return (
         <header className='bl-location-bar'>
             <div className='app-container'>
                 <nav>
-                    <LocationSelector onChange={openModal}></LocationSelector>
+                    <button className='bl-location-selector' onClick={openModal}>
+                        <span> <GrLocation/> </span>
+                        <span>{ session_address ? session_address.label : "Selecione a sua localidade" }</span>
+                    </button>
                 </nav>
             </div>
         </header>
@@ -48,3 +59,8 @@ export const LocationBar = () => {
 }
 
 export default LocationBar
+
+
+
+
+

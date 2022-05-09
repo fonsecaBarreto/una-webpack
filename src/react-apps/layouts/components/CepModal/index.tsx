@@ -1,50 +1,40 @@
 import * as React from 'react';
 import "./style.css"
 import CepInputControl from '@/react-apps/components/una/inputs-control/CepInputControl';
-import { Controls, Forming } from 'fck-react-input-controls';
+import { Forming } from 'fck-react-input-controls';
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls';
-import { GrLocation } from 'react-icons/gr';
+import { SessionLocation } from '@/domain/SessionLocation';
 
-const INITIAL_DATA= {
-    bairro: "",
-    cidade: "",
-    uf: { value:"", label: ""},
-    cep: ""
-}
+const INITIAL_DATA= { cep: "" }
 
 export namespace CepModal {
-    export type Params = {
-        onChange: any
-    }
+    export type Params = {  onChange: any, user: any}
 }
 
-export const CepModal: React.FunctionComponent<CepModal.Params> = ({ onChange }) => {
+export const CepModal: React.FunctionComponent<CepModal.Params> = ({ onChange, user }) => {
     const state = UseStateAdapter(INITIAL_DATA);
-    const handleCep = (result: any) =>{
-        if(!result) return state.loading.set(false)
-        onChange(["LOCATION", result])
-       /*  setCepFound(true)
-        console.log(result)
-        const { ibge, uf, bairro, localidade }  = result
-        let str = `${localidade},${bairro} - ${uf} `
 
-        setResultStr(str) */
+    const handleCep = (result: any) =>{
+        state.loading.set(false);
+        if(result){
+            const { cep, ibge, uf, bairro, localidade }  = result
+            let str = `${localidade},${bairro} - ${uf} `
+            const sessionLocation = new SessionLocation(cep, ibge, str)
+            sessionLocation.store()
+        }
+        onChange("UPDATE")
     }
 
-    
     return(
         <div className='bl-cep-modal'>
-
             <Forming.FormGrid title="" columns={[12]} freeze={state.loading.get}>
                 <CepInputControl beforeSubmit={()=>state.loading.set(true)} onData={handleCep} 
                     value={state.data.get['cep']} onInput={(v: any)=>state.data.onInput('cep', v)}/>
             </Forming.FormGrid>
-
             <div className='bg-cep-modal-user'>
-                <span> Ja sou Cadastrado </span>
-                <button className='una-submit-button-color' onClick={()=>onChange(['SIGNIN'])}>  Entrar  </button>
+               { !user && <span> Ja sou Cadastrado </span>}
+                <button className='una-submit-button-color' onClick={()=> onChange('SIGNIN')}>  { user ? "Usar Meu endereço" : "Entrar"}  </button>
             </div>
-
         </div>
     )
 }   
