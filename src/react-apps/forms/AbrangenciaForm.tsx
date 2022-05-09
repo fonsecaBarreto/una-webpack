@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "./style.css"
 import UnaModalForm from '../components/una/ModalForm'
-import Globalcontext from '@/react-apps/apps/main/global-components-context'
+import { GlobalContext } from '@main/app'
 import LocationSelector from "fck-br-location-selector"
 import { coverageServices } from '@/services/api/companhias-service'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
@@ -22,7 +22,7 @@ const INITIAL_DATA:any = []
 export const AbrangenciaForm: React.FunctionComponent<AbrangenciaForm.Params> = ({ onAction, company_id }) =>{
     const [ result_coverage, setResult_coverage ] = useState<AbrangenciaForm.UFCoverage[] | null>(null)
     const [ initial_coverage, setInitial_coverage ] = useState<AbrangenciaForm.UFCoverage[] | null>(null)
-    const context = useContext(Globalcontext);
+    const context = useContext(GlobalContext);
 
     useEffect(()=> { coverageServices.find(company_id).then((r)=>setInitial_coverage(r?.ufs ?? [])) },[])
     useEffect(()=> { console.log(initial_coverage) },[initial_coverage])

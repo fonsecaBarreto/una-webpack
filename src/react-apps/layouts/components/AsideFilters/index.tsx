@@ -1,3 +1,5 @@
+/* */
+
 import React, { useState, useEffect, ReactNode } from 'react'
 import './style.css'
 import { useWindowSize } from 'fck-components/lib/utils/hooks'

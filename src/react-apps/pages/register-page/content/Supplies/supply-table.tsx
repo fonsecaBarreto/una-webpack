@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react'
-import GlobalContext from "@/react-apps/apps/main/global-components-context"
+import {GlobalContext} from "@main/app"
 import { MakeDialogConfig, MakeNotification, NotificationType, OnActionFunction } from 'fck-react-dialog'
 import MultiplesForms from '@/react-apps/components/MultiplesForms'
 import { SuppliesServices, suppliesServices } from '@/services/api/supplies-services'
-import { CsvSupliesDTo_schema, suply_headers_schema } from './schemas'
+import {  } from './schemas'
 import UseTrigger from '@/react-apps/components/utils/UseTrigger'
 
 export namespace SuplyTable {

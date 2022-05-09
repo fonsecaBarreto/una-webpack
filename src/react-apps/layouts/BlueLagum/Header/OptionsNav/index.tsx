@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
 import './style.css'
-import { IoMdCart } from 'react-icons/io'
 import UserButton from './UserButton'
 import CarrinhoButton from './CarrinhoButton'
 import SearchButton from './SearchButton'
 /* global */
-import globalComponent from '@/react-apps/apps/main/global-components-context';
+import { GlobalContext } from '@main/app';
 /* Dialog helpers */
 import { loginServices } from "@/services/api/login-service"
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,7 +16,7 @@ import { setGodMode } from '@/react-apps/store/reducers/main/actions'
 import { UserProfileRole } from '@/domain/views/User'
 
 export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart, toggleSearch }) =>{
-    const context: any = useContext(globalComponent);
+    const context: any = useContext(GlobalContext);
     const dispatch = useDispatch()
     const history = useHistory()
     const { cart } = useSelector((state: any)=>state.carrinho)

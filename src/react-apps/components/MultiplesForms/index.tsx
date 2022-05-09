@@ -6,7 +6,7 @@ import MkHeader from './Row/MakeHeader'
 import MkContentCol from './Row/MakeEdit'
 import UseCounter from '@/react-apps/components/utils/UseCounter'
 import { useData } from '../utils/UseData'
-import Globalcontext from '@/react-apps/apps/main/global-components-context'
+import {GlobalContext} from '@main/app'
 import { MakeDialogConfig } from 'fck-react-dialog'
 import FormModal from './FormModal'
 
@@ -32,7 +32,7 @@ const validator = new Validator()
 
 export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({ trigger, headers, entries, schema, conflicts, checkList }) =>{
 
-    const context = useContext(Globalcontext)
+    const context = useContext(GlobalContext)
     const [ freeze, setFreeze ] = useState(false)
     const counter = UseCounter()
     const data = useData([])
@@ -82,7 +82,6 @@ export const MultiplesForms: React.FunctionComponent<MultiplesForms.Params> = ({
     }
 
     const itemClick = (formState: any) =>{
-        console.log("Item clicado")
         context.dialog.push(MakeDialogConfig( ({onAction}) =>(
                 <FormModal 
                         onAction={onAction} 

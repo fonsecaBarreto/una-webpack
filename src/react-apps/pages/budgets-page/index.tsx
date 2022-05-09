@@ -6,7 +6,7 @@ import { budgetServices } from '@/services/api/budget-service'
 import FiltersNav from './FiltersNav'
 import Item from './Item'
 import { BudgetState, setBudgets } from '@/react-apps/store/reducers/budgets';
-import GlobalContext from '@/react-apps/apps/main/global-components-context'
+import { GlobalContext } from '@main/app'
 import queryString from 'query-string'
 import { MakeDialogConfig } from 'fck-react-dialog';
 import BudgetView from './modals/BudgetView';

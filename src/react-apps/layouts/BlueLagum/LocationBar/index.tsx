@@ -1,7 +1,7 @@
-import React, { FunctionComponent, useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './style.css'
 import CepModal from "../../components/CepModal"
-import GlobalContenxt from "@/react-apps/apps/main/global-components-context"
+import { GlobalContext } from "@main/app"
 import { MakeDialogConfig } from 'fck-react-dialog'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,7 +12,7 @@ import { HiLocationMarker } from 'react-icons/hi'
 export const LocationBar = () => {
 
     const history = useHistory()
-    const context = useContext(GlobalContenxt);
+    const context = useContext(GlobalContext);
     const dispatch = useDispatch()
     const { user, session_address } = useSelector((state:any)=>state.main)
 

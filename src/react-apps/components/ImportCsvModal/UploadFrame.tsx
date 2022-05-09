@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import './style.css'
 import DropAreaFileInput from "@/react-apps/components/FileInputs/DropAreaFileInput"
 import InlineFileInput from  "@/react-apps/components/FileInputs/InlineFileInput"
-import globalContext from "@main/global-components-context"
+import { GlobalContext } from "@main/app"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import CsvReader from '@/vendors/CsvReader'
 
@@ -17,7 +17,7 @@ export namespace UploadFrame {
 var csvReader: any;
 
 export const UploadFrame: React.FunctionComponent<UploadFrame.Params> = ({onBeforeResult, onResult, headers}) =>{
-     const context = useContext(globalContext)
+     const context = useContext(GlobalContext)
      const [ file, setFile] = useState<File | null>(null)
 
      useEffect(()=>{ csvReader = new CsvReader({ headers }) })

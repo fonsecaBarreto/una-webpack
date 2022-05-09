@@ -8,7 +8,7 @@ import { BiBadgeCheck } from 'react-icons/bi'
 import { MdBlock } from 'react-icons/md'
 
 import { companhiasServices } from '@/services/api/companhias-service'
-import Globalcontext from '@/react-apps/apps/main/global-components-context'
+import { GlobalContext } from '@main/app'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 
 const INITIAL_DATA= {
@@ -29,7 +29,7 @@ export namespace CompanyForm{
 }
 
 export const CompanyForm: React.FunctionComponent<CompanyForm.Params> = ({ entry, onAction, onData}) =>{
-    const context = useContext(Globalcontext)
+    const context = useContext(GlobalContext)
     const state = UseStateAdapter(INITIAL_DATA)
 
     useEffect(()=>{ state.data.set(entry ? entry : INITIAL_DATA) },[entry])

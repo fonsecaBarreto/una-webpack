@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import './style.css'
 import CartItem from './CartItem'
 import { useSelector, useDispatch} from 'react-redux'
-import { pushToCart, removeFromCart, setCart } from "@/react-apps/store/reducers/cart"
+import { setCart } from "@/react-apps/store/reducers/cart"
 import BlueLagumAsideModal from '../AsideModal'
 import { budgetServices } from '@/services/api/budget-service'
-import GlboalContenxt from "@/react-apps/apps/main/global-components-context"
+import { GlobalContext } from "@main/app"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { setLoading } from '@/react-apps/store/reducers/main/actions'
 
@@ -42,7 +42,7 @@ const CartFooter = ({total, onSubmit}: {total: number, onSubmit: any}) =>{
 /* Carrinho*/
 export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, onClose }) =>{
 
-    const context = useContext(GlboalContenxt)
+    const context = useContext(GlobalContext)
     const { user } = useSelector((state: any)=>state.main);
     const { cart } = useSelector((state: any)=>state.carrinho);
     var [ totalProducts, setTotalProducts ]= useState(0);

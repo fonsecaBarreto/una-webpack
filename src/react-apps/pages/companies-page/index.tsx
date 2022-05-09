@@ -1,15 +1,14 @@
 import React, { useContext, useDebugValue, useEffect, useState } from 'react'
 import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
 import FiltersNav from './FiltersNav'
-import GlobalContext from  "@/react-apps/apps/main/global-components-context"
+import { GlobalContext } from  "@main/app"
 import { MakeDialogConfig, MakeOptions }  from 'fck-react-dialog'
 import CompanhiaViewModal from './modals/CompanhiaView'
-import { useDispatch, useSelector } from 'react-redux'
-import { CompaniesState, setCompanhias } from '@/react-apps/store/reducers/companies'
+import { useDispatch } from 'react-redux'
+import { setCompanhias } from '@/react-apps/store/reducers/companies'
 import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
 import { companhiasServices } from '@/services/api/companhias-service'
 import CompaniesFeed from './CompaniesFeed'
-
 
 export const SEARCH_HEADER= {
   params: [ "company_id" ],

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import './style.css'
 import { useSelector } from 'react-redux'
 import ContentPool from '@/react-apps/layouts/components/ContentPool'

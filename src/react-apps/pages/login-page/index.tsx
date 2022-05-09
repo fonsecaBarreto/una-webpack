@@ -8,9 +8,8 @@ import UnaSubmitButton from '../../components/una/inputs-control/SubmitButton'
 import CadastroCarousel from '@/react-apps/components/una/CadastroCarousel'
 import { useHistory } from 'react-router-dom'
 import { loginServices } from '@/services/api/login-service'
-import globalContext from '@/react-apps/apps/main/global-components-context'
+import { GlobalContext } from '@main/app'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
-import { setLoading } from '@/react-apps/store/reducers/main/actions'
 
 const SIGNIN_INITIAL_DATA = {
     credencial: "",
@@ -18,7 +17,7 @@ const SIGNIN_INITIAL_DATA = {
 }
 
 export const LoginPage: React.FunctionComponent<any> = (props) =>{
-    const GlobalContext = useContext(globalContext)
+    const context = useContext(GlobalContext)
     const [ isLoading, setIsLoading ] = useState(false)
     const history = useHistory()
     const [ toSignup, setToSignup ] = useState(false)
@@ -33,7 +32,7 @@ export const LoginPage: React.FunctionComponent<any> = (props) =>{
         .catch(err=>{
             switch(err.name){
                 case "AccessDeniedError":
-                    GlobalContext.dialog.push(MakeNotification(()=>-1,[ "Credencial ou senha estão incorretos" ], "Acesso negado", NotificationType.FAILURE))
+                    context.dialog.push(MakeNotification(()=>-1,[ "Credencial ou senha estão incorretos" ], "Acesso negado", NotificationType.FAILURE))
                 break;
             }
             if(err.params){

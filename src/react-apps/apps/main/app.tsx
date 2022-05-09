@@ -2,20 +2,25 @@ import React, { useEffect, useRef } from "react";
 import './style.css'
 import Routes from './routes' 
 import { DialogStack }  from 'fck-react-dialog'
-import MyContext from './global-components-context';
 import { useSelector } from "react-redux";
 
-export const MyApplication = () =>{
-    const { loading } = useSelector((state:any)=>state.main)
-    const [ StackComponent, StackState ] = DialogStack();
+export const GlobalContext = React.createContext<any>({});
+
+export const App = () =>{
     const appRef = useRef<HTMLHeadingElement>(null)
+
+    const { loading } = useSelector((state:any)=>state.main)
+
+    const [ StackComponent, StackState ] = DialogStack();
+
     return (
-        <MyContext.Provider value={{ dialog: StackState, app: appRef }}>
+        <GlobalContext.Provider value={{ dialog: StackState, app: appRef }}>
             <div id="App" ref={appRef} className={`${loading ? "app-is-loading" : ""}`} > 
                 <Routes></Routes> 
-                <StackComponent></StackComponent>
+                <StackComponent></StackComponent> 
             </div>
-        </MyContext.Provider>
+        </GlobalContext.Provider>
     )
 }
-export default MyApplication
+
+export default App

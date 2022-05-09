@@ -2,16 +2,15 @@ import React, { ReactNode, useContext, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
 import Guard from './Guard';
-import globalContext from "@/react-apps/apps/main/global-components-context"
+import { GlobalContext } from "@/react-apps/apps/main/app"
 import BlueLagumLayout from '@/react-apps/layouts/BlueLagum' 
 import { ROUTES } from './routes'
 import { setLoading, setUser, setSessionAddress } from '@/react-apps/store/reducers/main/actions';
 import { loginServices } from '@/services/api/login-service';
-import { SessionLocation } from '@/domain/SessionLocation';
 
 export function AppRouter({ }){
 
-    const context = useContext(globalContext);
+    const context = useContext(GlobalContext);
     const dispatch = useDispatch();
     var { user, god_mode } = useSelector((state:any)=>state.main) 
 
@@ -29,7 +28,7 @@ export function AppRouter({ }){
 
     return ( 
 		<Router>
-			<Switch>
+      <Switch>
         <BlueLagumLayout user={user} god_mode={god_mode}>
           <Switch>     
             {

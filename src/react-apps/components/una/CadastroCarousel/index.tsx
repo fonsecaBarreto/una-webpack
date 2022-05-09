@@ -5,7 +5,7 @@ import { Controls, Forming } from 'fck-react-input-controls'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import { CadastroCompanhia_schema, CadastroEndereco_schema, CadastroUsuario_schema } from './schemas'
 import { ValidationSchema, Validator } from 'fck-schema-validator'
-import GlobalComponentsContext from '@/react-apps/apps/main/global-components-context'
+import { GlobalContext } from '@/react-apps/apps/main/app'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { loginServices } from "@/services/api/login-service"
 import { useHistory } from 'react-router-dom'
@@ -14,8 +14,6 @@ import { getCitiesByUf, getUfs } from '@/services/ibge'
 import CompanyTypeSelector from './CompanyType'
 
 const validator = new Validator()
-
-
 
 const SIGNUP_INITIAL_DATA = {
     nome: "",
@@ -51,7 +49,7 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
     const [ ufs, setUfs ] = useState([])
     const [ cidades, setCidades ] = useState([])
 
-    const GlobalContext = useContext(GlobalComponentsContext)
+    const context = useContext(GlobalContext)
     const signupState = UseStateAdapter(SIGNUP_INITIAL_DATA)
     const enderecoState = UseStateAdapter(ENDERECO_INITIAL_DATA)
     const juridicoState = UseStateAdapter(JURIDICO_INITIAL_DATA)
@@ -101,13 +99,13 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
 
         try{
             await loginServices.signup(data);
-            GlobalContext.dialog.push(MakeNotification(()=>-1,[ 
+            context.dialog.push(MakeNotification(()=>-1,[ 
                 "Bem Vindo a UNA Compras",
                 "Cadastro efetuado com successo!", 
                 "Obrigado pela confiança, entraremos em contato em breve!"], "Sucesso!", NotificationType.SUCCESS));
             history.push("/login?v=signin");
         }catch(err:any){
-            GlobalContext.dialog.push(MakeNotification(()=>-1,[ err?.message ], "Algo Errado", NotificationType.FAILURE))
+            context.dialog.push(MakeNotification(()=>-1,[ err?.message ], "Algo Errado", NotificationType.FAILURE))
             setCarouselInitialIndex(-1);
             if(err.params) {
                 let paramsKeys = Object.keys(err.params);

@@ -3,7 +3,7 @@ import "./style.css"
 import { Controls, Forming } from 'fck-react-input-controls'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import UnaModalForm from '../components/una/ModalForm'
-import Globalcontext from '@/react-apps/apps/main/global-components-context'
+import { GlobalContext } from '@main/app'
 import SwitchButton from '../components/una/switchButton'
 import { BiBadgeCheck } from 'react-icons/bi'
 import { MdBlock } from 'react-icons/md'
@@ -34,7 +34,7 @@ export namespace UserForm{
 }
 
 export const UserForm: React.FunctionComponent<UserForm.Params> = ({ entry, onAction, company_id }) =>{
-    const context = useContext(Globalcontext)
+    const context = useContext(GlobalContext)
     const state = UseStateAdapter(INITIAL_DATA)
     const [page, setPage] = useState(0);
 

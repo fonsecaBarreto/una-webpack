@@ -1,5 +1,5 @@
 import './style.css'
-import React, {useContext, useEffect, useReducer, useRef, useState} from 'react'
+import React from 'react'
 import Softpages, { PageWrapper } from "@/react-apps/components/una/SoftPages"
 import { AddSuppliesTable, ListSupplies } from './content/Supplies'
 import UseSearchAdapter from '@/react-apps/components/SearchAdapter'

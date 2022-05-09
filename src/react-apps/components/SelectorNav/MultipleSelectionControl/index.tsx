@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import './style.css'
 import Item from './Item'
 import Wrapper, { SelectorNavWrapper } from '../Wrapper'

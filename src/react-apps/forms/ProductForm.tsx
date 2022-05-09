@@ -3,10 +3,7 @@ import "./style.css"
 import { Controls, Forming } from 'fck-react-input-controls'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import UnaModalForm from '../components/una/ModalForm'
-/* import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
- */
-//import { companhiasServices } from '@/services/api/companhias-service'
-import Globalcontext from '@/react-apps/apps/main/global-components-context'
+import { GlobalContext } from '@main/app'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { produtosService } from '@/services/api/produtos-service'
 import MediaPlayListModal from '../components/Modals/MediaPlayList'
@@ -37,7 +34,7 @@ export const ProductForm: React.FunctionComponent<ProductForm.Params> = ({ entry
     
     const { departaments, loadtry } = useSelector( (state: any)=>state.mart);
     const state: any = UseStateAdapter(INITIAL_DATA)
-    const context = useContext(Globalcontext)
+    const context = useContext(GlobalContext)
     const dispatch = useDispatch();
 
     useEffect(()=>{ if(loadtry == 0 ) departamentosService.list().then(data => { dispatch(setDepartaments(data))}); },[loadtry])
