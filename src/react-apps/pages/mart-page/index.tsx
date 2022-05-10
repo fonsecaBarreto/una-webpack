@@ -22,8 +22,6 @@ export const MartPage: React.FunctionComponent<any> = ({ history }) => {
 
 export default MartPage
 
-
-
 /* 
     const handleProductForm =async () =>{
         dispatch(setLoading(true));

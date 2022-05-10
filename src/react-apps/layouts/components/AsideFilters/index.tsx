@@ -8,14 +8,14 @@ export namespace FiltersAsideNav {
     export type Params = {
         children?: ReactNode
         allowedToShow?: boolean,
-        onChange: any
+        onChange?: any
     }
 }
 
 export const FiltersAsideNav: React.FunctionComponent<FiltersAsideNav.Params> = ({ children, allowedToShow = false, onChange }) => {
 
     const { width } = useWindowSize()
-    const [ showFilters, setShowFilters ] = useState<boolean>(true)
+    const [ showFilters, setShowFilters ] = useState<boolean>(false)
     const layoutContext = useContext(BlueLagumContext)
     useEffect(()=>{ setShowFilters(allowedToShow) },[allowedToShow]);
    
@@ -23,7 +23,7 @@ export const FiltersAsideNav: React.FunctionComponent<FiltersAsideNav.Params> = 
         if(width > 960) layoutContext.asideFloat.setContent(null);
         else {
             if(showFilters) { layoutContext.asideFloat.setContent(()=>( 
-                <BlAsideLayout title='Filtros' onClose={()=>onChange(-1)}>{children}</BlAsideLayout>)
+                <BlAsideLayout title='Filtros' onClose={()=>onChange && onChange(-1)}>{children}</BlAsideLayout>)
             )}
             else { layoutContext.asideFloat.setContent(null) }
         }

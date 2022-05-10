@@ -8,6 +8,7 @@
     display: grid; grid-template-columns: 4fr 5fr;
     grid-template-rows: auto;
     gap: 6px; row-gap: 12px;
+
 }
 
 #product-page .product-page-container > section.span1{

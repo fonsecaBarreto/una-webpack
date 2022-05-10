@@ -24,6 +24,7 @@ export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies })
                         {(supplies.length > 0) ? supplies.map((s: any)=>  ( <CompanySupply supply={s}/>) )
                         : 
                         <div className='company-supply-component'> 
+                            <span></span>
                             <span> Preço sobre orçamento </span>
                         </div>
                         } 

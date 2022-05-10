@@ -11,7 +11,7 @@ const STATUS_LIST = [ { value: "1", label: "Ativo"}, { value: "0", label: "Inati
 
 export const CompanhiasFiltersNav: React.FunctionComponent<CompanhiasFiltersNav.Params> = ({ values, company_id, onChange}) =>{
     return (
-        <AsideFilters loading={false}>
+        <AsideFilters>
             { (!values) ? ( <span> Carregando... </span> ) :(
                 <MultipleSelectionControl 
                     title="Status" items={STATUS_LIST} max={1} 

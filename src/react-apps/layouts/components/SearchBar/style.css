@@ -1,13 +1,14 @@
 .bl-searchbar-input{
     position: relative;
-    display: flex; flex-direction: row; align-items: center; 
-    width: 100%; max-width: 500px;  height: 38px;
+    display: grid; grid-template-columns: auto 1fr auto; 
+    width: 100%; max-width: 500px; height: 38px;
     border-radius: 4px;
     overflow: hidden;   
-    margin-right: 0;
-    margin-left: auto;
+    margin-right: 0; margin-left: auto;
     border: solid 2px white;
     box-shadow: 0px 1px 2px #0004;
+    background-color: white;
+    align-items: center;
 }
 
 .bl-searchbar-input input{
@@ -21,19 +22,16 @@
 
 .bl-searchbar-input button{
     display: flex; flex-direction: row; align-items: center; justify-content: center;
-    background-color: transparent;
     border: none; cursor: pointer;
-    height: 100%;
 }
 
 .bl-searchbar-input button.bl-search-cancel{
-    width: 38px;
-    color: black;
-    font-size: 18px;
-}
-
-.bl-searchbar-input button.bl-search-cancel:hover{
-    color: rgb(182, 12, 12);
+    width: 32px; height: 32px;
+    padding: 0 2px;
+    font-size: 16px!important;
+    border-radius: 50%;
+    color: #999!important;
+    background-color: rgba(180, 180, 180, 0.2)!important;
 }
 
 .bl-searchbar-input button.bl-search-button{
@@ -43,8 +41,7 @@
     color:  var(--main-color);
     font-weight: bold;
     font-size: 22px;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px; border-bottom-right-radius: 2px;
 }
 
 @media screen and (max-width: 960px) {

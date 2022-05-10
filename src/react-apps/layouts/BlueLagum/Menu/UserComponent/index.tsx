@@ -1,12 +1,11 @@
 import React from 'react'
 import './style.css'
 import UserImage from '@assets/images/user2.png' 
-import { ImExit } from 'react-icons/im'
-import { loginServices } from '@/services/api/login-service'
 
-const UserComponent:React.FunctionComponent<any> = ({ user }) =>{
+const UserComponent:React.FunctionComponent<any> = ({ user, onClick }) =>{
+
     return (
-        <div className="common-menu-user-component">
+        <div className="common-menu-user-component" onClick={onClick}>
             <img src={UserImage}/>
             <div >
                   { 
