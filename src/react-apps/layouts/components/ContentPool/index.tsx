@@ -10,7 +10,7 @@ export namespace ContentPool {
     export type Params = {
         itemComponent: React.FunctionComponent<any>,
         list_data: ListingView<any, any>,
-        onAction: (key?:string, payload?: any)=>void,
+        onAction: (key:string, payload?: any)=>void,
         initial_mode?: ListMode
         dataAlias?:string,
         header?: (queries: any) => React.ReactNode

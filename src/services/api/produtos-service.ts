@@ -46,6 +46,7 @@ export const produtosService = {
      },
 
      list: async (params: Partial<produtosServices.ListParams>) => {
+          console.log(params)
           const {  p= 1, v="", brand, departament_id, category, subCategory } = params
           var query = `?p=${p}&specification=${v}`;
           if(departament_id) query+=`&departament=${departament_id}`;

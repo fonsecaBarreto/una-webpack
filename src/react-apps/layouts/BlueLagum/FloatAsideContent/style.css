@@ -1,0 +1,37 @@
+@keyframes slideInModal {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+}
+
+.bl-float-aside-overflow{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: none;
+    animation-name: slideInModal;
+    animation-duration: .25s;
+    animation-timing-function: ease;
+    box-shadow: 2px 0px 2px #0003;
+}
+
+.bl-float-aside-overflow.show{
+    display: flex;
+}
+
+.bl-float-aside-content{
+    width: 300px; height: 100%;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 960px){
+    .bl-float-aside-content{
+        width: 80vw;
+    }
+}

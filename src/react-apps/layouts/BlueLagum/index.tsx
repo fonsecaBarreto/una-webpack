@@ -16,6 +16,7 @@ import DepartamentHeader from './DepartamentsHeader'
 import LocationBar from './LocationBar'
 import AsideStaticMenu from './Menu/AsideStaticMenu'
 import AsideOverflowMenu from './Menu/AsideOverflowMenu'
+import FloatAsideContent from './FloatAsideContent'
 
 export namespace BlueLagumLayout {
     export type Params ={
@@ -27,12 +28,18 @@ export namespace BlueLagumLayout {
 
 export const BlueLagumContext = React.createContext<any>({});
 
+const FloatAsideContentHandler = ()=>{
+    const [ content, setContent ] = useState(null)
+    return ({content, setContent})
+}
+
 const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children, user, god_mode}) =>{
     const dispatch = useDispatch()
     const history = useHistory()
     const context: any = useContext(GlobalContext);
     const [ showCart, setShowCart ] = useState(false)
     const menuContext = BlueLakeMenuContext({user})
+    const asideFloat = FloatAsideContentHandler()
 
     const openCart = () =>{
         if(!user){
@@ -49,25 +56,23 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({chil
         } 
     }
     return (
-        <BlueLagumContext.Provider value={{}}>
+        <BlueLagumContext.Provider value={{ asideFloat }}>
             <div className={`blue-lagum bl-aside-menu`}>
-
-                {/* Menu */}
+                <GodModeNotify show={god_mode ?? false} exit={()=>{dispatch(setGodMode(false))}}></GodModeNotify>
+                <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart> 
                 <AsideOverflowMenu user={user} context={menuContext}></AsideOverflowMenu>
+                <FloatAsideContent show={asideFloat.content}> {asideFloat.content} </FloatAsideContent> 
                 <aside> <AsideStaticMenu context={menuContext}></AsideStaticMenu> </aside>
                 <header>
                     <LayoutHeader user={user} menuContext={menuContext} toggleCart={openCart}></LayoutHeader>
                     <LocationBar></LocationBar>
                 </header> 
                 <main>
-                {/*  <DepartamentHeader></DepartamentHeader> */}
-                {children}
+                    {children}
                 </main>
                 <footer>
                     <LayoutFooter></LayoutFooter>  
                 </footer> 
-                <GodModeNotify show={god_mode ?? false} exit={()=>{dispatch(setGodMode(false))}}></GodModeNotify>
-                <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart> 
             </div>
         </BlueLagumContext.Provider>
     )

@@ -1,6 +1,5 @@
 import react, { useEffect, useState } from 'react'
 import AsideFilters from '@/react-apps/layouts/components/AsideFilters'
-import { SearchControl, SelectionControl as SelectorNav } from '@/react-apps/components/SelectorNav'
 import React from 'react'
 import MultipleSelectionControl from '@/react-apps/components/SelectorNav/MultipleSelectionControl'
 

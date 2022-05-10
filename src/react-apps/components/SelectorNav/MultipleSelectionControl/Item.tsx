@@ -1,11 +1,11 @@
 import React from 'react'
-import { SelectionControl } from '.'
+import { MultipleSelectionControl } from '.'
 
 export namespace SelectorNavItem {
     export type Params = {
-        item: SelectionControl.Item,
+        item: MultipleSelectionControl.Item,
         selected : boolean,
-        onClick: ( item: SelectionControl.Item) => void
+        onClick: ( item: MultipleSelectionControl.Item) => void
     }
 }
 
@@ -14,7 +14,9 @@ export const SelectorNavItem: React.FunctionComponent<SelectorNavItem.Params> = 
     return (
         <li onClick={() => onClick({...item})} className={`${selected === true? 'selected' : ''}`} >
             <input readOnly type="checkbox" checked={selected}></input> 
-            {label}
+            <span>
+                {label}
+            </span>
         </li>
     )
 }

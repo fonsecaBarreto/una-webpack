@@ -27,7 +27,7 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
 
     const toSearch =() => { 
         const queryParams = qs.parse(location.search);
-        const newQueries = { ...queryParams, v: searchText};
+        const newQueries = { ...queryParams, v: searchText, p: 1};
         history.push({ search: qs.stringify(newQueries) });
     }
     

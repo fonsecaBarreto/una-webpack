@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import AsideFilters from '@/react-apps/layouts/components/AsideFilters'
-import { SelectionControl as SelectorNav, DateControl } from '@/react-apps/components/SelectorNav'
+import { DateControl } from '@/react-apps/components/SelectorNav'
 import { BudgetState } from '@/react-apps/store/reducers/budgets'
 
 export namespace BudgetFiltersNav {
@@ -35,12 +35,6 @@ export const BudgetFiltersNav: React.FunctionComponent<BudgetFiltersNav.Params> 
                 initial_value={filters.ldate}
                 onChange={(v: any)=>setFilters( prev => ({...prev, ldate: v }))}  
                 title="Data Limite"></DateControl>
-
-          {/*   <SelectorNav 
-                radio={true}
-                title="Status" 
-                onChange={(v: any)=>setFilters( prev => ({...prev, iDate: 123}))}  
-                items={[{label: "15 dias", value: "2"}, { label: "30 das", value: "3"}]}></SelectorNav>  */}
         </AsideFilters>
   )
 }

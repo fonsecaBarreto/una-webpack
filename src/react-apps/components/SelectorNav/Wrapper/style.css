@@ -6,10 +6,10 @@ nav.nav-selector-wrapper{
     border-radius: 5px 5px;
     overflow: none;
     padding: 2px;
-    
 }
 
 .nav-selector-wrapper .nav-selector-wrapper-title{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: flex; flex-direction: row; align-items:center;
     font-size: 16px;line-height: 1em;text-align: left;
     width: 100%;
@@ -24,7 +24,7 @@ nav.nav-selector-wrapper{
     width: 100%;
     max-height: 0;
     overflow-y: auto;
-    padding: 6px 0 0 0;
+    padding: 8px 0 0 0;
 }
 
 .nav-selector-wrapper .nav-selector-wrapper-body.open {
