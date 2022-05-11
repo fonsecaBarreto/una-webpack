@@ -8,10 +8,10 @@ export namespace CategoriasNav {
 }
 
 export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ manager }) => {
-    const { availables, values, onChange } = manager
+    const { isLoading, availables, values, onChange, forceFilters, setForceFilters } = manager
     return (
-        <Asidefilters onChange={(v:any)=>{if(v==-1)return onChange({filters:null}, false)}} allowedToShow={ values?.filters[0] ? true : false} >
-            <React.Fragment>
+        <Asidefilters isLoading={isLoading} onChange={(v:any)=>{if(v==-1)return setForceFilters(false)}} allowedToShow={forceFilters} >
+            {( !isLoading ) && <React.Fragment>
                  <MultipleSelectionControl title="Departamentos" items={availables.departaments} max={1} 
                     value={ !values?.departament ? [] : [{ value: values.departament }]}
                     onChange={(p: any)=> onChange( { departament_id : p.map((b: any)=>b.value) }, true)} >
@@ -28,7 +28,7 @@ export const CategoriasNav: React.FunctionComponent<CategoriasNav.Params> = ({ m
                     value={values["brand"].map((v:string)=>({value: v}))}
                     onChange={(p: any)=>{ onChange({ brand: p.map((b: any)=>b.value) }, false)}} >
                 </MultipleSelectionControl>   
-            </React.Fragment>
+            </React.Fragment>}
         </Asidefilters>
     )
 }

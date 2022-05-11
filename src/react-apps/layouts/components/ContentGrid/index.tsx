@@ -14,13 +14,8 @@ export const ContentGrid: React.FunctionComponent<ContentGrid.Params> = ({ child
     return (
         <div id="departamento-content-grid">
             {
-                loading ? 
-                [...Array(2)].map((x,i) =>(
-                    <section className={`${loading ? "una-gradiente-loading" : ""}`}>  </section> 
-                ))
-                :
                 React.Children.map(children, (x,i) =>(
-                    <section> {x} </section> 
+                    <section className={`${loading ? "una-gradiente-loading" : ""}`}> { x } </section> 
                 ))
             }       
         </div>

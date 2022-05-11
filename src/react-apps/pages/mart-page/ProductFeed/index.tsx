@@ -14,7 +14,7 @@ export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
     const handleChange = (key:string, p?: any) =>{
         switch(key){
             case "SET_PAGE": manager.onChange({p}, false); break;
-            case "SHOW_FILTERS": manager.onChange(p, false); break;
+            case "SHOW_FILTERS": manager.setForceFilters(true); break;
             case "ADMIN": {  alert("Função desabilitada no momento") }; break;
         }
     } 

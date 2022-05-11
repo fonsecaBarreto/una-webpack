@@ -7,9 +7,9 @@ export namespace BlueLagumAsideModal {
         onClose: () => void,
         footer?: ReactNode,
         title:string
+        loading: boolean
     }
     export interface Params extends LayoutParams{
-        loading: boolean,
         show: boolean,
         dir?: "left" | "right",
         className?: string,
@@ -19,9 +19,9 @@ export namespace BlueLagumAsideModal {
 }
 
 
-export const BlAsideLayout:React.FunctionComponent<BlueLagumAsideModal.LayoutParams> = ( { children, footer, title, onClose }) =>{
+export const BlAsideLayout:React.FunctionComponent<BlueLagumAsideModal.LayoutParams> = ( { loading, children, footer, title, onClose }) =>{
     return (
-        <div className="bl-aside-modal">
+        <div className={`bl-aside-modal ${loading ? 'bl-aside-loading' : ''}`}>
             <header>
                 <button className='bl-close-btn' onClick={onClose}> &#10005; </button> 
                 <span> {title}</span>
@@ -36,13 +36,13 @@ export const BlAsideLayout:React.FunctionComponent<BlueLagumAsideModal.LayoutPar
     )
 }
 
-export const BlueLagumAsideModal: React.FunctionComponent<BlueLagumAsideModal.Params> = ({ show, loading, onClose, content, footer, title, dir="right", className }) =>{
+export const BlueLagumAsideModal: React.FunctionComponent<BlueLagumAsideModal.Params> = ({ show, content, dir="right", className, ...rest }) =>{
     return (
         <React.Fragment>
-           { show && <div className={`bl-aside-modal-overflow ${className} ${loading ? "bl-aside-loading" : ""}`} 
+           { show && <div className={`bl-aside-modal-overflow ${className}`} 
                 style={{ justifyContent: dir == "right" ? "flex-end" : "flex-start"  }}>
                     <div className={`bl-aside-modal-content`}>
-                        <BlAsideLayout onClose={onClose} footer={footer} title={title} >
+                        <BlAsideLayout { ...rest } >
                             {content}
                         </BlAsideLayout>
                     </div>

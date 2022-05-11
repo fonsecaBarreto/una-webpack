@@ -47,7 +47,7 @@ export const UserFileItem: React.FunctionComponent<UserFileItem.params> = ({comp
         <div className={`user-file-item ${sending? "sending" : ""}`}> 
             <section>
                 <div className={`${userFile ? "success" :  "warning"}`}>
-                    { sending ? <span>...</span> : userFile ? <span>&check;</span> :  <span>&#10006;</span>}
+                    { sending ? <span>...</span> : userFile ? <span> &#10003; </span> :  <span>&#10006;</span>}
                 </div>
             </section>
             <section>

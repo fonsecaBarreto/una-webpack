@@ -12,7 +12,7 @@ export const MartPage: React.FunctionComponent<any> = ({ history }) => {
         <div id="departamento-page">
             <div className='app-container'>
                 <ContentGrid loading={fetchManager.isLoading}>
-                    <CategoriasNav manager={fetchManager}></CategoriasNav> 
+                   <CategoriasNav manager={fetchManager}></CategoriasNav> 
                     <ProductFeed manager={fetchManager} ></ProductFeed>
                 </ContentGrid>  
             </div> 

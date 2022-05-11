@@ -11,9 +11,11 @@ export const SEARCH_HEADER= {
     params : [ "departament_id" ],
     search : [ "category", "subCategory", "brand", "v", "p", "filters" ]
 };
+
 export namespace UseFetchManager {
     export type Departaments = Record< "departaments" | "brands" | "categories" | "presentations"  | "subCategories" , LabelView[]>
 }
+
 export const INITIAL_DEPARTAMENTS = {
     departaments: [],  brands: [], categories:[], presentations:[], subCategories:[]
 }
@@ -21,6 +23,7 @@ export const INITIAL_DEPARTAMENTS = {
 
 export const UseFetchManager = () =>{
     const dispatch = useDispatch()
+    const [ forceFilters, setForceFilters ] = React.useState(false);
     const [ isLoading, setIsLoading ] = React.useState(true);
     const [ availables , setAvailabes ] = React.useState<UseFetchManager.Departaments>({ ...INITIAL_DEPARTAMENTS })
     const [ values, setValues ] = React.useState<any>({})
@@ -84,7 +87,7 @@ export const UseFetchManager = () =>{
             .finally(()=>{ setIsLoading(false) })
     } 
 
-    return ({ isLoading, availables, values, onChange: handleChange })
+    return ({ isLoading, availables, values, onChange: handleChange, forceFilters, setForceFilters })
 }
 
 
