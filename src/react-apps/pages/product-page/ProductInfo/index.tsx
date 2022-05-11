@@ -2,9 +2,11 @@ import React from 'react'
 import "./style.css"
 import { UseCartHandler } from "@/react-apps/store/reducers/cart/handler"
 import CompanySupply from '../CompanySupply'
+import { useSelector } from 'react-redux'
 
 
 export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies }) =>{
+    const { user } = useSelector((state: any) => state.main)
     const cartHandler = UseCartHandler()
     return (
         <div className='product-page-info'>
@@ -15,21 +17,23 @@ export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies })
             </div>
 
             <div>
-                <React.Fragment>
-                    <section>
-                        <span> Ofertas Para este item: </span>
-                    </section>
+                { !user ? <span className='product-page-info-priceless'> Cadastre-se para descobrir as ofertas </span> :
+                    <div className='product-page-info-supplies'>
+                        <section>
+                            <span> Ofertas Para este item: </span>
+                        </section>
 
-                    <section>
-                        {(supplies.length > 0) ? supplies.map((s: any)=>  ( <CompanySupply supply={s}/>) )
-                        : 
-                        <div className='company-supply-component'> 
-                            <span></span>
-                            <span> Preço sobre orçamento </span>
-                        </div>
-                        } 
-                    </section>
-                </React.Fragment>
+                        <section>
+                            {(supplies.length > 0) ? supplies.map((s: any, i:number)=>  ( <CompanySupply key={i} supply={s}/>) )
+                            : 
+                            <div className='company-supply-component'> 
+                                <span></span>
+                                <span> Preço sobre orçamento </span>
+                            </div>
+                            } 
+                        </section>
+                    </div>
+                }
             </div>
 
             <div>

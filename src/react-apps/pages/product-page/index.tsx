@@ -8,9 +8,11 @@ import LoadingComponent from '@/react-apps/components/una/Loading'
 import ProductInfo from './ProductInfo'
 import { getUfName } from '@/services/ibge'
 import { ListTree } from './ListTree'
+import { useSelector } from 'react-redux'
 const SEARCH_HEADER = { params: [ "ean"] }
 
 export const ProductPage: React.FunctionComponent<any> = ({ location, history }) => {
+  const { user } = useSelector((state: any) => state.main)
   const { parsedParams } = UseSearchAdapter({ header : SEARCH_HEADER})
   const [ product, setProduct ] = useState<any>(null);
   const [ breadCrumbs, setBreadCrumbs] = useState(null);
@@ -42,14 +44,11 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
                 <ProductInfo product={product} supplies={product.supplies}></ProductInfo>
               </section> 
             </div>
-
-            <div>
+            { (user && product.supplies.length > 0) && <div>
               <SupplyPanel supplies={product.supplies}></SupplyPanel>
-            </div>
-
+            </div>}
           </React.Fragment>
-
-          }
+        }
       </div>
     </div>
   )
@@ -109,12 +108,12 @@ export const SupplyPanel: React.FunctionComponent<any> = ({supplies}) => {
 }
 
 
-      /* if(uf.childs){
-        await Promise.all(uf.childs.map( async (cidade) => {
-          cidade.label = await getMunicipioName(cidade.value)
-          return cidade
-        }))
-      } */
+  /* if(uf.childs){
+    await Promise.all(uf.childs.map( async (cidade) => {
+      cidade.label = await getMunicipioName(cidade.value)
+      return cidade
+    }))
+  } */
 
 
 
