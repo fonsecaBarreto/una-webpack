@@ -52,6 +52,7 @@
     box-shadow: 0 2px 1px #ddd;
     border: solid 1px #ddd;
     position: relative;
+    font-size: 26px;
 }
 
 .bl-common-content-pool > header > section:nth-child(2) button:after{

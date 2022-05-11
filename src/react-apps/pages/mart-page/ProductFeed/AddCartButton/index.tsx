@@ -1,6 +1,5 @@
 import React from 'react'
 import './style.css'
-import { BsCartPlus } from 'react-icons/bs'
 
 export namespace AddCartButton{
     export type Params = {
@@ -18,7 +17,7 @@ export const ProductFeedCartButton = ({value =0, onChange}: any) => {
                     <button onClick={()=>onChange(-1)}>-</button>
                     <span> {value} </span>
                 </React.Fragment>}
-                <button onClick={()=>onChange(1)}>{value == 0 ? <BsCartPlus/>: "+"}</button>
+                <button onClick={()=>onChange(1)}>{"+"}</button>
             </section>
         </div>)
 }

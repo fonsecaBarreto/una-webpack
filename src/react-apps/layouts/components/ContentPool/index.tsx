@@ -1,10 +1,6 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import './style.css'
-import { AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 import { ListingView } from '@/domain/views/ListingView'
-import { RiLayoutGridFill } from 'react-icons/ri'
-import { VscThreeBars } from 'react-icons/vsc'
-import LoadingComponent from '@/react-apps/components/una/Loading'
 
 export namespace ContentPool {
     export type Params = {
@@ -23,12 +19,12 @@ export type ListMode = "inline" | "block"
 export const PageNavigator = ({ pages=1, index, onClick}: {onClick:any, pages: number, index: number}) =>{
     return (
         <div className='page-navigator-section'>
-            <button disabled={index == 1} className='page-navigator-btn' onClick={()=>onClick(index-1)}> <AiOutlineArrowLeft/> </button>
+            <button disabled={index == 1} className='page-navigator-btn' onClick={()=>onClick(index-1)}> &laquo; </button>
             { [ ...Array(pages)].map((p, i)=>{
                 return ( <button onClick={()=>onClick(i+1)} key={i}
                     className={`page-navigator-btn ${ (index == i+1) ? "selected": ""}`}>{i + 1}</button>)
             })}
-            <button disabled={index == pages } className='page-navigator-btn' onClick={()=>onClick(index+1) } > <AiOutlineArrowRight/> </button>
+            <button disabled={index == pages } className='page-navigator-btn' onClick={()=>onClick(index+1) } > &raquo; </button>
         </div>
     )
 }
@@ -54,8 +50,8 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ heade
                 <section>
                     <nav>
                         { auxHeader && auxHeader(queries) }
-                        <button onClick={()=>setListMode("block")}> <RiLayoutGridFill/></button>
-                        <button onClick={()=>setListMode("inline")}> <VscThreeBars/></button>
+                        <button onClick={()=>setListMode("block")}> &#10066; </button>
+                        <button onClick={()=>setListMode("inline")}> 	&equiv; </button>
                     </nav>
                 </section>
             </header>

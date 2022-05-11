@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FaTruckMoving } from 'react-icons/fa'
-import { FcShop } from 'react-icons/fc'
 import "./style.css"
 export const CompanyTypeSelector:React.FunctionComponent<any>=  ({onChange}) =>{
     const [ selected, setSelected ] = useState(0)

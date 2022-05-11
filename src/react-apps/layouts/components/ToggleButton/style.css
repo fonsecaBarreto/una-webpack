@@ -6,7 +6,7 @@
     border-radius: 50%;
     cursor: pointer;
     background-color: transparent;
-    font-size: 22px;
+    font-size: 32px;
     color: #efefef;
     border: solid 1px #efefef;
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);

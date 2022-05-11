@@ -1,7 +1,6 @@
 import React from 'react'
 import "./style.css"
 import { BlueLakeMenu } from '..'
-import { FaBars } from 'react-icons/fa'
 import MenuItem from './Item'
 import UserComponent from '../UserComponent'
 import { useHistory } from 'react-router-dom'
@@ -23,7 +22,7 @@ export const AsideOverflowMenu = ({context, user}: { context: BlueLakeMenu.Resul
         <header>
             <UserComponent user={user} onClick={handleHeaderClick}></UserComponent>
             <button className={`blao-menu-toggle-button`} onClick={context.toggleMenu}> 
-                <FaBars></FaBars>
+                &equiv;
             </button> 
         </header>
         <main>

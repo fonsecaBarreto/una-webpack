@@ -1,7 +1,6 @@
 import React from 'react'
 import "./style.css"
 import { BlueLakeMenu } from '..'
-import { BiArrowToTop } from 'react-icons/bi'
 import { useHistory } from 'react-router-dom'
 
 const MenuItem: React.FunctionComponent<any> = ({ icon, toDo, onClick }) =>{
@@ -38,7 +37,7 @@ export const AsideStaticMenu = ({context}: { context: BlueLakeMenu.Result}) =>{
             </main>
         <footer>
             <button onClick={context.toggleMenu}>
-                <BiArrowToTop/>
+                <span>&laquo;</span>
             </button>
         </footer> 
     </div>

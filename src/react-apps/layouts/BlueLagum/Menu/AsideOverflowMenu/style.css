@@ -42,7 +42,7 @@
     border-radius: 50%;
     cursor: pointer;
     background-color: transparent;
-    font-size: 22px;
+    font-size: 32px;
     border: solid 2px #efefef;
     color: white;
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);

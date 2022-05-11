@@ -3,7 +3,6 @@ import './style.css'
 import Logo from "@/public/assets/images/logo.svg" 
 import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 import { FiPhone } from  'react-icons/fi'
-import { AiOutlineMail } from  'react-icons/ai'
 
 export const LayoutFooterMainContent = (({}) => {
     return (

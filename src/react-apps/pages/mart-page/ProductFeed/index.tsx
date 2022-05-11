@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import { ProductItem } from './item'
 import SearchHeader, { LabelRow } from '../SearchHeader'
-import { BsFillFilterSquareFill } from 'react-icons/bs'
+
 
 export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
 
@@ -26,7 +26,8 @@ export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
                 header={ (queries: any)=>(<SearchHeader  queries={queries}/>) }
                 auxHeader={(queries: any)=>(
                     <React.Fragment>
-                        <button className='mobile-only' onClick={ () => handleChange("SHOW_FILTERS", {filters:1})}> <BsFillFilterSquareFill/> </button>
+                        <button className='mobile-only' 
+                            onClick={ () => handleChange("SHOW_FILTERS", {filters:1})}> &#10018;</button>
                     </React.Fragment>
                 )}
                 itemComponent={ ({item_data, listMode })=> (
@@ -34,8 +35,8 @@ export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
                         showPrices={user}
                         showOptions={god_mode} 
                         listMode={listMode} produto={item_data} 
-                        onAction={handleChange}
-                    ></ProductItem>
+                        onAction={handleChange}>
+                    </ProductItem>
                 )}>
             </ContentPool>
         </div>

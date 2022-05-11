@@ -1,10 +1,6 @@
 import React, { ReactNode } from 'react'
-import { MdPlayArrow } from 'react-icons/md'
 import './style.css'
-import { Link } from 'react-router-dom'
-import { RiArrowDropRightLine, RiPriceTag2Fill, RiPriceTag2Line } from 'react-icons/ri'
-import { FaSearch } from 'react-icons/fa'
-import { AiFillTags } from 'react-icons/ai'
+
 
 export const LabelResult = ({ label, value}:any) =>{
     return (

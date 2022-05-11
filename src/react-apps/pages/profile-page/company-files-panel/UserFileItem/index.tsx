@@ -1,10 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react'
 import './style.css'
 import { UserFile } from '@/domain/views/User'
-import { BiErrorCircle, BiCheckCircle } from 'react-icons/bi'
-import { AiFillFilePdf, AiOutlineLoading3Quarters } from 'react-icons/ai'
-import InlineFileInput from "@/react-apps/components/FileInputs/InlineFileInput"
 import { filesService } from '@/services/api/files-service'
+import InlineFileInput from "@/react-apps/components/FileInputs/InlineFileInput"
+
 export namespace UserFileItem {
     export type params = {
         entry: UserFile | null,
@@ -48,7 +47,7 @@ export const UserFileItem: React.FunctionComponent<UserFileItem.params> = ({comp
         <div className={`user-file-item ${sending? "sending" : ""}`}> 
             <section>
                 <div className={`${userFile ? "success" :  "warning"}`}>
-                    { sending? <AiOutlineLoading3Quarters/> : userFile ? <BiCheckCircle/> : < BiErrorCircle/>}
+                    { sending ? <span>...</span> : userFile ? <span>&check;</span> :  <span>&#10006;</span>}
                 </div>
             </section>
             <section>
@@ -61,7 +60,7 @@ export const UserFileItem: React.FunctionComponent<UserFileItem.params> = ({comp
                         {
                             userFile ? 
                                 <a className='user-file-item-document' target="_blank" href={`${filesService.get_url(userFile.name)}`}>
-                                    <AiFillFilePdf/> {userFile.alt} 
+                                   {userFile.alt} 
                                 </a>
                             : <InlineFileInput value={incomingFile} onChange={setIncomingFile}/>
                         }

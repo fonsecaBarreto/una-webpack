@@ -2,7 +2,7 @@ import React from 'react'
 import "./style.css"
 import { UseCartHandler } from "@/react-apps/store/reducers/cart/handler"
 import CompanySupply from '../CompanySupply'
-import { BsFillPatchPlusFill } from 'react-icons/bs'
+
 
 export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies }) =>{
     const cartHandler = UseCartHandler()

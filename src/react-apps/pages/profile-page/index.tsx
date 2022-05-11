@@ -3,9 +3,7 @@ import './style.css'
 import { Companhia } from '@/domain/views/Company'
 import { companhiasServices } from '@/services/api/companhias-service'
 import PanelContainer from '../../components/una/panel-container'
-import { BsInfoCircle } from 'react-icons/bs'
-import { MdGroups } from 'react-icons/md'
-import { CgFileDocument } from 'react-icons/cg'
+
 import CompanyInfoPanel from './company-info-panel'
 import LoadingPage from "@/react-apps/components/una/Loading/presentation/LoadingPage"
 import CompanyForm from "@/react-apps/forms/CompanyForm"
@@ -14,8 +12,6 @@ import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeDialogConfig } from 'fck-react-dialog'
 import CompanyStaffPanel from './company-staff-panel'
 import CompanyFilesPanel from './company-files-panel'
-import { AiFillPlusCircle } from 'react-icons/ai'
-import { HiDotsCircleHorizontal } from 'react-icons/hi'
 import AbrangenciaForm from '@/react-apps/forms/AbrangenciaForm'
 import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
 
@@ -70,18 +66,18 @@ export const CompanyProfilePage: React.FunctionComponent<any> = ({location, hist
             <div className='company-container app-container'>
                 { (!company) ? <LoadingPage></LoadingPage> : 
                     <React.Fragment>
-                        <PanelContainer title="Informações da Companhia"  icon={<BsInfoCircle/>} 
-                            headerButtons={[ { content: <HiDotsCircleHorizontal/>, onClick: () => history.push({ search: `?edit=${1}` }) }]}>
+                        <PanelContainer title="Informações da Companhia"  icon={<span>&#8505;</span>} 
+                            headerButtons={[ { content: <span>&#9998;</span>, onClick: () => history.push({ search: `?edit=${1}` }) }]}>
                             <CompanyInfoPanel company={company}></CompanyInfoPanel>
                         </PanelContainer> 
-                        <PanelContainer title="Pessoal" icon={<MdGroups/>} 
-                            headerButtons={[{ onClick: () => history.push({ search: `?newuser=${1}` }), content: <AiFillPlusCircle/> }]}>
+                        <PanelContainer title="Pessoal" icon={<span>&#8505;</span>} 
+                            headerButtons={[{ onClick: () => history.push({ search: `?newuser=${1}` }), content: <span>&#10010;</span> }]}>
                             <CompanyStaffPanel staff={company.staff} onItemClick={(user_id: string) =>  history.push({ search: `?edituser=${user_id}`}) }></CompanyStaffPanel>
                         </PanelContainer>
-                        <PanelContainer title="documentos" icon={<CgFileDocument/>}>
+                        <PanelContainer title="documentos" icon={<span>&#8505;</span>}>
                             <CompanyFilesPanel documents={company?.documents} company_id={company.id}></CompanyFilesPanel>
                         </PanelContainer>
-                        <PanelContainer title="Abrangência" icon={<CgFileDocument/>}>
+                        <PanelContainer title="Abrangência" icon={<span>&#8505;</span>}>
                             <AbrangenciaForm  onAction={()=>{}} company_id={company.id}/>
                         </PanelContainer>
                     </React.Fragment> 

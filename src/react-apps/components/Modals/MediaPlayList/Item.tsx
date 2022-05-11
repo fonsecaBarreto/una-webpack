@@ -1,6 +1,5 @@
 import React from 'react'
 import { UseFileInput } from "@/react-apps/components/FileInputs/main"
-import { BsCloudUploadFill } from 'react-icons/bs'
 
 export const MediaPlayListItem = ({children, onClick}:any) => {
     return (
@@ -29,7 +28,7 @@ export const ProvItem = ({}:any) => {
     return ( 
         <MediaPlayListItem onClick={() =>{}}>
             <div> 
-                <BsCloudUploadFill/>
+                Upload
             </div>
         </MediaPlayListItem>
     )

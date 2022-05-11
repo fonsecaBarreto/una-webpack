@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 import './style.css'
-import { FiSearch } from 'react-icons/fi'
+import SearchIcon from "@assets/icons/search.svg"
 
 export namespace SearchBar {
     export type Params = {
@@ -39,7 +39,9 @@ export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ className
                 onInput={handleInput} 
                 onKeyDown={handleKeys}>
             </input>
-            <button onClick={search} className='bl-search-button'><FiSearch/></button> 
+            <button onClick={search} className='bl-search-button'>
+                <img src={SearchIcon}></img>    
+            </button> 
         </div>
     )
 }

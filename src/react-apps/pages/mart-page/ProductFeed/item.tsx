@@ -1,15 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ProductImage from "@/public/assets/images/product/empty.svg"
-import { Link, useHistory } from 'react-router-dom'
-import { RiPriceTag2Line } from 'react-icons/ri'
-import AddCartButton, { ProductFeedCartButton } from './AddCartButton'
-import { BsThreeDotsVertical } from 'react-icons/bs'
-import { mediaPlayListService } from '@/services/api/media-playlist'
+import { useHistory } from 'react-router-dom'
+import { ProductFeedCartButton } from './AddCartButton'
 import { UseCartHandler } from '@/react-apps/store/reducers/cart/handler'
 import { filesService } from '@/services/api/files-service'
-import { HiPlusCircle } from 'react-icons/hi'
-import { FaCartPlus } from 'react-icons/fa'
-import { MdContentCopy, MdOutlineAddCircle, MdOutlineAddShoppingCart } from 'react-icons/md'
 import copy from 'copy-to-clipboard';
 
 export type ListMode = "inline" | "block"
@@ -70,7 +64,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
 
     return (
         <div className={`product-feed-item ${listMode}`} >
-            { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> <BsThreeDotsVertical/> </button> }
+            { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> ... </button> }
             <ProductFeedCartButton onChange={(n:number)=>{handleClick("CART", n)}} value={cartHandler.count(ean)} />
             
             {listMode == "block" ?
@@ -105,7 +99,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                 <section className='product-feed-item-footer'>
                     {   (listMode == "block") &&
                         <React.Fragment>
-                            <button onClick={() => handleClick("COPY")}> <MdContentCopy></MdContentCopy></button>
+                            <button onClick={() => handleClick("COPY")}> &#x2398;</button>
                             <span ref={eanRef} className="produto-ean">{ean}</span>
                         </React.Fragment>
                     }

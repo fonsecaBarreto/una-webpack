@@ -1,9 +1,5 @@
 import React from 'react'
 import './style.css'
-import { AiOutlineShop } from 'react-icons/ai'
-import { BiBadgeCheck } from 'react-icons/bi'
-import { MdBlock } from 'react-icons/md'
-
 export type ListMode = "inline" | "block" 
 
 export namespace ListViewItem {
@@ -21,7 +17,7 @@ export const ListViewItem: React.FunctionComponent<ListViewItem.Params> = ({ onC
         <div className={`list-view-item ${listMode}`} onClick={()=>onClick("OPTIONS",id)}>
             <div className="list-view-item-content">
                 <section className="list-view-item-icon">
-                    <AiOutlineShop></AiOutlineShop>
+                    <span></span>
                 </section>
 
                 <section>
@@ -30,7 +26,7 @@ export const ListViewItem: React.FunctionComponent<ListViewItem.Params> = ({ onC
 
                 <section>
                     <div className={`list-view-item-name-status-badge ${ativo ?"ativo": "inativo"}`}>
-                        {ativo == true ?   <BiBadgeCheck/>   :<MdBlock/>  }
+                        {ativo == true ?  <span> &#10003; </span>  :  <span>  &#10007; </span>  }
                     </div>
                 </section> 
             </div>
