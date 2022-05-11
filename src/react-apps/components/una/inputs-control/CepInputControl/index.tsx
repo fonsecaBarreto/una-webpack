@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import InputMask from 'react-input-mask';
 import './style.css'
 import { searchCep } from '@/services/viacep'
-import { BiSearch } from 'react-icons/bi'
 
 export const CepInputControl = ({ value, onInput, onData, beforeSubmit }:{ beforeSubmit: Function, value: string, onInput: (value: string) => void, onData: (value?:string) => void }) =>{
     const prevValue = useRef("");
@@ -33,7 +32,7 @@ export const CepInputControl = ({ value, onInput, onData, beforeSubmit }:{ befor
                     onChange={ ( e: ChangeEvent<HTMLInputElement>) => {
                         prevValue.current = value
                         onInput(e.target.value) }}/>
-                <button onClick={submit}> <BiSearch/> </button>
+                <button onClick={submit}> Ok </button>
             </div>
         </Forming.InputWrapper>       
     )

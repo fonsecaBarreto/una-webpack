@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { IoMdArrowDropdown } from 'react-icons/io';
 import "./style.css"
 export namespace ListTree {
     export type Node = { label: string, value: string, childs?:Node[], initial?: boolean }
@@ -11,7 +10,7 @@ export const NodeComponent: React.FunctionComponent<ListTree.Node> = ({ label, v
   const handleClick = ()=>setExpand(prev=>!prev)
   return (
     <div className={`product-list-tree-node`}>
-      <span onClick={handleClick}> { childs?.length && <IoMdArrowDropdown></IoMdArrowDropdown>} {label} </span>
+      <span onClick={handleClick}> { childs?.length && <span>   &#8250; </span>} {label} </span>
      { expand && 
         <nav> 
           { 

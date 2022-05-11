@@ -1,7 +1,6 @@
 import React from 'react'
 import './style.css'
-import { FaUserCircle } from "react-icons/fa"
-
+import UserIcon from "@assets/icons/user.svg"
 export namespace UserButton {
   export type Params = {
     user: any,
@@ -13,7 +12,7 @@ export const UserButton: React.FunctionComponent<any> = ({ user, onClick }) =>{
     return (
         <React.Fragment>
               <button className="una-header-user-button" onClick={onClick} >
-                <FaUserCircle></FaUserCircle>
+                <img src={UserIcon} ></img>
                 <div >
                   { 
                     (user) ? 

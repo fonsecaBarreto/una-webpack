@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import './style.css'
 import Wrapper, { SelectorNavWrapper } from '../Wrapper'
-import { AiOutlineSearch } from 'react-icons/ai'
+
 export namespace SearchControl {
     export interface Params extends Omit<SelectorNavWrapper.Params, 'children'> {
         initial_value?: string;
@@ -28,7 +28,7 @@ export const SearchControl: React.FunctionComponent<SearchControl.Params> =  ({ 
         <Wrapper title={title} showCurtain={false}>
             <section className='search-control'>
                 <input type="text" value={text} onKeyDown={handleKeys} onInput={ ( e:ChangeEvent<HTMLInputElement> ) => setText(e.target.value) }></input>
-                <button className="una-submit-button-color" onClick={handleClick}> <AiOutlineSearch/></button>
+                <button className="una-submit-button-color" onClick={handleClick}> pesquisa </button>
             </section>
         </Wrapper>
     )

@@ -1,6 +1,4 @@
 import React from 'react'
-import { BiExit } from 'react-icons/bi'
-import { MdOutlineAdminPanelSettings } from 'react-icons/md'
 import "./style.css"
 
 
@@ -8,7 +6,7 @@ export const GodModeNotify:React.FunctionComponent<any> = ({show, exit}) => {
     return (
     <div className={`blue-lagum-notify ${show ? "toShow" : ""}`}>
         <section>
-            <MdOutlineAdminPanelSettings/>
+       
         </section> 
 
         <section>
@@ -17,7 +15,7 @@ export const GodModeNotify:React.FunctionComponent<any> = ({show, exit}) => {
         </section>
 
         <section>
-            <button onClick={exit}> <BiExit/> </button>
+            <button onClick={exit}> Sair </button>
         </section>
         
     </div>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { MdArrowForwardIos } from 'react-icons/md';
 import "./style.css"
 
 export const CompanySupply: React.FunctionComponent<any> = ({supply}) => {
@@ -11,7 +10,7 @@ export const CompanySupply: React.FunctionComponent<any> = ({supply}) => {
 
     return (
     <div className='company-supply-component'> 
-        <span><MdArrowForwardIos/></span>
+        <span> &#8250;</span>
         <span>R$: {supply.price.toFixed(2)}</span>
         <span> Expira em : { formatarData(new Date(supply.expiration))}</span>
     </div>)

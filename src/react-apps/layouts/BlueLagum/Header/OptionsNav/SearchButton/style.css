@@ -1,6 +1,9 @@
 .una-header-options-nav button.header-search-button{
     position: relative;
-    font-size: 20px;
+}
+
+.una-header-options-nav button.header-search-button > img{
+    filter: brightness(0) invert(1) ;
 }
 
 

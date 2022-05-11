@@ -1,8 +1,9 @@
 import React from 'react'
 import './style.css'
 import Logo from "@/public/assets/images/logo.svg" 
-import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa'
-import { FiPhone } from  'react-icons/fi'
+import WhatsAppIcon from "@/public/assets/icons/whatsapp.svg" 
+import InstagramIcon from "@/public/assets/icons/instagram.svg" 
+import FacebookIcon from "@/public/assets/icons/facebook.svg" 
 
 export const LayoutFooterMainContent = (({}) => {
     return (
@@ -14,13 +15,16 @@ export const LayoutFooterMainContent = (({}) => {
                 <section> 
                     <ul className="footer-contact">
                         <li> 
-                            <span> <FiPhone></FiPhone>(22) 99231-7557 </span>
+                            <span>(22) 99231-7557 </span>
                         </li>
                     </ul>
                     <nav className="footer-social-nav">
-                        <span className="social-icon"><FaInstagram></FaInstagram></span>
-                        <span className="social-icon"><FaFacebookF></FaFacebookF></span>
-                        <span className="social-icon"><FaWhatsapp></FaWhatsapp></span>
+
+
+
+                        <span className="social-icon"> <img src={InstagramIcon}></img></span>
+                        <span className="social-icon"> <img src={FacebookIcon}></img></span>
+                        <span className="social-icon"> <img src={WhatsAppIcon}></img></span>
                     </nav>
                 </section>
             </div>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, ReactNode, useContext } from 'react'
 import './style.css'
-import { useWindowSize } from 'fck-components/lib/utils/hooks'
 import { BlAsideLayout } from '@/react-apps/layouts/BlueLagum/AsideModal'
 import { BlueLagumContext } from "@/react-apps/layouts/BlueLagum"
+import UseWindowSize from '@/react-apps/components/utils/UseWindowSize'
 
 export namespace FiltersAsideNav {
     export type Params = {
@@ -14,7 +14,7 @@ export namespace FiltersAsideNav {
 
 export const FiltersAsideNav: React.FunctionComponent<FiltersAsideNav.Params> = ({ children, allowedToShow = false, onChange }) => {
 
-    const { width } = useWindowSize()
+    const { width } = UseWindowSize()
     const [ showFilters, setShowFilters ] = useState<boolean>(false)
     const layoutContext = useContext(BlueLagumContext)
     useEffect(()=>{ setShowFilters(allowedToShow) },[allowedToShow]);

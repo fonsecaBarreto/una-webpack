@@ -1,6 +1,13 @@
 .carrinho-button{
     position: relative;
 }
+
+.carrinho-button > img{
+    width: 25px;
+    filter: brightness(0) invert(1);
+}
+
+
 .carrinho-button .carinho-float-indicator{
     position: absolute;
     top: -4px;

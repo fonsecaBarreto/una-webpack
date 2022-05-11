@@ -39,3 +39,19 @@ nav.nav-selector-wrapper{
 }
 
 
+
+
+/*  */
+
+.nvsw-icons{
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.nvsw-icons.down{
+    transform: rotate(270deg);
+}
+
+.nvsw-icons.up{
+    transform: rotate(180deg);
+}

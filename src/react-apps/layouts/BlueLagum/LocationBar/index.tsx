@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { SessionLocation } from '@/domain/SessionLocation'
 import { setSessionAddress } from '@/react-apps/store/reducers/main/actions'
-import { HiLocationMarker } from 'react-icons/hi'
+import LocationPin from "@assets/icons/location-pin.svg"
 
 export const LocationBar = () => {
 
@@ -49,7 +49,7 @@ export const LocationBar = () => {
             <div className='app-container'>
                 <nav>
                     <button className='bl-location-selector' onClick={openModal}>
-                        <span> <HiLocationMarker/> </span>
+                        <span> <img src={LocationPin}></img> </span>
                         <span>{ session_address ? session_address.label : "Selecione a sua localidade" }</span>
                     </button>
                 </nav>

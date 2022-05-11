@@ -1,7 +1,4 @@
 import React, { FunctionComponent } from 'react'
-import { IoMdArrowDropdown } from 'react-icons/io'
-import { MdBakeryDining } from 'react-icons/md'
-import { RiShoppingBasketLine } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import './style.css'
 
@@ -19,17 +16,14 @@ export const DepartamentHeader = () => {
             <div className='app-container'>
                 <nav>
                     <DepartamentDropDown>
-                        <Link className='dep-link' to="/mercado">
-                            <IoMdArrowDropdown/>
-                            Todos departamentos</Link>
+                        <Link className='dep-link' to="/mercado"> Todos departamentos</Link>
                     </DepartamentDropDown> 
                        <DepartamentDropDown>
-                        <Link className='dep-link' to="/mercado/padaria"> 
-                            <MdBakeryDining></MdBakeryDining>Padaria </Link>
+                        <Link className='dep-link' to="/mercado/padaria">  Padaria </Link>
                     </DepartamentDropDown> 
                   
                     <DepartamentDropDown>
-                        <Link className='dep-link' to="/mercado/mercado"> <RiShoppingBasketLine/> Mercado </Link>
+                        <Link className='dep-link' to="/mercado/mercado"> Mercado </Link>
                     </DepartamentDropDown>  
                 </nav>
             </div>

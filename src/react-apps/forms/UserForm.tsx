@@ -5,14 +5,12 @@ import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import UnaModalForm from '../components/una/ModalForm'
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import SwitchButton from '../components/una/switchButton'
-import { BiBadgeCheck } from 'react-icons/bi'
-import { MdBlock } from 'react-icons/md'
 import CheckBoxControl from '../components/una/CbControl'
-import { LabelView } from 'fck-components/lib/Controls'
 import { usersServices } from '@/services/api/users-service'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 
 import { USER_PROFILE_ROLES } from "@/domain/views/User"
+import { LabelView } from '@/domain/views/ListingView'
 
 const INITIAL_DATA= {
     nome: "",
@@ -113,8 +111,8 @@ export const UserInfoForm = ({state}: { state: any}) =>{
             <Forming.InputWrapper label={"Status"}>
                 <SwitchButton fill value={state.data.get['ativo'] === true ? 0 : 1} 
                     onInput={(i)=>state.data.onInput("ativo", i === 0 ? true : false)}> 
-                    <span className='una-company-status-button active' > <BiBadgeCheck/>  Ativo </span>
-                    <span className='una-company-status-button inactive'> <MdBlock/>  Inativo </span>
+                    <span className='una-company-status-button active' >  Ativo </span>
+                    <span className='una-company-status-button inactive'> Inativo </span>
                 </SwitchButton>
             </Forming.InputWrapper>
             

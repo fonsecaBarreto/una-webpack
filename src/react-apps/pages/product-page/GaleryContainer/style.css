@@ -25,7 +25,7 @@
 } 
 
 /* carousel */
-.una-galery-container > section.calery-container-carousel{
+.calery-container-carousel{
     display: flex;
     flex-direction: column;align-items: flex-start; justify-content: flex-start;
     position: relative;
@@ -33,15 +33,28 @@
     background-color: rgb(241, 241, 241);
 }  
 
-.una-galery-container > section.calery-container-carousel > button{
-    width: 100%;
+.calery-container-carousel > button{
+    width: 100%; height: 28px;
     border: none;
     cursor: pointer;
     background-color: white;
     color: black;
-    border: none;
-    font-size: 18px
 }  
+
+section.calery-container-carousel > button > span{
+    font-size: 18px;
+}
+    
+
+/*
+section.calery-container-carousel > button > span.clcarrow-up{
+    transform: rotate(30deg)!important
+}
+    
+ section.calery-container-carousel > button > span.clcarrow-down{
+    transform: rotate(45deg);
+} */
+    
 
 .una-galery-container > section.calery-container-carousel > nav{
     position: relative;
@@ -99,3 +112,4 @@
         width: 76px!important; 
     }  
 }
+

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
 import ImageNotFount from "@/public/assets/images/product/empty.svg"
-import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { mediaPlayListService } from '@/services/api/media-playlist'
 import { filesService } from '@/services/api/files-service'
 
@@ -53,7 +52,7 @@ export const GaleryCarousel: React.FunctionComponent<any> = ({ imgs=[], onClick 
 
     return (
         <section className='calery-container-carousel'>
-            <button onClick={()=>handleClick(-1)}> <MdOutlineKeyboardArrowUp/> </button> 
+            <button onClick={()=>handleClick(-1)} > <span className="clcarrow-up"> &uarr;</span> </button> 
             <nav>
                 <ul style={{top: `${offset * 100}px`}}>
                 {
@@ -65,7 +64,7 @@ export const GaleryCarousel: React.FunctionComponent<any> = ({ imgs=[], onClick 
                 }
                 </ul>
             </nav>
-         <button onClick={()=>handleClick(1)}> <MdOutlineKeyboardArrowDown/> </button>
+            <button onClick={()=>handleClick(1)} > <span className="clcarrow-down"> &darr;</span> </button>
         </section>
     )
 }

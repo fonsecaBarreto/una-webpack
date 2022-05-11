@@ -4,9 +4,6 @@ import { Controls, Forming } from 'fck-react-input-controls'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import UnaModalForm from '../components/una/ModalForm'
 import SwitchButton from '../components/una/switchButton'
-import { BiBadgeCheck } from 'react-icons/bi'
-import { MdBlock } from 'react-icons/md'
-
 import { companhiasServices } from '@/services/api/companhias-service'
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
@@ -57,8 +54,8 @@ export const CompanyForm: React.FunctionComponent<CompanyForm.Params> = ({ entry
                 <Forming.InputWrapper label={"Status"}>
                     <SwitchButton fill value={state.data.get['ativo'] === true ? 0 : 1} 
                         onInput={(i)=>state.data.onInput("ativo", i === 0 ? true : false)}> 
-                        <span className='una-company-status-button active' > <BiBadgeCheck/>  Ativo </span>
-                        <span className='una-company-status-button inactive'> <MdBlock/>  Inativo </span>
+                        <span className='una-company-status-button active' >  Ativo </span>
+                        <span className='una-company-status-button inactive'>  Inativo </span>
                     </SwitchButton>
                 </Forming.InputWrapper>
                 <Controls.TextBox placeHolder="Exemplo: Minha Empresa"

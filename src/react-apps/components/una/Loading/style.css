@@ -7,7 +7,7 @@
 .una-default-loading.una-default-loading-fill{
     width: 100%;
 }
-.una-default-loading > img{
+.una-default-loading > :nth-child(1){
     width: 120px;
     height: auto;
     margin: auto;

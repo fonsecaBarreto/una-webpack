@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import './style.css'
 import { ListingView } from '@/domain/views/ListingView'
-
+import GridIcon from "@assets/icons/grid.svg"
 export namespace ContentPool {
     export type Params = {
         itemComponent: React.FunctionComponent<any>,
@@ -50,7 +50,7 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ heade
                 <section>
                     <nav>
                         { auxHeader && auxHeader(queries) }
-                        <button onClick={()=>setListMode("block")}> &#10066; </button>
+                        <button onClick={()=>setListMode("block")}>  <img src={GridIcon}></img> </button>
                         <button onClick={()=>setListMode("inline")}> 	&equiv; </button>
                     </nav>
                 </section>

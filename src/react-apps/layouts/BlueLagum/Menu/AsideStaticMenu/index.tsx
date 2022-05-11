@@ -7,7 +7,7 @@ const MenuItem: React.FunctionComponent<any> = ({ icon, toDo, onClick }) =>{
 
     return (
     <li onClick={onClick} className={`blue-lake-aside-static-menu-item`} > 
-        <span> {icon && icon}  </span>
+        <span> { icon && icon } </span>
     </li>)
 }
 

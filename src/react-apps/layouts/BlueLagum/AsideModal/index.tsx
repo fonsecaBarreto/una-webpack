@@ -1,6 +1,5 @@
 import React, { Children, FC, ReactNode, useEffect, useState } from 'react'
 import './style.css'
-import { RiCloseFill } from "react-icons/ri"
 
 export namespace BlueLagumAsideModal {
 
@@ -24,7 +23,7 @@ export const BlAsideLayout:React.FunctionComponent<BlueLagumAsideModal.LayoutPar
     return (
         <div className="bl-aside-modal">
             <header>
-                <button className='bl-close-btn' onClick={onClose}> <RiCloseFill></RiCloseFill>  </button> 
+                <button className='bl-close-btn' onClick={onClose}> &#10005; </button> 
                 <span> {title}</span>
             </header>
             <div className="bl-aside-modal-body">
@@ -42,7 +41,6 @@ export const BlueLagumAsideModal: React.FunctionComponent<BlueLagumAsideModal.Pa
         <React.Fragment>
            { show && <div className={`bl-aside-modal-overflow ${className} ${loading ? "bl-aside-loading" : ""}`} 
                 style={{ justifyContent: dir == "right" ? "flex-end" : "flex-start"  }}>
-
                     <div className={`bl-aside-modal-content`}>
                         <BlAsideLayout onClose={onClose} footer={footer} title={title} >
                             {content}

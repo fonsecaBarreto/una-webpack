@@ -409,7 +409,7 @@ button.app-file-input-close{
 .una-default-loading.una-default-loading-fill{
     width: 100%;
 }
-.una-default-loading > img{
+.una-default-loading > :nth-child(1){
     width: 120px;
     height: auto;
     margin: auto;
@@ -442,5 +442,3 @@ button.app-file-input-close{
     width: fit-content;
     padding: 0 12px;
  } */
-
-/*# sourceMappingURL=49.css.map*/

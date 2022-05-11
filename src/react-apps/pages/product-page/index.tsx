@@ -3,18 +3,12 @@ import "./style.css"
 import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
 import { produtosService } from '@/services/api/produtos-service'
 import GaleryContainer from './GaleryContainer'
-import { Product } from '@/domain/views/Product'
 import ProductBreadCrumbs from './ProductBreadCrumbs'
 import LoadingComponent from '@/react-apps/components/una/Loading'
 import ProductInfo from './ProductInfo'
-import { GiJasonMask } from 'react-icons/gi'
-import { json } from 'stream/consumers'
-import { getMunicipioName, getUfName } from '@/services/ibge'
+import { getUfName } from '@/services/ibge'
 import { ListTree } from './ListTree'
-
 const SEARCH_HEADER = { params: [ "ean"] }
-
-
 
 export const ProductPage: React.FunctionComponent<any> = ({ location, history }) => {
   const { parsedParams } = UseSearchAdapter({ header : SEARCH_HEADER})

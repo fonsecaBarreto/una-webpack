@@ -20,6 +20,12 @@
     color: rgb(4, 53, 109);
 }
 
+.bl-location-bar > div > nav > button img{
+    width: 10px;
+    height: auto;
+    filter: invert(5%) sepia(80%) saturate(5600%) hue-rotate(240deg) brightness(90%) contrast(120%)
+}
+
 /* selector */
 .bl-location-selector{
     font-size: 11px;

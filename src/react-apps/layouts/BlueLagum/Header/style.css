@@ -31,7 +31,13 @@
     justify-self: center;
 }
 
+
 .bluelagum-logo-link > img{
+    width: 200px; height: auto; margin: auto;
+    padding-top: 6px;
+}
+
+.bluelagum-logo-link > .header-logo{
     width: 200px; height: auto; margin: auto;
     padding-top: 6px;
 }

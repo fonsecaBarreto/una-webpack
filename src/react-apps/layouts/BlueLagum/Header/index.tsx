@@ -6,9 +6,9 @@ import LogoImg from '@/public/assets/images/logo.svg'
 import SearchBar from '../../components/SearchBar'
 import OptionsNav from './OptionsNav'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { useWindowSize } from 'fck-components/lib/utils/hooks'
 import qs from 'query-string';
 import { useEffect } from 'react'
+import UseWindowSize from '@/react-apps/components/utils/UseWindowSize'
 
 export namespace PrimaryHeader {
     export type Params = {
@@ -22,7 +22,7 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
     const history = useHistory();
     const location = useLocation()
     const [ searchText, setSearchText ] = useState("")
-    const { width } = useWindowSize()
+    const { width } = UseWindowSize()
     const [ showSearchBar, setShowSearchBar ] = useState(false);
 
     const toSearch =() => { 
@@ -40,7 +40,7 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
                 <section>
                     <ToggleButton onClick={menuContext.toggleMenu}></ToggleButton>
                     { !showSearchBar && <Link to="/" className="bluelagum-logo-link">
-                        <img src={LogoImg}/>  
+                        <img src={LogoImg}/>
                     </Link>}
                 </section>
 

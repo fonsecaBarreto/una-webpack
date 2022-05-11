@@ -79,7 +79,7 @@ module.exports ={
             },
             {   test: /\.(ttf)$/, use: "url-loader?limit=100000" },
     
-            {   test: /\.(svg|png|gif|jpg|jpeg|webp)$/,
+            {   test: /\.(png|gif|jpg|jpeg|webp)$/,
                 use: {
                     loader: 'file-loader',
                     options: { 
@@ -87,7 +87,27 @@ module.exports ={
                         outputPath: 'img'
                     }
                 }
-            } 
+            },
+
+
+            {
+                test: /\.svg$/,
+                use: [
+                  {
+                    loader: 'svg-url-loader',
+                    options: {
+                      limit: 10000,
+                    },
+                  },
+                ],
+            },
+        
+        /* 
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack', 'url-loader'],
+            }
+      */
         ]
     },
         
