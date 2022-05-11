@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react'
-import { GiFruitBowl } from 'react-icons/gi'
 import { IoMdArrowDropdown } from 'react-icons/io'
 import { MdBakeryDining } from 'react-icons/md'
 import { RiShoppingBasketLine } from 'react-icons/ri'

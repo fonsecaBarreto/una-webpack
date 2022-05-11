@@ -1,7 +1,5 @@
 import React from 'react'
-import { AiOutlineCloseCircle, AiOutlinePlusCircle } from 'react-icons/ai'
 import { UseFileInput } from "@/react-apps/components/FileInputs/main"
-import LoadingSvg from "@/public/assets/images/round-loading.svg"
 import { BsCloudUploadFill } from 'react-icons/bs'
 
 export const MediaPlayListItem = ({children, onClick}:any) => {
@@ -21,7 +19,7 @@ export const AddItem = ({onChange}:any) => {
     return ( 
         <MediaPlayListItem onClick={Open}>
             <div> 
-                <AiOutlinePlusCircle/>
+                &#10010;
             </div>
         </MediaPlayListItem>
     )
@@ -42,7 +40,7 @@ export const ImageItem = ({src}:any) => {
         <MediaPlayListItem onClick={() =>{}}>
              <img src={src}></img>
              <button className='img-tem-exclude-button'> 
-                <AiOutlineCloseCircle></AiOutlineCloseCircle>
+                &#10005;
              </button>
         </MediaPlayListItem>
     )

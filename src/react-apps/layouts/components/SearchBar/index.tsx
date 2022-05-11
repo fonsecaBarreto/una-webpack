@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import './style.css'
 import { FiSearch } from 'react-icons/fi'
-import { GrClose } from 'react-icons/gr'
 
 export namespace SearchBar {
     export type Params = {
@@ -32,7 +31,7 @@ export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ className
         
         <div className={`bl-searchbar-input ${className}`}>
             <span>
-                <button className='bl-search-cancel mobile-only' onClick={()=>onCancel && onCancel()}> <GrClose/></button>
+                <button className='bl-search-cancel mobile-only' onClick={()=>onCancel && onCancel()}> &#10005;</button>
             </span>
             <input type="text" 
                 placeholder="Pesquise"
