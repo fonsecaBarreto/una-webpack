@@ -5,7 +5,7 @@ import { useSelector, useDispatch} from 'react-redux'
 import { setCart } from "@/react-apps/store/reducers/cart"
 import BlueLagumAsideModal from '../AsideModal'
 import { budgetServices } from '@/services/api/budget-service'
-import { GlobalContext } from "@main/app"
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { setLoading } from '@/react-apps/store/reducers/main/actions'
 

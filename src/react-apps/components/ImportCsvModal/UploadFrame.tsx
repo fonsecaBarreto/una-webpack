@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import './style.css'
 import DropAreaFileInput from "@/react-apps/components/FileInputs/DropAreaFileInput"
 import InlineFileInput from  "@/react-apps/components/FileInputs/InlineFileInput"
-import { GlobalContext } from "@main/app"
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import CsvReader from '@/vendors/CsvReader'
 

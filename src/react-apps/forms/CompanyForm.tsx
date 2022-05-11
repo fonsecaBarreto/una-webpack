@@ -8,7 +8,7 @@ import { BiBadgeCheck } from 'react-icons/bi'
 import { MdBlock } from 'react-icons/md'
 
 import { companhiasServices } from '@/services/api/companhias-service'
-import { GlobalContext } from '@main/app'
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 
 const INITIAL_DATA= {

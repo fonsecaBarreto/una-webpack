@@ -1,16 +1,16 @@
 
-import React, { ReactNode, useContext, useState } from 'react'
+import React, { ReactNode, useContext, useEffect, useState } from 'react'
 import './style.css'
 import LayoutHeader from './Header'
 import LayoutFooter from './Footer' 
 import LayoutCart from './Cart'
-import { GlobalContext } from '@main/app';
+import { GlobalContext } from "@/react-apps/apps/GlobalContext";
 import { MakeDialogConfig } from 'fck-react-dialog'
 import ForbiddenCartModal from '../../components/Modals/ForbiddenCart'
 import { useHistory } from 'react-router-dom'
 import { BlueLakeMenuContext } from './Menu'
 import GodModeNotify from './GodModeNotify'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setGodMode } from '@/react-apps/store/reducers/main/actions'
 import DepartamentHeader from './DepartamentsHeader'
 import LocationBar from './LocationBar'
@@ -20,9 +20,7 @@ import FloatAsideContent from './FloatAsideContent'
 
 export namespace BlueLagumLayout {
     export type Params ={
-        children: ReactNode,
-        user?: any,
-        god_mode?: boolean
+        children: ReactNode
     }
 }
 
@@ -33,13 +31,16 @@ const FloatAsideContentHandler = ()=>{
     return ({content, setContent})
 }
 
-const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children, user, god_mode}) =>{
+const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children }) =>{
     const dispatch = useDispatch()
+    const { user, god_mode } = useSelector((state: any)=>state.main)
     const history = useHistory()
     const context: any = useContext(GlobalContext);
     const [ showCart, setShowCart ] = useState(false)
     const menuContext = BlueLakeMenuContext({user})
     const asideFloat = FloatAsideContentHandler()
+
+    useEffect(()=>{ console.log("renderizando o layout")},[])
 
     const openCart = () =>{
         if(!user){

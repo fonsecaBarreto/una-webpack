@@ -3,7 +3,7 @@ import "./style.css"
 import { Controls, Forming } from 'fck-react-input-controls'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import UnaModalForm from '../components/una/ModalForm'
-import { GlobalContext } from '@main/app'
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import SwitchButton from '../components/una/switchButton'
 import { BiBadgeCheck } from 'react-icons/bi'
 import { MdBlock } from 'react-icons/md'

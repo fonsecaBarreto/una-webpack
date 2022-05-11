@@ -5,7 +5,7 @@ import { Controls, Forming } from 'fck-react-input-controls'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import { CadastroCompanhia_schema, CadastroEndereco_schema, CadastroUsuario_schema } from './schemas'
 import { ValidationSchema, Validator } from 'fck-schema-validator'
-import { GlobalContext } from '@/react-apps/apps/main/app'
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { loginServices } from "@/services/api/login-service"
 import { useHistory } from 'react-router-dom'

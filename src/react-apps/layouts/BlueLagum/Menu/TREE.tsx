@@ -5,35 +5,24 @@ import { MdBusiness } from 'react-icons/md'
 import { GiNotebook } from 'react-icons/gi'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { UserProfileRole } from '@/domain/views/User'
-import { ImProfile} from "react-icons/im"
 import { RiProfileFill } from "react-icons/ri"
 
 export const USER_TREE = (user: any) =>{
 
     if(!user) return [];
-
     const admins = [
-        { label:"Cotações", toDo:"/cotacoes", icon: <GiNotebook/>},
-        { label:"Companhias", toDo:"/companhias", icon: <MdBusiness/>},
-        { label:"Registro", toDo:"/registro", icon: <AiOutlinePlusSquare/>},
+        { label:"Cotações", toDo:"/admin/cotacoes", icon: <GiNotebook/>},
+        { label:"Companhias", toDo:"/admin/companhias", icon: <MdBusiness/>},
+        { label:"Registro", toDo:"/admin/registro", icon: <AiOutlinePlusSquare/>},
     ]
-
     const users = [
-
         { label:"Perfil",  toDo:`/perfil/companhias/${user.company_id}`, icon: <RiProfileFill/>},
-
-
-     /*    {label:"Perfil", icon:<ImProfile/>, childs: [
-            { label:"Usuario", toDo:`/perfil/usuarios/${user.id}`, icon: <FaUser/>},
-            { label:"Companhia",  toDo:`/perfil/companhias/${user.company_id}`, icon: <RiProfileFill/>},
-        ]}, */
     ]
 
     var result: any = []
     if(user.roles.includes(UserProfileRole.ADMIN)) result = [ ...result, ...admins];
 
     result = [ ...users, ...result]
-
     return result;
 }
 

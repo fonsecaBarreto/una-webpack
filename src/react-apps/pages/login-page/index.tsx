@@ -8,7 +8,7 @@ import UnaSubmitButton from '../../components/una/inputs-control/SubmitButton'
 import CadastroCarousel from '@/react-apps/components/una/CadastroCarousel'
 import { useHistory } from 'react-router-dom'
 import { loginServices } from '@/services/api/login-service'
-import { GlobalContext } from '@main/app'
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 
 const SIGNIN_INITIAL_DATA = {

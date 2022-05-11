@@ -6,7 +6,7 @@ import MkHeader from './Row/MakeHeader'
 import MkContentCol from './Row/MakeEdit'
 import UseCounter from '@/react-apps/components/utils/UseCounter'
 import { useData } from '../utils/UseData'
-import {GlobalContext} from '@main/app'
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeDialogConfig } from 'fck-react-dialog'
 import FormModal from './FormModal'
 

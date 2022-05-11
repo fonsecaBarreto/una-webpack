@@ -5,7 +5,8 @@
     grid-template-rows: 1fr;
     gap: 2;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 6px;
+    border: solid 1px #ddd;
 }   
 
 .una-galery-container > section.galery-container-photo-frame {

@@ -1,0 +1,32 @@
+.product-list-tree, .product-list-tree * {
+    box-sizing: border-box;
+}
+
+.product-list-tree{
+    width: 100%;
+    height: fit-content;
+    cursor: default;
+    display: flex; flex-direction: column;
+}
+
+.product-list-tree-node{
+    width: 100%; color: #222;
+    height: fit-content;
+}
+
+.product-list-tree-node > span:nth-child(1){
+    width: 100%;
+    cursor: pointer;
+    height: 282px!important;
+}
+
+.product-list-tree-node:hover > span:nth-child(1){
+    color: #000;
+}
+
+.product-list-tree nav{
+    width: 100%;
+    padding-left: 16px;
+    display: flex; flex-direction: column;
+}
+

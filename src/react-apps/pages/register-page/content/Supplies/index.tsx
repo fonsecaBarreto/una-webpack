@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import TableForms from "fck-table-forms"
 import { MakeDialogConfig, MakeNotification, NotificationType } from 'fck-react-dialog'
-import { GlobalContext } from "@main/app"
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
+
 import { suppliesServices } from '@/services/api/supplies-services'
 import SuppliesCompaniesModal from './CompaniesModal'
 import { CSV_HEADER, SUPPLIES_TABLE_HEADER } from "./schemas"

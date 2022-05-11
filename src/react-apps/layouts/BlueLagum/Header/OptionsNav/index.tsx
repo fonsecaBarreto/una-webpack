@@ -4,7 +4,7 @@ import UserButton from './UserButton'
 import CarrinhoButton from './CarrinhoButton'
 import SearchButton from './SearchButton'
 /* global */
-import { GlobalContext } from '@main/app';
+import { GlobalContext } from "@/react-apps/apps/GlobalContext";
 /* Dialog helpers */
 import { loginServices } from "@/services/api/login-service"
 import { useDispatch, useSelector } from 'react-redux'

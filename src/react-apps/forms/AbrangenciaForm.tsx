@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "./style.css"
 import UnaModalForm from '../components/una/ModalForm'
-import { GlobalContext } from '@main/app'
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import LocationSelector from "fck-br-location-selector"
 import { coverageServices } from '@/services/api/companhias-service'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'

@@ -1,7 +1,7 @@
 import React, { useContext, useDebugValue, useEffect, useState } from 'react'
 import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
 import FiltersNav from './FiltersNav'
-import { GlobalContext } from  "@main/app"
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeDialogConfig, MakeOptions }  from 'fck-react-dialog'
 import CompanhiaViewModal from './modals/CompanhiaView'
 import { useDispatch } from 'react-redux'

@@ -3,7 +3,7 @@ import "./style.css"
 import { Controls, Forming } from 'fck-react-input-controls'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import UnaModalForm from '../components/una/ModalForm'
-import { GlobalContext } from '@main/app'
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { produtosService } from '@/services/api/produtos-service'
 import MediaPlayListModal from '../components/Modals/MediaPlayList'

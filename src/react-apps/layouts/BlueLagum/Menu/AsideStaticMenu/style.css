@@ -11,6 +11,8 @@
     grid-template-rows: 22px 1fr auto;
     overflow: hidden;
     border-right: solid 1px #eee;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgb(225, 235, 243,.92) 0%, rgb(240, 245, 245,.92) 95%, rgba(248, 244, 255, 0.98) 100%);
 }
 
 

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import './style.css'
 import CepModal from "../../components/CepModal"
-import { GlobalContext } from "@main/app"
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeDialogConfig } from 'fck-react-dialog'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'

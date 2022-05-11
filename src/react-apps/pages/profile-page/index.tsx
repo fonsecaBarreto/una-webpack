@@ -10,7 +10,7 @@ import CompanyInfoPanel from './company-info-panel'
 import LoadingPage from "@/react-apps/components/una/Loading/presentation/LoadingPage"
 import CompanyForm from "@/react-apps/forms/CompanyForm"
 import UserForm from '@/react-apps/forms/UserForm'
-import { GlobalContext } from "@main/app"
+import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeDialogConfig } from 'fck-react-dialog'
 import CompanyStaffPanel from './company-staff-panel'
 import CompanyFilesPanel from './company-files-panel'

@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const SRC_DIR =  path.resolve(__dirname, "..", "src")
@@ -18,7 +17,7 @@ module.exports ={
     entry: { ...entries },
     output: {
         path: OUTPUT_DIR,
-        filename: "js/[name][hash].bundle.js",
+        filename: "js/[name][fullhash].bundle.js",
         publicPath: "/",
     },
     resolve: {
@@ -31,13 +30,14 @@ module.exports ={
         },
     },
     plugins: [
+        
         new MiniCssExtractPlugin({ 
             linkType: "text/css",
-            filename: "css/[name].[hash].css",
+            filename: "css/[name].[fullhash].css",
             chunkFilename: "[id].css",
             ignoreOrder: false,
         }),
-        new CleanWebpackPlugin([OUTPUT_DIR]),
+
         ...Object.keys(entries).map(a=>{
             return (
                 new HtmlWebpackPlugin({
