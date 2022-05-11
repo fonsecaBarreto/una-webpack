@@ -82,7 +82,10 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                                     }
                                 </span>
                                 <span>
-                                    { prices[0] != prices[1] &&  <React.Fragment> {`orfertas de ${prices[0].toFixed(2)} até ${prices[1].toFixed(2)}`} </React.Fragment>}
+                                    { prices[0] != prices[1] && 
+                                        <React.Fragment> 
+                                            {`orfertas de ${prices[0].toFixed(2)} até ${prices[1].toFixed(2)}`} 
+                                        </React.Fragment>}
                                 </span>
                             </div> 
                             :

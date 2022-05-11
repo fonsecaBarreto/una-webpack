@@ -11,12 +11,16 @@ export namespace ContentGrid {
 }
 
 export const ContentGrid: React.FunctionComponent<ContentGrid.Params> = ({ children, loading=false }) =>{
-    if(loading) return <div className='cg-grid-loading'> <LoadingComponent/> </div>
     return (
         <div id="departamento-content-grid">
             {
+                loading ? 
+                [...Array(2)].map((x,i) =>(
+                    <section className={`${loading ? "una-gradiente-loading" : ""}`}>  </section> 
+                ))
+                :
                 React.Children.map(children, (x,i) =>(
-                    <section className={`${loading ? "una-gradiente-loading" : ""}`}> {x} </section> 
+                    <section> {x} </section> 
                 ))
             }       
         </div>
