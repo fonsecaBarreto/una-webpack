@@ -3,7 +3,9 @@
 
 .bl-bg-container {
     padding-top: var(--header-height-desktop);
-    background: #0457dd;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #0049be, #4364F7, #045eef);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #0049be, #4364F7, #045eef); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #3a7bd5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top,#045eef, #3a7bd5, #045eef);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #045eef, #3a7bd5, #045eef); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
 }

@@ -12,8 +12,14 @@
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     border-radius: 5px;
-    gap: 20px;
+
 }
+
+.lp-search-box-container > a{
+    color: white;
+    margin-top: 4px;
+}
+
 
 /* texts */
 .lp-search-box-info{
@@ -22,6 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .lp-search-box-info > h2{
@@ -50,6 +57,12 @@
 .lp-search-box-inputs > input{
     width: 100%; height: 100%;
     border: none;
+    outline: none;
+    padding: 0 15px;
+    font-size: 20px;
+    color: rgb(0, 15, 92);
+    font-family: 'Varela Round', sans-serif, Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 1.1pt;
 }
 
 .lp-search-box-inputs > button{
@@ -57,6 +70,7 @@
     height: 100%;
     border: none;
     background-color: white;
+    cursor: pointer;
 }
 
 .head-line-logo{

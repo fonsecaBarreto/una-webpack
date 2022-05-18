@@ -13,7 +13,6 @@ export const HomePage = () => {
             </div>
             <SignUpCall></SignUpCall>
             <VideoContainer></VideoContainer>
-             <SignUpCall></SignUpCall>
         </div> 
     )
 }

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import './style.css'
 import LogoImg from '@/public/assets/images/logo.svg' 
 import { Link, useHistory, useLocation } from 'react-router-dom'
-
+import UserIcon from "@assets/icons/user.svg"
 export const PrimaryHeader: React.FunctionComponent<any> =  ({ })=> {
     return (
         <header className="bls-header">
@@ -15,6 +15,15 @@ export const PrimaryHeader: React.FunctionComponent<any> =  ({ })=> {
                     </Link>
                 </section>
                 <section>
+                    <nav className='bls-aside-header-nav'>
+                        <a className='aside-user' href="/login?v=signup"> 
+                            <img src={UserIcon} ></img>
+                            <div>
+                                <span>Cadastre-se</span> 
+                                <span>Gratuitamente</span> 
+                            </div>
+                        </a>
+                    </nav>
                 </section>
             </div> 
         </header> 

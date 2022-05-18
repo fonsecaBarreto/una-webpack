@@ -3,6 +3,13 @@ import "./style.css"
 import SearchIcon from "@assets/icons/search.svg"
 import Logo from "@assets/images/logo.svg"
 export const Headline: React.FunctionComponent<any> = () =>{
+
+
+    const [ searchText, setSearchText ] = React.useState("")
+
+    const subtmit = () => {
+        window.location.href=`/mercado?v=${searchText}`
+    }
     return (
         <div className='landing-pages-search-box app-container'>
             <div className='lp-search-box-container'>
@@ -15,9 +22,13 @@ export const Headline: React.FunctionComponent<any> = () =>{
                     </span>
                 </div>
                 <div className='lp-search-box-inputs'>
-                    <input></input>
-                    <button> <img src={SearchIcon}></img> </button>
+                    <input 
+                        placeholder='Conte-nos oque procura...'
+                        value={searchText} 
+                        onInput={(e: any)=>setSearchText(e.target.value)}></input>
+                    <button onClick={subtmit}> <img src={SearchIcon}></img> </button>
                 </div>
+                <a href={`/mercado`}> leve me ao mercado </a>
             </div>
         </div>
     )
