@@ -1,0 +1,40 @@
+.una-header-user-button{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.una-header-user-button > img:nth-child(1){
+    width: 28px;
+    filter: brightness(0) invert(1);
+}
+
+
+.una-header-user-button > div{
+    display: flex;flex-direction: column;align-items: flex-start;justify-content: center;
+    gap: 2px;
+}
+
+.una-header-user-button > div > span:nth-child(1){
+    font-size: 15px;
+    height: 15px;
+    overflow: hidden;
+    font-weight: bold;
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+
+
+.una-header-user-button > div > span:nth-child(2){
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 960px){
+    .una-header-user-button > div:nth-child(1){
+        display: none;
+    }
+    
+}

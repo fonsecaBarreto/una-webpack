@@ -1,0 +1,27 @@
+.bl-signupcall{
+    background-color: rgb(233, 233, 233);
+    height: 88px;
+}
+
+.bl-signupcall-content{
+    width: 100%; height: 100%;
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+   
+}
+
+.bl-signupcall-content > button{
+    height: 100%;
+    width: 320px;
+    height: 52px;
+    border-radius: 4px;
+    background-color: #fff;
+    border: none;
+    color: white;
+    font-size: 20px;
+    background-color: rgb(16, 207, 63);
+    cursor: pointer;
+}
+
+.bl-signupcall-content > button:hover{
+    background-color: rgb(30, 224, 78);
+}

@@ -1,0 +1,59 @@
+/* Header */
+.bls-header{
+    height: var(--header-height-desktop);
+}
+
+.bls-header-content{
+    height: 100%; width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 12px;
+}
+
+.bls-header-content > section {
+   height: 100%; width: 100%;
+   display: flex; flex-direction: row;  align-items: center;
+   justify-content: flex-end;
+   column-gap: 12px;
+}
+
+.bls-logo-link{
+    display: flex;  justify-content: center;  align-items: center;
+    margin: auto;
+    justify-self: center;
+}
+
+.bls-logo-link > img{
+    width: 200px; height: auto; margin: auto;
+    padding-top: 6px;
+}
+
+/* toggle button */
+
+.bls-toggle-button{
+    display: flex; align-items: center; justify-content: center; 
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 32px;
+    color: #efefef;
+    border: solid 1px #efefef;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.bls-toggle-button:hover{
+    color: white;
+    border: solid 1px #eee;
+    color: rgb(255, 255, 255);
+    border: solid 1px rgb(255, 255, 255);
+}
+
+@media only screen and (min-width: 1024px){
+    .bls-toggle-button{
+        display: none;
+    }
+}
