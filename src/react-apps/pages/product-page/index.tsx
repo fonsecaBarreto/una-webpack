@@ -37,7 +37,7 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
               </section>
               {/* IMAGE CONTAINER */}
               <section className='span1'> 
-                <GaleryContainer playlist_id={product.media_playlist_id}/> 
+                <GaleryContainer images={product.images}/> 
               </section>
               {/* INFORMAÇÕES */}
               <section className='span1'>

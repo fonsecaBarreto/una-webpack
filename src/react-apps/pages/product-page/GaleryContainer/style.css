@@ -12,14 +12,14 @@
 .una-galery-container > section.galery-container-photo-frame {
     width: 100%;height: 0;
     padding-bottom: 90%;
-    background-color: white;
     position: relative;
     overflow: hidden;
+    background-color: rgb(240, 240, 240);
 } 
 
 .una-galery-container > section.galery-container-photo-frame > img{
     position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;
-    width: 100%; height: auto;
+    width: auto; height: 100%;
     object-fit: cover;
     background-color: white;
 } 
@@ -29,8 +29,9 @@
     display: flex;
     flex-direction: column;align-items: flex-start; justify-content: flex-start;
     position: relative;
-    width: 116px; height: 100%;
+    width: 100px; height: 100%;
     background-color: rgb(241, 241, 241);
+    border-right: solid 1px #bbb;
 }  
 
 .calery-container-carousel > button{

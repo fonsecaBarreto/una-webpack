@@ -11,7 +11,7 @@
     max-width: 960px;
     margin: auto;
     padding-bottom: 48px;
-    padding-top: 64px;
+    padding-top: 56px;
 }
 
 .perks-row .perks-card{
@@ -19,16 +19,20 @@
     width: 100%;
 }
 
+.perks-row .perks-card:hover{
+   /*  transform: scale(1.03);
+    transition: all .35s;
+    box-shadow: 0px 1px 2px 1px #0005; */
+}
 
 .perks-row .perks-card .pcimg-vp{
     position: relative;
-    height: 150px;
-    width: 150px;
+    height: 160px;
+    width: 160px;
     border-radius: 50%;
-    outline: solid 5px rgba(180, 201, 255, 0.7);
+    border: solid 4px rgba(180, 201, 255, 0.7);
     background-color: rgba(255, 255, 255, 0.3);
     margin-bottom: 16px;
-    transition: all .6s;
 }
 
 .perks-row .perks-card .pcimg-vp img{
@@ -41,17 +45,9 @@
     right: 0;
 }
 
-/* .perks-row .perks-card:hover .pcimg-vp {
-    transform: scale(0.95); 
-    transition: all .4s;
-} */
 
-.perks-row .perks-card:hover .pcimg-vp img{
-    transform: scale(1.05);
-    transition: all .3s;
-}
- 
 .perks-row .perks-card > span{
+
     color: rgb(221, 221, 221);
     white-space: normal;
     display: block; 

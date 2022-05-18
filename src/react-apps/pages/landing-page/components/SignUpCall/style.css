@@ -1,6 +1,7 @@
 .bl-signupcall{
     background-color: rgb(233, 233, 233);
-    height: 88px;
+    height: 82px;
+    background: linear-gradient(to bottom, #ebebeb, rgb(231, 233, 238)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .bl-signupcall-content{
@@ -20,6 +21,7 @@
     font-size: 20px;
     background-color: rgb(16, 207, 63);
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 .bl-signupcall-content > button:hover{

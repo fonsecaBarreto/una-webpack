@@ -1,0 +1,36 @@
+.una-video-container{
+    position: relative;
+    width: 100%;
+    padding: 32px 0;
+}
+.una-video-content{
+    display: flex; flex-direction: column; align-items: center; justify-content: center; 
+}
+
+.una-video-content .video-responsive {
+    position: relative!important;
+    width: calc(100% - 520px);
+    padding-bottom: 32%;
+    height: 0;
+    overflow: hidden;
+}
+  
+.una-video-container .video-responsive iframe {
+    position: absolute; left: 0; top: 0;
+    width: 100%;height: 100%;
+} 
+
+@media screen and (max-width: 1440px) {
+
+    .una-video-container .video-responsive {
+        width: calc(100% - 15vw);
+        padding-bottom: 40%;
+    }
+    
+}
+
+@media screen and (max-width: 756px) {
+    .una-video-container .video-responsive {
+        width: calc(100% - 5vw);
+    }  
+} 
