@@ -58,23 +58,10 @@ module.exports ={
                 test: /\.css$/i, 
                 use: [ 
                     {
-                        loader: MiniCssExtractPlugin.loader, 
-                        options: { 
-                            publicPath: "/"
-                        }
+                        loader: MiniCssExtractPlugin.loader, options: { publicPath: "/" }
                     },
-
-                    {
-                        loader: 'css-loader',
-                        options: { sourceMap: true}
-
-                     /*    options:{
-                                   import: true,
-                                   url: true, 
-                                   esModule: true, 
-                                   importLoaders: 1 
-                            } */
-                    }
+                    'css-loader',
+                        
                 ] 
             },
             {   test: /\.(ttf)$/, use: "url-loader?limit=100000" },
@@ -88,8 +75,6 @@ module.exports ={
                     }
                 }
             },
-
-
             {
                 test: /\.svg$/,
                 use: [
@@ -101,19 +86,19 @@ module.exports ={
                   },
                 ],
             },
-        
-        /* 
+        ]
+    },    
+};
+
+
+   /* 
             {
                 test: /\.svg$/,
                 use: ['@svgr/webpack', 'url-loader'],
             }
       */
-        ]
-    },
-        
-    performance: {
+   /*  performance: {
         hints: false,
         maxEntrypointSize: 512000,
         maxAssetSize: 512000
-    }
-};
+    } */

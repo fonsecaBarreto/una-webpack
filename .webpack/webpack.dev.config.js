@@ -10,9 +10,9 @@ module.exports = merge(common, {
         compress: true, port: 3000, hot: true, open: true, 
         historyApiFallback:{
             disableDotRule: false,
-            rewrites: [ 
-              /*   { from: "^/home", to: "/views/landing-page.html"},   */               
-                { from: "^/admin", to: "/views/admin.html"},                  
+            rewrites: [  
+                { from: /^\/$/, to: '/views/landingpage.html' },                   
+                { from: "^/admin", to: "/views/admin.html"},   
                 { from: "^/", to: "/views/main.html"},                  
             ]
         },
