@@ -9,7 +9,7 @@ export const PrimaryHeader: React.FunctionComponent<any> =  ({ })=> {
         <header className="bls-header">
             <div className="bls-header-content app-container">
                 <section>
-                    <button className={`bls-toggle-button`}> &equiv; </button>
+                    <button className={`bls-toggle-button`}> &equiv; </button> 
                     <Link to="/" className="bls-logo-link">
                         <img src={LogoImg}/>
                     </Link>

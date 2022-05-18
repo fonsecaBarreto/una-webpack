@@ -19,11 +19,7 @@
    column-gap: 12px;
 }
 
-.bls-logo-link{
-    display: flex;  justify-content: center;  align-items: center;
-    margin: auto;
-    justify-self: center;
-}
+
 
 .bls-logo-link > img{
     width: 200px; height: auto; margin: auto;
@@ -52,8 +48,17 @@
     border: solid 1px rgb(255, 255, 255);
 }
 
+.bls-logo-link{
+    display: none;
+}
+
 @media only screen and (min-width: 1024px){
     .bls-toggle-button{
         display: none;
+    }
+    .bls-logo-link{
+        display: flex;  justify-content: center;  align-items: center;
+        margin: auto;
+        justify-self: center;
     }
 }

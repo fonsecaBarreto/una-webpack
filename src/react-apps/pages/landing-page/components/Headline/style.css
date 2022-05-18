@@ -58,3 +58,27 @@
     border: none;
     background-color: white;
 }
+
+.head-line-logo{
+    display: none;
+}
+
+@media only screen and (max-width: 756px){
+    .head-line-logo{
+        display: block;
+        object-fit: contain;
+        margin: auto;
+        width: calc(80%);
+        max-width: 300px;
+    }
+    .landing-pages-search-box{
+        padding-top: 22px;
+    }
+
+    .lp-search-box-info > h2{
+        font-size: 18px;
+    }
+    .lp-search-box-info > span{
+        font-size: 14px;
+    }
+}

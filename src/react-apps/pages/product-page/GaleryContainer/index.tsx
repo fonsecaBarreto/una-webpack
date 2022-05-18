@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
-
-import { mediaPlayListService } from '@/services/api/media-playlist'
 import Carousel from './components/Carousel'
 import Frame from './components/PhotoFrame'
 

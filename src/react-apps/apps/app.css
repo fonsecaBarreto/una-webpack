@@ -109,6 +109,7 @@ body {
     max-width: 1440px;
     padding: 0 22px;
     margin: auto;
+    border: solid 1px red;
 }
   
 .app-padding{
