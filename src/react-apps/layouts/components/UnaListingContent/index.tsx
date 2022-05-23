@@ -7,10 +7,19 @@ import LoadingComponent from './standard-items/LoadingComponents'
 import IconePadrao from "./dashed-circle.svg"
 
 export namespace UnaLisingContent {
+
+    export interface MetaData {
+        page: number,            // indice da pagina
+        per_page: number,        // offset
+        page_count: number,      // paginas disponiveis
+        records_count: number,   // contagem total da pesquisa
+    }
+
     export type Params = {
         children: any,
         onChange: any,
         records: any[],
+        metaData?: MetaData | null,
         freeze?: boolean
     }
     export interface ItemProps<Data> {
@@ -21,7 +30,7 @@ export namespace UnaLisingContent {
     }
 }
  
-export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> = ({ children, onChange, records=[], freeze=false}) =>{
+export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> = ({ children, onChange, records=[], metaData,  freeze=false}) =>{
     const [ searchValue, setSearchValue ] = useState("")
     const [ listMode, setListMode ] = useState(true)
     const [ itemComponent, setItemComponent ] = useState<any>(<SimpleItem icon={IconePadrao}></SimpleItem>)
@@ -57,6 +66,10 @@ export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> 
                </div>
             </header>
 
+            <section className='up-navidator'>
+                <PageNavigator metaData={metaData} onChange={onchange}></PageNavigator>
+            </section>
+
             <main>
                 <nav className={`${listMode ? 'listmode': 'blockmode' }`}>
                    { !freeze ? <React.Fragment>
@@ -72,7 +85,30 @@ export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> 
                     </React.Fragment>}
                 </nav>
             </main>
-            <footer> </footer>
+            <footer> <PageNavigator metaData={metaData} onChange={onchange}></PageNavigator> </footer>
+        </div>
+    )
+}
+
+export const PageNavigator = ({ metaData, onChange }: { onChange: any, metaData?: UnaLisingContent.MetaData | null}) =>{
+    if(!metaData) return <span> Carregando ... </span>
+    const { page, per_page, page_count, records_count } = metaData
+    return (
+        <div className='una-listing-content-navigator'>
+            <nav>
+                <div>
+
+                    <button disabled={page == 1} className='ulcn-btn' onClick={()=>onChange("PAGE",page-1)}> &laquo; </button>
+                    { [ ...Array(page_count)].map((p, i)=>{
+                        return ( <button onClick={()=>onChange("PAGE",i+1)} key={i}
+                        className={`ulcn-btn ${ (page == i+1) ? "selected": ""}`}>{i + 1}</button>)
+                    })}
+                    <button disabled={page == page_count } className='ulcn-btn' onClick={()=>onChange("PAGE",page+1) } > &raquo; </button>
+                </div>
+            </nav>
+            <span className='ulcn-metadata'>
+                <span> Encontrado { per_page } resultados de {records_count}; Pagina: {page} de {page_count} </span>
+            </span>
         </div>
     )
 }
