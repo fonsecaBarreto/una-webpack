@@ -19,7 +19,7 @@ export namespace BudgetView {
 
 export const BudgetItemComponent: React.FunctionComponent<any> = ({data, index}) =>{
 
-    const { product_id, quantity, price, product} = data
+    const { quantity, price, product} = data
     return (
         <div className='budget-view-budget-item-component'>
             <span>{index}</span>

@@ -11,7 +11,7 @@ module.exports = merge(common, {
         historyApiFallback:{
             disableDotRule: false,
             rewrites: [  
-                { from: /^\/$/, to: '/views/landingpage.html' },                   
+              /*   { from: /^\/$/, to: '/views/landingpage.html' },   */                 
                 { from: "^/admin", to: "/views/admin.html"},   
                 { from: "^/", to: "/views/main.html"},                  
             ]

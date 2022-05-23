@@ -1,0 +1,33 @@
+.pool-content-loading-component{
+    position: relative;
+    width: 100%; height: 64px; 
+}
+
+.pool-content-loading-component::after{
+    content: "";
+    width: 90px; height: 100%; 
+    background-color: red;
+    position: absolute;
+    top:0; left: 0;
+    background-color: rgb(252, 252, 252);
+    background-image: linear-gradient(125deg, rgb(206, 209, 211), rgb(222, 230, 240), rgb(208, 218, 226)) !important;
+    background-size: 400% 400% !important;
+    animation: changebg 3s ease-in-out infinite!important;
+    transition: all .1s!important;
+    border-radius: 8px;
+}
+
+.pool-content-loading-component::before{
+    content: "";
+    width: calc(100% - 100px); height: 100%; 
+    background-color: red;
+    position: absolute;
+    top:0; left: calc(100px);
+    background-color: rgb(252, 252, 252);
+    background-image: linear-gradient(125deg, rgb(206, 209, 211), rgb(222, 230, 240), rgb(208, 218, 226)) !important;
+    background-size: 400% 400% !important;
+    animation: changebg 3s ease-in-out infinite!important;
+    transition: all .1s!important;
+    border-radius: 5px;
+ 
+}
