@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import AsideFilters from '@/react-apps/layouts/components/AsideFilters'
-import { DateControl } from '@/react-apps/components/SelectorNav'
+import { DateControl, MultipleSelectionControl } from '@/react-apps/components/SelectorNav'
 import { BudgetState } from '@/react-apps/store/reducers/budgets'
+import { setCompanhias } from '@/react-apps/store/reducers/companies'
+import { companhiasServices } from '@/services/api/companhias-service'
 
 export namespace BudgetFiltersNav {
     export type Params = {
@@ -11,15 +13,29 @@ export namespace BudgetFiltersNav {
 }
 
 export const BudgetFiltersNav: React.FunctionComponent<BudgetFiltersNav.Params> = ({onChange, values}) =>{
+    const [ companies, setCompanies ] = useState<any>([])
+
+    useEffect(()=>{
+        companhiasServices.list({}).then((r)=>setCompanies([
+                ...(r.data.companies.map((c:any)=> ( { value: c.id, label: c.nomeFantasia})
+            ))
+        ]))
+    },[])
+    
     return (
         <AsideFilters>
+            <MultipleSelectionControl 
+                title="Compahias" items={companies} max={1} 
+                value={!values.company_id ? [] : [{ value: values.company_id }]}
+                onChange={(p: any)=> { onChange("FILTER",{'company_id': p[0]?.value ?? null, 'p' : 1})} } >
+            </MultipleSelectionControl>  
             <DateControl 
                 initial_value={values.initial_date}
-                onChange={(v: any)=>onChange("initial_date", v )}  
+                onChange={(v: any)=>onChange("FILTER",{"initial_date": v })}  
                 title="Data Inicial"></DateControl>
             <DateControl 
                 initial_value={values.end_date}
-                onChange={(v: any)=>onChange("end_date", v )}  
+                onChange={(v: any)=>onChange("FILTER",{"end_date": v })}  
                 title="Data Limite"></DateControl>
         </AsideFilters>
   )

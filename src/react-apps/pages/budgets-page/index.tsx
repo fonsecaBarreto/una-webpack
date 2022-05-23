@@ -28,11 +28,11 @@ const handleFiltersWithQueries = ({history}: any) =>{
         end_date: query.get("end_date") ?? new Date().toISOString().split('T')[0],
         p: query.get("p") ?? 1,
         v: query.get("v") ?? undefined,
-        company: query.get("company") ?? undefined
+        company_id: query.get("company_id") ?? undefined
     }), [query])
 
-    const setValue = (key: string, value: any) =>{
-        history.replace({ search: qs.stringify({...values, [key]:value})})
+    const setValue = (payload: any) =>{
+        history.replace({ search: qs.stringify({...values,  ...payload})})
     }
   
     return { values, setValue }
@@ -77,7 +77,7 @@ export const ListCotacaoPage = ({ history }: any)=>{
     const handleActions = (key: any, payload: any) =>{
         console.log("actions", key, payload)
         switch(key){
-            case "PAGE": filters.setValue("p", payload);break;
+            case "PAGE": filters.setValue({"p": payload});break;
             case "OPEN": setShowBudget(payload)
         }
     }
@@ -85,7 +85,7 @@ export const ListCotacaoPage = ({ history }: any)=>{
         <div id="budgets-page">
             <div className='app-container'>
                 <ContentGrid loading={false}>
-                    <FiltersNav values={filters.values} onChange={filters.setValue}/>
+                    <FiltersNav values={filters.values} onChange={(k, p)=>filters.setValue(p)}/>
                     <UnaListingContent metaData={metaData} records={records} freeze={loadTry == 0} onChange={handleActions}>
                     </UnaListingContent>
                 </ContentGrid>

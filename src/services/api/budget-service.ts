@@ -17,30 +17,28 @@ export namespace BudgetServices {
 }
 
 export const budgetServices = {
+
      save: async (params: BudgetServices.SaveParams) => {
           const { company_id, ...rest } = params;
           const data = { ...rest };
           const METHOD =  "POST"
-          const URL = `/company/${company_id}/create`
+          const URL = `/company/${company_id}`
           const resp = await budgetsApi.send({ method: METHOD, url: URL, data }) 
           return resp.data 
      },
+     /* ADMIN listing budgets */
      list: async (params: any={}) => {
-          const { p = 1, initial_date, end_date } = params;
+          const { p = 1, initial_date, end_date, company_id } = params;
           var query = `?page=${p}`;
           query+=`
-          &idate=${new Date(initial_date).getTime()} 
-          &ldate=${new Date(end_date).getTime()}`;
+               &idate=${new Date(initial_date).getTime()} 
+               &ldate=${new Date(end_date).getTime()}
+               &company_id=${company_id ?? ""}`;
 
-
-         /*  (["company", "user"]).map( (v:string)=>{
-               var filter :any = { ...params }[v];
-               filter?.length > 0 && filter.map((f:any)=>{ query+=`&${v}=${f}` });
-          }) */
-          console.log(query)
           const { data } = await budgetsApi.send({ method: "get", url: `${query}` }) 
           return data 
      },
+     /* aadmin finding budgets */
      find: async (budget_id: string) => {
           const { data } = await budgetsApi.send({ method: "get", url: `/${budget_id}` }) 
           return data 
