@@ -13,13 +13,7 @@ export namespace BudgetServices {
         company_id: string,
         products: { ean: string, quantity: string}[]
     }
-    export type ListParams = {
-         p: number,
-         user: string[],
-         company: string[],
-         idate: Date,
-         ldate: Date
-    }
+   
 }
 
 export const budgetServices = {
@@ -27,19 +21,23 @@ export const budgetServices = {
           const { company_id, ...rest } = params;
           const data = { ...rest };
           const METHOD =  "POST"
-          const URL = `/${company_id}/create`
+          const URL = `/company/${company_id}/create`
           const resp = await budgetsApi.send({ method: METHOD, url: URL, data }) 
           return resp.data 
      },
-     list: async (params: Partial<BudgetServices.ListParams>={}) => {
-          const { p = 1, idate, ldate } = params;
-          var query = `?p=${p}`;
-          if(idate) query+=`&idate=${new Date(idate).getTime()}`;
-          if(ldate) query+=`&ldate=${new Date(ldate).getTime()}`;
-          (["company", "user"]).map( (v:string)=>{
+     list: async (params: any={}) => {
+          const { p = 1, initial_date, end_date } = params;
+          var query = `?page=${p}`;
+          query+=`
+          &idate=${new Date(initial_date).getTime()} 
+          &ldate=${new Date(end_date).getTime()}`;
+
+
+         /*  (["company", "user"]).map( (v:string)=>{
                var filter :any = { ...params }[v];
                filter?.length > 0 && filter.map((f:any)=>{ query+=`&${v}=${f}` });
-          })
+          }) */
+          console.log(query)
           const { data } = await budgetsApi.send({ method: "get", url: `${query}` }) 
           return data 
      },

@@ -20,7 +20,6 @@ const mapBudgetsToLavelView = (data: any) =>{
     })
 }
 
-
 const handleFiltersWithQueries = ({history}: any) =>{
     const { search } = useLocation();
     const query = React.useMemo(() => new URLSearchParams(search), [search]);
@@ -32,7 +31,7 @@ const handleFiltersWithQueries = ({history}: any) =>{
         company: query.get("company") ?? undefined
     }), [query])
 
-    const setValue = (key: string, value: string) =>{
+    const setValue = (key: string, value: any) =>{
         history.replace({ search: qs.stringify({...values, [key]:value})})
     }
   
@@ -49,6 +48,7 @@ const handleRecords = () =>{
         setLoadTry(prev=>prev+=1)
     }
     const submit = (filters: any) =>{
+        setLoadTry(0)
         budgetServices.list(filters).then(setData)
     }
 
@@ -57,20 +57,30 @@ const handleRecords = () =>{
 
 export const ListCotacaoPage = ({ history }: any)=>{
 
+    const context = useContext(GlobalContext)
     const filters: any = handleFiltersWithQueries({history})
     const { records, metaData, submit, loadTry } = handleRecords()
+    const [showBudget, setShowBudget ] = useState(null);
 
-    const context = useContext(GlobalContext)
-    const dispatch = useDispatch();
+    useEffect(()=>{
+
+        if(showBudget) {
+          context.dialog.push(MakeDialogConfig(()=> <BudgetView budget_id={showBudget} />,
+          ()=>{ 
+            setShowBudget(null); 
+            return -1;
+          }, `Cotação N° ${showBudget}`))
+        }
+      },[showBudget])
 
     useEffect(()=>{  submit(filters.values)  },[filters.values])
-
     const handleActions = (key: any, payload: any) =>{
-        if(key === "options"){
-            return history.push({ search: `?id=${payload}`  });
+        console.log("actions", key, payload)
+        switch(key){
+            case "PAGE": filters.setValue("p", payload);break;
+            case "OPEN": setShowBudget(payload)
         }
     }
-
     return (
         <div id="budgets-page">
             <div className='app-container'>
@@ -85,16 +95,3 @@ export const ListCotacaoPage = ({ history }: any)=>{
 }
 
 export default ListCotacaoPage
-
-
-    /* useEffect(()=>{
-        if(!location.search) return
-        const parsed = queryString.parse(location.search);
-
-        if(parsed?.id) {
-          context.dialog.push(MakeDialogConfig(()=> <BudgetView budget_id={parsed.id+""} />,
-          ()=>{ history.push({ search: `` }); return -1;
-          }, "Cotação"))
-        }
-        
-      },[location.search]) */

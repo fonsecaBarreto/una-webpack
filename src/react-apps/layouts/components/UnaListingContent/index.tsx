@@ -67,7 +67,7 @@ export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> 
             </header>
 
             <section className='up-navidator'>
-                <PageNavigator metaData={metaData} onChange={onchange}></PageNavigator>
+                <PageNavigator freeze={freeze} metaData={metaData} onChange={onChange}></PageNavigator>
             </section>
 
             <main>
@@ -85,13 +85,13 @@ export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> 
                     </React.Fragment>}
                 </nav>
             </main>
-            <footer> <PageNavigator metaData={metaData} onChange={onchange}></PageNavigator> </footer>
+            <footer> <PageNavigator freeze={freeze} metaData={metaData} onChange={onChange}></PageNavigator> </footer>
         </div>
     )
 }
 
-export const PageNavigator = ({ metaData, onChange }: { onChange: any, metaData?: UnaLisingContent.MetaData | null}) =>{
-    if(!metaData) return <span> Carregando ... </span>
+export const PageNavigator = ({ metaData, onChange, freeze }: { freeze: boolean, onChange: any, metaData?: UnaLisingContent.MetaData | null}) =>{
+    if(!metaData || freeze) return <span> ... </span>
     const { page, per_page, page_count, records_count } = metaData
     return (
         <div className='una-listing-content-navigator'>
