@@ -1,25 +1,25 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import './style.css'
 import SearchIcon from "./search.svg"
 
 export namespace SearchBar {
     export type Params = {
-        value: string,
+        entry: string,
         onChange: (k: string, payload?: any) => void
     }
 }
-export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ value, onChange})  =>{
+export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ entry, onChange})  =>{
+    const [ value, setValue ] = useState("")
 
-    const search = () => {
-        onChange('SUBMIT')
-       // state.loadFeed(0, false)
-    }
+    useEffect(()=>{ 
+        console.log('nova entrada', entry)
+        setValue(entry ?? "")
+    },[entry])
 
     const handleKeys = (e:any) =>{
-        if(e.key === "Enter") return search()
+        if(e.key === "Enter") return onChange('SUBMIT', value)
     } 
-
     return (
         
         <div className={`alt-pool-searchinput `}>
@@ -27,12 +27,12 @@ export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ value, on
                 <button className='alt-pool-searchinput-cancel' onClick={()=>onChange('CANCEL')}> &#10005;</button>
             </span> */}
             <input type="text" 
-                placeholder="Pesquise"
+                placeholder="Pesquisa pelo Numero do orçamento!"
                 value={value} 
-                onInput={(e:any) => onChange('INPUT', e.target.value)} 
+                onInput={(e:any) => setValue(e.target.value)} 
                 onKeyDown={handleKeys}>
             </input>
-            <button onClick={search} className='alt-pool-searchinput-submit'>
+            <button onClick={()=>onChange('SUBMIT', value)} className='alt-pool-searchinput-submit'>
                 <img src={SearchIcon}></img>    
             </button> 
         </div>

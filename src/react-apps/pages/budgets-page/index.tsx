@@ -27,7 +27,7 @@ const handleFiltersWithQueries = ({history}: any) =>{
         initial_date: query.get("initial_date") ?? "2022-01-01",
         end_date: query.get("end_date") ?? new Date().toISOString().split('T')[0],
         p: query.get("p") ?? 1,
-        v: query.get("v") ?? undefined,
+        v: query.get("v") ?? "",
         company_id: query.get("company_id") ?? undefined
     }), [query])
 
@@ -63,7 +63,6 @@ export const ListCotacaoPage = ({ history }: any)=>{
     const [showBudget, setShowBudget ] = useState(null);
 
     useEffect(()=>{
-
         if(showBudget) {
           context.dialog.push(MakeDialogConfig(()=> <BudgetView budget_id={showBudget} />,
           ()=>{ 
@@ -71,14 +70,17 @@ export const ListCotacaoPage = ({ history }: any)=>{
             return -1;
           }, `Cotação N° ${showBudget}`))
         }
-      },[showBudget])
+    },[showBudget])
 
     useEffect(()=>{  submit(filters.values)  },[filters.values])
     const handleActions = (key: any, payload: any) =>{
-        console.log("actions", key, payload)
         switch(key){
             case "PAGE": filters.setValue({"p": payload});break;
-            case "OPEN": setShowBudget(payload)
+            case "OPEN": setShowBudget(payload);break
+            case "SUBMIT":{ 
+                setShowBudget(payload)
+               /*  filters.setValue({"v": payload}) */
+            };break;
         }
     }
     return (
@@ -86,7 +88,7 @@ export const ListCotacaoPage = ({ history }: any)=>{
             <div className='app-container'>
                 <ContentGrid loading={false}>
                     <FiltersNav values={filters.values} onChange={(k, p)=>filters.setValue(p)}/>
-                    <UnaListingContent metaData={metaData} records={records} freeze={loadTry == 0} onChange={handleActions}>
+                    <UnaListingContent searchText={filters.values['v']} metaData={metaData} records={records} freeze={loadTry == 0} onChange={handleActions}>
                     </UnaListingContent>
                 </ContentGrid>
             </div> 

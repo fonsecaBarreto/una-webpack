@@ -20,7 +20,8 @@ export namespace UnaLisingContent {
         onChange: any,
         records: any[],
         metaData?: MetaData | null,
-        freeze?: boolean
+        freeze?: boolean,
+        searchText: string
     }
     export interface ItemProps<Data> {
         onChange?: (k:string, p:any) =>void
@@ -30,8 +31,7 @@ export namespace UnaLisingContent {
     }
 }
  
-export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> = ({ children, onChange, records=[], metaData,  freeze=false}) =>{
-    const [ searchValue, setSearchValue ] = useState("")
+export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> = ({ searchText, children, onChange, records=[], metaData,  freeze=false}) =>{
     const [ listMode, setListMode ] = useState(true)
     const [ itemComponent, setItemComponent ] = useState<any>(<SimpleItem icon={IconePadrao}></SimpleItem>)
 
@@ -46,10 +46,10 @@ export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> 
     return (
         <div className='una-listing-content'>
             <header>
-                    <SearchInput 
-                        value={searchValue}
-                        onChange={(v:any, O: any)=>{}}>
-                    </SearchInput> 
+                <SearchInput 
+                    entry={searchText}
+                    onChange={onChange}>
+                </SearchInput> 
                <div> 
                     <Button 
                         variant="outline-primary"
@@ -97,7 +97,6 @@ export const PageNavigator = ({ metaData, onChange, freeze }: { freeze: boolean,
         <div className='una-listing-content-navigator'>
             <nav>
                 <div>
-
                     <button disabled={page == 1} className='ulcn-btn' onClick={()=>onChange("PAGE",page-1)}> &laquo; </button>
                     { [ ...Array(page_count)].map((p, i)=>{
                         return ( <button onClick={()=>onChange("PAGE",i+1)} key={i}

@@ -28,33 +28,39 @@ export const BudgetItemComponent: React.FunctionComponent<any> = ({data, index})
 
 
 export const BudgetView: React.FunctionComponent<BudgetView.Params> = ({ budget_id }) =>{
+    const [ loadTry, setLoadTry ] = useState(0)
     const [ budget, setBudget] = useState<any>(null)
-    useEffect(()=>{ budgetServices.find(budget_id).then(setBudget) },[budget_id])
+    useEffect(()=>{ 
+        budgetServices.find(budget_id)
+        .then(setBudget) 
+        .finally(()=>setLoadTry(prev=>prev+=1))
+    },[budget_id])
 
-    useEffect(()=>{
-        console.log(budget)
-    },[budget])
     return (
         <div className='budget-view-modal'>
-            { budget === null ? "Carregando..." : 
-            <React.Fragment>
-                <section>
-                
-                    <div className='flex-column'>
-                        <Forming.LabelWrapper label='Numero'>{budget.id}</Forming.LabelWrapper> 
-                        <Forming.LabelWrapper label='Companhia'>{budget?.company?.label}</Forming.LabelWrapper>
-                        <Forming.LabelWrapper label='Usuario'>{budget?.user?.label}</Forming.LabelWrapper>
-                        <Forming.LabelWrapper label='Total (R$)'>{budget.amount}</Forming.LabelWrapper>
-                        <Forming.LabelWrapper label='Data '>{budget.created_at}</Forming.LabelWrapper> 
-                    </div> 
+            { loadTry == 0 ? "Procurando..." : 
+                <React.Fragment>
+                    { !budget ? "Não encontrado!" :
+                        <React.Fragment>
+                            <section>
+                            
+                                <div className='flex-column'>
+                                    <Forming.LabelWrapper label='Numero'>{budget.id}</Forming.LabelWrapper> 
+                                    <Forming.LabelWrapper label='Companhia'>{budget?.company?.label}</Forming.LabelWrapper>
+                                    <Forming.LabelWrapper label='Usuario'>{budget?.user?.label}</Forming.LabelWrapper>
+                                    <Forming.LabelWrapper label='Total (R$)'>{budget.amount}</Forming.LabelWrapper>
+                                    <Forming.LabelWrapper label='Data '>{budget.created_at}</Forming.LabelWrapper> 
+                                </div> 
 
-                    <div className='budget-view-budget-items'>
-                        { budget.items.map((item:any, i:number) =>{
-                            return ( <BudgetItemComponent key={i} index={i} data={item}></BudgetItemComponent>)
-                        }) }
-                    </div>   
-                </section>
-            </React.Fragment>
+                                <div className='budget-view-budget-items'>
+                                    { budget.items.map((item:any, i:number) =>{
+                                        return ( <BudgetItemComponent key={i} index={i} data={item}></BudgetItemComponent>)
+                                    }) }
+                                </div>   
+                            </section>
+                        </React.Fragment>
+                    }
+                </React.Fragment>
             }
         </div>
     )
