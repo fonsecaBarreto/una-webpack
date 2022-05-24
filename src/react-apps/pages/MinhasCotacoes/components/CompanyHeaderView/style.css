@@ -1,0 +1,37 @@
+.cotacoes-una-header-view{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    background-origin: white;
+    border: solid 1px #ddd;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+.cotacoes-una-header-view > .cuhb-imagevp{
+    width: 120px;
+    margin: auto;
+    grid-row: span 3;
+}
+
+.cotacoes-una-header-view > .cuhb-imagevp > img{
+    object-fit: contain;
+    width: 100%;
+}
+
+.cotacoes-una-header-view > span{
+    display: flex; align-items: center;
+    font-size: 18px;
+    padding: 0 12px;
+}
+.cotacoes-una-header-view > span:nth-child(1){
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+    

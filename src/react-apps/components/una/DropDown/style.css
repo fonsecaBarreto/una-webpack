@@ -3,6 +3,10 @@
     60% {transform: scale(1.06) translateY(6%); opacity: 1;}
     100% {transform: scale(1)  translateY(0);}
 }
+.una-drop-down-container{
+
+}
+
 
 .una-drop-down-container, .una-drop-down-container * {
     position: relative;
@@ -10,9 +14,9 @@
 }
 
 .una-drop-down-container .una-drop-down-content{
-    position: absolute;  top: 100%; right: 0;
+    position: absolute;  top: calc(100%); right: 0;
     background-color: rgb(252, 252, 252);
-    box-shadow: 0px 4px 4px 1px #0002;
+    box-shadow: 100px 0px 0 1920px #00000044;
     animation-name: slideDown;
     animation-duration: .25s;
     animation-timing-function: ease;
@@ -22,10 +26,12 @@
     min-width: 180px;
     display: none;
     z-index: 5;
+    border: solid 1px #666;
 }
 
 .una-drop-down-container .una-drop-down-content.show{
     display: flex; justify-content: flex-start; align-items: center; flex-direction: column;
+    z-index: 5;
 }
 
 .una-drop-down-container .una-drop-down-content button{
@@ -33,10 +39,28 @@
     justify-content: flex-start;
     color: #222;
     padding: 0 16px;
-    font-size: 15px;
+  
     height: 32px;
     border-radius: 0!important;
     white-space: nowrap;
+    gap: 8px;
+}
+
+.udw-icon{
+    position: relative;
+    height: 18px;
+    width: 18px;
+    overflow: hidden;
+}
+.udw-icon >img{
+    position: absolute; top: 0; left: 0; right: 0;
+    margin: auto;
+    object-fit: contain;
+    height: 100%;
+}
+
+.udw-label{
+    font-size: 15px;
 }
 
 .una-drop-down-container .una-drop-down-content button:hover{

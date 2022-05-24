@@ -25,3 +25,73 @@
     border: solid 1px var(--main-color);
     transition: all .12s;
 }
+
+
+/*  */
+
+.una-header-user-button{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.una-header-user-button > .uhub-avatar-container{
+    height: fit-content;
+    width: fit-content;
+    overflow: hidden;
+
+    border-radius: 50%;
+    border: solid 2px white;
+ /*    filter: brightness(0) invert(1); */
+}
+
+.una-header-user-button > .uhub-user-info{
+    display: flex;flex-direction: column;align-items: flex-start;justify-content: center;
+    gap: 4px;
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+
+.una-header-user-button > .uhub-user-info .uhub-user-title{
+    font-size: 17px;
+    height: 17px;
+    line-height: 18px;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+
+.una-header-user-button > .uhub-user-info .uhub-user-subtitle {
+    height: fit-content;
+    overflow: hidden;
+    font-size: 15px;
+    line-height: 1em;
+    height: 15px;
+}
+
+.uhub-down-arrow{
+
+    position: relative;
+    width: 10px;
+    height: 10px;
+    color: white;
+    filter: invert(1)
+}
+
+
+/* .una-header-user-button > .uhub-user-info .uhub-user-subtitle > span{
+    font-size: 12px;
+    border: solid 1px red;
+}
+
+*/
+
+/* @media only screen and (max-width: 960px){
+    .una-header-user-button > div:nth-child(1){
+        display: none;
+    }
+}
+ */

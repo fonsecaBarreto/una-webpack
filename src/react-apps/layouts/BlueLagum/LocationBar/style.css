@@ -1,33 +1,44 @@
 .bl-location-bar{
-    background: rgb(255, 255, 255);
-    background: linear-gradient(180deg, rgb(225, 235, 243) 0%, rgb(240, 245, 245) 35%, rgb(233, 235, 238) 100%);
+ /*    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgb(225, 235, 243) 0%, rgb(240, 245, 245) 35%, rgb(233, 235, 238) 100%); */
+    
     border-bottom: solid 1px #ccc;
+    background: #fc4a1a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .bl-location-bar > div > nav{
     display: flex; align-items: center; justify-content: flex-start;
     height: var(--aux-header-height);
-    overflow-x: scroll; overflow-y: hidden;
-}
-
-.bl-location-bar > div > nav::-webkit-scrollbar {
-    height: 0px!important;
-}
-
-.bl-location-bar > div > nav > button{
-    border: none;
-    cursor: pointer;
-    color: rgb(4, 53, 109);
-}
-
-.bl-location-bar > div > nav > button img{
-    width: 10px;
-    height: auto;
-    filter: invert(5%) sepia(80%) saturate(5600%) hue-rotate(240deg) brightness(90%) contrast(120%)
+    overflow: hidden;
+  /*   overflow-x: scroll; overflow-y: hidden; */
 }
 
 /* selector */
 .bl-location-selector{
-    font-size: 11px;
     display: flex; gap: 8px;
+    flex-direction: row; align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+    padding: 2px 8px;
+    background-color: rgba(122, 122, 122, 0.15);
+    border: solid 1px #ddd;
+    color: white;
+
+}
+.bl-location-selector >span{
+    font-size: 12px;
+    line-height: 1em;
+    height: 12px;
+    overflow: hidden;
+}
+/* selector */
+.bl-location-selector > img{
+    width: 10px;
+    height: 10px;
+    filter: invert(1)
 }

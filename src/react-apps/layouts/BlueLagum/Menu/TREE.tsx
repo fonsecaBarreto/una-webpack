@@ -35,15 +35,17 @@ export const USER_TREE = (user: any) =>{
             toDo:"/admin/registro", 
             icon: <img src={AddIcon} style={svgStyle}/>
         }, 
-    ]
-
-    
-
-    const users = [
         { 
             label:"Perfil",  toDo:`/perfil/companhias/${user.company_id}`,
             icon: <img src={ProfileIcon}style={svgStyle}></img>
         },
+    ]
+
+    const users: any = [
+       /*  { 
+            label:"Historico de Compras",  toDo:`/cotacoes`,
+            icon: <img src={ProfileIcon}style={svgStyle}></img>
+        }, */
     ]
 
     var result: any = []

@@ -106,7 +106,7 @@ export const PageNavigator = ({ metaData, onChange, freeze }: { freeze: boolean,
                 </div>
             </nav>
             <span className='ulcn-metadata'>
-                <span> Encontrado { per_page } resultados de {records_count}; Pagina: {page} de {page_count} </span>
+                <span> Encontrado {records_count} resultados ; Pagina: {page} de {page_count} </span>
             </span>
         </div>
     )

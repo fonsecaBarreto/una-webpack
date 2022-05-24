@@ -49,7 +49,7 @@ export const LocationBar = () => {
             <div className='app-container'>
                 <nav>
                     <button className='bl-location-selector' onClick={openModal}>
-                        <span> <img src={LocationPin}></img> </span>
+                        <img src={LocationPin}></img> 
                         <span>{ session_address ? session_address.label : "Selecione a sua localidade" }</span>
                     </button>
                 </nav>

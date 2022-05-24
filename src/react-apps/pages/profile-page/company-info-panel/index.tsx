@@ -6,7 +6,7 @@ export const CompanyInfoPanel: React.FunctionComponent<any> =({company}) =>{
     return (
         <div className='company-info-panel'>
             <section>
-                <CompanyAddressesPanel addresses={company.addresses }></CompanyAddressesPanel>
+                <CompanyAddressesPanel addresses={company.addresses}></CompanyAddressesPanel>
             </section>
             <section className='company-info-panel-content'>
                 <FlexLabelColumn label='Nome Fantasia'>{company.nomeFantasia}</FlexLabelColumn>

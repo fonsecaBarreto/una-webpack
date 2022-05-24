@@ -42,6 +42,24 @@ export const budgetServices = {
      find: async (budget_id: string) => {
           const { data } = await budgetsApi.send({ method: "get", url: `/${budget_id}` }) 
           return data 
-     }
+     },
+
+     /*  Clientes */
+
+     findCompanyBudget: async (budget_id: string, company_id:string) => {
+          const { data } = await budgetsApi.send({ method: "get", url: `/company/${company_id}/${budget_id}` }) 
+          return data 
+     },
+     
+     listCompanyBudgets: async (params: any={}) => {
+          const { p = 1, initial_date, end_date, company_id } = params;
+          var query = `?page=${p}`;
+          query+=`
+               &idate=${new Date(initial_date).getTime()} 
+               &ldate=${new Date(end_date).getTime()}`;
+          const { data } = await budgetsApi.send({ method: "get", url: `/company/${company_id}${query}` }) 
+          return data 
+     },
+
 }
 

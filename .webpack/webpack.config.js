@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const SRC_DIR =  path.resolve(__dirname, "..", "src")
 const OUTPUT_DIR =  path.resolve(__dirname, "..", "dist")
+const Dotenv = require('dotenv-webpack');
 
 const entries = {};
 fs.readdirSync(`${SRC_DIR}/react-apps/apps`).map(async (file) => {
@@ -29,6 +30,7 @@ module.exports ={
         },
     },
     plugins: [
+        new Dotenv(),
         
         new MiniCssExtractPlugin({ 
             linkType: "text/css",

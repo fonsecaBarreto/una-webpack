@@ -9,6 +9,8 @@ import Router from "@/react-apps/components/Router"
 /* pages */
 import ProfilePage from "@pages/profile-page";
 import ProductPage from '@pages/product-page'
+import MinhasCotacoes from '@pages/MinhasCotacoes'
+
 import { Redirect } from "react-router-dom";
 
 const MartPage = lazy(() => import('@pages/mart-page'));
@@ -26,6 +28,9 @@ export const ROUTES = [
     { path: "/produto/:ean", title: "Produto",  component: ProductPage } ,
     /*   component:() => <Redirect to="/registro/fornecimento"></Redirect> } */
     /* cotações */
+    { path: "/cotacoes", title: "Minhas Cotações",  component: MinhasCotacoes } ,
+
+    /* Passar perfil para admin */
     { path: "/perfil/usuario/:user_id", title: "Perfil Companhia",  component: ProfilePage } ,
     { path: "/perfil/companhias/:company_id", title: "Perfil Companhia",  component: ProfilePage },
     { path: "/login", title: "Login",  component: LoginPage } ,

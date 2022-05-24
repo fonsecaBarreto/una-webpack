@@ -77,10 +77,7 @@ export const ListCotacaoPage = ({ history }: any)=>{
         switch(key){
             case "PAGE": filters.setValue({"p": payload});break;
             case "OPEN": setShowBudget(payload);break
-            case "SUBMIT":{ 
-                setShowBudget(payload)
-               /*  filters.setValue({"v": payload}) */
-            };break;
+            case "SUBMIT":{ setShowBudget(payload) };break;
         }
     }
     return (

@@ -4,7 +4,8 @@ import './style.css'
 export namespace DropDown {
     export type Options = {
         label: string,
-        value: string
+        value: string,
+        icon?: any
     }
     export type Params = {
         children : ReactNode
@@ -22,7 +23,11 @@ export const DropDown: FC<DropDown.Params> =  ({ children, options, onAction, cl
             { children }
             <div className={`una-drop-down-content ${active ? 'show' : ''}`}>
                 { options && options.map((o: any, i:number) =>{
-                    return <button key={i} onClick={()=>onAction(o.value)}>{o.label}</button>
+                    let { icon, label } = o
+                    return (<button key={i} onClick={()=>onAction(o.value)}>
+                        {icon &&  <span className='udw-icon'>  {icon} </span>  } 
+                        <span className='udw-label'> {label}</span>
+                    </button>)
                 })}
             </div>
         </div>

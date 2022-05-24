@@ -16,7 +16,8 @@ export const SelectorNavWrapper: React.FunctionComponent<SelectorNavWrapper.Para
     const [ open, setOpen ] = useState(open_initial);
     return (
         <nav className="nav-selector-wrapper">
-            <div onClick={()=>setOpen(!open)} className="nav-selector-wrapper-title"> { showCurtain && ( <span className={`nvsw-icons ${ !open ?"down" : "up"}`}>&lsaquo;</span>)}  {icon && icon} { title } </div>
+            <div onClick={()=>setOpen(!open)} 
+                className="nav-selector-wrapper-title"> { showCurtain && ( <span className={`nvsw-icons ${ !open ?"down" : "up"}`}>&lsaquo;</span>)}  {icon && icon} { title } </div>
             <div className={`nav-selector-wrapper-body ${open ? 'open' : ''}`}>
                 { children }
             </div>
