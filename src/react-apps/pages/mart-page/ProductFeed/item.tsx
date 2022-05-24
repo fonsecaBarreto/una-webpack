@@ -56,7 +56,10 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
 
     const handleClick = (k: string, p?:any) =>{
         switch(k){
-            case "COPY": copy(ean); break;
+            case "COPY": 
+                copy(ean);
+                alert("Código de barras copiado com sucesso");
+            break;
             case "MOVE": history.push(`/produto/${ean}`) ;break;
             case "CART": cartHandler.push(p, produto); break;
         }
@@ -90,20 +93,15 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                             </div> 
                             :
                             <div className='product-feed-item-prices'>
-                                <span >
-                                    Cadastre-se
-                                </span>
-                                <span>
-                                 para descobrir as ofertas
-                                </span>
+                                <span > Cadastre-se </span>
+                                <span> para descobrir as ofertas </span>
                             </div> 
                         }
                 </section>
                 <section className='product-feed-item-footer'>
                     {   (listMode == "block") &&
                         <React.Fragment>
-                            <button onClick={() => handleClick("COPY")}> &#x2398;</button>
-                            <span ref={eanRef} className="produto-ean">{ean}</span>
+                            <span onClick={() => handleClick("COPY")} ref={eanRef} className="produto-ean"> {ean}</span>
                         </React.Fragment>
                     }
                 </section>

@@ -116,20 +116,23 @@
         display: flex; align-items: center; justify-content: flex-start;
         background-color: #718ab3;
         width: 100%;  height: fit-content;
-        color: white; font-weight: bold;
-        padding: 2px;
+         font-weight: bold;
+        padding: 1pt;
         cursor: default;
-    }
-    .product-feed-item-footer > button{
-        display: flex; align-items: center; justify-content: center;
-        border: none;
-        cursor: pointer;
-        background-color: transparent;
+        background: #fc4a1a;  /* fallback for old browsers */
+        background: linear-gradient(to bottom, #eef1ff 84%, #ff5c2e 86% ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/*         border: solid 1px #1927ecee; */
+        border-top: solid 1px #ddd;
         color: white;
+        color: #525579ee;
     }
+
     .product-feed-item-footer .produto-ean{
-    font-size: 12px;  line-height: 1em;
-    cursor: text;
+        width: 100%;
+        font-size: 10px;  line-height: 1em;
+        padding: 4px 0;
+        cursor: pointer;
+        text-align: center
     }
 
     /* HOVERING */
