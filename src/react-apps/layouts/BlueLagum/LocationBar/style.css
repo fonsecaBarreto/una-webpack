@@ -1,19 +1,14 @@
 .bl-location-bar{
- /*    background: rgb(255, 255, 255);
-    background: linear-gradient(180deg, rgb(225, 235, 243) 0%, rgb(240, 245, 245) 35%, rgb(233, 235, 238) 100%); */
-    
     border-bottom: solid 1px #ccc;
     background: #fc4a1a;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #f7b733, #ff6a2f , #ff7049, #ff643a, #f7b733);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #f7b733, #ff6a2f, #ff7049, #ff643a, #f7b733 ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 }
 
 .bl-location-bar > div > nav{
     display: flex; align-items: center; justify-content: flex-start;
     height: var(--aux-header-height);
     overflow: hidden;
-  /*   overflow-x: scroll; overflow-y: hidden; */
 }
 
 /* selector */

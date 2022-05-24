@@ -1,7 +1,7 @@
 .cotacoes-una-header-view{
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, auto);
     background-origin: white;
     border: solid 1px #ddd;
     border-radius: 8px;
@@ -9,9 +9,10 @@
 }
 
 .cotacoes-una-header-view > .cuhb-imagevp{
-    width: 120px;
-    margin: auto;
+    width: 280px;
     grid-row: span 3;
+    grid-column-gap: span 2;
+    height: 180px;
 }
 
 .cotacoes-una-header-view > .cuhb-imagevp > img{
@@ -28,6 +29,29 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+
+.cuhb-company-info{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    padding: 6px 18px;
+    
+}
+
+
+.cuhb-company-info > span:nth-child(1){
+    font-size: 24px;
+    
+}
+
+
+.cuhb-company-info > span:nth-child(2){
+    font-size: 18px;
+    
+}
+
 
 
 
