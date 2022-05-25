@@ -11,9 +11,14 @@ export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies })
     return (
         <div className='product-page-info'>
             <div>
-                <span className='product-page-specification'>{product.specification}</span>
+                <span className='product-page-specification'> 
+                    <span> {product.specification}</span> 
+                    <span> ( {product.presentation.label} ) </span>
+                </span>
+                <span className='product-page-code'>ean: {product.ean}</span> 
                 <span className='product-page-brand'> <label>Marca:</label> {product.brand?.label}</span> 
-                <span className='product-page-code'>{product.ean}</span> 
+                <span className='product-page-brand'> <label>Peso:</label> { !product.presentation?.weight ? "nao informado" : `${product.presentation?.weight} Kg`}</span> 
+                <span className='product-page-brand'> <label>Volume:</label> { !product.presentation?.volume ? "nao informado" : `${product.presentation?.volume} L`}</span> 
             </div>
 
             <div>

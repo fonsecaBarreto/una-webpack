@@ -53,7 +53,7 @@
     .product-feed-item .product-feed-item-body .produto-nome{
         font-size: 15px; line-height: 1.1em;
         white-space: normal; text-align: left;
-        height: 34px;
+        height: 32px;
         display: block; 
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -62,8 +62,29 @@
         text-overflow: ellipsis;
         color: #222!important;
         text-decoration: none;
+    }
+
+
+    .product-feed-item .product-feed-item-body .produto-presentation{
+        font-size: 12px; line-height: 1em;
+        white-space: normal; text-align: left;
+        height: 12px;
+        display: block; 
+        display: -webkit-box;
+        -webkit-line-clamp: 12;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #888!important;
+        text-decoration: none;
         margin-bottom: 2px;
     }
+
+
+
+
+
+
     .product-feed-item-body > div{
         display: flex; flex-direction: column; align-items: flex-start;
     }
@@ -71,7 +92,7 @@
         width: 100%;
     }
     .product-feed-item-body > div.product-feed-item-prices span:nth-child(1){
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
         color: var(--main-color);
         line-height: 22px;
@@ -90,10 +111,10 @@
 
 
     .product-feed-item-body > div.product-feed-item-prices span:nth-child(2){
-        font-size: 12px;
-        line-height: 12px;
+        font-size: 14px;
+        line-height: 14px;
         color: var(--second-color);
-        height: 12px;
+        height: 14px;
     }
   
 

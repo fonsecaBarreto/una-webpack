@@ -67,7 +67,8 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
 
     return (
         <div className={`product-feed-item ${listMode}`} >
-            { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> ... </button> }
+
+          {/*   { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> ... </button> } */}
             <ProductFeedCartButton onChange={(n:number)=>{handleClick("CART", n)}} value={cartHandler.count(ean)} />
             
             {listMode == "block" ?
@@ -75,6 +76,9 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                 <section> <ProductImageSection images={images}/>  </section>
                 <section className='product-feed-item-body' onClick={()=>{ handleClick("MOVE")}}>
                     <span className="produto-nome"> {specification} </span>
+                    <span className="produto-presentation"> {presentation.quantity}
+                        {presentation}
+                     </span>
 
                         { showPrices ?
                             <div className='product-feed-item-prices'>
