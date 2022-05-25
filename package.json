@@ -31,6 +31,7 @@
     "express": "^4.17.2",
     "fast-csv": "^4.3.6",
     "fck-br-location-selector": "^1.0.4",
+    "fck-products-carousel": "^0.0.0",
     "fck-react-dialog": "^1.0.5",
     "fck-react-input-controls": "^1.0.2",
     "fck-schema-validator": "^1.2.8",

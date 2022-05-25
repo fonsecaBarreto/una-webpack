@@ -9,6 +9,7 @@ import ProductInfo from './ProductInfo'
 import { getUfName } from '@/services/ibge'
 import { ListTree } from './ListTree'
 import { useSelector } from 'react-redux'
+import ProductsCarousel from "fck-products-carousel"
 const SEARCH_HEADER = { params: [ "ean"] }
 
 export const ProductPage: React.FunctionComponent<any> = ({ location, history }) => {
@@ -49,6 +50,13 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
             </div>}
           </React.Fragment>
         }
+
+       {/*  <React.Fragment>
+          <ProductsCarousel records={[1,2,3,4]}>
+            <span> tess</span>
+          </ProductsCarousel>
+
+        </React.Fragment> */}
       </div>
     </div>
   )
