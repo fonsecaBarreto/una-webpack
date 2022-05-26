@@ -68,6 +68,8 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
 
 export const SupplyPanel: React.FunctionComponent<any> = ({supplies}) => {
 
+  const today = new Date()
+
   const [ isLoading, setIsloading ] = useState(false)
   const [ coverage, setCoverage ] = useState<any>([])
 
