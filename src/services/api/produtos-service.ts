@@ -60,5 +60,11 @@ export const produtosService = {
           const { ean } = params
           const { data } = await produtosApi.send({ method: "get", url: `/${ean}` }) 
           return data 
+     },
+
+     findLatest: async () => {
+          const { data } = await produtosApi.send({ method: "get", url: `/latests` }) 
+          return data 
      }
+
 }

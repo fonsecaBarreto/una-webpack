@@ -9,8 +9,11 @@ import ProductInfo from './ProductInfo'
 import { getUfName } from '@/services/ibge'
 import { ListTree } from './ListTree'
 import { useSelector } from 'react-redux'
-import ProductsCarousel from "fck-products-carousel"
 const SEARCH_HEADER = { params: [ "ean"] }
+
+import ProductsCarouselAdapter from "@/react-apps/components/una/ProductsCarouselAdapter";
+
+
 
 export const ProductPage: React.FunctionComponent<any> = ({ location, history }) => {
   const { user } = useSelector((state: any) => state.main)
@@ -20,6 +23,7 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
   useEffect(()=>{ if(parsedParams){ handleLoad()} },[parsedParams])
  
   const handleLoad= () => {
+    setProduct(null)
     produtosService.find({ ...parsedParams }).then(data=>{
       setProduct(data?.product ?? null)
       setBreadCrumbs(data?.breadCrumbs ?? null)
@@ -50,14 +54,11 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
             </div>}
           </React.Fragment>
         }
-
-       {/*  <React.Fragment>
-          <ProductsCarousel records={[1,2,3,4]}>
-            <span> tess</span>
-          </ProductsCarousel>
-
-        </React.Fragment> */}
+        <div>
+          <ProductsCarouselAdapter/>
+        </div>
       </div>
+      
     </div>
   )
 }
