@@ -50,8 +50,12 @@ export const ContentPool: React.FunctionComponent<ContentPool.Params> = ({ heade
                 <section>
                     <nav>
                         { auxHeader && auxHeader(queries) }
-                        <button onClick={()=>setListMode("block")}>  <img src={GridIcon}></img> </button>
-                        <button onClick={()=>setListMode("inline")}> 	&equiv; </button>
+
+               
+                        {/* <button onClick={()=>setListMode((prev:any)=> prev =="block" ? 'inline' : 'block')}>  
+                            {  listMode ? <span>&equiv;</span> : <span>  <img src={GridIcon}></img>  </span>}
+                        </button> */}
+                   
                     </nav>
                 </section>
             </header>

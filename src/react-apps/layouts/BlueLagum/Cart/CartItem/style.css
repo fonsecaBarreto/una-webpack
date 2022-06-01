@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
-    padding: 4px;  gap: 5px;
+    padding: 12px;  gap: 6px;
     border-bottom: solid 1px #ddd;
 }
 

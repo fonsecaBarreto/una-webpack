@@ -16,14 +16,14 @@
 .aside-cart-btn > section > input{
     border: none;
     width: fit-content;
-    max-width: 32px;
+    max-width: 28px;
     text-align: center;
 }
 
 
 .aside-cart-btn > section > button{
     display: flex; align-items: center; justify-content: center;
-    width: 28px; height: 28px;
+    width: 24px; height: 24px;
     color: var(--main-color);
     box-shadow: inset 1px 0px #5554;
     border-radius: 50%;

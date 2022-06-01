@@ -4,6 +4,7 @@ import './style.css'
 import EmptyImage from "@/public/assets/images/product/empty.svg"
 import AddCartButton from '../AsideCartButton'
 import { UseCartHandler } from "@/react-apps/store/reducers/cart/handler"
+import { filesService } from '@/services/api/files-service'
 
 export namespace CartItem {
     export type Params = {
@@ -18,17 +19,22 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
     const { product, qtd } = item
 
     const handleChange = (n:number, c: string) =>{
-        console.log(n, c)
         switch(c){
             case "PUSH":
                 cartHandler.push(n, product);
             break;
-
             case "OVERWRITE": 
                 cartHandler.overwrite(n, product)
             break;
         } 
     }
+
+    useEffect(()=> {
+        if(product.images.length == 0) return;
+        var image = product.images[0];
+        const src= image + "/" + "96.jpeg";
+        setImage(filesService.get_public_images_url(src))
+    }, [product.images])
 
     return (
         <div className='layout-cart-item'>
@@ -38,7 +44,7 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
             </section>
 
             <section>
-                <span>{ product.specification} </span>
+                <span>{ product.specification} - {product.presentation}</span>
                 <span>{ product.ean }</span>
             </section>
 
