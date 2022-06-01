@@ -42,7 +42,8 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({chil
 
     useEffect(()=>{ console.log("renderizando o layout")},[])
 
-    const openCart = () =>{
+    const handleHeaderChange = (key: string) =>{
+
         if(!user){
             return context.dialog.push( MakeDialogConfig(ForbiddenCartModal,
                 (n)=>{
@@ -51,11 +52,15 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({chil
                         case 2: history.push("/login?v=signup"); break;
                     }
                     return -1;
-                }, "UNA-SE AO JOGO DOS GRANDES"))
-        }else{
-            setShowCart(!showCart) 
-        } 
+                }, "Cadastre-se Gratuitamente!"))
+        }
+
+        switch(key){
+            case "BUDGETS" : history.push("/cotacoes"); break; 
+            case "CART": setShowCart(!showCart); break;      
+        }
     }
+
     return (
         <BlueLagumContext.Provider value={{ asideFloat }}>
             <div className={`blue-lagum ${""}`}>
@@ -65,7 +70,7 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({chil
                 <FloatAsideContent show={asideFloat.content}> {asideFloat.content} </FloatAsideContent> 
               {/*   <aside> <AsideStaticMenu context={menuContext}></AsideStaticMenu> </aside> */}
                 <header>
-                    <LayoutHeader user={user} menuContext={menuContext} toggleCart={openCart}></LayoutHeader>
+                    <LayoutHeader menuContext={menuContext} onChange={handleHeaderChange}></LayoutHeader>
                     <LocationBar></LocationBar>
                 </header> 
                 <main>

@@ -4,6 +4,7 @@ import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
 import ProductFeed from '@/react-apps/pages/mart-page/ProductFeed'
 import UseFetchManager from './FetchManager'
 import CategoriasNav from './CategoriasNav'
+import ProductsCarouselAdapter from '@/react-apps/components/una/ProductsCarouselAdapter';
 
 export const MartPage: React.FunctionComponent<any> = ({ history }) => {
 
@@ -15,6 +16,9 @@ export const MartPage: React.FunctionComponent<any> = ({ history }) => {
                    <CategoriasNav manager={fetchManager}></CategoriasNav> 
                     <ProductFeed manager={fetchManager} ></ProductFeed>
                 </ContentGrid>  
+                <div>
+                    <ProductsCarouselAdapter/>
+                </div>
             </div> 
         </div>
     )

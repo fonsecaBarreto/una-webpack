@@ -15,14 +15,18 @@ export const ProductsCarouselAdapter: React.FunctionComponent<any> = () =>{
             .then(r=>{setProducts(r.records)});
     },[user])
     return (
-        <div className='latest-products-carousel'>
-            <h5> Ultimos Acessos: </h5>
-           { (user && products.length) &&
-                <ProductsCarousel records={products} viewport_height={HEIGHT}>
-                    <Item></Item>
-                </ProductsCarousel>
+        <React.Fragment>
+            { (user && products.length) &&
+                <div className='latest-products-carousel'>
+                    <h5> Ultimos Acessos: </h5>
+                
+                        <ProductsCarousel records={products} viewport_height={HEIGHT}>
+                            <Item></Item>
+                        </ProductsCarousel>
+                
+                </div>
             }
-        </div>
+        </React.Fragment>
     )
 }
 

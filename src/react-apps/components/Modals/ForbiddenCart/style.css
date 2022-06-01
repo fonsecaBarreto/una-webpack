@@ -2,30 +2,27 @@
     display: flex;
     flex-direction: column;
     align-content: center;
-    width: 400px;
+    width: 280px;
     gap: 12px;
 }
 
-.forbidden-cart-modal > img {
-    width: 220px;
-    margin: auto;
-    object-fit: contain;
-}
-
-.forbidden-cart-modal > h3 {
+.forbidden-cart-modal > h5 {
     width: 100%;
     text-align: center;
     font-weight: normal;
+    color: #333;
 }
 
 .forbidden-cart-modal > button {
-    width: 100%;
-    height: 36px;
     margin: auto;
-    font-size: 16px!important;
 }
 
-
+.forbidden-cart-modal > button:nth-child(1) {
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    height: 36px;
+}
 @media screen and (max-width:480px) {
     .forbidden-cart-modal{
         width: 100%;

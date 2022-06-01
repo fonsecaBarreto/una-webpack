@@ -12,13 +12,12 @@ import UseWindowSize from '@/react-apps/components/utils/UseWindowSize'
 
 export namespace PrimaryHeader {
     export type Params = {
-        user: any
-        toggleCart: () => void,
-        menuContext: any
+        menuContext: any,
+        onChange: any
     }
 }
 
-export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ user, toggleCart, menuContext })=> {
+export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ onChange, menuContext })=> {
     const history = useHistory();
     const location = useLocation()
     const [ searchText, setSearchText ] = useState("")
@@ -48,7 +47,11 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
                 {(!showSearchBar) ?
                     <React.Fragment>
                         <SearchBar className='desktop-only' value={searchText} onInput={setSearchText} onClick={toSearch}></SearchBar>
-                        <OptionsNav toggleMenu={menuContext.toggleMenu} toggleCart={toggleCart} toggleSearch={()=>setShowSearchBar(true)}></OptionsNav>
+                        <OptionsNav 
+                            openBudgets={()=>onChange("BUDGETS")}
+                            toggleMenu={menuContext.toggleMenu} 
+                            toggleCart={()=>onChange("CART")}
+                            toggleSearch={()=>setShowSearchBar(true)}/>
                     </React.Fragment>
                 :   <React.Fragment>
                         <SearchBar onCancel={()=>setShowSearchBar(false)} value={searchText} onInput={setSearchText} onClick={toSearch}></SearchBar>  

@@ -10,10 +10,7 @@ import { getUfName } from '@/services/ibge'
 import { ListTree } from './ListTree'
 import { useSelector } from 'react-redux'
 const SEARCH_HEADER = { params: [ "ean"] }
-
 import ProductsCarouselAdapter from "@/react-apps/components/una/ProductsCarouselAdapter";
-
-
 
 export const ProductPage: React.FunctionComponent<any> = ({ location, history }) => {
   const { user } = useSelector((state: any) => state.main)
