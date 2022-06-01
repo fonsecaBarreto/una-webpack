@@ -10,7 +10,7 @@ import Router from "@/react-apps/components/Router"
 import ProfilePage from "@pages/profile-page";
 import ProductPage from '@pages/product-page'
 import MinhasCotacoes from '@pages/MinhasCotacoes'
-
+import TutoriaisPage from "@pages/Tutoriais"
 import { Redirect } from "react-router-dom";
 
 const MartPage = lazy(() => import('@pages/mart-page'));
@@ -34,6 +34,10 @@ export const ROUTES = [
     { path: "/perfil/usuario/:user_id", title: "Perfil Companhia",  component: ProfilePage } ,
     { path: "/perfil/companhias/:company_id", title: "Perfil Companhia",  component: ProfilePage },
     { path: "/login", title: "Login",  component: LoginPage } ,
+
+    /* Tutoriais */
+
+    { path: "/tutoriais", title: "Tutoriais",  component: TutoriaisPage } ,
     /* REDIRECTS */
     { path: "/admin*", title: "Redirecionando para admin",  component: ({ location }: any) => goToAdmin(location) } ,
     { path: "/", title: "Inicio",  component:() => <Redirect to="/mercado"></Redirect> } ,

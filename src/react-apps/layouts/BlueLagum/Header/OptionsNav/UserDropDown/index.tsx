@@ -12,7 +12,7 @@ import UserButton from "./UserButton";
 /* assets */
 import DocumentsIcons from "@assets/icons/cotacoes.svg"
 import ExitIcon from "@assets/icons/exit.svg"
-import ConfigIcon from "@assets/icons/config.svg"
+import MenuIcon from "@assets/icons/menu.svg"
 
 const MakeDropDownOptions = (user?: any): DropDown.Options[] =>{
 
@@ -21,20 +21,25 @@ const MakeDropDownOptions = (user?: any): DropDown.Options[] =>{
     if(user){
         list = [ 
             { 
-                label: "Sair", 
-                value: "SAIR",
-                icon:  <img src={ExitIcon} /> 
-            },
-            { 
                 label:"Historico de Cotações", 
                 value: "COTACOES", 
                 icon: <img src={DocumentsIcons} /> 
+            },
+            { 
+                label: "Expandir menu", 
+                value: "MENU",
+                icon:  <img src={MenuIcon} /> 
+            },
+            { 
+                label: "Sair", 
+                value: "SAIR",
+                icon:  <img src={ExitIcon} /> 
             }
         ];
 
-        if(user.roles.includes(UserProfileRole.ADMIN)){
-            list = [ ...list, { label:"Super Usuario", value: "GOD_MODE", icon: <img src={ConfigIcon} /> }]
-        }
+       /*  if(user.roles.includes(UserProfileRole.ADMIN)){
+            list = [ { label:"Super Usuario", value: "GOD_MODE", icon: <img src={ConfigIcon} /> }, ...list ]
+        } */
     }else{
         list = [ 
             { label: "Entrar", value: "SIGNIN"}, 
@@ -47,7 +52,7 @@ const MakeDropDownOptions = (user?: any): DropDown.Options[] =>{
 
 }
 
-export const UserDropDown = () =>{
+export const UserDropDown = ({ onChange }: any) =>{
 
     const context: any = useContext(GlobalContext);
     const dispatch = useDispatch()
@@ -68,6 +73,7 @@ export const UserDropDown = () =>{
         switch(n){
             case "SAIR": loginServices.logout();break;
             case "GOD_MODE": handleGodMode(); break;
+            case "MENU": onChange("MENU"); break;
             case "SIGNIN": history.push("/login?v=signin");break;
             case "SINGUP": history.push("/login?v=signup");break;
             case "COTACOES": history.push("/cotacoes");break;

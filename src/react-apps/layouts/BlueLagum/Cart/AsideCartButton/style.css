@@ -13,6 +13,14 @@
     gap: 4px;
 }
 
+.aside-cart-btn > section > input{
+    border: none;
+    width: fit-content;
+    max-width: 32px;
+    text-align: center;
+}
+
+
 .aside-cart-btn > section > button{
     display: flex; align-items: center; justify-content: center;
     width: 28px; height: 28px;

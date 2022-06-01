@@ -1,0 +1,18 @@
+.pedidos-button{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    gap: 8px;
+}
+
+.pedidos-button > img{
+    width: 25px;
+    filter: brightness(0) invert(1);
+}
+.pedidos-button > span{
+    font-size: 14px;
+    line-height: 14px;
+    max-width: 66px;
+    text-align: left;
+}

@@ -58,12 +58,12 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({chil
     }
     return (
         <BlueLagumContext.Provider value={{ asideFloat }}>
-            <div className={`blue-lagum bl-aside-menu`}>
+            <div className={`blue-lagum ${""}`}>
                 <GodModeNotify show={god_mode ?? false} exit={()=>{dispatch(setGodMode(false))}}></GodModeNotify>
                 <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart> 
                 <AsideOverflowMenu user={user} context={menuContext}></AsideOverflowMenu>
                 <FloatAsideContent show={asideFloat.content}> {asideFloat.content} </FloatAsideContent> 
-                <aside> <AsideStaticMenu context={menuContext}></AsideStaticMenu> </aside>
+              {/*   <aside> <AsideStaticMenu context={menuContext}></AsideStaticMenu> </aside> */}
                 <header>
                     <LayoutHeader user={user} menuContext={menuContext} toggleCart={openCart}></LayoutHeader>
                     <LocationBar></LocationBar>

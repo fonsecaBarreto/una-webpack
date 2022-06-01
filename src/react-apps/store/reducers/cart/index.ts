@@ -1,3 +1,4 @@
+import CartItem from "@/react-apps/layouts/BlueLagum/Cart/CartItem";
 
 
 export namespace CartState {
@@ -25,25 +26,28 @@ export const carrinhoReducer = (state=INITIAL_STATE, action: any) => {
           } ;
           case "PUSH_TO_CART": {
                var cart= [ ...state.cart ]
-               var product: any = action.payload;
+               var { product, qtd=1, handle="PUSH" }: { product: any, qtd?: number, handle?: "PUSH" | "OVERWRITE" } = action.payload;
                const indexOf = cart.map((p: CartState.CartItem) => p.product.ean).indexOf(product.ean);
-               if (indexOf > -1){
-                    cart[indexOf].qtd+=1; }
-               else {
-                    cart = [ { qtd :1, product: action.payload}, ...cart ]; }
+
+               var cartItem: CartState.CartItem = (indexOf > -1) ? cart[indexOf] : { qtd:0, product}
+
+               switch(handle){
+                    case "PUSH": 
+                         cartItem.qtd+=qtd;
+                    break;
+
+                    case "OVERWRITE":
+                         cartItem.qtd = qtd
+                    break;
+               }
+
+               if( cartItem.qtd <= 0) cart.splice(indexOf,1);
+               else if(indexOf == -1){
+                    cart = [ cartItem, ...cart ]
+               }
+               
                return ({ ...state, cart })
           };
-          case "REMOVE_FROM_CART": {
-               var cart= [ ...state.cart ];
-               const indexOf = cart.map((p: CartState.CartItem) => p.product.ean).indexOf(action.payload.ean);
-               if(indexOf > -1){
-                    var item = cart[indexOf]
-                    item.qtd -= 1 ;
-                    if( item.qtd <= 0) cart.splice(indexOf,1);
-               }
-               return ({ ...state, cart });
-          };
-
           default: return state
      }
 }
@@ -55,13 +59,8 @@ export const setCart = (products: CartState.Product)=> ({
      payload: products
 })
 
-export const pushToCart = ( product: CartState.Product ) => ({
+export const pushToCart = ( product: CartState.Product, qtd: number, handle?: "PUSH" | "OVERWRITE" ) => ({
      type: "PUSH_TO_CART",
-     payload: product
-})
- 
-export const removeFromCart = (product: CartState.Product) => ({
-     type: "REMOVE_FROM_CART",
-     payload: product
+     payload: {product, qtd, handle}
 })
  

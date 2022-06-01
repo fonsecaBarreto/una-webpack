@@ -48,7 +48,7 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
                 {(!showSearchBar) ?
                     <React.Fragment>
                         <SearchBar className='desktop-only' value={searchText} onInput={setSearchText} onClick={toSearch}></SearchBar>
-                        <OptionsNav toggleCart={toggleCart} toggleSearch={()=>setShowSearchBar(true)}></OptionsNav>
+                        <OptionsNav toggleMenu={menuContext.toggleMenu} toggleCart={toggleCart} toggleSearch={()=>setShowSearchBar(true)}></OptionsNav>
                     </React.Fragment>
                 :   <React.Fragment>
                         <SearchBar onCancel={()=>setShowSearchBar(false)} value={searchText} onInput={setSearchText} onClick={toSearch}></SearchBar>  

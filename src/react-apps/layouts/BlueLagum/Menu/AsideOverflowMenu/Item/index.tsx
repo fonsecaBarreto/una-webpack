@@ -7,11 +7,12 @@ import { BlueLakeMenu } from '../..'
 
 export namespace BlueLakeMenuItem {
     export type Params = {
-        config: BlueLakeMenu.Item
+        config: BlueLakeMenu.Item,
+        onChange: any
     }
 }
 
-const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config }) =>{
+const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config, onChange }) =>{
 
     const [expand, setExpand] = useState(false)
     const history = useHistory()
@@ -19,6 +20,7 @@ const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config }) 
     const { label, icon, toDo, childs } = config
 
     const handleClick = () => { 
+        onChange("MENU")
         if(!toDo && childs && childs.length > 0 ) return setExpand(prev=>!prev)
         if(typeof toDo == "string") return history.push(toDo);
         return toDo()
@@ -33,7 +35,7 @@ const MenuItem: React.FunctionComponent<BlueLakeMenuItem.Params> = ({ config }) 
         {(childs) &&
             <ul className={`${expand ? "expand" : ""}`} >
                 {
-                    childs.map((c:any, i)=>  ( <MenuItem key={i} config={c}></MenuItem> ) )
+                    childs.map((c:any, i)=>  ( <MenuItem onChange={onChange} key={i} config={c}></MenuItem> ) )
                 }
             </ul>
         }

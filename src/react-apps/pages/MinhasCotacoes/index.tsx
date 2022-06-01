@@ -99,7 +99,7 @@ export const MinhasCotacoes: React.FunctionComponent<any> = ({history}) =>{
     return (
         <div id="minhas-cotacoes-page">
             <div className='app-container'>
-                <CompanyHeaderView company={user.company}></CompanyHeaderView>
+               {/*  <CompanyHeaderView company={user.company}></CompanyHeaderView> */}
                 <CompaniesBudgets company_id={user.company_id}></CompaniesBudgets>
             </div> 
         </div>

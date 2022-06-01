@@ -80,11 +80,6 @@
         margin-bottom: 2px;
     }
 
-
-
-
-
-
     .product-feed-item-body > div{
         display: flex; flex-direction: column; align-items: flex-start;
     }

@@ -2,10 +2,10 @@
     position: relative;
     display: grid; grid-template-columns: auto 1fr auto; 
     width: 100%; max-width: 500px; height: 38px;
-    border-radius: 4px;
+    border-radius: 2px;
     overflow: hidden;   
     margin-right: 0; margin-left: auto;
-    border: solid 2px white;
+    border: solid 1px white;
     box-shadow: 0px 1px 2px #0004;
     background-color: white;
     align-items: center;

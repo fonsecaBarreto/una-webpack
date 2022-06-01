@@ -17,7 +17,7 @@ export const ProductFeedCartButton = ({value =0, onChange}: any) => {
                     <button onClick={()=>onChange(-1)}>-</button>
                     <span> {value} </span>
                 </React.Fragment>}
-                <button onClick={()=>onChange(1)}>{"+"}</button>
+                <button onClick={()=>onChange(1)}>&#43;</button>
             </section>
         </div>)
 }

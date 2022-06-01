@@ -1,31 +1,45 @@
 @keyframes menuAppears {
     0% { transform: translateX(-100%) ; opacity: 0; };
     100% {  transform: translateX(0); opacity: 1; }
-}
-  
+} 
+
 .blao-menu{
     position: fixed;
     top: 0; left: 0;
-    display: grid; grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    width: 0; height: 100vh;
+    width: 100vw; height: 100vh;
     overflow: hidden;
     z-index: 99;
-    background-color: white;
-    box-shadow: 0px 2px 3px #00000033;
-    background: rgb(255, 255, 255);
-    background: linear-gradient(0deg, rgb(225, 235, 243) 0%, rgb(240, 245, 245) 95%, rgb(232, 224, 248) 100%);
-    box-shadow: 2px 0px 2px #0003;
+    background-color: rgba(0, 0, 0, 0.26);
+    display: none;
 }
 
 .blao-menu.show {
+    display: unset;
     animation-name: menuAppears;
-    animation-duration: .2s;
-    width: var(--menu-width-expanded); 
+    animation-duration: .12s;
+}
+  
+.blao-menu.show > aside {
+    display: unset;
+    animation-name: menuAppears;
+    animation-duration: .3s;
+
+}
+
+.blao-menu > aside{
+    position: absolute; top: 0; left: 0;
+    z-index: 99;
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto 1fr auto;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgb(225, 235, 243) 0%, rgb(240, 245, 245) 95%, rgb(232, 224, 248) 100%);
+    box-shadow: 2px 0px 2px #0009;
+    width: var(--menu-width-expanded); height: 100%;
 }
 
 /* HEADER */
-.blao-menu > header{
+.blao-menu > aside > header{
     height: calc( var(--header-height-desktop) + var(--aux-header-height) );
     background: #0052D4;  /* fallback for old browsers */
     display: flex; flex-direction: row; align-items: center; justify-content: flex-start;
@@ -37,63 +51,66 @@
 
 .blao-menu-toggle-button{
     display: flex; align-items: center; justify-content: center; 
-    width: 36px;
-    height: 36px;
+    width: 36px; height: 36px;
     border-radius: 50%;
     cursor: pointer;
     background-color: transparent;
-    font-size: 32px;
+    font-size: 24px;
+    padding-top: 4px;
     border: solid 2px #efefef;
     color: white;
     transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
-    margin-right: 0; margin-left: auto;
+    margin-right: 0; margin-left: auto; 
+}
+.blao-menu-toggle-button:hover{
+    background-color: rgba(255, 255, 255, 0.12);
 }
 
-
 /* MAIN */
-
-.blao-menu > main{ padding-top: 12px; overflow: hidden; }
-
-.blao-menu > main > nav{
+.blao-menu > aside > main{ 
+    box-shadow: inset 0px 0px 3px #0004;
+    overflow: hidden; display: flex;  flex: 1;
+    height: calc(100% - var(--header-height-desktop) - var(--aux-header-height) - var(--foooter-height) );
+}
+.blao-menu > aside > main > nav{
     position: relative;
     width: 100%; height: 100%;
     overflow-y: auto;
-    display: flex;
+    display: flex; flex-direction: column;
+    align-items: flex-start; justify-content: flex-start;
 }
 
-.blao-menu main > nav::-webkit-scrollbar {
-    width: 4px;
+.blao-menu > aside > main > nav::-webkit-scrollbar {
+    width: 6px;
 } 
-
-.blao-menu main > nav::-webkit-scrollbar-track{
-    background: rgb(236, 236, 236); 
+.blao-menu > aside > main > nav::-webkit-scrollbar-track{
+    background: #c0d0e9;
+}
+.blao-menu > aside > main > nav::-webkit-scrollbar-thumb {
+    background-color: #5c749b;
+    border-radius: 1px;     
 }
 
-.blao-menu main > nav::-webkit-scrollbar-thumb {
-    background-color: rgb(255, 255, 255);    /* color of the scroll thumb */
-    border-radius: 5px;       /* roundness of the scroll thumb */
-    border: 1px solid rgb(255, 255, 255);  /* creates padding around scroll thumb */
-
-}
-
-/* listing */
-.blao-menu main > nav > ul{
+.blao-menu > aside > main ul{
     width: 100%; height: fit-content;
     text-decoration: none;
     list-style: none;
     padding: 0; 
-    margin-top: 0;
-    margin-bottom: auto;
-}
-
+    margin: 0;
+    padding-top: 12px; 
+    border-bottom: solid 1px #ddd;
+} 
 /* FOOTER */
-.blao-menu > footer{
-    height: 32px;
+.blao-menu > aside > footer{
+    height: var(--foooter-height);
+    background: #0052D4;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0052D4, #4364F7, #0052D4);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0052D4, #4364F7, #0052D4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 
 @media only screen and (max-width: 1024px){
-    .blao-menu.show {
+    .blao-menu.show > aside {
         width: 80vw;
     }
 }

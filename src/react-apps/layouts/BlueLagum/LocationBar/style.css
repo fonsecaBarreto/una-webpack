@@ -1,8 +1,12 @@
 .bl-location-bar{
     border-bottom: solid 1px #ccc;
     background: #fc4a1a;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #f7b733, #ff6a2f , #ff7049, #ff643a, #f7b733);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #f7b733, #ff6a2f, #ff7049, #ff643a, #f7b733 ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to right, #f7b733, #ff932f , #ff7049, #f7b733);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f7b733, #ff932f, #ff7049, #f7b733 ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    background: -webkit-linear-gradient(to right, #FF512F, #ff4f49, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right,#FF512F, #ff4f49, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .bl-location-bar > div > nav{
@@ -11,29 +15,50 @@
     overflow: hidden;
 }
 
-/* selector */
-.bl-location-selector{
+
+.bl-location-bar > div > nav > :nth-child(2){
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.bl-location-bar > div > nav > button{
     display: flex; gap: 8px;
     flex-direction: row; align-items: center;
-    border-radius: 4px;
+    background-color: rgba(122, 122, 122, 0.10);
+    color: white;
+    height: 100%;
+    border: none;
     cursor: pointer;
     color: #333;
-    font-weight: bold;
-    padding: 2px 8px;
-    background-color: rgba(122, 122, 122, 0.15);
-    border: solid 1px #ddd;
-    color: white;
 
+    color: white;
+    padding: 0 16px;
+    border-right: solid 1px #eeeeee44;
 }
-.bl-location-selector >span{
-    font-size: 12px;
+
+
+.bl-location-bar > div > nav > button:nth-child(1){
+    border-left: solid 1px #eeeeee44;
+}
+
+.bl-location-bar > div > nav > button:hover{
+    background-color: rgba(230, 230, 230, 0.1);
+}
+
+.bl-location-bar > div > nav > button >span{
+    font-size: 14px;
     line-height: 1em;
-    height: 12px;
+    height: 14px;
     overflow: hidden;
 }
 /* selector */
-.bl-location-selector > img{
-    width: 10px;
-    height: 10px;
-    filter: invert(1)
+.bl-location-bar > div > nav > button > img{
+    width: 12px;
+    height: 12px;
+    filter: invert(1);
+}
+
+.bl-duvida-button > img{
+    height: 18px!important;
+    width: 18px!important;
 }

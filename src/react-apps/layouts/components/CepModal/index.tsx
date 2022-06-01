@@ -18,7 +18,7 @@ export const CepModal: React.FunctionComponent<CepModal.Params> = ({ onChange, u
         state.loading.set(false);
         if(result){
             const { cep, ibge, uf, bairro, localidade }  = result
-            let str = `${localidade},${bairro} - ${uf} `
+            let str = `${localidade}, ${bairro} - ${uf} `
             const sessionLocation = new SessionLocation(cep, ibge, str)
             sessionLocation.store()
         }

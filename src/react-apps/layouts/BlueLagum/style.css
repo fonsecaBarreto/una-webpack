@@ -1,5 +1,6 @@
 .blue-lagum {
     --aux-header-height: 24px;
+    --foooter-height: 32px;
     --header-height-desktop: 64px;
     --header-height-mobile: 64px;
     --menu-width-expanded: 280px;
@@ -8,15 +9,25 @@
     z-index: 0; width: 100%; height: fit-content;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: auto 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas: "layheader layheader layheader" "laycontent laycontent laycontent" "layfooter layfooter layfooter";
     background: var(--main-bg-color);
 }
-
+/* 
 .blue-lagum.bl-aside-menu {
     grid-template-areas: "layheader layheader layheader" "laymenu laycontent laycontent" "laymenu layfooter layfooter";
 }
+
+.blue-lagum > aside{
+    box-sizing: border-box;
+    position: sticky; z-index: 1;
+    top: calc( var(--header-height-desktop) + var(--aux-header-height) ); 
+    grid-area: laymenu;
+    height: calc( 100vh - var(--header-height-desktop) - var(--aux-header-height));
+    overflow: hidden;
+}
+*/
 
 .blue-lagum > header{
     grid-area: layheader;
@@ -33,14 +44,7 @@
     z-index: 1;
 }
 
-.blue-lagum > aside{
-    box-sizing: border-box;
-    position: sticky; z-index: 1;
-    top: calc( var(--header-height-desktop) + var(--aux-header-height) ); 
-    grid-area: laymenu;
-    height: calc( 100vh - var(--header-height-desktop) - var(--aux-header-height));
-    overflow: hidden;
-}
+
 
 .blue-lagum > footer{
     position: relative; z-index: 1;

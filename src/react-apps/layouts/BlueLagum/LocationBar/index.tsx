@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { SessionLocation } from '@/domain/SessionLocation'
 import { setSessionAddress } from '@/react-apps/store/reducers/main/actions'
 import LocationPin from "@assets/icons/location-pin.svg"
-
+import DuvidaIcon from "@assets/icons/duvida.svg"
+import MenuIcon from "@assets/icons/menu.svg"
 export const LocationBar = () => {
 
     const history = useHistory()
@@ -25,7 +26,7 @@ export const LocationBar = () => {
 
     const captureLocationFromUser= () => {
         const {cep, ibge, cidade, uf } = user.company.addresses[0]
-        var sessionLocation  = new SessionLocation(cep, ibge,`${ cidade} - ${uf}`)
+        var sessionLocation  = new SessionLocation(cep, ibge,`${cidade} - ${uf}`)
         dispatch(setSessionAddress(sessionLocation)) ;
     } 
 
@@ -44,6 +45,8 @@ export const LocationBar = () => {
         },( "Selecione a sua localidade ")
     ))}
 
+
+
     return (
         <header className='bl-location-bar'>
             <div className='app-container'>
@@ -51,6 +54,11 @@ export const LocationBar = () => {
                     <button className='bl-location-selector' onClick={openModal}>
                         <img src={LocationPin}></img> 
                         <span>{ session_address ? session_address.label : "Selecione a sua localidade" }</span>
+                    </button>
+
+                    <button className='bl-duvida-button' onClick={()=>history.push("/tutoriais")}>
+                        <img src={DuvidaIcon}></img> 
+                        <span> Preciso de ajuda </span>
                     </button>
                 </nav>
             </div>

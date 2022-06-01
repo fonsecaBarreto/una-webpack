@@ -6,7 +6,7 @@
 
 .product-feed-cart-btn > section{
     position: relative; display: flex; flex-direction: row; align-items: center;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.82);
     border: solid 2px var(--main-color);
     border-radius: 20px;
     padding: 4px;

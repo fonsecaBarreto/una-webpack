@@ -17,9 +17,19 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
     const [ image, setImage ] = useState(EmptyImage)
     const { product, qtd } = item
 
-    useEffect(()=>{
-        console.log("Item aqui", item)
-    },[item])
+    const handleChange = (n:number, c: string) =>{
+        console.log(n, c)
+        switch(c){
+            case "PUSH":
+                cartHandler.push(n, product);
+            break;
+
+            case "OVERWRITE": 
+                cartHandler.overwrite(n, product)
+            break;
+        } 
+    }
+
     return (
         <div className='layout-cart-item'>
 
@@ -33,7 +43,7 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
             </section>
 
             <section>
-                <AddCartButton value={cartHandler.count(product?.ean)} onChange={(n:number)=>{cartHandler.push(n, product)}}></AddCartButton> 
+                <AddCartButton value={cartHandler.count(product?.ean)} onChange={handleChange}></AddCartButton> 
             </section> 
            
         </div>
