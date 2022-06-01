@@ -32,8 +32,8 @@ export const SelectControl: React.FunctionComponent<SelectControl.Params> =  ({ 
     }
 
     return (
-        <select
-            className={className ?? ""}
+        <select 
+            className={`una-select-control ${className ?? ""}`}
             disabled={disabled || list.length === 0 || (value == ""&& emptyValue == false) } 
             onChange={handleInput}
             value={ value ?? ""} >

@@ -15,7 +15,7 @@ const STATUS_LIST = [
 
 export namespace BudgetView {
     export interface BudgetProductItem extends BudgetItem { product: any }
-    export type Params = { budget_id: string, company_id?:string }
+    export type Params = { budget_id: string, company_id?:string, v?: number }
 }
 
 export const BudgetItemComponent: React.FunctionComponent<any> = ({data, index}) =>{
@@ -34,7 +34,7 @@ export const BudgetItemComponent: React.FunctionComponent<any> = ({data, index})
 }
 
 
-export const BudgetView: React.FunctionComponent<BudgetView.Params> = ({ budget_id, company_id }) =>{
+export const BudgetView: React.FunctionComponent<BudgetView.Params> = ({ budget_id, company_id, v=1}) =>{
 
     const [ budget, setBudget] = useState<any>(null);
     const [ loadTry, setLoadTry ] = useState(0);
@@ -84,8 +84,9 @@ export const BudgetView: React.FunctionComponent<BudgetView.Params> = ({ budget_
                                 </div>   
 
                                 <div>
-                                    <SelectControl className="select-status-control" onChange={handleStatusChange} items={STATUS_LIST} value={status ?? ""}></SelectControl>
+                                    <SelectControl disabled={v==0} className="select-status-control" onChange={handleStatusChange} items={STATUS_LIST} value={status ?? ""}></SelectControl>
                                 </div>
+                              
                             </section>
                         </React.Fragment>
                     }

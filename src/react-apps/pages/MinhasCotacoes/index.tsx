@@ -69,7 +69,7 @@ const CompaniesBudgets:React.FunctionComponent<{company_id:string}> = ({company_
 
     React.useEffect(()=>{
         if(showBudget) {
-          context.dialog.push(MakeDialogConfig(()=> <BudgetView budget_id={showBudget} company_id={company_id} />,
+          context.dialog.push(MakeDialogConfig(()=> <BudgetView v={0} budget_id={showBudget} company_id={company_id} />,
           ()=>{ 
             setShowBudget(null); 
             return -1;
