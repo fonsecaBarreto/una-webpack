@@ -22,17 +22,3 @@ export const MartPage: React.FunctionComponent<any> = ({ history }) => {
 
 export default MartPage
 
-/* 
-    const handleProductForm =async () =>{
-        dispatch(setLoading(true));
-        const product:any = parsedSearch["admin-view"] === "new" ? {} : 
-        await produtosService.find({ean: parsedSearch["admin-item"][0] })
-            .finally(()=>{ dispatch(setLoading(false)) })
-        
-        context.dialog.push(MakeDialogConfig(
-            ({onAction})=>( <ProductForm entry={{...product.product}} onAction={onAction} onData={()=>{}}/>
-            ),()=>{ pushToHistory({"admin-item": []});
-            }, parsedSearch["admin-item"] ? "Atualizar Produto" : "Novo Produto")
-        );
-    } */
-

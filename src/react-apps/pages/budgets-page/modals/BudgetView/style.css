@@ -13,6 +13,9 @@
     gap: 14px;
 }
 
+.budget-view-modal > section > *{
+    width: 100%;
+}
 .budget-view-budget-items{
     display: flex;
     flex-direction: column;
@@ -37,6 +40,11 @@
     outline: solid 2px rgba(221, 221, 221, 0.589);
 }
 
+
+.select-status-control{
+    width: 100%;
+    height: 42px;
+}
 
 
 .budget-view-budget-item-component > span:nth-child(1){

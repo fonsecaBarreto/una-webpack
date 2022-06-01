@@ -68,7 +68,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     return (
         <div className={`product-feed-item ${listMode}`} >
 
-          {/*   { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> ... </button> } */}
+           { showOptions && <button onClick={()=>onAction("ADMIN", produto.ean)} className='product-feed-options'> &equiv; </button> } 
             <ProductFeedCartButton onChange={(n:number)=>{handleClick("CART", n)}} value={cartHandler.count(ean)} />
             
             {listMode == "block" ?

@@ -38,11 +38,18 @@ export const budgetServices = {
           const { data } = await budgetsApi.send({ method: "get", url: `${query}` }) 
           return data 
      },
-     /* aadmin finding budgets */
+     /* admins finding budgets */
      find: async (budget_id: string) => {
           const { data } = await budgetsApi.send({ method: "get", url: `/${budget_id}` }) 
           return data 
      },
+     /* admins update */
+
+     updateStatus: async (budget_id: string, status: string) => {
+          await budgetsApi.send({ method: "patch", url: `/${budget_id}/status`, data: { status } }) 
+          return;
+     },
+
 
      /*  Clientes */
 

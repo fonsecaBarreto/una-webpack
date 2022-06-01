@@ -3,8 +3,15 @@ import './style.css'
 import { Forming } from "fck-react-input-controls"
 import { budgetServices } from '@/services/api/budget-service'
 import { Budget, BudgetItem } from '@/domain/views/Budget'
-import { LabelView } from '@/domain/views/ListingView'
-import { json } from 'stream/consumers'
+import SelectControl from '@/react-apps/components/una/inputs-control/SelectControl'
+
+const STATUS_LIST = [
+    { label: "Novo", value: "NEW"},
+    { label: "Em Analise", value:"IN_PROGRESS"},
+    { label: "Sucedido", value:"SUCCEEDED"},
+    { label: "Cancelado", value:"CANCELED" },
+    { label: "Fechado", value:"CLOSED"}       
+]
 
 export namespace BudgetView {
     export interface BudgetProductItem extends BudgetItem { product: any }
@@ -28,8 +35,15 @@ export const BudgetItemComponent: React.FunctionComponent<any> = ({data, index})
 
 
 export const BudgetView: React.FunctionComponent<BudgetView.Params> = ({ budget_id, company_id }) =>{
-    const [ loadTry, setLoadTry ] = useState(0)
-    const [ budget, setBudget] = useState<any>(null)
+
+    const [ budget, setBudget] = useState<any>(null);
+    const [ loadTry, setLoadTry ] = useState(0);
+    const [ status, setStatus ] = useState(null);
+
+    useEffect(()=>{
+        if(!budget) return;
+        setStatus(budget.status)
+    },[budget])
 
     useEffect(()=>{ 
         if(!company_id){
@@ -43,6 +57,12 @@ export const BudgetView: React.FunctionComponent<BudgetView.Params> = ({ budget_
         }
     },[budget_id])
 
+    const handleStatusChange = (payload: { value: any, label: string}) =>{
+        const { value } = payload;
+        setStatus(null);
+        budgetServices.updateStatus(budget_id, value)
+            .then(()=>setStatus(value)) 
+    }
     return (
         <div className='budget-view-modal'>
             { loadTry == 0 ? "Procurando..." : 
@@ -50,7 +70,6 @@ export const BudgetView: React.FunctionComponent<BudgetView.Params> = ({ budget_
                     { !budget ? "Nada encontrado!" :
                         <React.Fragment>
                             <section>
-                            
                                 <div className='flex-column'>
                                     <Forming.LabelWrapper label='Numero'>{budget.id}</Forming.LabelWrapper> 
                                     <Forming.LabelWrapper label='Companhia'>{budget?.company?.label}</Forming.LabelWrapper>
@@ -58,12 +77,15 @@ export const BudgetView: React.FunctionComponent<BudgetView.Params> = ({ budget_
                                     <Forming.LabelWrapper label='Total (R$)'>{budget.amount}</Forming.LabelWrapper>
                                     <Forming.LabelWrapper label='Data '>{budget.created_at}</Forming.LabelWrapper> 
                                 </div> 
-
                                 <div className='budget-view-budget-items'>
                                     { budget.items.map((item:any, i:number) =>{
-                                        return ( <BudgetItemComponent key={i} index={i} data={item}></BudgetItemComponent>)
+                                        return ( <BudgetItemComponent key={i} index={i+1} data={item}></BudgetItemComponent>)
                                     }) }
                                 </div>   
+
+                                <div>
+                                    <SelectControl className="select-status-control" onChange={handleStatusChange} items={STATUS_LIST} value={status ?? ""}></SelectControl>
+                                </div>
                             </section>
                         </React.Fragment>
                     }

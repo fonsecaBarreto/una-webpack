@@ -13,7 +13,7 @@ import UserButton from "./UserButton";
 import DocumentsIcons from "@assets/icons/cotacoes.svg"
 import ExitIcon from "@assets/icons/exit.svg"
 import MenuIcon from "@assets/icons/menu.svg"
-
+import ConfigIcon from "@assets/icons/config.svg"
 const MakeDropDownOptions = (user?: any): DropDown.Options[] =>{
 
     var list: DropDown.Options[] = [];
@@ -37,9 +37,9 @@ const MakeDropDownOptions = (user?: any): DropDown.Options[] =>{
             }
         ];
 
-       /*  if(user.roles.includes(UserProfileRole.ADMIN)){
+        if(user.roles.includes(UserProfileRole.ADMIN)){
             list = [ { label:"Super Usuario", value: "GOD_MODE", icon: <img src={ConfigIcon} /> }, ...list ]
-        } */
+        } 
     }else{
         list = [ 
             { label: "Entrar", value: "SIGNIN"}, 

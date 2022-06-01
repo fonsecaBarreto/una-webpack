@@ -34,9 +34,9 @@ export const ProvItem = ({}:any) => {
     )
 }
 
-export const ImageItem = ({src}:any) => {
+export const ImageItem = ({src, onChange}:any) => {
     return ( 
-        <MediaPlayListItem onClick={() =>{}}>
+        <MediaPlayListItem onClick={() =>onChange("REMOVE")}>
              <img src={src}></img>
              <button className='img-tem-exclude-button'> 
                 &#10005;

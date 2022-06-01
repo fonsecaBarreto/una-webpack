@@ -17,7 +17,9 @@ export const DateControl: React.FunctionComponent<DateControl.Params> =  ({ titl
     } 
     return (
         <Wrapper title={title}>
-            <input className='selector-wrapper-date-picker' type="date" value={selectedDate} onChange={(e:any)=>handleInput(e.target.value)} />
+            <input className='selector-wrapper-date-picker' 
+            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
+            type="date" value={selectedDate} onChange={(e:any)=>handleInput(e.target.value)} />
         </Wrapper>
     )
 }

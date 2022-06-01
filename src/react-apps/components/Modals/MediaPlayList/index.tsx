@@ -3,6 +3,7 @@ import "./style.css"
 import { filesService } from "@/services/api/files-service"
 import { mediaPlayListService } from '@/services/api/media-playlist'
 import { AddItem, ImageItem, ProvItem } from "./Item"
+import { listenerCount } from 'process'
 
 export namespace MediaPlayListModal {
     export type Params = {
@@ -42,13 +43,26 @@ export const MediaPlayListModal: React.FunctionComponent<MediaPlayListModal.Para
         onData(result)
     }
 
+    const handleChange = (k: string, p: any) =>{
+        switch(k){
+            case "REMOVE":
+                setImages((prev: any)=>{
+                    let list = [ ...prev];
+                    list.splice(p,1);
+                    console.log("nova lsita")
+                    return list
+                })
+            break;
+        }
+    }
+
     return (
         <div className='media-playlist-modal'> 
             <nav>
                 <div>
                     <AddItem onChange={setFilesToUpload}></AddItem>
                     { filesToUpload.map((f:any, i : number)=>(<ProvItem key={i} ></ProvItem>))}
-                    { images.map((f:any, i : number)=>( <ImageItem src={getUrl(f)} onClick={()=>{}} key={i}/> )) }
+                    { images.map((f:any, i : number)=>( <ImageItem src={getUrl(f)} onChange={(k:string)=>handleChange(k,i)} key={i}/> )) }
                 </div>
             </nav> 
         </div>

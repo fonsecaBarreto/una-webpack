@@ -42,10 +42,11 @@ const handleFiltersWithQueries = ({company_id}: any) =>{
     const history = useHistory()
     const { search } = useLocation();
     const query = React.useMemo(() => new URLSearchParams(search), [search]);
-
+    var today = new Date()
+    today.setDate(today.getDate() + 1);
     const values = React.useMemo( () => ({
-        initial_date: query.get("initial_date") ?? "2022-01-01",
-        end_date: query.get("end_date") ?? new Date().toISOString().split('T')[0],
+        initial_date: query.get("initial_date") ?? new Date("2022-01-01").toISOString().split('T')[0],
+        end_date: query.get("end_date") ?? today.toISOString().split('T')[0],
         p: query.get("p") ?? 1,
         v: query.get("v") ?? "",
         company_id
