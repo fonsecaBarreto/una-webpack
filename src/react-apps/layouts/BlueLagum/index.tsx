@@ -28,7 +28,8 @@ export const BlueLagumContext = React.createContext<any>({});
 
 const FloatAsideContentHandler = ()=>{
     const [ content, setContent ] = useState(null)
-    return ({content, setContent})
+    const [ rightContent, setRightContent ] = useState(null)
+    return ({content, setContent, rightContent, setRightContent })
 }
 
 const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children }) =>{
@@ -67,8 +68,11 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({chil
                 <GodModeNotify show={god_mode ?? false} exit={()=>{dispatch(setGodMode(false))}}></GodModeNotify>
                 <LayoutCart show={showCart} onClose={()=>setShowCart(false)}></LayoutCart> 
                 <AsideOverflowMenu user={user} context={menuContext}></AsideOverflowMenu>
+
+                {/* Pre rendered side modals */}
                 <FloatAsideContent show={asideFloat.content}> {asideFloat.content} </FloatAsideContent> 
-              {/*   <aside> <AsideStaticMenu context={menuContext}></AsideStaticMenu> </aside> */}
+                <FloatAsideContent anchor={"right"} show={asideFloat.rightContent}> {asideFloat.rightContent} </FloatAsideContent> 
+         
                 <header>
                     <LayoutHeader menuContext={menuContext} onChange={handleHeaderChange}></LayoutHeader>
                     <LocationBar></LocationBar>

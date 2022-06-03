@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import SearchInput from "./SearchBar"
 import LoadingComponent from './standard-items/LoadingComponents' 
 import IconePadrao from "./dashed-circle.svg"
-
+export * from "./ListingHandlers"
 export namespace UnaLisingContent {
 
     export interface MetaData {

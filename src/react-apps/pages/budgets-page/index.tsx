@@ -9,16 +9,8 @@ import BudgetView from './modals/BudgetView';
 import UnaListingContent from '@/react-apps/layouts/components/UnaListingContent'
 import { useLocation, useParams, useRouteMatch } from 'react-router-dom';
 import qs from 'query-string';
+import BudgetListViewItem from './Item';
 
-const mapBudgetsToLavelView = (data: any) =>{
-    if(!data) return []
-    return data.map((b: any)=>{
-       return { 
-           value: b.id ,
-            label: ` N° ${b.id} - ${ new Date(b.created_at).toISOString().split('T')[0] } - ${b.company.label} - ${b.user.label}`
-        }
-    })
-}
 
 const handleFiltersWithQueries = ({history}: any) =>{
     const { search } = useLocation();
@@ -50,7 +42,7 @@ const handleRecords = () =>{
     const [ records, serRecords ] = useState([])
     const setData = (r: any) =>{
         setMetaData(r._metadata)
-        serRecords(mapBudgetsToLavelView(r.records))
+        serRecords(r.records)
         setLoadTry(prev=>prev+=1)
     }
     const submit = (filters: any) =>{
@@ -73,12 +65,14 @@ export const ListCotacaoPage = ({ history }: any)=>{
           context.dialog.push(MakeDialogConfig(()=> <BudgetView budget_id={showBudget} />,
           ()=>{ 
             setShowBudget(null); 
+            submit(filters.values);
             return -1;
           }, `Cotação N° ${showBudget}`))
         }
     },[showBudget])
 
     useEffect(()=>{  submit(filters.values)  },[filters.values])
+
     const handleActions = (key: any, payload: any) =>{
         switch(key){
             case "PAGE": filters.setValue({"p": payload});break;
@@ -91,7 +85,13 @@ export const ListCotacaoPage = ({ history }: any)=>{
             <div className='app-container'>
                 <ContentGrid loading={false}>
                     <FiltersNav values={filters.values} onChange={(k, p)=>filters.setValue(p)}/>
-                    <UnaListingContent searchText={filters.values['v']} metaData={metaData} records={records} freeze={loadTry == 0} onChange={handleActions}>
+                    <UnaListingContent 
+                        searchText={filters.values['v']} 
+                        metaData={metaData} 
+                        records={records} 
+                        freeze={loadTry == 0} 
+                        onChange={handleActions}>
+                            <BudgetListViewItem/>
                     </UnaListingContent>
                 </ContentGrid>
             </div> 

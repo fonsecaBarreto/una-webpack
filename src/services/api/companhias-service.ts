@@ -30,8 +30,20 @@ export const companhiasServices = {
           const { data } = await companhiasApi.send({ method: "get", url: `/${query}` }) 
           return data 
      },
+     /* admins */
+     listV2: async (params: any) => {
+          const { v, p, ativo} = params 
+          var query = `?page=${p}&text=${v}&ativo=${ativo}`
+          const { data } = await companhiasApi.send({ method: "get", url: `/v2${query}` }) 
+          return data 
+     },
      find: async (id:string) => {
           const { data } = await companhiasApi.send({ method: "get", url: `/${id}` }) 
+          return data 
+     },
+     /* admin and gestor*/
+     findV2: async (id:string) => {
+          const { data } = await companhiasApi.send({ method: "get", url: `/company/${id}` }) 
           return data 
      }
 }

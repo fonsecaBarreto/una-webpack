@@ -28,7 +28,7 @@ nav.nav-selector-wrapper{
 }
 
 .nav-selector-wrapper .nav-selector-wrapper-body.open {
-    max-height: 500px;
+    max-height: 400px;
     transition: max-height 0.4s ease-in;
 }
 

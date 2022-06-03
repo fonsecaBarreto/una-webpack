@@ -39,12 +39,6 @@ export const BudgetFiltersNav: React.FunctionComponent<BudgetFiltersNav.Params> 
                 onChange={(p: any)=> { onChange("FILTER",{'status': p[0]?.value ?? null, 'p' : 1})} } >
             </MultipleSelectionControl>   */}
 
-            <MultipleSelectionControl 
-                title="Compahias" items={companies} max={1} 
-                value={!values.company_id ? [] : [{ value: values.company_id }]}
-                onChange={(p: any)=> { onChange("FILTER",{'company_id': p[0]?.value ?? null, 'p' : 1})} } >
-            </MultipleSelectionControl>  
-            
             <DateControl 
                 initial_value={values.initial_date}
                 onChange={(v: any)=>onChange("FILTER",{"initial_date": v })}  
@@ -54,6 +48,12 @@ export const BudgetFiltersNav: React.FunctionComponent<BudgetFiltersNav.Params> 
                 initial_value={values.end_date}
                 onChange={(v: any)=>onChange("FILTER",{"end_date": v })}  
                 title="Data Limite"></DateControl>
+
+            <MultipleSelectionControl 
+                title="Compahias" items={companies} max={1} 
+                value={!values.company_id ? [] : [{ value: values.company_id }]}
+                onChange={(p: any)=> { onChange("FILTER",{'company_id': p[0]?.value ?? null, 'p' : 1})} } >
+            </MultipleSelectionControl>  
         </AsideFilters>
   )
 }

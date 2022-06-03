@@ -48,16 +48,16 @@ export const CompanyForm: React.FunctionComponent<CompanyForm.Params> = ({ entry
 
     return (
         <UnaModalForm onSave={submit} onCancel={()=>{ onAction(-1)}}  >
-            <Forming.FormGrid title="" columns={[8,4]} freeze={state.loading.get}>
+            <Forming.FormGrid title="" columns={[]} freeze={state.loading.get}>
                 <Controls.TextBox placeHolder="Exemplo: 99.999.999/9999-99" mask="99.999.999/9999-99" 
                     state={state} label="CNPJ " name={"cnpj"}  type={Controls.TextBoxTypes.TEXT} > </Controls.TextBox>
-                <Forming.InputWrapper label={"Status"}>
+              {/*   <Forming.InputWrapper label={"Status"}>
                     <SwitchButton fill value={state.data.get['ativo'] === true ? 0 : 1} 
                         onInput={(i)=>state.data.onInput("ativo", i === 0 ? true : false)}> 
                         <span className='una-company-status-button active' >  Ativo </span>
                         <span className='una-company-status-button inactive'>  Inativo </span>
                     </SwitchButton>
-                </Forming.InputWrapper>
+                </Forming.InputWrapper> */}
                 <Controls.TextBox placeHolder="Exemplo: Minha Empresa"
                     state={state} label={"Nome Fantasia"} name={"nomeFantasia"} type={Controls.TextBoxTypes.TEXT}/>
                 <Controls.TextBox placeHolder="Exemplo: Minha Empresa LTDA"
