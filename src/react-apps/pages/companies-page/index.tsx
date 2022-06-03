@@ -23,14 +23,11 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
 
     useEffect(()=>{
       if(!selectedCompany_id) return layoutContext.asideFloat.setRightContent(null)
-
-      // Deve baixar aqui a companhias
       dispatch(setLoading(true))
       companhiasServices.findV2(selectedCompany_id).then((company: any) =>{
-        console.log("companhias aqui ", company)
         layoutContext.asideFloat.setRightContent( () => (
           <BlAsideLayout loading={false} title='Companhia' onClose={()=>setSelectedCompany_id(null)}>
-            <CompanyForm entry={null} onAction={()=>{}} onData={()=>{}}></CompanyForm>
+            <CompanyForm entry={company} onAction={()=>{}} onData={()=>{}}></CompanyForm>
           </BlAsideLayout> ))   
       }).finally(()=>dispatch(setLoading(false)))
     },[selectedCompany_id])
