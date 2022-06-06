@@ -1,0 +1,32 @@
+.company-address-list{
+    width: 100%; height: fit-content;
+    gap: 2px; 
+}
+
+.company-address-item{
+    position: relative;
+    width: 100%; height: 100%;
+    display: grid; grid-template-columns: 1fr; grid-template-rows: auto 1fr; 
+    align-items: center; justify-content: center;
+    gap: 26px;
+}
+
+.company-address-item > section:nth-child(1){
+    width:fit-content; height: auto; margin: auto;
+}
+
+.company-address-item > section:nth-child(2){
+    width:100%; height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+
+.company-address-item > section:nth-child(2) span{
+    text-align: center;
+    font-size: 16px;
+}
+

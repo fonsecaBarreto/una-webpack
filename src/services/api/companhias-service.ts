@@ -30,22 +30,30 @@ export const companhiasServices = {
           const { data } = await companhiasApi.send({ method: "get", url: `/${query}` }) 
           return data 
      },
-     /* admins */
+    
+     find: async (id:string) => {
+          const { data } = await companhiasApi.send({ method: "get", url: `/${id}` }) 
+          return data 
+     },
+      /* admins */
      listV2: async (params: any) => {
           const { v, p, ativo} = params 
           var query = `?page=${p}&text=${v}&ativo=${ativo}`
           const { data } = await companhiasApi.send({ method: "get", url: `/v2${query}` }) 
           return data 
      },
-     find: async (id:string) => {
-          const { data } = await companhiasApi.send({ method: "get", url: `/${id}` }) 
-          return data 
-     },
      /* admin and gestor*/
      findV2: async (id:string) => {
-          const { data } = await companhiasApi.send({ method: "get", url: `/company/${id}` }) 
+          const { data } = await companhiasApi.send({ method: "get", url: `/v2/${id}?s=FULL` }) 
           return data 
-     }
+     },
+     saveV2: async (params: any, company_id?: string) => {
+          const data = { ...params };
+          const METHOD = company_id? "PUT" : "POST"
+          const URL = company_id ? `/v2/${company_id}` : "/v2";
+          const resp = await companhiasApi.send({ method: METHOD, url: URL, data }) 
+          return resp.data 
+     },
 }
 
 export const coverageServices = {

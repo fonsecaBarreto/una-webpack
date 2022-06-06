@@ -2,20 +2,13 @@ import React, { useContext, useDebugValue, useEffect, useState } from 'react'
 import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
 import FiltersNav from './FiltersNav'
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
-import { MakeOptions }  from 'fck-react-dialog'
 import { HandleSearchValues, handleRecords } from "@/react-apps/layouts/components/UnaListingContent/ListingHandlers"
 import { companhiasServices } from "@/services/api/companhias-service"
 import UnaListingContent from '@/react-apps/layouts/components/UnaListingContent'
 import { BlueLagumContext } from '@/react-apps/layouts/BlueLagum'
-import { BlAsideLayout } from '@/react-apps/layouts/BlueLagum/AsideModal'
-import CompanyForm from '@/react-apps/forms/CompanyForm'
-import { useDispatch } from 'react-redux'
-import { setLoading } from '@/react-apps/store/reducers/main/actions'
+import AsideContent from "./modals/AsideContent"
 
 export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, history}) => {
-
-    const dispatch = useDispatch()
-    const context = useContext(GlobalContext);
     const layoutContext = useContext(BlueLagumContext)
     const filters: any = HandleSearchValues({ headers: [["ativo", null ],["v", ''],["p", 1]]})
     const { records, metaData, submit, loadTry } = handleRecords({});
@@ -23,13 +16,7 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
 
     useEffect(()=>{
       if(!selectedCompany_id) return layoutContext.asideFloat.setRightContent(null)
-      dispatch(setLoading(true))
-      companhiasServices.findV2(selectedCompany_id).then((company: any) =>{
-        layoutContext.asideFloat.setRightContent( () => (
-          <BlAsideLayout loading={false} title='Companhia' onClose={()=>setSelectedCompany_id(null)}>
-            <CompanyForm entry={company} onAction={()=>{}} onData={()=>{}}></CompanyForm>
-          </BlAsideLayout> ))   
-      }).finally(()=>dispatch(setLoading(false)))
+      layoutContext.asideFloat.setRightContent(<AsideContent onChange={()=>setSelectedCompany_id(null)} company_id={selectedCompany_id}/>)   
     },[selectedCompany_id])
 
     useEffect(()=>{  
@@ -43,16 +30,7 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
       switch(key){
           case "SUBMIT": filters.setValue({"v": payload});break;
           case "PAGE": filters.setValue({"p": payload});break;
-          case "OPEN": 
-            context.dialog.push(MakeOptions((n)=>{ 
-              switch(n){
-                case 0:  history.push(`/perfil/companhias/${payload}`); break; 
-                case 1:  history.push(`/admin/cotacoes?company_id=${payload}`); break; 
-                case 2:  setSelectedCompany_id(payload);break;
-              }
-              return -1;
-            }, [ {label: "Visualizar"}, {label: "Cotações"}, {label: "Editar"}]))
-          ;break;
+          case "OPEN": setSelectedCompany_id(payload);break;
       }
   }
 
@@ -75,3 +53,11 @@ export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, hist
 }
 
 export default ListCompanhiasPage
+
+/*  context.dialog.push(MakeOptions((n)=>{ 
+  switch(n){
+    case 1:  history.push(`/admin/cotacoes?company_id=${payload}`); break; 
+    case 0:  setSelectedCompany_id(payload);break;
+  }
+  return -1;
+}, [  {label: "Editar"}, {label: "Cotações"},])) */

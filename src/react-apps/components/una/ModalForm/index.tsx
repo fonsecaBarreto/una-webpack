@@ -1,21 +1,23 @@
 import React, { ReactNode } from 'react'
+import { Button } from 'react-bootstrap'
 import "./style.css"
 
 export namespace UnaModalForm{
     export type Params = { 
         children: ReactNode,
         onSave: () => void,
-        onCancel: () => void
+        onCancel: () => void,
+        fill?: number
     }
 }
 
-export const UnaModalForm: React.FunctionComponent<UnaModalForm.Params> = ({ children, onSave, onCancel }) =>{
+export const UnaModalForm: React.FunctionComponent<UnaModalForm.Params> = ({ children, onSave, onCancel, fill }) =>{
     return (
-        <div className='una-forms'>
+        <div className={`una-forms ${fill ? "fullfill" : "" }`}>
             <section> {children} </section>
             <section>
-                <button onClick={onCancel} className="scape-button"> Cancelar</button>
-                <button onClick={onSave}>  Salvar</button>
+                <Button onClick={onCancel} variant="danger"> Cancelar</Button>
+                <Button onClick={onSave}> Salvar</Button>
             </section>
         </div>
     )

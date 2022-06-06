@@ -9,7 +9,7 @@ import { MakeNotification, NotificationType } from 'fck-react-dialog'
 export namespace AbrangenciaForm{
     export type Params = {
         onAction: any,
-        company_id: string
+        company_id: string,
     }
     export type UFCoverage = {
         id: number,
@@ -39,7 +39,7 @@ export const AbrangenciaForm: React.FunctionComponent<AbrangenciaForm.Params> = 
     }
     
     return (
-        <UnaModalForm onSave={submit} onCancel={()=>{ onAction(-1)}}  >
+        <UnaModalForm fill={1} onSave={submit} onCancel={()=>{ onAction(-1)}}  >
             { initial_coverage && 
                 <LocationSelector emitData={setResult_coverage} initialData={initial_coverage}></LocationSelector>
             }

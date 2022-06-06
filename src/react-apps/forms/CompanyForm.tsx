@@ -7,57 +7,52 @@ import SwitchButton from '../components/una/switchButton'
 import { companhiasServices } from '@/services/api/companhias-service'
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
+import Switch from "react-switch";
 
 const INITIAL_DATA= {
+    id: "",
     nomeFantasia: "",
     razaoSocial: "",
     cnpj: "",
     emailFinanceiro: "",
     inscricaoEstadual: "",
-    telefoneComercial: ""
+    telefoneComercial: "",
+    ativo: false,
+    isMart: false,
+    isVendor: false
 }
 
 export namespace CompanyForm{
     export type Params = {
         entry: any,
-        onData: any,
         onAction: any
     }
 }
 
-export const CompanyForm: React.FunctionComponent<CompanyForm.Params> = ({ entry, onAction, onData}) =>{
-    const context = useContext(GlobalContext)
-    const state = UseStateAdapter(INITIAL_DATA)
+export const CompanyForm: React.FunctionComponent<CompanyForm.Params> = ({ entry, onAction}) =>{
 
+    const state = UseStateAdapter(INITIAL_DATA)
     useEffect(()=>{ state.data.set(entry ? entry : INITIAL_DATA) },[entry])
 
     const submit = async () =>{
         state.loading.set(true)
         state.errors.clear()
-        try{
-            const data = await companhiasServices.save(state.data.get)
-            onAction(-1);
-            onData(data)
-            context.dialog.push(MakeNotification(() =>{ return -1 },[ "Salvo com sucesso!"],"Sucesso!",NotificationType.SUCCESS))
+        try{ 
+            const params = { ...state.data.get };
+            const company_id = state.data.get['id'];
+            await companhiasServices.saveV2(params, company_id)
+            onAction(1);
         }catch(err:any){
             if (err.params) {  state.errors.set(err.params) }
         }finally{
             state.loading.set(false)
         }
     }
-
     return (
         <UnaModalForm onSave={submit} onCancel={()=>{ onAction(-1)}}  >
-            <Forming.FormGrid title="" columns={[]} freeze={state.loading.get}>
+            <Forming.FormGrid title="Informações Gerais:" columns={[12,12,12,12,12,12,12]} freeze={state.loading.get}>
                 <Controls.TextBox placeHolder="Exemplo: 99.999.999/9999-99" mask="99.999.999/9999-99" 
                     state={state} label="CNPJ " name={"cnpj"}  type={Controls.TextBoxTypes.TEXT} > </Controls.TextBox>
-              {/*   <Forming.InputWrapper label={"Status"}>
-                    <SwitchButton fill value={state.data.get['ativo'] === true ? 0 : 1} 
-                        onInput={(i)=>state.data.onInput("ativo", i === 0 ? true : false)}> 
-                        <span className='una-company-status-button active' >  Ativo </span>
-                        <span className='una-company-status-button inactive'>  Inativo </span>
-                    </SwitchButton>
-                </Forming.InputWrapper> */}
                 <Controls.TextBox placeHolder="Exemplo: Minha Empresa"
                     state={state} label={"Nome Fantasia"} name={"nomeFantasia"} type={Controls.TextBoxTypes.TEXT}/>
                 <Controls.TextBox placeHolder="Exemplo: Minha Empresa LTDA"
@@ -68,6 +63,19 @@ export const CompanyForm: React.FunctionComponent<CompanyForm.Params> = ({ entry
                     state={state} label={"Inscrição Estadual"} name={"inscricaoEstadual"} type={Controls.TextBoxTypes.TEXT}/>
                 <Controls.TextBox placeHolder="(22) 01234-1234" mask="(99) 99999-9999"
                     state={state} label={"Telefone Comercial"} name={"telefoneComercial"} type={Controls.TextBoxTypes.TEXT}/>
+                <Forming.FormGrid title="Status: " columns={[12,6,6]} freeze={state.loading.get}>
+                        <Forming.InputWrapper label={"Ativo"}>
+                            <Switch onChange={(v: boolean)=>state.data.onInput("ativo",v)} checked={state.data.get["ativo"]} />
+                        </Forming.InputWrapper>
+
+                        <Forming.InputWrapper label={"Habilitado a Compras"}>
+                            <Switch onChange={(v: boolean)=>state.data.onInput("isMart",v)} checked={state.data.get["isMart"]} />
+                        </Forming.InputWrapper>
+
+                        <Forming.InputWrapper label={"Habilitado a Vendas"}>
+                            <Switch onChange={(v: boolean)=>state.data.onInput("isVendor",v)} checked={state.data.get["isVendor"]} />
+                        </Forming.InputWrapper>
+                </Forming.FormGrid>
             </Forming.FormGrid>
         </UnaModalForm>
     )

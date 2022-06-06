@@ -38,6 +38,13 @@
     overflow: hidden;
 }
 
+.comapanies-nav-options{
+    gap: 6px;
+    column-gap: 8px;
+    display: flex;
+    flex-wrap: wrap
+}
+
 @media screen and (max-width: 960px) {
     .companhia-view-modal{
         width: 100%;

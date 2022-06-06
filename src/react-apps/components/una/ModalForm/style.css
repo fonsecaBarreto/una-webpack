@@ -3,12 +3,17 @@
     max-width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    gap: 8px;
+    grid-template-rows: 1fr auto;
+    gap: 8px; padding: 0 8px;
+    min-height: 100%;
+    justify-content: flex-start;
 }
+
+.una-forms.fullfill { width: 100%; overflow: auto; }
 
 .una-forms > section{
     width: 100%;
+    height: fit-content;
     display: flex; align-items: center; justify-content: flex-start;
 }
 .una-forms > section:nth-child(1){
@@ -16,34 +21,15 @@
 }
 
 .una-forms > section:nth-child(2){
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     gap: 6px;
 }
 
 .una-forms > section:nth-child(2) > button{
-    width: 100%; height: 40px;
-    display: flex; align-items: center; justify-content: center;
-    background-color: rgb(22, 107, 218);
-    border-radius: 4px;
-    border: none; color: white;
-    font-size: 18px; line-height: 1em; gap: 6px;
-    cursor: pointer;
+    width: 100%; height: 38px;
+    font-size: 16px; 
 }
-
-.una-forms > section:nth-child(2) > button.scape-button{
-    background-color: rgb(230, 121, 130);
-}
-
-.una-forms > section:nth-child(2) > button:hover{
- 
-    background-color: rgb(42, 122, 226);
-}
-
-.una-forms > section:nth-child(2) > button.scape-button:hover{
-    background-color: rgb(238, 132, 141);
-  
-}
-
 @media screen and (max-width: 960px) {
     .una-forms {
         width: 100%;
