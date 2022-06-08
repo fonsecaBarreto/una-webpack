@@ -11,6 +11,7 @@ export namespace CompanhiasFiltersNav {
 }
 
 const STATUS_LIST = [ { value: "1", label: "Ativo"}, { value: "0", label: "Inativo"} ]
+const TYPE_LIST = [ { value: "MART", label: "Comercio"}, { value: "VENDOR", label: "Fonecedor"} ]
 
 export const CompanhiasFiltersNav: React.FunctionComponent<CompanhiasFiltersNav.Params> = ({ values, onChange}) =>{
     return (
@@ -19,6 +20,12 @@ export const CompanhiasFiltersNav: React.FunctionComponent<CompanhiasFiltersNav.
                 title="Compahias" items={STATUS_LIST} max={1} 
                 value={!values.ativo ? [] : [{ value: values.ativo }]}
                 onChange={(p: any)=> { onChange("FILTER",{'ativo': p[0]?.value ?? null, 'p' : 1})} } >
+            </MultipleSelectionControl>   
+
+            <MultipleSelectionControl 
+                title="Tipo da comanhias" items={TYPE_LIST} max={1} 
+                value={!values.type ? [] : [{ value: values.type }]}
+                onChange={(p: any)=> { onChange("FILTER",{'type': p[0]?.value ?? null, 'p' : 1})} } >
             </MultipleSelectionControl>   
         </AsideFilters>
   )

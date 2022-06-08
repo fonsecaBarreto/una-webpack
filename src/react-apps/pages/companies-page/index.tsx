@@ -1,16 +1,17 @@
 import React, { useContext, useDebugValue, useEffect, useState } from 'react'
 import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
 import FiltersNav from './FiltersNav'
-import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { HandleSearchValues, handleRecords } from "@/react-apps/layouts/components/UnaListingContent/ListingHandlers"
 import { companhiasServices } from "@/services/api/companhias-service"
 import UnaListingContent from '@/react-apps/layouts/components/UnaListingContent'
 import { BlueLagumContext } from '@/react-apps/layouts/BlueLagum'
 import AsideContent from "./modals/AsideContent"
 
+const HEADER =[ ['type',null], ["ativo", null ],["v", ''], ["p", 1] ]
+
 export const ListCompanhiasPage: React.FunctionComponent<any> = ({location, history}) => {
     const layoutContext = useContext(BlueLagumContext)
-    const filters: any = HandleSearchValues({ headers: [["ativo", null ],["v", ''],["p", 1]]})
+    const filters: any = HandleSearchValues({ headers: HEADER})
     const { records, metaData, submit, loadTry } = handleRecords({});
     const [ selectedCompany_id, setSelectedCompany_id] = useState(null)
 

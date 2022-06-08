@@ -27,7 +27,7 @@ export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ entry, on
                 <button className='alt-pool-searchinput-cancel' onClick={()=>onChange('CANCEL')}> &#10005;</button>
             </span> */}
             <input type="text" 
-                placeholder="Pesquisa pelo Numero do orçamento!"
+                placeholder="Pesquisa"
                 value={value} 
                 onInput={(e:any) => setValue(e.target.value)} 
                 onKeyDown={handleKeys}>

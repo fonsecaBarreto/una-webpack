@@ -37,8 +37,8 @@ export const companhiasServices = {
      },
       /* admins */
      listV2: async (params: any) => {
-          const { v, p, ativo} = params 
-          var query = `?page=${p}&text=${v}&ativo=${ativo}`
+          const { v, p, ativo, type } = params 
+          var query = `?page=${p}&text=${v}&ativo=${ativo}&type=${type}`
           const { data } = await companhiasApi.send({ method: "get", url: `/v2${query}` }) 
           return data 
      },
