@@ -7,7 +7,9 @@ import { useSelector } from 'react-redux'
 
 export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies }) =>{
     const { user } = useSelector((state: any) => state.main)
+
     const cartHandler = UseCartHandler()
+
     return (
         <div className='product-page-info'>
             <div>

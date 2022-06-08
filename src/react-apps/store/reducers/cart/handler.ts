@@ -1,6 +1,19 @@
-import React, {} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { pushToCart } from './index'
+import { CartState, pushToCart } from './index'
+
+
+
+
+
+export const serializeCartProdut = (product: any): CartState.Product =>{
+
+  return({
+      ean: product.ean,
+      images: product.images ?? [],
+      specification: product.specification  ?? "-",
+      presentation: typeof product.presentation == "string" ? product.presentation : ( product?.presentation?.label ?? "" ) 
+  })
+}
 
 export const UseCartHandler = () =>{
     
@@ -14,18 +27,17 @@ export const UseCartHandler = () =>{
       return item?.qtd ?? 0;
     }
 
-    const overwrite = (n: number, product: any) => {
+    const overwrite = (n: number, product: CartState.Product) => {
       dispatch(pushToCart(product,n, 'OVERWRITE'));
     }
   
-    const push = (n: number, product: any) =>{
+    const push = (n: number, product: CartState.Product) =>{
+      const cartProduct = serializeCartProdut(product)
       switch(n){
-          case +1:  dispatch(pushToCart(product,1)); break;
-          case -1:  dispatch(pushToCart(product,-1)); break;
+          case +1:  dispatch(pushToCart(cartProduct,1)); break;
+          case -1:  dispatch(pushToCart(cartProduct,-1)); break;
       }
     }
-
-  
     return { count, push, overwrite }
 }
 

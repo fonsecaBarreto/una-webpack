@@ -14,10 +14,10 @@ export namespace CartItem {
 
 export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
 
-    const cartHandler = UseCartHandler()
     const [ image, setImage ] = useState(EmptyImage)
-    const { product, qtd } = item
-
+    const { product } = item
+    
+    const cartHandler = UseCartHandler()
     const handleChange = (n:number, c: string) =>{
         switch(c){
             case "PUSH":
@@ -50,7 +50,7 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
 
             <section>
                 <AddCartButton value={cartHandler.count(product?.ean)} onChange={handleChange}></AddCartButton> 
-            </section> 
+            </section>  
            
         </div>
     )

@@ -1,8 +1,12 @@
 import CartItem from "@/react-apps/layouts/BlueLagum/Cart/CartItem";
 
-
 export namespace CartState {
-     export type  Product = any;
+     export type  Product = {
+          ean: string,
+          images: string[]
+          specification: string
+          presentation: string
+     };
 
      export type CartItem = {
           product: Product,
