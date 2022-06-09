@@ -34,7 +34,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     
     const history = useHistory()
     const [ prices, setPrices ] = useState([0,0])
-    const { ean, specification, brand, presentation, images, supplies} = produto
+    const { ean, specification, brand, presentation, presentation_label, images, supplies} = produto
     const cartHandler = UseCartHandler()
     const eanRef = useRef<any>(null)
     useEffect(()=>{
@@ -50,7 +50,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                     menor = price < menor ? price : menor;
                 }
             }
-            setPrices([menor, maior]);
+            setPrices([menor/presentation.quantity ?? 1, maior/presentation.quantity ?? 1]);
         }
     },[ supplies])
 
@@ -76,16 +76,14 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                 <section> <ProductImageSection images={images}/>  </section>
                 <section className='product-feed-item-body' onClick={()=>{ handleClick("MOVE")}}>
                     <span className="produto-nome"> {specification} </span>
-                    <span className="produto-presentation"> {presentation.quantity}
-                        {presentation}
-                     </span>
 
+                    <span className="produto-presentation"> {presentation_label } </span>
                         { showPrices ?
                             <div className='product-feed-item-prices'>
                                 <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>
                                     {    prices[0] == 0 ?
                                         <React.Fragment> Preço sobre orçamento </React.Fragment> :
-                                        <React.Fragment>  R$: {prices[0].toFixed(2)} </React.Fragment>
+                                        <React.Fragment>  R$: {prices[0].toFixed(2)} <span className="unidade-preco">und. </span></React.Fragment>
                                     }
                                 </span>
                                 <span>

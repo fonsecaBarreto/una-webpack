@@ -15,6 +15,7 @@ import AbrangenciaForm from '@/react-apps/forms/AbrangenciaForm'
 import Button from 'react-bootstrap/Button'
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import GlobalContext from '@/react-apps/apps/GlobalContext'
+import CompanySupplyProfileForm from '@/react-apps/forms/CompanySupplyProfileForm'
 export namespace CompanyAsideContent {
     export type Params = { 
         company_id: string,
@@ -35,12 +36,12 @@ export const NavOptions: React.FunctionComponent<any> = ({ list, onChange }) =>{
 }
 
 
-const labels = [ "Companhia", "Documentos", "Pessoal",  "Endereços", "Abrangência"]
+const labels = [ "Companhia", "Documentos", "Pessoal", "Endereços", "Abrangência", "Fornecimento"]
 
 export const CompanyAsideContent: React.FunctionComponent<CompanyAsideContent.Params> = ({ company_id, onChange }) =>{
     const context = useContext(GlobalContext)
     const [ sectionIndex, setSectionIndex ] = useState(0);
-    const [ company, setCompany] = useState<Companhia | null>(null)
+    const [ company, setCompany] = useState<any | null>(null)
     const dispatch = useDispatch()
 
     useEffect(()=>{ companhiasServices.findV2(company_id).then(setCompany) },[company_id])
@@ -61,6 +62,8 @@ export const CompanyAsideContent: React.FunctionComponent<CompanyAsideContent.Pa
                         <AddressContent addresses={company.addresses}></AddressContent>
                     : sectionIndex == 4 ?
                         <AbrangenciaForm  onAction={()=>{}} company_id={company.id}/>
+                    :  sectionIndex == 5 ?
+                        <CompanySupplyProfileForm  onAction={()=>{}} company_id={company.id} entry={company.supplyProfile}/>
                     :
                         <CompanyForm entry={company} onAction={(n: any)=>{
                             if(n == -1) return onChange('CLOSE');
@@ -72,9 +75,4 @@ export const CompanyAsideContent: React.FunctionComponent<CompanyAsideContent.Pa
         </BlAsideLayout> 
     )
 }
-
-/* 
-<PanelContainer title="Abrangência" icon={<span>&#8505;</span>}>
-<AbrangenciaForm  onAction={()=>{}} company_id={company.id}/>
-</PanelContainer> */
 export default CompanyAsideContent

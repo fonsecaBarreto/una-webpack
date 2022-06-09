@@ -54,6 +54,12 @@ export const companhiasServices = {
           const resp = await companhiasApi.send({ method: METHOD, url: URL, data }) 
           return resp.data 
      },
+     upserSupplyProfile: async ({company_id, minimum_purchase}: any) =>{
+          const data = { minimum_purchase };
+          const URL = `/${company_id}/supply_profiles`
+          const resp = await companhiasApi.send({ method: "PUT", url: URL, data }) 
+          return resp.data 
+     }
 }
 
 export const coverageServices = {
