@@ -5,5 +5,3 @@ export const global = {
   base_url: `${ process.env.NODE_ENV == 'production' ? process.env.API_URL : process.env.DEV_API_URL}`,
   google_api_key: process.env.GOOGLE_API_KEY
 }
-
-console.log(global)
