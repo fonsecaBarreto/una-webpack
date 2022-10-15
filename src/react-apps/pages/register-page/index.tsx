@@ -1,6 +1,6 @@
 import './style.css'
 import React from 'react'
-import Softpages, { PageWrapper } from "@/react-apps/components/una/SoftPages"
+/* import Softpages, { PageWrapper } from "@/react-apps/components/una/SoftPages"
 import { AddSuppliesTable, ListSupplies } from './content/Supplies'
 import UseSearchAdapter from '@/react-apps/components/SearchAdapter'
 import HeaderSwitch from './HeaderSwitch'
@@ -19,10 +19,10 @@ const ITEMS = [
     { name: "apresentacoes", label: "Apresentações", actions },
     { name: "marcas", label: "Marcas", actions }
 ]
-
+ */
 export const RegisterPage: React.FunctionComponent<any> = ({history}) =>{
 
-    const searchAdapter = UseSearchAdapter({ header: HISTORY_HEADER })
+   /*  const searchAdapter = UseSearchAdapter({ header: HISTORY_HEADER })
     const { pushToHistory, parsedParams, parsedSearch } = searchAdapter 
 
     const handleChange = (value: string, payload: any) => {
@@ -31,11 +31,14 @@ export const RegisterPage: React.FunctionComponent<any> = ({history}) =>{
             case "ACTION":pushToHistory({ a: payload ? [payload] : null});break;
             case "OPTION": pushToHistory({ o: payload ? [payload] : null});break;
         } 
-    } 
+    }  */
 
     return (
         <React.Fragment>
-            { !parsedParams ? <span> Carregando... </span> :
+
+            <span> Lucas aqui, estou realocando essa pagina. aguarde!</span>
+
+          {/*   { !parsedParams ? <span> Carregando... </span> :
             <div id="adm-register-page"> 
                 <div className='adm-register-page-container app-container'>
                     <header>
@@ -52,8 +55,9 @@ export const RegisterPage: React.FunctionComponent<any> = ({history}) =>{
                             </PageWrapper>
                         </Softpages>
                     </section> 
-                </div>  
+                </div>   
             </div>}
+                */}
         </React.Fragment>
     )
 }
