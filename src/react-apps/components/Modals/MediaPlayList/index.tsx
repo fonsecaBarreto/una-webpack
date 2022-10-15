@@ -3,7 +3,6 @@ import "./style.css"
 import { filesService } from "@/services/api/files-service"
 import { mediaPlayListService } from '@/services/api/media-playlist'
 import { AddItem, ImageItem, ProvItem } from "./Item"
-import { listenerCount } from 'process'
 
 export namespace MediaPlayListModal {
     export type Params = {
