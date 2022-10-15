@@ -46,9 +46,9 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
                 <ProductInfo product={product} supplies={product.supplies}></ProductInfo>
               </section> 
             </div>
-            { (user && product.supplies.length > 0) && <div>
+          {/*   { (user && product.supplies.length > 0) && <div>
               <SupplyPanel supplies={product.supplies}></SupplyPanel>
-            </div>}
+            </div>} */}
           </React.Fragment>
         }
         <div>
