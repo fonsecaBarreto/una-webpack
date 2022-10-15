@@ -23,12 +23,12 @@ export namespace BudgetFiltersNav {
 export const BudgetFiltersNav: React.FunctionComponent<BudgetFiltersNav.Params> = ({onChange, values}) =>{
     const [ companies, setCompanies ] = useState<any>([])
 
-    useEffect(()=>{
+    /* useEffect(()=>{
         companhiasServices.list({}).then((r)=>setCompanies([
                 ...(r.data.companies.map((c:any)=> ( { value: c.id, label: c.nomeFantasia})
             ))
         ]))
-    },[])
+    },[]) */
     
     return (
         <AsideFilters>
