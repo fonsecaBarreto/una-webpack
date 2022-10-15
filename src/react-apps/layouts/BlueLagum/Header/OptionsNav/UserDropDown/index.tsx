@@ -14,6 +14,7 @@ import DocumentsIcons from "@assets/icons/cotacoes.svg"
 import ExitIcon from "@assets/icons/exit.svg"
 import MenuIcon from "@assets/icons/menu.svg"
 import ConfigIcon from "@assets/icons/config.svg"
+import AdminIcon from "@assets/icons/admin.png"
 const MakeDropDownOptions = (user?: any): DropDown.Options[] =>{
 
     var list: DropDown.Options[] = [];
@@ -29,6 +30,11 @@ const MakeDropDownOptions = (user?: any): DropDown.Options[] =>{
                 label: "Expandir menu", 
                 value: "MENU",
                 icon:  <img src={MenuIcon} /> 
+            },
+            { 
+                label: "Admin (Novo)", 
+                value: "ADMIN",
+                icon:  <img src={AdminIcon} /> 
             },
             { 
                 label: "Sair", 
@@ -74,6 +80,7 @@ export const UserDropDown = ({ onChange }: any) =>{
             case "SAIR": loginServices.logout();break;
             case "GOD_MODE": handleGodMode(); break;
             case "MENU": onChange("MENU"); break;
+            case "ADMIN": window.location.href="https://admin.unacompras.com.br"; break;
             case "SIGNIN": history.push("/login?v=signin");break;
             case "SINGUP": history.push("/login?v=signup");break;
             case "COTACOES": history.push("/cotacoes");break;
