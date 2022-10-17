@@ -7,9 +7,16 @@ export const SuppliesCompaniesModal: React.FunctionComponent<any> = ({ onAction}
     const [ selectedCompany, setSelectedCompany ] = useState(null)
 
     useEffect(()=>{
-        companhiasServices.list({}).then((r)=>setCompanies([{value:"", label: "Nenhum selecionado"}, ...(r.data.companies.map((c:any)=>{
-            return ( { value: c.id, label: c.nomeFantasia})
-        }))]))
+        companhiasServices.list({}).then(
+            (r)=>setCompanies(
+                [
+                    { value:"", label: "Nenhum selecionado" }, 
+                    ...(r.records.map((c:any)=> {
+                            return ( { value: c.id, label: c.nomeFantasia})
+                        }))
+                ]
+            )
+        )
     },[])
 
     return (

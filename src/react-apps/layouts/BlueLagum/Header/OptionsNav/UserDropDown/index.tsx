@@ -21,11 +21,11 @@ const MakeDropDownOptions = (user?: any): DropDown.Options[] =>{
 
     if(user){
         list = [ 
-            { 
+         /*    { 
                 label:"Historico de Cotações", 
                 value: "COTACOES", 
                 icon: <img src={DocumentsIcons} /> 
-            },
+            }, */
             { 
                 label: "Expandir menu", 
                 value: "MENU",
@@ -44,7 +44,7 @@ const MakeDropDownOptions = (user?: any): DropDown.Options[] =>{
         ];
 
         if(user.roles.includes(UserProfileRole.ADMIN)){
-            list = [ { label:"Super Usuario", value: "GOD_MODE", icon: <img src={ConfigIcon} /> }, ...list ]
+            list = [ /* { label:"Super Usuario", value: "GOD_MODE", icon: <img src={ConfigIcon} /> }, */ ...list ]
         } 
     }else{
         list = [ 
@@ -80,7 +80,7 @@ export const UserDropDown = ({ onChange }: any) =>{
             case "SAIR": loginServices.logout();break;
             case "GOD_MODE": handleGodMode(); break;
             case "MENU": onChange("MENU"); break;
-            case "ADMIN": window.location.href="https://admin.unacompras.com.br"; break;
+            case "ADMIN": window.location.href="https://app.unacompras.com.br/admin"; break;
             case "SIGNIN": history.push("/login?v=signin");break;
             case "SINGUP": history.push("/login?v=signup");break;
             case "COTACOES": history.push("/cotacoes");break;
