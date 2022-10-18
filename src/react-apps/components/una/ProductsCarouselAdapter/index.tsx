@@ -8,7 +8,7 @@ import { json } from 'stream/consumers';
 
 const HEIGHT = 280
 export const ProductsCarouselAdapter: React.FunctionComponent<any> = () =>{
-    const [products, setProducts] = React.useState([])
+    const [products, setProducts] = React.useState<any>([])
     const { user }:any = useSelector<any>((state: any)=>state.main);
     React.useEffect(()=>{
         produtosService.findLatest()

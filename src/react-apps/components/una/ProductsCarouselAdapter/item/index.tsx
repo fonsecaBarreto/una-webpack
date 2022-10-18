@@ -14,7 +14,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ onClick }) =
     )
 }
 
-export const ProductCarouselItem: React.FunctionComponent<any> = ({ ean, specification, brand, presentation }) =>{
+export const ProductCarouselItem: React.FunctionComponent<any> = ({ ean, specification, brand, weight, volume, quantity_per_unity }) =>{
 
     const history = useHistory()
     const handleClick = (k: any) =>{
@@ -27,10 +27,7 @@ export const ProductCarouselItem: React.FunctionComponent<any> = ({ ean, specifi
                   <ProductImageSection> </ProductImageSection>
               </section>
               <section className='lpi-body' onClick={()=>{ handleClick("MOVE")}}>
-                  <span className="lpi-produto-nome"> {specification} </span>
-                  <span className="lpi-produto-presentation"> {presentation.quantity}
-                      {presentation}
-                   </span>  
+                    <span className="lpi-produto-nome"> {specification} </span>
                     <span className="lpi-produto-ean"> {ean}</span>
               </section>  
       </div>
