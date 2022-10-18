@@ -5,7 +5,6 @@ export interface Product {
     ncm: string
     ean: string
     sku:string
-    image: null 
     brand_id:string
     presentation_id:string
     sub_category_id: string
@@ -13,7 +12,13 @@ export interface Product {
     brand: LabelView
     presentation: any
     subCategory: LabelView
-    media_playlist_id: string
+    media_playlist_id: string,
+
+    image: string | null;
+    weight: string | null;
+    volume: string | null;
+    quantity_per_unity: number | null;
+
 }
 
 export interface Brand {
