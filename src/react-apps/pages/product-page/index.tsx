@@ -11,11 +11,27 @@ import { ListTree } from './ListTree'
 import { useSelector } from 'react-redux'
 const SEARCH_HEADER = { params: [ "ean"] }
 import ProductsCarouselAdapter from "@/react-apps/components/una/ProductsCarouselAdapter";
+import { LabelView } from '@/domain/views/ListingView'
+export type ProductView = {
 
+  specification: string;
+  ncm: string;
+  ean: string;
+  sku: string;
+  /* novas colunas */
+  weight: string | null;
+  volume: string | null;
+  quantity_per_unity: number | null;
+  /* Compositions */
+  brand: LabelView | null;
+  subCategory: LabelView | null;
+  images: string[];
+  supplies: any[];
+}
 export const ProductPage: React.FunctionComponent<any> = ({ location, history }) => {
   const { user } = useSelector((state: any) => state.main)
   const { parsedParams } = UseSearchAdapter({ header : SEARCH_HEADER})
-  const [ product, setProduct ] = useState<any>(null);
+  const [ product, setProduct ] = useState<ProductView | null>(null);
   const [ breadCrumbs, setBreadCrumbs] = useState(null);
   useEffect(()=>{ if(parsedParams){ handleLoad()} },[parsedParams])
  

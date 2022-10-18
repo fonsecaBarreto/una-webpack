@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import "./style.css"
 import { UseCartHandler } from "@/react-apps/store/reducers/cart/handler"
 import CompanySupply from '../CompanySupply'
@@ -10,17 +10,18 @@ export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies })
 
     const cartHandler = UseCartHandler()
 
+    var quantity = useMemo(()=>product.quantity_per_unity ?? 1,[product])
     return (
         <div className='product-page-info'>
             <div>
                 <span className='product-page-specification'> 
                     <span> {product.specification}</span> 
-                    <span> ( {product.presentation.label} ) </span>
+                    <span> ( {quantity} unidade{quantity > 1 ? "s": ""} ) </span>
                 </span>
                 <span className='product-page-code'>ean: {product.ean}</span> 
                 <span className='product-page-brand'> <label>Marca:</label> {product.brand?.label}</span> 
-                <span className='product-page-brand'> <label>Peso:</label> { !product.presentation?.weight ? "nao informado" : `${product.presentation?.weight} Kg`}</span> 
-                <span className='product-page-brand'> <label>Volume:</label> { !product.presentation?.volume ? "nao informado" : `${product.presentation?.volume} L`}</span> 
+                <span className='product-page-brand'> <label>Peso:</label> { !product.weight ? "nao informado" : `${product.presentation?.weight} Kg`}</span> 
+                <span className='product-page-brand'> <label>Volume:</label> { !product.volume ? "nao informado" : `${product.presentation?.volume} L`}</span> 
             </div>
 
             <div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import ProductImage from "@/public/assets/images/product/empty.svg"
 import { useHistory } from 'react-router-dom'
 import { ProductFeedCartButton } from './AddCartButton'
@@ -34,9 +34,13 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     
     const history = useHistory()
     const [ prices, setPrices ] = useState([0,0])
-    const { ean, specification, brand, presentation, presentation_label, images, supplies} = produto
+    const { ean, specification, brand, quantity_per_unity, presentation_label, images, supplies} = produto
     const cartHandler = UseCartHandler()
-    const eanRef = useRef<any>(null)
+    const eanRef = useRef<any>(null);
+
+
+    var quantity = useMemo(()=>quantity_per_unity ?? 1,[produto])
+    
     useEffect(()=>{
         if(supplies?.length > 0 ){
             let maior:number =-1, menor: number = -1;
@@ -50,7 +54,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                     menor = price < menor ? price : menor;
                 }
             }
-            setPrices([menor/presentation.quantity ?? 1, maior/presentation.quantity ?? 1]);
+            setPrices([menor/quantity ?? 1, maior/quantity ?? 1]);
         }
     },[ supplies])
 

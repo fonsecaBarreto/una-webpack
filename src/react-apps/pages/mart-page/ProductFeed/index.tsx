@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import './style.css'
-import { useDispatch, useSelector, useStore } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import { ProductItem } from './item'
-import SearchHeader, { LabelRow } from '../SearchHeader'
+import SearchHeader from '../SearchHeader'
 import { setLoading } from '@/react-apps/store/reducers/main/actions'
 import { produtosService } from '@/services/api/produtos-service'
 import GlobalContext from '@/react-apps/apps/GlobalContext'
@@ -34,8 +34,6 @@ export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
             .then(resp=>product = resp.product)
             .catch(_=>product= null)
             .finally(()=>{ dispatch(setLoading(false)) })
-
-        console.log("encontrei: ",JSON.stringify(product))
         
         context.dialog.push(MakeDialogConfig(
             ({onAction})=>( <ProductForm entry={product} onAction={onAction} onData={()=>{}}/>

@@ -4,11 +4,6 @@ import { filesService } from '@/services/api/files-service'
 export const GaleryCarousel: React.FunctionComponent<any> = ({ images=[], onClick }) =>{
     const [offset, setOffset] = React.useState(0)
 
-    const getUrl = (img: any) =>{
-        console.log(img)
-        return filesService.get_public_images_url( img + "/" + 96 + ".jpeg") 
-    }
-
     const handleClick = (n: number) =>{
         setOffset( (prev: any)=>{
             let rp =(prev-n) 
@@ -25,7 +20,7 @@ export const GaleryCarousel: React.FunctionComponent<any> = ({ images=[], onClic
                 {
                     images.length > 0 && images.map((img: any, i: number)=>(
                         <li key={i} onClick={()=>onClick(i)}>
-                            <img src={ getUrl(img)}></img> 
+                            <img src={img}></img> 
                         </li>
                     ))
                 }
