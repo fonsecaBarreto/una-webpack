@@ -10,5 +10,6 @@ export interface Companhia {
     addresses: any[];
     staff: any[] ;
     ativo: boolean,
-    documents: any
+    documents: any,
+    image: string | null;
 }
