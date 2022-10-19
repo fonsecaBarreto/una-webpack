@@ -20,8 +20,8 @@ export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies })
                 </span>
                 <span className='product-page-code'>ean: {product.ean}</span> 
                 <span className='product-page-brand'> <label>Marca:</label> {product.brand?.label}</span> 
-                <span className='product-page-brand'> <label>Peso:</label> { !product.weight ? "nao informado" : `${product.presentation?.weight} Kg`}</span> 
-                <span className='product-page-brand'> <label>Volume:</label> { !product.volume ? "nao informado" : `${product.presentation?.volume} L`}</span> 
+                <span className='product-page-brand'> <label>Peso:</label> { !product.weight ? "nao informado" : `${product?.weight} Kg`}</span> 
+                <span className='product-page-brand'> <label>Volume:</label> { !product.volume ? "nao informado" : `${product?.volume} L`}</span> 
             </div>
 
             <div>
