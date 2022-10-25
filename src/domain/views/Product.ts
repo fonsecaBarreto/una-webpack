@@ -12,7 +12,6 @@ export interface Product {
     brand: LabelView
     presentation: any
     subCategory: LabelView
-    media_playlist_id: string,
 
     image: string | null;
     weight: string | null;
