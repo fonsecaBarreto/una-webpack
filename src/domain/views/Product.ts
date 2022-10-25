@@ -12,7 +12,6 @@ export interface Product {
     brand: LabelView
     presentation: any
     subCategory: LabelView
-
     image: string | null;
     weight: string | null;
     volume: string | null;

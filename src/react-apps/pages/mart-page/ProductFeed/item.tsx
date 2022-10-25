@@ -18,9 +18,10 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images, onCl
 
     useEffect(()=> {
         if(images.length == 0) return;
-        var image = images[0];
-        const src= image + "/" + "320.jpeg";
-        setImage(filesService.get_public_images_url(src))
+        var img = images[0];
+        //const src= image + "/" + "320.jpeg";
+        //setImage(filesService.get_public_images_url(src))
+        setImage(img)
     }, [images])
 
     return (
