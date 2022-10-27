@@ -32,8 +32,9 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
     useEffect(()=> {
         if(product.images.length == 0) return;
         var image = product.images[0];
-        const src= image + "/" + "96.jpeg";
-        setImage(filesService.get_public_images_url(src))
+        setImage(image)
+       /*  const src= image + "/" + "96.jpeg";
+        setImage(filesService.get_public_images_url(src)) */
     }, [product.images])
 
     return (
