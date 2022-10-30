@@ -3,13 +3,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import './style.css' // Baixar em um arquivo separado
 import LoginCard from './Cards' 
 import UnaSubmitButton from '../../components/una/inputs-control/SubmitButton'
-import CadastroCarousel from '@/react-apps/components/una/CadastroCarousel'
 import { useHistory } from 'react-router-dom'
 import { loginServices } from '@/services/api/login-service'
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import { Controls } from 'fck-react-input-controls'
+import CadastroCarousel from '@/react-apps/components/una/CadastroCarousel'
 
 const SIGNIN_INITIAL_DATA = {
     credencial: "",
@@ -55,6 +55,7 @@ export const LoginPage: React.FunctionComponent<any> = (props) =>{
     return (
         <div id="login-screen">     
             <LoginCard show={toSignup} title={"Cadastro"} loading={isLoading}>
+   {/*              <CadastroCarousel setLoading={setIsLoading}> </CadastroCarousel> */}
                 <CadastroCarousel setLoading={setIsLoading}> </CadastroCarousel>
                 <UnaSubmitButton light onClick={toggleMode}> Já Sou Cadastrado</UnaSubmitButton>
             </LoginCard>

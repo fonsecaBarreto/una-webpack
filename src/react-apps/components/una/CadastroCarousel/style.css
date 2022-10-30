@@ -1,8 +1,31 @@
 .una-cadastro-carousel{
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
 }
 
-.congratspanel, .congratspanel *{
+.una-cadastro-carousel > header{
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.una-cadastro-carousel > header > h3{
+    width: 100%;
+    font-size: 22px;
+    line-height: 22px;
+    margin: 0;
+    padding: 0;
+    color: #555;
+    margin-top: 8px;
+}
+
+
+.una-cadastro-carousel > main{
+    width: 100%;    
+}
+
+/* .congratspanel, .congratspanel *{
     box-sizing: border-box;
 }
 
@@ -27,4 +50,92 @@
     margin: 0;
     padding: 0;
 }
+ */
 
+/* frame */
+
+@keyframes appears {
+    from {  opacity: 0; }
+    to { }
+}
+
+.una-cadastro-carousel-frame{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 8px;
+    width: 100%;
+    gap: 5px;
+    padding: 0;
+}
+
+ /* SECTIONS */
+.una-cadastro-carousel-frame > *{
+    width: 100%; margin: 0; padding: 0;
+}
+
+/* Corpo do carrosel */
+.una-cadastro-carousel-frame > main{ 
+    overflow-y: auto;
+}
+
+.una-cadastro-carousel-frame > main::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgba(241, 241, 241, 0.555);
+}
+ 
+.una-cadastro-carousel-frame > main::-webkit-scrollbar-thumb {
+    border-radius: 20px;                     /* roundness of the scroll thumb */
+    border: 3px solid rgb(197, 197, 197);  /* creates padding around scroll thumb */
+}
+
+.una-cadastro-carousel-frame > main > :nth-child(1){ /* body */
+    animation-name: appears;
+    animation-duration: .5s;
+}
+
+/* Footer */
+.una-cadastro-carousel-frame > footer{
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+    border-top: dashed 1px #ddd;
+    padding-top: 16px;
+}
+
+.una-cadastro-carousel-frame > footer > section{
+
+}
+
+.una-cadastro-carousel-btn{
+    cursor: pointer;
+    color: white;
+    border-radius: 6px;
+    height: 36px;
+    border: none;
+    background-color: var(--main-color);
+    width: 100%;
+}
+
+.una-cadastro-carousel-btn:disabled{
+
+    background-color: rgb(212, 212, 212);
+    color: linen;
+    opacity: 1;
+}
+
+
+.una-cadastro-carousel-btn.next-btn{
+    margin-left: auto;
+    margin-right: 0;
+
+}
+
+.una-cadastro-carousel-btn.una-prev-btn{
+    margin-right: auto;
+    margin-left: 0;
+} 

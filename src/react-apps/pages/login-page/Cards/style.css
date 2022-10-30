@@ -1,6 +1,6 @@
 .login-card{
     position: relative;
-    width: 640px;
+    width: 560px;
     height: fit-content;
     background-color: white;
     border-radius: 4px;
@@ -12,7 +12,7 @@
 }
 
 .login-card.sm{
-    width: 460px;
+    width: 450px;
 }
 
 .login-card.show {
@@ -26,7 +26,7 @@
 .login-card .login-card-header{
     display: flex; align-items: center; justify-content: center;
     background-color: #007CDC;
-    padding: 22px 0 28px;
+    padding: 22px 0 22px;
 }
 
 .login-card .login-card-header .login-header-text{
@@ -36,7 +36,7 @@
     line-height: .8em;
     text-transform: uppercase;
     color: rgb(255, 255, 255);
-    font-size: 28px;
+    font-size: 24px;
     text-align: left;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .login-card .login-card-content{
-    padding: 26px 18px 36px;   
+    padding: 18px 18px 36px;   
     display: flex;
     flex-direction: column;
     align-items: center;

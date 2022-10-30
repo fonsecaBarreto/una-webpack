@@ -7,12 +7,6 @@ import { searchCep } from '@/services/viacep'
 
 export const CepInputControl = ({ value, onInput, onData, beforeSubmit }:{ beforeSubmit: Function, value: string, onInput: (value: string) => void, onData: (value?:string) => void }) =>{
     const prevValue = useRef("");
-    const [ loading, setLoading ] = useState(false)
-
-    /* useEffect(()=>{
-        console.log("Value has changed", value, "aqui")
-        console.log("ref ->", prevValue.current)
-    },[value]) */
 
     const submit = async () =>{
         beforeSubmit()
@@ -37,7 +31,5 @@ export const CepInputControl = ({ value, onInput, onData, beforeSubmit }:{ befor
         </Forming.InputWrapper>       
     )
 }
-
-//pattern="\(\d{2}\)\s*\d{5}-\d{4}" required
 
 export default CepInputControl

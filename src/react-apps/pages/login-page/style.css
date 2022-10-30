@@ -2,17 +2,9 @@
     position: relative;
     display: flex; flex-direction: column; align-items:center; justify-content: flex-start;
     height: 100%; width: 100%;
-    padding: 82px 0 120px 0;
+    padding: 64px 0 120px 0;
 }
 
-.login-sign-up-form{
-    width: 800px!important;
-}
-
-.login-sign-in-form{
-    width: 480px!important;
-
-}
 .opt-row{
     display: flex;
     flex-direction: row;
@@ -29,14 +21,9 @@
 }
 
 @media only screen and (max-width: 960px) {
-
     .login-sign-up-form, .login-sign-in-form{   width: 100%!important;; }
     #login-screen{ padding:  52px 16px; }
-
 }
-
-
-/*  */
 
 .login-entry-btn{
     margin-top: 24px;

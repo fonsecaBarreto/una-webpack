@@ -1,5 +1,6 @@
 import "regenerator-runtime/runtime";
 import "core-js/stable"; 
+import "reflect-metadata"
 import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from '../../reportWebVitals';
