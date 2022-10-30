@@ -63,7 +63,7 @@
     text-align: center;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 756px) {
     .login-card{
         width: 100%!important;
         

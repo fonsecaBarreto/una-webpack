@@ -11,6 +11,7 @@ export namespace CompanhiasServices {
      export type ListParams = {
     
      }
+
 }
 
 export const companhiasServices = {

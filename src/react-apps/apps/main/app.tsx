@@ -5,7 +5,8 @@ import { DialogStack }  from 'fck-react-dialog'
 import { useSelector } from "react-redux";
 import { GlobalContext } from "../GlobalContext";
 import FixedUnaLoading from "@/react-apps/layouts/components/FixedLoading";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const App = () =>{
     const appRef = useRef<HTMLHeadingElement>(null)
     const { loading } = useSelector((state:any)=>state.main)
@@ -15,6 +16,7 @@ export const App = () =>{
             <div id="App" ref={appRef} className={`${loading ? "app-is-loading" : ""}`} > 
                 { loading && <FixedUnaLoading> </FixedUnaLoading>}
                 <Routes></Routes> 
+                <ToastContainer/>
                 <StackComponent></StackComponent> 
             </div>
         </GlobalContext.Provider>

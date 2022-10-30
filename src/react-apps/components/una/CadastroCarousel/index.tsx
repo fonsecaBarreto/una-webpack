@@ -21,6 +21,10 @@ import { loginServices } from "@/services/api/login-service"
 import { handleValidate } from './vendor/Validator'
 import { UserDto } from './dtos/UserDto'
 import { AddressDto } from './dtos/AddressDto'
+import { loginServicesV2, SignUpParams } from '@/services/api/v2/login-service'
+import { MakeNotification, NotificationType } from 'fck-react-dialog'
+import { toast } from 'react-toastify'
+
 
 const INITIAL_DATA = {
     /* User */
@@ -33,9 +37,8 @@ const INITIAL_DATA = {
     cnpj: "",
     telefoneComercial: "",
     isVendor: false,
-    isMart: false,
+    isMart: true,
     /* Address */
-
     address: "",
     city: { value: "", label: ""},
     uf: { value: "", label: ""},
@@ -277,7 +280,8 @@ const pages = [
 ];
 
 export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {setLoading: Function}) =>{
-
+    const history = useHistory();
+    const context = useContext(GlobalContext)
     const inputsState = useState(INITIAL_DATA);
     const [ errors, setErros ] = useState({})
     const [ pageIndex, setPageIndex ] = useState(0);
@@ -322,7 +326,45 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
             return;
         }
         
-        /* Actualy submite here */
+        /* */
+
+        const{ city, uf, ...rest } = inputsState[0];
+
+        const params: SignUpParams = {
+            ...rest,
+            uf: uf.value,
+            ibge: Number(city.value),
+            city: city.label,
+        }
+
+   
+        setLoading(true);
+        toast.promise(
+            loginServicesV2.signup(params)
+            .then(()=>{
+                context.dialog.push(MakeNotification(()=>-1,[ 
+                    "Bem Vindo a UNA Compras",
+                    "Cadastro efetuado com successo!", 
+                    "Obrigado pela confiança, entraremos em contato em breve!"], "Sucesso!", NotificationType.SUCCESS));
+                history.push("/login?v=signin");   
+            })
+            .finally(()=>{
+                setLoading(false)
+            })
+            ,{
+                pending: 'Enviando...',
+                success: 'Cadastro efetuado com successo!',
+                error: {
+                    render({data}){
+                        console.log("erro aqui", data)
+                        if(data.params)
+                            setErros(data.params);
+                        return data.message
+                    }
+                },
+            }
+        )
+       
 
     }
     
