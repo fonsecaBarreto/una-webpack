@@ -17,7 +17,7 @@ export const SearchButton: React.FunctionComponent<any> = ({ onClick, onHover })
     const toSearch =() => { 
         const queryParams = qs.parse(location.search);
         const newQueries = { ...queryParams, v: searchText, p: 1};
-        history.push({ search: qs.stringify(newQueries) });
+        history.push({ pathname:"/mercado",search: qs.stringify(newQueries) });
     }
     useEffect(()=>{ if(width >960){ setShowSearchBar(false)} },[width])
 

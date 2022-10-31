@@ -12,6 +12,7 @@ import ProductPage from '@pages/product-page'
 import MinhasCotacoes from '@pages/MinhasCotacoes'
 import TutoriaisPage from "@pages/Tutoriais"
 import { Redirect } from "react-router-dom";
+import HomePage from "@pages/HomePage";
 
 const MartPage = lazy(() => import('@pages/mart-page'));
 const LoginPage = lazy(() => import('@pages/login-page'));
@@ -38,9 +39,11 @@ export const ROUTES = [
     /* Tutoriais */
 
     { path: "/tutoriais", title: "Tutoriais",  component: TutoriaisPage } ,
+    { path: "/", title: "Inicio",  component: HomePage },
+    
     /* REDIRECTS */
     { path: "/admin*", title: "Redirecionando para admin",  component: ({ location }: any) => goToAdmin(location) } ,
-    { path: "/", title: "Inicio",  component:() => <Redirect to="/mercado"></Redirect> } ,
+/*     { path: "/", title: "Inicio",  component:() => <Redirect to="/mercado"></Redirect> } , */
 ]
 
 export const Routes = () => {

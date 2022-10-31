@@ -27,7 +27,7 @@
     display: flex; flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 1.1s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
 .utc-pool > .utc-itemwarpper{
@@ -38,8 +38,13 @@
 .utc-aside{
     position: relative;
     z-index: 2;
-    background-color: rgba(255, 255, 255, 0.4);
 }
+
+.utc-aside:hover > button{
+    opacity: 1;
+    
+}
+
 
 .utc-aside > button{
     position: absolute;
@@ -47,19 +52,22 @@
     left: 4px;
     bottom: 0;
     margin: auto;
-    width: 52px;
-    height: 52px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     cursor: pointer;
     border: none;font-size: 28px;
     color: white;
-    background-color: rgb(100, 150, 226);
+    background-color: rgb(199, 202, 206);
     box-shadow: 2px 3px 4px #0004;
+    opacity: 0;
+    transition: all .25s;
 }
 
 .utc-aside > button:hover{
     filter: brightness(1.1);
     outline: solid 2px #ddd;
+
 }
 
 .utc-aside > button.asideright{

@@ -9,31 +9,42 @@ import { UtilsCarouselTypes } from '@/react-apps/components/utils/Carousel';
     
     const [ image, setImage ] = React.useState(ProductImage);
     return (
-        <section className='latest-product-item-img-vp' onClick={onClick}> 
-            <img alt="Ilustração do produto" src={image}></img>
-        </section>
+        
     )
 } */
 
 export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.ItemProps<any>> = (props) =>{
     const  { entry: { data, index }, onChange, } = props;
-    //ean, specification, brand, weight, volume, quantity_per_unity 
-/*     const history = useHistory()
-    const handleClick = (k: any) =>{
-        return history.push(`/produto/${ean}`);
-    }
- */
-    return (
-        <div className={`latest-product-item`} /* onClick={handleClick} */ >
-              <section>
-                    {index}
-                  {/* <ProductImageSection> </ProductImageSection> */}
-              </section>
-              <section className='lpi-body' /* onClick={()=>{ handleClick("MOVE")}} */>
+    const { ean, specification, supplies_prices, image  } = data
 
-                    {/* <span className="lpi-produto-nome"> {specification} </span>
-                    <span className="lpi-produto-ean"> {ean}</span> */}
-              </section>  
+    return (
+        <div className={`carousel-product-item`} /* onClick={handleClick} */ >
+              <header>
+                <section className='carousel-product-item-img-vp'> 
+                    <img alt="Ilustração do produto" src={image ?? ProductImage}></img>
+                </section>
+              </header>
+              <main  /* onClick={()=>{ handleClick("MOVE")}} */>
+                    <span className="lpi-produto-nome"> {specification} </span>
+                   
+                        <div className='lpi-produto-prices'>
+                            Preço aqui
+                            {/* <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>
+                                {    prices[0] == 0 ?
+                                    <React.Fragment> Preço sobre orçamento </React.Fragment> :
+                                    <React.Fragment>  R$: {prices[0].toFixed(2)} <span className="unidade-preco">und. </span></React.Fragment>
+                                }
+                            </span>
+
+                            <span>
+                                { prices[0] != prices[1] && 
+                                    <React.Fragment> 
+                                        {`orfertas de ${prices[0].toFixed(2)} até ${prices[1].toFixed(2)}`} 
+                                    </React.Fragment>}
+                            </span> */}
+                        </div> 
+                    
+              </main>  
       </div>
     )
 }

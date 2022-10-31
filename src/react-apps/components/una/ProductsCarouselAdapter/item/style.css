@@ -1,7 +1,9 @@
-.latest-product-item{
+.carousel-product-item{
     height: 100%;
     position: relative;
-    display: grid; grid-template-columns: 1fr; grid-template-rows: 3fr 2fr; 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 3fr 2fr; 
     gap: 6px;
     background-color: white;
     border-radius: 2px;
@@ -11,22 +13,23 @@
     box-shadow: 0px 1px 2px #0002;
 }
 
-.latest-product-item > section{
+.carousel-product-item > *{
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
 
   /* body */
-.latest-product-item .lpi-body{
+.carousel-product-item main{
     width: 100%; 
     display: flex; flex-direction: column; align-items: flex-start;
     gap: 4px; padding: 4px 8px;
     overflow: auto;
+    border-top: solid 1px #ddd;
 }
 
 
-.latest-product-item .lpi-body .lpi-produto-nome{
+.carousel-product-item main .lpi-produto-nome{
     font-size: 15px; line-height: 1.1em;
     white-space: normal; text-align: left;
     height: 33px;
@@ -41,7 +44,7 @@
 }
 
 
-.latest-product-item .lpi-body .lpi-produto-presentation{
+.carousel-product-item main .lpi-produto-presentation{
     font-size: 12px; line-height: 1em;
     white-space: normal; text-align: left;
     height: 12px;
@@ -56,7 +59,7 @@
     margin-bottom: 2px;
 }
 
-.latest-product-item .lpi-body .lpi-produto-ean{
+.carousel-product-item .lpi-body .lpi-produto-ean{
     font-size: 12px; line-height: 1em;
     white-space: normal; text-align: left;
     height: 12px;
@@ -73,13 +76,27 @@
 
 /*  */
 
-
-
-.latest-product-item-img-vp{
+.carousel-product-item-img-vp{
     position: relative;
-    width: 100%;  height: 100%
+    width: 100%; height: 100%;
+    overflow: hidden;
 } 
-.latest-product-item-img-vp::after{
+
+
+.carousel-product-item-img-vp img{
+    position: absolute; 
+    top: 0; left:0; right: 0; bottom: 0; 
+    width: auto; 
+    height: 100%; 
+    margin: auto;
+    object-fit: contain;
+    transition: all .8s;
+    background-color: #fff;
+    transform: scale(1.09);
+    max-height: 80%;
+}
+
+/* .carousel-product-item-img-vp::after{
     content: "";  position: absolute; top: 0; left: 0;
     width: 100%; height: 0; padding-bottom: 40%;
     overflow: hidden;
@@ -87,11 +104,4 @@
     background: linear-gradient(180deg, rgba(0,0,0,0.14) 0%, rgba(0,0,0,0.05) 68%, rgba(255, 255, 255, 0) 100%);
     transition: all .6s;
 }
-.latest-product-item-img-vp img{
-    position: absolute; top: 0; left:0; right: 0; bottom: 0; margin: auto;
-    width: auto; height: 100%; 
-    object-fit: cover;
-    transition: all .8s;
-    background-color: #fff;
-    transform: scale(1.09);
-}
+ */
