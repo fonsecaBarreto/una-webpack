@@ -1,9 +1,25 @@
-.una-header-options-nav button.header-search-button{
+.search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%!important;
+    height: 100%;
+    max-width: 640px;
+}
+
+/* .search-container.fill-up {
+
+}
+ */
+
+.search-container button.header-search-button{
     position: relative;
 }
 
-.una-header-options-nav button.header-search-button > img{
+.search-container button.header-search-button > img{
     filter: brightness(0) invert(1) ;
 }
 
 
+ 

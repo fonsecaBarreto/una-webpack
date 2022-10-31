@@ -30,18 +30,20 @@ export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ className
     return (
         
         <div className={`bl-searchbar-input ${className}`}>
-            <span>
-                <button className='bl-search-cancel mobile-only' onClick={()=>onCancel && onCancel()}> &#10005;</button>
-            </span>
+            <button onClick={search} className='bl-search-button'>
+                <img src={SearchIcon}></img>    
+            </button> 
             <input type="text" 
                 placeholder="Pesquise"
                 value={value} 
                 onInput={handleInput} 
                 onKeyDown={handleKeys}>
             </input>
-            <button onClick={search} className='bl-search-button'>
-                <img src={SearchIcon}></img>    
-            </button> 
+
+            <span>
+                <button className='bl-search-cancel' onClick={()=>onCancel && onCancel()}> &#10005;</button>
+            </span>
+         
         </div>
     )
 }

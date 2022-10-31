@@ -9,8 +9,7 @@ import { produtosService } from '@/services/api/produtos-service'
 import GlobalContext from '@/react-apps/apps/GlobalContext'
 import { MakeDialogConfig } from 'fck-react-dialog'
 import ProductForm from '@/react-apps/forms/ProductForm'
-
-
+import FilterImage from "@assets/icons/filter-icon.svg"
 export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
 
     const context = useContext(GlobalContext)
@@ -51,7 +50,11 @@ export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
                 auxHeader={(queries: any)=>(
                     <React.Fragment>
                         <button className='mobile-only' 
-                            onClick={ () => handleChange("SHOW_FILTERS", {filters:1})}> &#10018;</button>
+                            onClick={ () => handleChange("SHOW_FILTERS", {filters:1})}> 
+                            
+                            <img src={FilterImage}/>
+                
+                            </button>
                     </React.Fragment>
                 )}
                 itemComponent={ ({item_data, listMode })=> (

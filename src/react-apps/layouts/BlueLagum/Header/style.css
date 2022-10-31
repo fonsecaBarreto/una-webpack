@@ -1,12 +1,12 @@
 /* Header */
 .primary-header{
+    position: relative;
     height: var(--header-height-desktop);
     background-color: var(--main-color);
+    background: #1563e0;  /* fallback for old browsers */
     background: linear-gradient(180deg, rgb(22, 131, 214) 0%, rgb(4, 113, 197) 35%, rgb(4, 116, 201) 100%);
-    background: #0052D4;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #0052D4, #4364F7, #0052D4);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #0052D4, #4364F7, #0052D4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+    background: -webkit-linear-gradient(to right, #097ae4, #267de0, #097ae4);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #097ae4, #267de0, #097ae4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .primary-header-content{
@@ -15,32 +15,36 @@
     grid-template-columns: auto 1fr;
     grid-template-rows: 1fr;
     align-items: center;
-    gap: 12px;
+    gap: 22px;
 }
 
 .primary-header-content > section {
    height: 100%; width: 100%;
    display: flex; flex-direction: row;  align-items: center;
    justify-content: flex-end;
-   column-gap: 12px;
+   column-gap: 16px;
 }
 
 .bluelagum-logo-link{
-    display: flex;  justify-content: center;  align-items: center;
-    margin: auto;
-    justify-self: center;
+    overflow: hidden;
+    width: 200px;
+    height: var(--header-height-desktop);
+    display: flex;
+    align-items: center;
 }
-
 
 .bluelagum-logo-link > img{
-    width: 200px; height: auto; margin: auto;
+    display: inline-block;
+    object-fit: contain;
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+    margin: auto;
+    max-height: 100%;
+    margin: auto;
     padding-top: 6px;
 }
 
-.bluelagum-logo-link > .header-logo{
-    width: 200px; height: auto; margin: auto;
-    padding-top: 6px;
-}
 
 .primary-header-content .primary-header-title{
     height: 100%;
@@ -85,7 +89,13 @@
     color: #000;
 }
 
+
+
+
 @media only screen and (max-width: 1024px){
+
+  
+
     .primary-header{
         height: var(--header-height-mobile);
     }
@@ -93,5 +103,18 @@
         color: white!important;
     }
 }
+
+
+@media only screen and (max-width: 960px){
+        
+    .bluelagum-logo-link{
+        width: 120px;
+    }
+
+   
+
+}
+
+
 
 

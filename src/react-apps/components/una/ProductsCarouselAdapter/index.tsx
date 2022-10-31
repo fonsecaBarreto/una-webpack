@@ -1,32 +1,34 @@
 import * as React from 'react';
 import './style.css'
-import ProductsCarousel from 'fck-products-carousel';
+
 import Item from "./item"
 import { useSelector } from 'react-redux';
-import { produtosService } from "@/services/api/produtos-service"
-import { json } from 'stream/consumers';
+import { produtosServiceV2 } from "@/services/api/v2/produtos-service"
+import UtilsCarousel from '../../utils/Carousel';
 
-const HEIGHT = 280
+
 export const ProductsCarouselAdapter: React.FunctionComponent<any> = () =>{
-    const [products, setProducts] = React.useState<any>([])
+    const [products, setProducts] = React.useState<any>([0,1,2,3,4,5])
     const { user }:any = useSelector<any>((state: any)=>state.main);
-    React.useEffect(()=>{
-        produtosService.findLatest()
+
+ /*    React.useEffect(()=>{
+        if(!user) return;
+        produtosServiceV2.findLatest()
             .then(r=>{setProducts(r.records)});
-    },[user])
+    },[user]) */
     return (
-        <React.Fragment>
-            { (user && products.length) &&
+        <>
+            <UtilsCarousel element={Item} records={products} viewport_height={280}/>
+
+
+            {/* { (user && products.length) ?
                 <div className='latest-products-carousel'>
                     <h5> Ultimos Acessos: </h5>
-                
-                        <ProductsCarousel records={products} viewport_height={HEIGHT}>
-                            <Item></Item>
-                        </ProductsCarousel>
-                
+                    <UtilsCarousel element={Item} records={products} viewport_height={280}/>
                 </div>
-            }
-        </React.Fragment>
+                : <></>
+            } */}
+        </>
     )
 }
 

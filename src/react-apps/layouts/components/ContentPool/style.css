@@ -44,14 +44,15 @@
     border: none;
     display: flex; align-items: center;
     justify-content: center;
-    width: 36px; height: 36px;
+    width: 56px!important; height: 56px !important;
     cursor: pointer;
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 2px 1px #ddd;
     border: solid 1px #ddd;
     position: relative;
-    font-size: 26px;
+    padding: 12px;
+
 }
 
 .bl-common-content-pool > header > section:nth-child(2) button:after{

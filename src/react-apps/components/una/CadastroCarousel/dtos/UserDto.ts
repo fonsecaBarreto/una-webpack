@@ -18,6 +18,16 @@ export class UserDto {
     @IsNotEmpty({ message:'Email do responsável é obrigatório!'})
     email: string ="";
 
+
+    @IsString()
+    @IsNotEmpty({ message:'Senha é obrigatório!'})
+    senha: string ="";
+
+
+    @IsString()
+    @IsNotEmpty({ message:'Confirme a senha'})
+    senhaConfirmacao: string ="";
+
     constructor(fields?: Partial<UserDto>){
         Object.assign(this, fields)
     }

@@ -1,0 +1,88 @@
+.utils-carousel, .utils-carousel > *{
+    box-sizing: border-box!important;
+}
+
+.utils-carousel{
+    width: 100%;
+    min-height: 100px;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 32px 1fr 32px;
+    grid-template-rows: 1fr;
+    overflow: hidden;
+}
+
+.utils-carousel .utc-viewport{
+    position: relative;
+    width: 100%;
+  
+}
+
+.utc-viewport .utc-pool{
+    position: absolute; top: 0; bottom: 0; left: 0;
+    height: fit-content; 
+    width: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex; flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.utc-pool > .utc-itemwarpper{
+    padding: 6px;
+    box-sizing: border-box!important;
+}
+
+.utc-aside{
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.utc-aside > button{
+    position: absolute;
+    top: 0px;
+    left: 4px;
+    bottom: 0;
+    margin: auto;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;font-size: 28px;
+    color: white;
+    background-color: rgb(100, 150, 226);
+    box-shadow: 2px 3px 4px #0004;
+}
+
+.utc-aside > button:hover{
+    filter: brightness(1.1);
+    outline: solid 2px #ddd;
+}
+
+.utc-aside > button.asideright{
+    left: unset;
+    right:4px!important;
+}
+
+@media only screen and (max-width: 756px){
+  
+
+    .utc-aside > button{
+        width: 28px;
+        height: calc(90%);
+        border-radius: 10px;
+        text-shadow: 1px 0px black;
+        background-color: rgba(80, 105, 143, 0.15);
+        box-shadow: 2px 3px 4px #0003;
+        left: 6px;
+
+    } 
+
+    .utc-aside > button.asideright{
+        left: unset;
+        right: 6px!important;
+    }
+}

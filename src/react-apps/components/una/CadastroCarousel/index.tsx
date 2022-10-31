@@ -32,6 +32,8 @@ const INITIAL_DATA = {
     email: "",
     telefone: "",
     cpf: "",
+    senha: "",
+    senhaConfirmacao: "",
     /* CoMpany */
     nomeFantasia: "",
     cnpj: "",
@@ -147,7 +149,11 @@ const UserForm =  ({ inputsState, setLoading, errors, setErros }: any) =>{
     const [ inputs, setInputs ] = inputsState;
 
     const handleInputs = (name: string, value: any) =>{
+
         let result_value = value;
+        setErros((prev: any) =>(
+            { ...prev, [name]: undefined }
+        ))
         switch(name){
             case "cpf":
                 result_value = cpfMask(value) 
@@ -155,13 +161,21 @@ const UserForm =  ({ inputsState, setLoading, errors, setErros }: any) =>{
             case "telefone":
                 result_value = phoneMask(value);
             break;
+            case "senhaConfirmacao":
+                if(value != inputs['senha']){
+                    setErros((prev: any)=>{
+                        return ({ 
+                            ...prev,
+                            senhaConfirmacao: "Senhas não batem!"
+                        })
+                    })
+                }
+            break;
         }
         setInputs((prev: any)=>(
             {...prev, [name]: result_value}
         ))
-        setErros((prev: any) =>(
-            { ...prev, [name]: undefined }
-        ))
+  
     }
 
     return (
@@ -193,6 +207,22 @@ const UserForm =  ({ inputsState, setLoading, errors, setErros }: any) =>{
                 onChange={handleInputs}
                 label={"Email *"} 
                 name={"email"} />
+
+            <TextInput
+                type="password"
+                error={errors["senha"]}
+                value={inputs["senha"]}
+                onChange={handleInputs}
+                label={"Senha *"} 
+                name={"senha"} />
+
+            <TextInput
+                type="password"
+                error={errors["senhaConfirmacao"]}
+                value={inputs["senhaConfirmacao"]}
+                onChange={handleInputs}
+                label={"Confirme a senha *"} 
+                name={"senhaConfirmacao"} />
 
         </FormGrid>
     )
@@ -337,7 +367,6 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
             city: city.label,
         }
 
-   
         setLoading(true);
         toast.promise(
             loginServicesV2.signup(params)
@@ -364,20 +393,20 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
                 },
             }
         )
-       
-
     }
     
     const renderPages = ()=>{
         const handleChange = (k: string, p?: any) => {
             switch(k){
                 case "PREV":
-                    setPageIndex(prev=>prev-1)
+                    setPageIndex(prev=>prev-1);
+                    context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
                 break;
                 case "NEXT":
                     if(pageIndex + 1 == pages.length){
                         setToSubmit(true);
                     }else{
+                        context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
                         setPageIndex(prev=>prev+1)
                     }
                 break;
@@ -404,82 +433,3 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
 }
 
 export default CadastroCarousel
-
-   /*  
-        useEffect(()=>{
-            if(forceIndex == -1) return;
-            setPageIndex(forceIndex);
-        },[forceIndex])
-    */
-    /* useEffect(()=>{
-        let uf = enderecoState.data.get["uf"];
-        if(uf =="") return;
-        enderecoState.loading.set(true);
-        getCitiesByUf(uf.value).then( cidades => setCidades(cidades.map((u:any)=>({value: u.id, label: u.nome})))).finally(()=>enderecoState.loading.set(false))
-   
-    },[enderecoState.data.get["uf"]]) */
-/* 
-    const validateFields = async (schema: ValidationSchema, data: any, setErrors: Function) =>{
-        const errors = await validator.validate(schema, data)
-        if(errors) { setErrors(errors); return -1; }
-        setErrors({}); return 1;
-    } */
-
-    /*   
-    const submit = async () =>{
-
-        return alert("Submetido");
-
-        // Validar Formulario de endereço
-      var enderecosData = { 
-            ...enderecoState.data.get, 
-            uf: Number(enderecoState.data.get["uf"].value ),
-            ibge: Number(enderecoState.data.get["cidade"].value),
-            cidade: enderecoState.data.get["cidade"].label,
-        }
-        var r = await validateFields( CadastroEndereco_schema, enderecosData, enderecoState.errors.set);
-        if(r == -1) return
-
-        setLoading(true);
-        signupState.errors.set({})
-        enderecoState.errors.set({})
-        juridicoState.errors.set({}) 
-
-        const data = { 
-            usuario: { ...signupState.data.get }, 
-            companhia: { ...juridicoState.data.get },
-            endereco: enderecosData, 
-        }
-
-        try{
-            await loginServices.signup(data);
-            context.dialog.push(MakeNotification(()=>-1,[ 
-                "Bem Vindo a UNA Compras",
-                "Cadastro efetuado com successo!", 
-                "Obrigado pela confiança, entraremos em contato em breve!"], "Sucesso!", NotificationType.SUCCESS));
-            history.push("/login?v=signin");
-        }catch(err:any){
-            context.dialog.push(MakeNotification(()=>-1,[ err?.message ], "Algo Errado", NotificationType.FAILURE))
-            setCarouselInitialIndex(-1);
-            if(err.params) {
-                let paramsKeys = Object.keys(err.params);
-                let signUpParams = Object.keys(signupState.data.get)
-                var signUpFormIntersection = paramsKeys.filter((x) => (signUpParams.indexOf(x) != -1));
-                if(signUpFormIntersection.length > 0 ){ 
-                    signupState.errors.set(err.params)
-                    return setCarouselInitialIndex(1)
-                }
-                let juridicoStateParams = Object.keys(juridicoState.data.get)
-                var juridicoFormIntersection = paramsKeys.filter((x) => (juridicoStateParams.indexOf(x) != -1));
-                if(juridicoFormIntersection.length > 0 ){ 
-                    juridicoState.errors.set(err.params)
-                    return setCarouselInitialIndex(2)
-                }
-            }
-
-        }finally {
-            setLoading(false)
-        } 
-    } 
-    */
-
