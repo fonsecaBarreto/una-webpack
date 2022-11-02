@@ -3,26 +3,13 @@
     flex-direction: column;
     gap: 28px;
 }
-.test-content{
-    width: 100%;
-    min-height: 100px;
-    border: solid 2px red;
-    overflow: auto;
+.una-home-section{
+
 }
 
-.test-content > section {
-    min-height: 100%;
-    height: fit-content;
-    width: fit-content;
-    background-color: rgb(230, 219, 172);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-}
+.una-home-section > h4{
 
-.test-content > section > div{
-    width: 300px!important;
-    height: 400px;
-    border: solid 2px blue;
+    font-weight: bold;
+    color: #666;
+    padding-left: 12px;
 }

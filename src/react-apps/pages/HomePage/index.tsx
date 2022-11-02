@@ -15,25 +15,25 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
         <div id="home-page">
             <div className='app-container home-page-container'>
           
-                {/* <HeadLineCarousel/>
+                <HeadLineCarousel/>
+                
                 <CategoriasCarousel/>
 
-                <section>
-                    <h2> Ofertas Imperdiveis </h2>
+                <section className='una-home-section'>
+                    <h4> Ofertas em alta: </h4>
                     <OfertasProductsCarousel/>
                 </section> 
-
-               <section>
-                    <h5> Produtos de limpeza em alta: </h5>
+ 
+                <section className='una-home-section'>
+                    <h4> Produtos de limpeza: </h4>
                     <LimpezaProductsCarousel/>
-                </section> */}
-
+                </section> 
 
                 { 
                     
                     (user) ?
-                        <section>
-                            <h5> ultimos acessos: </h5>
+                        <section className='una-home-section'>
+                            <h4> Ultimos acessos: </h4>
                             <LatestProductsCarousel/>
                         </section>  
                     : <></>
@@ -42,12 +42,10 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
                 {/*
 
-                
-
-                <section>
-                    <h5> Produtos de Padaria em alta: </h5>
-                    <PadariaProductsCarousel/>
-                </section>
+                    <section>
+                        <h5> Produtos de Padaria em alta: </h5>
+                        <PadariaProductsCarousel/>
+                    </section>
 
                */}
                 

@@ -9,11 +9,13 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
     cursor: pointer;
+    gap: 8px;
 }
 
 .carousel-categories-item > main {
     position: relative;
     overflow: hidden;
+    padding: 8px;
 }
 
 .carousel-categories-item > main > section {
@@ -69,4 +71,5 @@
     text-overflow: ellipsis;
     font-size: bold;
     color: rgba(4, 4, 54, 0.925);
+    font-weight: bold;
 }

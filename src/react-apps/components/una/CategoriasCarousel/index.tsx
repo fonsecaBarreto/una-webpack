@@ -16,7 +16,7 @@ import { useHistory } from 'react-router-dom';
 const CATEGORIES = [ 
  
   {
-    image: PaoFrancesImg,
+    image: FarinhaImg,
     label: "Farinha de trigo Panificação",
     key: "farinha-de-trigo-panificacao"
   },
@@ -27,7 +27,7 @@ const CATEGORIES = [
   },
 
   {
-    image: FarinhaImg,
+    image: PaoFrancesImg,
     label: "Farinha de trigo uso domestico",
     key: "farinha-de-trigo-uso-domestico"
   },
