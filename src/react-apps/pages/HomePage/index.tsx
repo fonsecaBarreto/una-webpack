@@ -14,10 +14,10 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
     return (
         <div id="home-page">
             <div className='app-container home-page-container'>
-          
+        
                 <HeadLineCarousel/>
                 
-                <CategoriasCarousel/> 
+                <CategoriasCarousel/>
 
                 <section className='una-home-section'>
                     <h4> Para sua padaria: </h4>

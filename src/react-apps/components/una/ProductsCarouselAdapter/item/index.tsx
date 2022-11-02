@@ -61,7 +61,7 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
                         lowestPrice ?
                         <span className='carousel-pi-price'>
                             <span>
-                                R$: {lowestPrice.toFixed(2)} 
+                                R$: {lowestPrice.toFixed(2)}
                                 <span className="unidade-preco"> und. </span>
                             </span>
                             <span>  
@@ -76,7 +76,6 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
                 </section>
 
                 <span className='carousel-pi-notation'>
-                    {JSON.stringify(supplies)}
                     {
                         lowestPrice ?    
                         `Preços validos até ${expirationDate}`

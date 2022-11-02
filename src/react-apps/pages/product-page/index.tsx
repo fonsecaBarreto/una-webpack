@@ -47,7 +47,7 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
     <div id="product-page">
       <div className='app-container'>
         { !product ? (<LoadingComponent fill={true}></LoadingComponent>) :
-          <React.Fragment>
+          <>
             <div className='product-page-container'>
               {/* BREAD CRUMBS */}
               <section className='span2'>
@@ -65,7 +65,7 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
           {/*   { (user && product.supplies.length > 0) && <div>
               <SupplyPanel supplies={product.supplies}></SupplyPanel>
             </div>} */}
-          </React.Fragment>
+          </>
         }
         <div>
 
