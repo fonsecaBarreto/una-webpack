@@ -16,14 +16,13 @@ export const OfertasProductsCarousel: React.FunctionComponent<any> = () =>{
             .then(r=>{setProducts(r.records)});
     },[user])
     return (
-        <>
-            { (user && products.length) ?
-                <div className='common-products-carousel'>
-                    <UtilsCarousel element={Item} records={products} viewport_height={"420px"} colums={[4,4,3,2,1]}/>
-                </div>
-                : <></>
-            }
-        </>
+    
+        <div className='common-products-carousel'>
+            <UtilsCarousel element={Item} records={products} height_ration={1.5} colums={[5,4,3,2,1]}/>
+        </div>
+               
+          
+  
     )
 }
 

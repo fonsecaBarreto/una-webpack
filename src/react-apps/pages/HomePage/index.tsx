@@ -18,20 +18,22 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
 
                 <section>
+                    <h2> Ofertas Imperdiveis </h2>
+                    <OfertasProductsCarousel/>
+                </section>
+
+{/* 
+                
+
+
+                <section>
                     <h5> Produtos de limpeza em alta: </h5>
                     <LimpezaProductsCarousel/>
                 </section>
 
-
                 <section>
                     <h5> Produtos de Padaria em alta: </h5>
                     <PadariaProductsCarousel/>
-                </section>
-
-{/* 
-                <section>
-                    <h2> Ofertas Imperdiveis </h2>
-                    <OfertasProductsCarousel/>
                 </section>
 
                 <section>

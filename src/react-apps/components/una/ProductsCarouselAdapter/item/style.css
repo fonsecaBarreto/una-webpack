@@ -6,75 +6,17 @@
     grid-template-rows: 3fr 2fr; 
     gap: 6px;
     background-color: white;
-    border-radius: 2px;
     overflow: hidden;
-    border: solid 1px #bcbcbc;
+    border: solid 1px #ddd;
     cursor: pointer;
     box-shadow: 0px 1px 2px #0002;
+    border-radius: 22px;
+}
+/* header */
+.carousel-product-item > header{
+
 }
 
-.carousel-product-item > *{
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-  /* body */
-.carousel-product-item main{
-    width: 100%; 
-    display: flex; flex-direction: column; align-items: flex-start;
-    gap: 4px; padding: 4px 8px;
-    overflow: auto;
-    border-top: solid 1px #ddd;
-}
-
-
-.carousel-product-item main .lpi-produto-nome{
-    font-size: 15px; line-height: 1.1em;
-    white-space: normal; text-align: left;
-    height: 33px;
-    display: block; 
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #222!important;
-    text-decoration: none;
-}
-
-
-.carousel-product-item main .lpi-produto-presentation{
-    font-size: 12px; line-height: 1em;
-    white-space: normal; text-align: left;
-    height: 12px;
-    display: block; 
-    display: -webkit-box;
-    -webkit-line-clamp: 12;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #888!important;
-    text-decoration: none;
-    margin-bottom: 2px;
-}
-
-.carousel-product-item .lpi-body .lpi-produto-ean{
-    font-size: 12px; line-height: 1em;
-    white-space: normal; text-align: left;
-    height: 12px;
-    display: block; 
-    display: -webkit-box;
-    -webkit-line-clamp: 12;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #888!important;
-    text-decoration: none;
-    margin-bottom: 2px;
-}
-
-/*  */
 
 .carousel-product-item-img-vp{
     position: relative;
@@ -96,12 +38,39 @@
     max-height: 80%;
 }
 
-/* .carousel-product-item-img-vp::after{
-    content: "";  position: absolute; top: 0; left: 0;
-    width: 100%; height: 0; padding-bottom: 40%;
-    overflow: hidden;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,0.14) 0%, rgba(0,0,0,0.05) 68%, rgba(255, 255, 255, 0) 100%);
-    transition: all .6s;
+  /* body */
+.carousel-product-item main{
+    width: 100%; 
+    display: flex; flex-direction: column; align-items: flex-start;
+    gap: 4px; 
+    padding: 6px 12px;
+    overflow: auto;
+
 }
- */
+
+.carousel-product-item main .carousel-pi-spec{
+    font-size: 15px; line-height: 1.1em;
+    white-space: normal; text-align: left;
+    height: 33px;
+    display: block; 
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #222!important;
+    text-decoration: none;
+}
+
+.carousel-product-item main .carousel-pi-stars{
+
+    height: 32px;
+    border: solid 1px red;
+}
+
+
+
+
+
+
+
