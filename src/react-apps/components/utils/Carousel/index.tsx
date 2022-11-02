@@ -18,7 +18,6 @@ export namespace UtilsCarouselTypes{
     }
 }
 
-
 export const UtilsCarousel: React.FunctionComponent<UtilsCarouselTypes.Props> = ( props ) =>{
 
     const { records, colums= [ 5, 4, 3, 2, 2], element: Element, onChange } = props;
@@ -42,9 +41,9 @@ export const UtilsCarousel: React.FunctionComponent<UtilsCarouselTypes.Props> = 
     const handleClick = (key: string) =>{
         let n_colunas = colums[columnIndex];
         setOffset(prev=> {
-            let jump_proj = prev + ( n_colunas * (key =="RIGHT" ? 1 : -1));
+            let jump_proj = prev + ( n_colunas * (key =="LEFT" ? 1 : -1));
             switch(key){
-                case 'RIGHT':
+                case 'LEFT':
                     // Se a posição encontrada for zero va para o ultimo candidato
                     if(prev == 0){
                         jump_proj = (records.length - n_colunas) * -1
@@ -52,7 +51,7 @@ export const UtilsCarousel: React.FunctionComponent<UtilsCarouselTypes.Props> = 
                         jump_proj= 0;
                     }
                 break;
-                case 'LEFT':
+                case 'RIGHT':
                     if(Math.abs(jump_proj) == records.length){
                         jump_proj = 0;
                     }
@@ -76,26 +75,32 @@ export const UtilsCarousel: React.FunctionComponent<UtilsCarouselTypes.Props> = 
     const itemHeight = `calc( ${viewPortHeight}px - 12px )` */
 
     return (
-        <div className='utils-carousel'>
-            <div className='utc-aside'> 
-                <button onClick={()=>handleClick("LEFT")}>&lsaquo;</button>
-            </div>
-            <nav className='utc-viewport' ref={ref} >
-                <div className='utc-pool' style={{ marginLeft :`${calcAbsOffset(offset)}px`} }>
-                    { records.map( (rec,i)=>(
-                        <div key={i} className='utc-itemwarpper'
-                            style={{width: `${itemWidth}px`, height: "fit-content" }} > 
-                            <Element key={i} onChange={handleItemChanges} entry={ { data: rec, index: i } } />
-                        </div>))
+        <>  
+            <div className='utils-carousel'>
+
+                <div className='utc-aside'> 
+                    { offset < 0 && <button onClick={()=>handleClick("LEFT")}>&lsaquo;</button> }
+                </div>
+                <nav className='utc-viewport' ref={ref} >
+                    <div className='utc-pool' style={{ marginLeft :`${calcAbsOffset(offset)}px`} }>
+                        { records.map( (rec,i)=>(
+                            <div key={i} className='utc-itemwarpper'
+                                style={{width: `${itemWidth}px`, height: "fit-content" }} > 
+                                <Element key={i} onChange={handleItemChanges} entry={ { data: rec, index: i } } />
+                            </div>))
+                        }
+                    </div>
+                </nav> 
+                <div className='utc-aside utc-aside-right'>  
+                    {
+                        Math.abs(offset) <  Math.abs(records.length - colums[columnIndex]) && 
+                        <button className='asideright' onClick={()=>handleClick("RIGHT")} >
+                            &rsaquo;
+                        </button>
                     }
                 </div>
-            </nav> 
-            <div className='utc-aside utc-aside-right'>  
-                <button className='asideright' onClick={()=>handleClick("RIGHT")} >
-                    &rsaquo;
-                </button>
             </div>
-        </div>
+        </>
     )
 }
 

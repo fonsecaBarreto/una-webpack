@@ -68,8 +68,8 @@
     left: 4px;
     bottom: 0;
     margin: auto;
-    width: 42px;
-    height: 42px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     cursor: pointer;
     border: none;font-size: 28px;
@@ -97,6 +97,15 @@
     }
     
     .utc-aside > button{
-        opacity: .5;
+        width: 42px;
+        height: 42px;
+        opacity: .35;
+        left: -8px;
     } 
+
+    .utc-aside > button.asideright{
+        left: unset;
+        right: -8px!important;
+    }
+    
 }
