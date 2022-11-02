@@ -9,22 +9,22 @@ import { Product } from '@/domain/views/Product';
 
 const FAKE_TEXT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur gravida tincidunt ipsum, vitae rhoncus eros. Aliquam in mauris suscipit, scelerisque odio a, faucibus odio. Ut volutpat tempus sem condimentum viverra. Mauris ullamcorper ipsum id dolor consectetur elementum."
 
-export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.ItemProps<Product | any>> = (props) =>{
+export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.ItemProps<any>> = (props) =>{
     const  { entry: { data, index }, onChange, } = props;
-    const { ean, specification, supplies_prices, image, quantity_per_unity  } = data
+    const { ean, specification, supplies, image, quantity_per_unity  } = data
 
     const [ higherPrice, setHigherPrice ] = React.useState(0);
+    const [ expirationDate, setExpirationDate ] = React.useState("")
     const [ lowestPrice, setLowestPrice ] = React.useState(0);
-    
+
     React.useEffect(()=>{
 
-        if(supplies_prices?.length > 0 ){
+        if(supplies?.length > 0 ){
 
-            let maior:number =-1, 
-            menor: number = -1;
+            let maior:number =-1, menor: number = -1;
 
-            for(let n = 0 ; n < supplies_prices.length ; n ++ ){
-                let price  = supplies_prices[n]
+            for(let n = 0 ; n < supplies.length ; n ++ ){
+                let {price}  = supplies[n]
                 if(maior == -1){
                     maior = price, menor = price;
                 }else{
@@ -32,11 +32,11 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
                     menor = price < menor ? price : menor;
                 }
             }
-
+            setExpirationDate(new Date(supplies[0].expiration).toISOString().split("T")[0])
             setHigherPrice(maior/(quantity_per_unity ?? 1))
             setLowestPrice(menor/(quantity_per_unity ?? 1))
         }
-    },[ supplies_prices])
+    },[ supplies])
 
 
     return (
@@ -59,7 +59,6 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
                 <section className='carousel-pi-prices-section'>
                     {
                         lowestPrice ?
-                        <>
                         <span className='carousel-pi-price'>
                             <span>
                                 R$: {lowestPrice.toFixed(2)} 
@@ -69,10 +68,6 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
                                 {`orfertas de ${lowestPrice.toFixed(2)} ${ higherPrice ? `até ${higherPrice.toFixed(2)}`: ""}`} 
                             </span>                            
                         </span>
-                        
-                  
-
-                        </>
                         :
                         <span className='carousel-pi-priceless'>
                             Preço sobre <br/>orçamento 
@@ -83,7 +78,7 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
                 <span className='carousel-pi-notation'>
                     {
                         lowestPrice ?    
-                        "Preços validos até 00/00/0000 "
+                        `Preços validos até ${expirationDate}`
                         :
                         "Faça um orçamento e confira!"
                     }
