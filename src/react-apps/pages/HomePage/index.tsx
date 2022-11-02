@@ -24,7 +24,7 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
                     <OfertasProductsCarousel/>
                 </section> 
  
-                <section className='una-home-section'>
+                <section>
                     <h4> Produtos de limpeza: </h4>
                     <LimpezaProductsCarousel/>
                 </section> 
