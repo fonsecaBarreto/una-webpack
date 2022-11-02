@@ -28,7 +28,7 @@ export const LoginPage: React.FunctionComponent<any> = (props) =>{
 
         setIsLoading(true);
         loginServices.signin(signinState.data.get)
-        .then((_)=>{return history.push("/mercado")})
+        .then((_)=>{return history.push("/")})
         .catch(err=>{
             switch(err.name){
                 case "AccessDeniedError":

@@ -8,22 +8,19 @@ import UtilsCarousel from '../../utils/Carousel';
 
 export const LimpezaProductsCarousel: React.FunctionComponent<any> = () =>{
     const [products, setProducts] = React.useState<any>([0,1,2,3,4,5])
-    const { user }:any = useSelector<any>((state: any)=>state.main);
 
     React.useEffect(()=>{
-        if(!user) return;
-        produtosServiceV2.findLatest()
-            .then(r=>{setProducts(r.records)});
-    },[user])
+      /*   produtosServiceV2.findLatest()
+            .then(r=>{setProducts(r.records)}); */
+    },[])
     return (
-        <>
-            { (user && products.length) ?
-                <div className='common-products-carousel'>
-                    <UtilsCarousel element={Item} records={products} viewport_height={"280px"} colums={[3,3,3,2,2]}/>
-                </div>
-                : <></>
-            }
-        </>
+        <div className='common-products-carousel'>
+            <UtilsCarousel 
+                element={Item} 
+                records={products} 
+                colums={[4,4,4,3,2]}/>
+        </div>
+                 
     )
 }
 

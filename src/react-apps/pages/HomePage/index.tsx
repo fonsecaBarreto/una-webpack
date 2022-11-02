@@ -6,40 +6,50 @@ import OfertasProductsCarousel from '@/react-apps/components/una/ProductsCarouse
 import CategoriasCarousel from '@/react-apps/components/una/CategoriasCarousel';
 import HeadLineCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/HeadLineCarousel';
 import LatestProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LatestProducts';
+import { useSelector } from 'react-redux';
 
 export const HomePage: React.FunctionComponent<any> = ({ history }) => {
+    const { user }:any = useSelector<any>((state: any)=>state.main);
 
     return (
         <div id="home-page">
             <div className='app-container home-page-container'>
-                
-                <HeadLineCarousel/>
+          
+                {/* <HeadLineCarousel/>
                 <CategoriasCarousel/>
-
 
                 <section>
                     <h2> Ofertas Imperdiveis </h2>
                     <OfertasProductsCarousel/>
-                </section>
+                </section> 
 
-{/* 
-                
-
-
-                <section>
+               <section>
                     <h5> Produtos de limpeza em alta: </h5>
                     <LimpezaProductsCarousel/>
-                </section>
+                </section> */}
+
+
+                { 
+                    
+                    (user) ?
+                        <section>
+                            <h5> ultimos acessos: </h5>
+                            <LatestProductsCarousel/>
+                        </section>  
+                    : <></>
+                }
+
+
+                {/*
+
+                
 
                 <section>
                     <h5> Produtos de Padaria em alta: </h5>
                     <PadariaProductsCarousel/>
                 </section>
 
-                <section>
-                    <h5> ultimos acessos: </h5>
-                    <LatestProductsCarousel/>
-                </section> */}
+               */}
                 
             </div> 
         </div>

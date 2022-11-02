@@ -72,7 +72,6 @@ export const CategoriasCarousel: React.FunctionComponent<any> = () =>{
                 <div className='categories-carousel'>
                     <UtilsCarousel 
                         onChange={handleChange}
-                        height_ration={1.2} 
                         element={Item} 
                         records={CATEGORIES} 
                         colums={[7,6,5,4,3]}/>

@@ -14,18 +14,15 @@ export namespace UtilsCarouselTypes{
         records: any[],
         element: React.FunctionComponent<ItemProps<any>>,
         colums?: number[],
-        onChange?: any,
-        height_ration?: number
+        onChange?: any
     }
 }
 
 
 export const UtilsCarousel: React.FunctionComponent<UtilsCarouselTypes.Props> = ( props ) =>{
 
-    const { records, height_ration= 1, colums= [5, 4, 3, 2, 2], element: Element, onChange } = props;
-
+    const { records, colums= [5, 4, 3, 2, 2], element: Element, onChange } = props;
     const [ ref, { width : viewPortWidth }]: any = useResize();
-
     const [ columnIndex, setColumnIndex ] = useState(0)
     const [ itemWidth, setItemWidth ] = useState(0)
     const [ offset, setOffset ] = useState(0)
@@ -35,6 +32,8 @@ export const UtilsCarousel: React.FunctionComponent<UtilsCarouselTypes.Props> = 
 
         let cl = viewPortWidth > 1240 ? 0 : viewPortWidth > 1024 ? 1 : 
             viewPortWidth > 756 ? 2 : viewPortWidth > 480 ? 3: 4;
+        
+        
         setItemWidth(Math.round(viewPortWidth / colums[cl]) );
         setColumnIndex(cl)
         setOffset(0)
@@ -73,25 +72,25 @@ export const UtilsCarousel: React.FunctionComponent<UtilsCarouselTypes.Props> = 
 
     const handleItemChanges = onChange
 
-
-    const itemHeight = `calc( ${height_ration * itemWidth}px - 12px )`
+/*     const viewPortHeight = (height_ration * itemWidth);
+    const itemHeight = `calc( ${viewPortHeight}px - 12px )` */
 
     return (
         <div className='utils-carousel'>
             <div className='utc-aside'> 
                 <button onClick={()=>handleClick("LEFT")}>&lsaquo;</button>
             </div>
-            <nav className='utc-viewport' ref={ref} style={{height: height_ration * itemWidth}} >
-                <div className='utc-pool' style={{ left :`${calcAbsOffset(offset)}px`} }>
+            <nav className='utc-viewport' ref={ref} >
+                <div className='utc-pool' style={{ marginLeft :`${calcAbsOffset(offset)}px`} }>
                     { records.map( (rec,i)=>(
-                        <div key={i} 
-                            style={{width: `${itemWidth}px`, height: itemHeight }} className='utc-itemwarpper'> 
+                        <div key={i} className='utc-itemwarpper'
+                            style={{width: `${itemWidth}px`, height: "fit-content" }} > 
                             <Element key={i} onChange={handleItemChanges} entry={ { data: rec, index: i } } />
                         </div>))
                     }
                 </div>
             </nav> 
-            <div className='utc-aside'>  
+            <div className='utc-aside utc-aside-right'>  
                 <button className='asideright' onClick={()=>handleClick("RIGHT")} >
                     &rsaquo;
                 </button>

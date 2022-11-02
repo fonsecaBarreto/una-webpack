@@ -3,56 +3,92 @@ import "./style.css"
 import ProductImage from "@/public/assets/images/product/empty.svg"
 import { filesService } from '@/services/api/files-service';
 import { useHistory } from 'react-router-dom';
+import StarImg from "@assets/icons/star.svg"
 import { UtilsCarouselTypes } from '@/react-apps/components/utils/Carousel';
-
-/* export const ProductImageSection: React.FunctionComponent<any> = ({ onClick }) =>{
-    
-    const [ image, setImage ] = React.useState(ProductImage);
-    return (
-        
-    )
-} */
+import { Product } from '@/domain/views/Product';
 
 const FAKE_TEXT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur gravida tincidunt ipsum, vitae rhoncus eros. Aliquam in mauris suscipit, scelerisque odio a, faucibus odio. Ut volutpat tempus sem condimentum viverra. Mauris ullamcorper ipsum id dolor consectetur elementum."
 
-export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.ItemProps<any>> = (props) =>{
+export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.ItemProps<Product | any>> = (props) =>{
     const  { entry: { data, index }, onChange, } = props;
-    const { ean, specification, supplies_prices, image  } = data
+    const { ean, specification, supplies_prices, image, quantity_per_unity  } = data
+
+    const [ higherPrice, setHigherPrice ] = React.useState(0);
+    const [ lowestPrice, setLowestPrice ] = React.useState(0);
+    
+    React.useEffect(()=>{
+
+        if(supplies_prices?.length > 0 ){
+
+            let maior:number =-1, 
+            menor: number = -1;
+
+            for(let n = 0 ; n < supplies_prices.length ; n ++ ){
+                let price  = supplies_prices[n]
+                if(maior == -1){
+                    maior = price, menor = price;
+                }else{
+                    maior = price > maior ? price : maior;
+                    menor = price < menor ? price : menor;
+                }
+            }
+
+            setHigherPrice(maior/(quantity_per_unity ?? 1))
+            setLowestPrice(menor/(quantity_per_unity ?? 1))
+        }
+    },[ supplies_prices])
+
 
     return (
-        <div className={`carousel-product-item`} /* onClick={handleClick} */ >
+        <div className={`carousel-product-item`} onClick={()=>onChange && onChange("OPEN", ean)} >
             <header>
                 <section className='carousel-product-item-img-vp'> 
                     <img alt="Ilustração do produto" src={image ?? ProductImage}></img>
                 </section>
             </header>
-            <main  /* onClick={()=>{ handleClick("MOVE")}} */>
-                <span className='carousel-pi-spec'>{FAKE_TEXT}</span>
-                <span className='carousel-pi-stars'></span>
-                <span className='carousel-pi-price'></span>
-                <span className='carousel-pi-price-expiration'></span>
-               
-                   
-                            {/* 
-                    <div className='lpi-produto-prices'>
-                 
-                            <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>
-                                {    prices[0] == 0 ?
-                                    <React.Fragment> Preço sobre orçamento </React.Fragment> :
-                                    <React.Fragment>  R$: {prices[0].toFixed(2)} <span className="unidade-preco">und. </span></React.Fragment>
-                                }
-                            </span>
-
+            <main>
+                <span className='carousel-pi-spec'>{specification}</span>
+                <span className='carousel-pi-stars'>
+                    {[...Array(5)].map((_,i)=>{
+                        return (
+                            <img key={i}src={StarImg}/>
+                        )
+                    })}
+                </span>
+                
+                <section className='carousel-pi-prices-section'>
+                    {
+                        lowestPrice ?
+                        <>
+                        <span className='carousel-pi-price'>
                             <span>
-                                { prices[0] != prices[1] && 
-                                    <React.Fragment> 
-                                        {`orfertas de ${prices[0].toFixed(2)} até ${prices[1].toFixed(2)}`} 
-                                    </React.Fragment>}
-                            </span> 
-                        </div> 
-                            */}
-                    
-              </main>  
+                                R$: {lowestPrice.toFixed(2)} 
+                                <span className="unidade-preco"> und. </span>
+                            </span>
+                            <span>  
+                                {`orfertas de ${lowestPrice.toFixed(2)} ${ higherPrice ? `até ${higherPrice.toFixed(2)}`: ""}`} 
+                            </span>                            
+                        </span>
+                        
+                  
+
+                        </>
+                        :
+                        <span className='carousel-pi-priceless'>
+                            Preço sobre <br/>orçamento 
+                        </span>
+                    }
+                </section>
+
+                <span className='carousel-pi-notation'>
+                    {
+                        lowestPrice ?    
+                        "Preços validos até 00/00/0000 "
+                        :
+                        "Faça um orçamento e confira!"
+                    }
+                </span>
+            </main>  
       </div>
     )
 }
