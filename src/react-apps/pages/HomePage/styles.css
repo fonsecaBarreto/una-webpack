@@ -1,0 +1,9 @@
+.home-page-container{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* .home-page-container > *{
+    border: solid 2px red;
+} */

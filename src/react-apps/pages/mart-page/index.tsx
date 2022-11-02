@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import LimpezaProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LimpezaProducts';
 import PadariaProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/PadariaProducts';
 import OfertasProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/OfertasProducts';
-import CategoriasCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/CategoriesCarousel';
+import CategoriasCarousel from '@/react-apps/components/una/CategoriasCarousel/CategoriesCarousel';
 import HeadLineCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/HeadLineCarousel';
 
 export const MartPage: React.FunctionComponent<any> = ({ history }) => {

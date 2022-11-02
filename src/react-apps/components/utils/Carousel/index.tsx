@@ -13,16 +13,16 @@ export namespace UtilsCarouselTypes{
     export type Props = {
         records: any[],
         element: React.FunctionComponent<ItemProps<any>>,
-        viewport_height?: string
         colums?: number[],
-        onChange?: any
+        onChange?: any,
+        height_ration?: number
     }
 }
 
 
 export const UtilsCarousel: React.FunctionComponent<UtilsCarouselTypes.Props> = ( props ) =>{
 
-    const { records, viewport_height= "300px", colums= [5, 4, 3, 2, 2], element: Element } = props;
+    const { records, height_ration= 1, colums= [5, 4, 3, 2, 2], element: Element, onChange } = props;
 
     const [ ref, { width : viewPortWidth }]: any = useResize();
 
@@ -71,24 +71,22 @@ export const UtilsCarousel: React.FunctionComponent<UtilsCarouselTypes.Props> = 
         return jump_proj
     }
 
-    const handleInnerChanges = () =>{
-
-    }
+    const handleItemChanges = onChange
 
 
-    const itemHeight = `calc( ${viewport_height} - 12px )`
+    const itemHeight = `calc( ${height_ration * itemWidth}px - 12px )`
 
     return (
         <div className='utils-carousel'>
             <div className='utc-aside'> 
                 <button onClick={()=>handleClick("LEFT")}>&lsaquo;</button>
             </div>
-            <nav className='utc-viewport' ref={ref} style={{height: viewport_height}} >
+            <nav className='utc-viewport' ref={ref} style={{height: height_ration * itemWidth}} >
                 <div className='utc-pool' style={{ left :`${calcAbsOffset(offset)}px`} }>
                     { records.map( (rec,i)=>(
                         <div key={i} 
                             style={{width: `${itemWidth}px`, height: itemHeight }} className='utc-itemwarpper'> 
-                            <Element key={i} onChange={handleInnerChanges} entry={ { data: rec, index: i } } />
+                            <Element key={i} onChange={handleItemChanges} entry={ { data: rec, index: i } } />
                         </div>))
                     }
                 </div>
