@@ -3,13 +3,3 @@
     flex-direction: column;
     gap: 28px;
 }
-.una-home-section{
-
-}
-
-.una-home-section > h4{
-
-    font-weight: bold;
-    color: #666;
-    padding-left: 12px;
-}

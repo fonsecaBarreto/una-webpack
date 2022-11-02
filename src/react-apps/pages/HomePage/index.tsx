@@ -9,7 +9,7 @@ import LatestProductsCarousel from '@/react-apps/components/una/ProductsCarousel
 import { useSelector } from 'react-redux';
 
 export const HomePage: React.FunctionComponent<any> = ({ history }) => {
-    const { user }:any = useSelector<any>((state: any)=>state.main);
+
 
     return (
         <div id="home-page">
@@ -17,38 +17,19 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
           
                 <HeadLineCarousel/>
                 
-                <CategoriasCarousel/>
+                <CategoriasCarousel/> 
 
                 <section className='una-home-section'>
-                    <h4> Ofertas em alta: </h4>
-                    <OfertasProductsCarousel/>
+                    <h4> Para sua padaria: </h4>
+                    <PadariaProductsCarousel/>
                 </section> 
  
-                <section>
+                <section className='una-home-section'>
                     <h4> Produtos de limpeza: </h4>
                     <LimpezaProductsCarousel/>
                 </section> 
 
-                { 
-                    
-                    (user) ?
-                        <section className='una-home-section'>
-                            <h4> Ultimos acessos: </h4>
-                            <LatestProductsCarousel/>
-                        </section>  
-                    : <></>
-                }
-
-
-                {/*
-
-                    <section>
-                        <h5> Produtos de Padaria em alta: </h5>
-                        <PadariaProductsCarousel/>
-                    </section>
-
-               */}
-                
+                <LatestProductsCarousel/>
             </div> 
         </div>
     )

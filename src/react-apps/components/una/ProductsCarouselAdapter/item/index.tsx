@@ -13,8 +13,8 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
     const  { entry: { data, index }, onChange, } = props;
     const { ean, specification, supplies, image, quantity_per_unity  } = data
 
-    const [ higherPrice, setHigherPrice ] = React.useState(0);
     const [ expirationDate, setExpirationDate ] = React.useState("")
+    const [ higherPrice, setHigherPrice ] = React.useState(0);
     const [ lowestPrice, setLowestPrice ] = React.useState(0);
 
     React.useEffect(()=>{
@@ -76,6 +76,7 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
                 </section>
 
                 <span className='carousel-pi-notation'>
+                    {JSON.stringify(supplies)}
                     {
                         lowestPrice ?    
                         `Preços validos até ${expirationDate}`

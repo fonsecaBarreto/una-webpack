@@ -21,7 +21,7 @@ export namespace UtilsCarouselTypes{
 
 export const UtilsCarousel: React.FunctionComponent<UtilsCarouselTypes.Props> = ( props ) =>{
 
-    const { records, colums= [5, 4, 3, 2, 2], element: Element, onChange } = props;
+    const { records, colums= [ 5, 4, 3, 2, 2], element: Element, onChange } = props;
     const [ ref, { width : viewPortWidth }]: any = useResize();
     const [ columnIndex, setColumnIndex ] = useState(0)
     const [ itemWidth, setItemWidth ] = useState(0)

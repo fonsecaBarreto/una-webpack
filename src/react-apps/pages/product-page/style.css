@@ -8,6 +8,7 @@
     display: grid; grid-template-columns: 4fr 5fr;
     grid-template-rows: auto;
     gap: 6px; row-gap: 12px;
+    border: solid 2px red;
 
 }
 

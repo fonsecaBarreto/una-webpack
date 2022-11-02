@@ -89,13 +89,7 @@
     color: #000;
 }
 
-
-
-
 @media only screen and (max-width: 1024px){
-
-  
-
     .primary-header{
         height: var(--header-height-mobile);
     }
@@ -105,14 +99,10 @@
 }
 
 
-@media only screen and (max-width: 960px){
-        
+@media only screen and (max-width: 960px){    
     .bluelagum-logo-link{
-        width: 150px;
+        width: 160px;
     }
-
-   
-
 }
 
 

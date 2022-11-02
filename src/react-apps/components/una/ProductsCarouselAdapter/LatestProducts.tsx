@@ -8,8 +8,9 @@ import UtilsCarousel from '../../utils/Carousel';
 import { useHistory } from 'react-router-dom';
 
 export const LatestProductsCarousel: React.FunctionComponent<any> = () =>{
+    const { user }:any = useSelector<any>((state: any)=>state.main);
     const history = useHistory();
-    const [products, setProducts] = React.useState<any>([0,1,2,3,4,5])
+    const [products, setProducts] = React.useState<any>([])
   
     React.useEffect(()=>{
         produtosServiceV2.findLatest()
@@ -22,19 +23,24 @@ export const LatestProductsCarousel: React.FunctionComponent<any> = () =>{
                 history.push(`/produto/${p}`)
             break;
         }
-
     }
 
     return (
-     
-        <div className='latest-products-carousel'>
-            <UtilsCarousel 
-                onChange={handleChanges}
-                element={Item} 
-                records={products}/>
-        </div>
-              
-       
+        <>
+            {        
+                (user && products.length > 0 ) ?
+                    <section className='una-home-section'>
+                        <h4>Recentemente visualizados: </h4>
+                        <div className='latest-products-carousel'>
+                            <UtilsCarousel 
+                                onChange={handleChanges}
+                                element={Item} 
+                                records={products}/>
+                        </div>
+                    </section>  
+                : <></>
+            }
+        </>   
     )
 }
 

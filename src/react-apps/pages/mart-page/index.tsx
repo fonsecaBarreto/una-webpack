@@ -5,12 +5,6 @@ import ProductFeed from '@/react-apps/pages/mart-page/ProductFeed'
 import UseFetchManager from './FetchManager'
 import CategoriasNav from './CategoriasNav'
 import LatestProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LatestProducts';
-import { useHistory } from 'react-router-dom';
-import LimpezaProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LimpezaProducts';
-import PadariaProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/PadariaProducts';
-import OfertasProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/OfertasProducts';
-import CategoriasCarousel from '@/react-apps/components/una/CategoriasCarousel/CategoriesCarousel';
-import HeadLineCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/HeadLineCarousel';
 
 export const MartPage: React.FunctionComponent<any> = ({ history }) => {
 
@@ -25,11 +19,7 @@ export const MartPage: React.FunctionComponent<any> = ({ history }) => {
                     <ProductFeed manager={fetchManager} ></ProductFeed>
                 </ContentGrid> 
 
-
-                <section>
-                    <h5> ultimos acessos: </h5>
-                    <LatestProductsCarousel/>
-                </section>
+                <LatestProductsCarousel/>
                 
             </div> 
         </div>

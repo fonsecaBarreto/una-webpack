@@ -10,7 +10,7 @@ import { getUfName } from '@/services/ibge'
 import { ListTree } from './ListTree'
 import { useSelector } from 'react-redux'
 const SEARCH_HEADER = { params: [ "ean"] }
-import ProductsCarouselAdapter from "@/react-apps/components/una/ProductsCarouselAdapter/LatestProducts";
+import LatestProductsCarousel from "@/react-apps/components/una/ProductsCarouselAdapter/LatestProducts";
 import { LabelView } from '@/domain/views/ListingView'
 export type ProductView = {
 
@@ -68,7 +68,9 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
           </React.Fragment>
         }
         <div>
-          <ProductsCarouselAdapter/>
+
+        <LatestProductsCarousel/>
+
         </div>
       </div>
       

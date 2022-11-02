@@ -34,7 +34,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images, onCl
 export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, listMode , showPrices}) =>{
     
     const history = useHistory()
-    const [ prices, setPrices ] = useState([22,15])
+    const [ prices, setPrices ] = useState([0,0])
     const { ean, specification, brand, quantity_per_unity, presentation_label, images, supplies} = produto
     const cartHandler = UseCartHandler()
     const eanRef = useRef<any>(null);
