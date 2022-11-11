@@ -23,7 +23,7 @@
     width: calc(100% - 16px);
     height: 0;
     padding-bottom: calc(100% - 16px);
-    border-radius: 50%;
+    border-radius: 20px;
     background-color: var(--main-color);
     margin: auto;
     background: #067ee0;  
@@ -61,15 +61,23 @@
     text-transform: uppercase;
     display: block; 
     display: -webkit-box;
-    font-size: .9rem;
+    font-size: .8rem;
     text-align: center!important;
     line-height: 1em;
     min-height: 2em;
-    max-height: 3em;
-    -webkit-line-clamp: 3;
+    max-height: 2em;
+    -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: bold;
-    color: rgba(4, 4, 54, 0.925);
+    color: rgba(45, 45, 49, 0.925);
     font-weight: bold;
+}
+
+@media screen and (max-width: 960px) {
+    .carousel-categories-item > footer > span{
+        font-size: .7rem;
+        line-height: 1em;
+    }
+    
 }

@@ -1,5 +1,12 @@
 .home-page-container{
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 24px;
+    padding-bottom: 32px;
+}
+
+@media screen and (max-width: 960px) {
+    .home-page-container{
+        gap: 16px;
+    }
 }

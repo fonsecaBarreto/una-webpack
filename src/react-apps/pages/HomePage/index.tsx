@@ -7,6 +7,7 @@ import CategoriasCarousel from '@/react-apps/components/una/CategoriasCarousel';
 import HeadLineCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/HeadLineCarousel';
 import LatestProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LatestProducts';
 import { useSelector } from 'react-redux';
+import ConfeitareProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/ConfeitareProducts';
 
 export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
@@ -29,7 +30,13 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
                     <LimpezaProductsCarousel/>
                 </section> 
 
+                <section className='una-home-section'>
+                    <h4> Doces: </h4>
+                    <ConfeitareProductsCarousel/>
+                </section> 
+
                 <LatestProductsCarousel/>
+                
             </div> 
         </div>
     )

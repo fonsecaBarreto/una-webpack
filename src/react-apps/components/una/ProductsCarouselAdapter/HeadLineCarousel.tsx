@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Carousel } from 'react-bootstrap';
-import TestImage from "@assets/headline/headline1-lg.png"
+import TestImage from "@assets/headline/headline1-lg.webp"
 
-import TestImageMd from "@assets/headline/headline1-md.png"
+import TestImageMd from "@assets/headline/headline1-md.webp"
 
 export const HeadLineCarousel: React.FunctionComponent<any> = () =>{
     const [index, setIndex] = React.useState(0);
