@@ -39,13 +39,11 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     const cartHandler = UseCartHandler()
     const eanRef = useRef<any>(null);
 
-
     var quantity = useMemo(()=>quantity_per_unity ?? 1,[produto])
     
     useEffect(()=>{
         if(supplies?.length > 0 ){
             let maior:number =-1, menor: number = -1;
-
             for(let n = 0 ; n < supplies.length ; n ++ ){
                 let {price}  = supplies[n]
                 if(maior == -1){
@@ -55,7 +53,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                     menor = price < menor ? price : menor;
                 }
             }
-            //setPrices([menor/quantity ?? 1, maior/quantity ?? 1]);
+            setPrices([menor/quantity ?? 1, maior/quantity ?? 1]);
         }
     },[ supplies])
 
@@ -85,6 +83,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                     <span className="produto-presentation"> {presentation_label } </span>
                         { showPrices ?
                             <div className='product-feed-item-prices'>
+
                                 <span className={`${prices[0] ==0 ? 'priceless' : ""}`}>
                                     {    prices[0] == 0 ?
                                         <React.Fragment> Preço sobre orçamento! </React.Fragment> :
