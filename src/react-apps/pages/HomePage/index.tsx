@@ -8,6 +8,7 @@ import HeadLineCarousel from '@/react-apps/components/una/ProductsCarouselAdapte
 import LatestProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LatestProducts';
 import { useSelector } from 'react-redux';
 import ConfeitareProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/ConfeitareProducts';
+import LaticiniosProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LaticiniosProducts';
 
 export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
@@ -21,18 +22,23 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
                 <CategoriasCarousel/>
 
                 <section className='una-home-section'>
+                    <h4> Laticinios: </h4>
+                    <LaticiniosProductsCarousel/>
+                </section> 
+                
+                <section className='una-home-section'>
                     <h4> Para sua padaria: </h4>
                     <PadariaProductsCarousel/>
                 </section> 
  
                 <section className='una-home-section'>
-                    <h4> Produtos de limpeza: </h4>
-                    <LimpezaProductsCarousel/>
+                    <h4> Doces: </h4>
+                    <ConfeitareProductsCarousel/>
                 </section> 
 
                 <section className='una-home-section'>
-                    <h4> Doces: </h4>
-                    <ConfeitareProductsCarousel/>
+                    <h4> Produtos de limpeza: </h4>
+                    <LimpezaProductsCarousel/>
                 </section> 
 
                 <LatestProductsCarousel/>
