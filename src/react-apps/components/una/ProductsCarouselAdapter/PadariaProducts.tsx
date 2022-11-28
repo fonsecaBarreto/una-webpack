@@ -11,8 +11,8 @@ export const PadariaProductsCarousel: React.FunctionComponent<any> = () =>{
     const [products2, setProducts2] = React.useState<any>([])
     const history = useHistory();
     React.useEffect(()=>{
-        produtosServiceV2.list({categories: ["farinha-de-trigo"]})
-            .then(r=>{setProducts1(r.records)});
+      /*   produtosServiceV2.list({categories: ["farinha-de-trigo"]})
+            .then(r=>{setProducts1(r.records)}); */
         produtosServiceV2.list({categories: ["misturas"]})
             .then(r=>{setProducts2(r.records)});
     },[])
@@ -28,12 +28,12 @@ export const PadariaProductsCarousel: React.FunctionComponent<any> = () =>{
 
     return (
         <div className='common-products-carousel'>
-            <UtilsCarousel 
+       {/*      <UtilsCarousel 
                 onChange={handleChanges}
                 element={Item} 
                 records={products1} 
                 colums={[4,4,4,3,2]}/>
-
+ */}
             <UtilsCarousel 
                 onChange={handleChanges}
                 element={Item} 

@@ -3,6 +3,7 @@
     width: 100%;
     height: fit-content;
     background: #1563e0;  /* fallback for old browsers */
+    background: linear-gradient(180deg, rgb(22, 131, 214) 0%, rgb(4, 113, 197) 35%, rgb(4, 116, 201) 100%);
     background: -webkit-linear-gradient(to right, #097ae4, #267de0, #097ae4);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #097ae4, #267de0, #097ae4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 

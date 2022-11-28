@@ -1,10 +1,5 @@
 @keyframes appears {
-    from {  
-        opacity: 0;
-        width: 0;
-  
-    
-    }
+    from { opacity: 0;  width: 0;}
     to { }
 }
 
@@ -13,16 +8,15 @@
     margin-right: 0;
     margin-left: auto;
     display: grid; grid-template-columns: auto 1fr auto; 
-    width: 100%; height: 42px;
-    border-radius: 8px;
+    width: 100%; 
+    height: 42px;
+    border-radius: 6px;
     overflow: hidden;   
-
-    box-shadow: 0px 1px 2px #0004;
+    box-shadow: 0px 1px 2px #0002;
     background-color: rgba(255, 255, 255, 0);
     align-items: center;
-    outline: solid 2px rgba(255,255,255,.5);
     animation-name: appears;
-    animation-duration: .5s;
+    animation-duration: .3s;
 }
 
 .bl-searchbar-input input{
@@ -43,18 +37,17 @@
     width: 38px; height: 38px;
     padding: 0 2px;
     font-size: 16px!important;
-    color: rgb(255, 255, 255)!important;
-    background-color: rgba(180, 180, 180, 0.2)!important;
+    color: white;
 }
 
 .bl-searchbar-input button.bl-search-button{
-    display: flex; flex-direction: row; align-items: center;  justify-content: center;
     width: 64px;  height: 100%;
     background-color: white;
     color:  var(--main-color);
     font-weight: bold;
     font-size: 22px;
-    border-top-right-radius: 2px; border-bottom-right-radius: 2px;
+    border: none;
+    border-radius: 0;
 }
 
 @media screen and (max-width: 960px) {
@@ -62,4 +55,11 @@
         width: 100%;
         max-width: 100%;
     }   
+
+    .bl-searchbar-input input{
+        grid-column: 2 span;
+    }
+    .bl-searchbar-input{
+        height: 38px;
+    }
 }

@@ -72,11 +72,16 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({chil
                 {/* Pre rendered side modals */}
                 <FloatAsideContent show={asideFloat.content}> {asideFloat.content} </FloatAsideContent> 
                 <FloatAsideContent anchor={"right"} show={asideFloat.rightContent}> {asideFloat.rightContent} </FloatAsideContent> 
-         
+                <div className='top-content'>
+                    <LocationBar></LocationBar>
+                </div> 
                 <header>
                     <LayoutHeader menuContext={menuContext} onChange={handleHeaderChange}></LayoutHeader>
-                    <LocationBar></LocationBar>
                 </header> 
+                <div className='header-bottom-content'>
+                    <DepartamentHeader/> 
+                </div> 
+              
                 <main>
                     {children}
                 </main>

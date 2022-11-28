@@ -2,49 +2,52 @@
     --aux-header-height: 24px;
     --foooter-height: 32px;
     --header-height-desktop: 64px;
-    --header-height-mobile: 64px;
+    --header-height-mobile: 110px;
     --menu-width-expanded: 280px;
     --menu-width: 64px;
     position: relative; 
     z-index: 0; width: 100%; height: fit-content;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas: "layheader layheader layheader" "laycontent laycontent laycontent" "layfooter layfooter layfooter";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-areas: "laytop" "layheader" "layheaderbottom" "laycontent" "layfooter";
     background: var(--main-bg-color);
 }
-/* 
-.blue-lagum.bl-aside-menu {
-    grid-template-areas: "layheader layheader layheader" "laymenu laycontent laycontent" "laymenu layfooter layfooter";
-}
 
-.blue-lagum > aside{
-    box-sizing: border-box;
-    position: sticky; z-index: 1;
-    top: calc( var(--header-height-desktop) + var(--aux-header-height) ); 
-    grid-area: laymenu;
-    height: calc( 100vh - var(--header-height-desktop) - var(--aux-header-height));
-    overflow: hidden;
+.blue-lagum > .top-content{
+    grid-area: laytop;
+    width: 100%;
+    height: fit-content;
+    max-width: 100%;
 }
-*/
+.blue-lagum > .header-bottom-content{
+    grid-area: layheaderbottom;
+    width: 100%;
+    height: fit-content;
+    max-width: 100%;
+    overflow: hidden;
+    box-shadow: 0px 1px 2px 2px #0003;
+    position: sticky; z-index: 2; 
+    top: var(--header-height-desktop) ;
+}
 
 .blue-lagum > header{
     grid-area: layheader;
     position: sticky; z-index: 2; top: 0;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    box-shadow: 0px 1px 1px #0001;
+    box-shadow: 0px 1px 2px 2px #0001;
 }
 
 .blue-lagum > main {
     grid-area: laycontent;
     height: 100%;
-    min-height: calc(100vh - var(--header-height-desktop) );
+    min-height: calc(100%); /*  */
     padding-bottom: 32px!important;
     z-index: 1;
 }
-
-
 
 .blue-lagum > footer{
     position: relative; z-index: 1;
@@ -53,12 +56,8 @@
 }
 
 
-@media only screen and (max-width: 1024px){
-    .blue-lagum.bl-aside-menu {
-        grid-template-areas: "layheader layheader layheader" "laycontent laycontent laycontent" "laycontent layfooter layfooter";
+@media screen and (max-width: 960px) {
+    .blue-lagum > .header-bottom-content{
+        top: var(--header-height-mobile) ;
     }
-    .blue-lagum > aside{
-        display: none;
-    }
-} 
- 
+}

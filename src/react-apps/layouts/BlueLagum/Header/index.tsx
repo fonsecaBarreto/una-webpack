@@ -5,6 +5,9 @@ import ToggleButton from "../../components/ToggleButton"
 import LogoImg from '@/public/assets/images/logo.svg' 
 
 import OptionsNav from './OptionsNav'
+import { useHistory, useLocation } from 'react-router-dom'
+import qs from 'qs'
+import SearchBar from '../../components/SearchBar'
 
 export namespace PrimaryHeader {
     export type Params = {
@@ -14,6 +17,18 @@ export namespace PrimaryHeader {
 }
 
 export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ onChange, menuContext })=> {
+
+    const history = useHistory();
+    const location = useLocation()
+    const [ searchText, setSearchText ] = useState("")
+
+    const toSearch =() => { 
+        const queryParams = qs.parse(location.search);
+        const newQueries = { ...queryParams, v: searchText, p: 1};
+        history.push({ pathname:"/mercado",search: qs.stringify(newQueries) });
+    }
+
+
     return (
         <header className="primary-header">
             <div className="primary-header-content app-container">
@@ -31,6 +46,15 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
                         openBudgets={()=>onChange("BUDGETS")}
                         toggleMenu={menuContext.toggleMenu} 
                         toggleCart={()=>onChange("CART")}/>
+                </section>
+
+                <section className='mobile-only'>
+                    <SearchBar 
+                        showCancel={false}
+                        value={searchText} 
+                        onClick={toSearch}
+                        onInput={setSearchText} 
+                        onCancel={()=>{}}/> 
                 </section>
             </div> 
         </header> 

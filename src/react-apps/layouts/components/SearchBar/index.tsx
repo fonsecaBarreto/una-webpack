@@ -10,9 +10,10 @@ export namespace SearchBar {
         onClick: () => void,
         onCancel?: () => void,
         className?: string
+        showCancel?: boolean
     }
 }
-export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ className="", value, onInput, onClick, onCancel})  =>{
+export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ className="", value, onInput, onClick, onCancel, showCancel =true})  =>{
 
     const handleInput = (e: any) => {
         onInput(e.target.value)
@@ -30,20 +31,24 @@ export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ className
     return (
         
         <div className={`bl-searchbar-input ${className}`}>
-            <button onClick={search} className='bl-search-button'>
-                <img src={SearchIcon}></img>    
-            </button> 
+
+            {
+                showCancel &&
+                <span>
+                    <button className='bl-search-cancel' onClick={()=>onCancel && onCancel()}> &#10005;</button>
+                </span>
+            }
+    
             <input type="text" 
                 placeholder="Pesquise"
                 value={value} 
                 onInput={handleInput} 
                 onKeyDown={handleKeys}>
             </input>
-
-            <span>
-                <button className='bl-search-cancel' onClick={()=>onCancel && onCancel()}> &#10005;</button>
-            </span>
-         
+           
+            <button onClick={search} className='bl-search-button'>
+                <img src={SearchIcon}></img>    
+            </button> 
         </div>
     )
 }

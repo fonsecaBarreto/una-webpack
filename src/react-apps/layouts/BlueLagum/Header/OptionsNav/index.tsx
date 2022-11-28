@@ -12,7 +12,7 @@ export const OptionsNav: React.FunctionComponent<any> = ({ toggleCart, toggleMen
     const { cart } = useSelector((state: any)=>state.carrinho)
     return (
         <nav className='una-header-options-nav'>
-            <SearchButton  /* className="mobile-only" *//>
+            <SearchButton/>
             <CarrinhoButton onClick={toggleCart} count={cart?.length ?? 0}/>
             <PedidosButton  className="desktop-only" onClick={openBudgets}/>
             <UserDropDown onChange={()=>toggleMenu()}></UserDropDown>

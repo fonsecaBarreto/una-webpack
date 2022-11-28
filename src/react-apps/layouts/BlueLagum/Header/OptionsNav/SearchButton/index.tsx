@@ -22,7 +22,7 @@ export const SearchButton: React.FunctionComponent<any> = ({ onClick, onHover })
     useEffect(()=>{ if(width >960){ setShowSearchBar(false)} },[width])
 
     return (
-        <div className={`search-container ${showSearchBar ? "fill-up" :""}`}>
+        <div className={`search-container desktop-only ${showSearchBar ? "fill-up" :""}`}>
             {
                 (!showSearchBar) ?
                     <button className={`header-search-button `} onClick={()=>setShowSearchBar(true)} onMouseEnter={onHover} >

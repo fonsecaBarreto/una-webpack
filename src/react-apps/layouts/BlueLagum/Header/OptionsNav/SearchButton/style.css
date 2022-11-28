@@ -5,13 +5,8 @@
     justify-content: flex-end;
     width: 100%!important;
     height: 100%;
-    max-width: 640px;
+    max-width: 580px;
 }
-
-/* .search-container.fill-up {
-
-}
- */
 
 .search-container button.header-search-button{
     position: relative;

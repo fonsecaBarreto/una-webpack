@@ -9,6 +9,7 @@ import FarinhaImg from "@assets/categories/farinha.webp"
 import MisturaboloImg from "@assets/categories/mistura.webp"
 import PaoFrancesImg from "@assets/categories/farinha-domestico.webp"
 import DesinfetanteImg from "@assets/categories/desinfetante.webp"
+import QueijosImg from "@assets/categories/queijos.webp"
 import LimpadorImg from "@assets/categories/limpador.webp"
 import { useHistory } from 'react-router-dom';
 
@@ -16,42 +17,47 @@ import { useHistory } from 'react-router-dom';
 const CATEGORIES = [ 
  
   {
+    image: QueijosImg,
+    label: "Queijos",
+    key: "?category=queijos"
+  },
+  {
     image: FarinhaImg,
     label: "Farinha de trigo Panificação",
-    key: "farinha-de-trigo-panificacao"
+    key: "?subCategory=farinha-de-trigo-panificacao"
   },
   {
     image: MisturaboloImg,
     label: "Mistura para bolos",
-    key: "mistura-para-bolos"
+    key: "?subCategory=mistura-para-bolos"
   },
 
   {
     image: PaoFrancesImg,
     label: "Farinha de trigo uso domestico",
-    key: "farinha-de-trigo-uso-domestico"
+    key: "?subCategory=farinha-de-trigo-uso-domestico"
   },
   {
     image: AguaSanitariaImg,
     label: "Agua Sanitaria",
-    key: "agua-sanitaria"
+    key: "?subCategory=agua-sanitaria"
   },
   {
     image: AmacianteImg,
     label: "Amaciante",
-    key: "amaciante"
+    key: "?subCategory=amaciante"
   },
 
   {
     image: DesinfetanteImg,
     label: "Desinfetante",
-    key: "desinfetante"
+    key: "?subCategory=desinfetante"
   },
 
   {
     image: LimpadorImg,
     label: "Limpador Perfumado",
-    key: "limpador-perfumado"
+    key: "?subCategory=limpador-perfumado"
   },
 
 
@@ -61,7 +67,7 @@ export const CategoriasCarousel: React.FunctionComponent<any> = () =>{
     const handleChange = (k: string, p?: any) =>{
       switch(k){
         case "OPEN":
-          history.push(`/mercado/?subCategory=${p}`)
+          history.push(`/mercado/${p}`)
         break;
       }
     }
