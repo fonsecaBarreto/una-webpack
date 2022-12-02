@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Carousel } from 'react-bootstrap';
 import TestImage from "@assets/headline/headline1-lg.webp"
-
 import TestImageMd from "@assets/headline/headline1-md.webp"
 
 export const HeadLineCarousel: React.FunctionComponent<any> = () =>{
@@ -17,14 +16,8 @@ export const HeadLineCarousel: React.FunctionComponent<any> = () =>{
 
                 <Carousel.Item>
                     <picture >
-                        <source 
-                            srcSet={TestImage}
-                            media="(min-width: 756px)"
-                        />
-                        <img  className="d-block w-100"
-                            src={TestImageMd}
-                             alt="First slide"
-                        />
+                        <source srcSet={TestImage} media="(min-width: 756px)"/>
+                        <img className="d-block w-100" src={TestImageMd}  alt="First slide"/>
                     </picture>
                 </Carousel.Item>
 

@@ -1,3 +1,11 @@
+#home-page{
+
+}
+
+#home-page > header {
+    margin-bottom: 24px;
+}
+
 .home-page-container{
     display: flex;
     flex-direction: column;
