@@ -6,13 +6,12 @@ import { useHistory } from 'react-router-dom';
 import StarImg from "@assets/icons/star.svg"
 import { UtilsCarouselTypes } from '@/react-apps/components/utils/Carousel';
 import { Product } from '@/domain/views/Product';
-
+  
 const FAKE_TEXT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur gravida tincidunt ipsum, vitae rhoncus eros. Aliquam in mauris suscipit, scelerisque odio a, faucibus odio. Ut volutpat tempus sem condimentum viverra. Mauris ullamcorper ipsum id dolor consectetur elementum."
 
-export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.ItemProps<any>> = (props) =>{
+export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.ItemProps<Product>> = (props) =>{
     const  { entry: { data, index }, onChange, } = props;
     const { ean, specification, supplies, image, quantity_per_unity  } = data
-
     const [ expirationDate, setExpirationDate ] = React.useState("")
     const [ higherPrice, setHigherPrice ] = React.useState(0);
     const [ lowestPrice, setLowestPrice ] = React.useState(0);
@@ -65,7 +64,7 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
                                 <span className="unidade-preco"> und. </span>
                             </span>
                             <span>  
-                                {`orfertas de ${lowestPrice.toFixed(2)} ${ higherPrice ? `até ${higherPrice.toFixed(2)}`: ""}`} 
+                                {`Ofertas de ${lowestPrice.toFixed(2)} ${ higherPrice ? `até ${higherPrice.toFixed(2)}`: ""}`} 
                             </span>                            
                         </span>
                         :
