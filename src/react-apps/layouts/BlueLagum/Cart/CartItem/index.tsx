@@ -12,24 +12,15 @@ export namespace CartItem {
 }
 
 export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
-    const { _id, product, qtd } = item
 
-    const selectedSupply = useMemo(()=>{
-        const [ ean, index, supplier_id ] = _id.split("_");
-        const result = product.supplies.find(p=>{
-            return ( p.company_id == supplier_id && p.index == Number(index) )
-        })
-        return result ?? null;
-    }, [_id, product ]);
-    
+    const cartItem: CartState.CartItemHandler = useMemo(()=>new CartState.CartItemHandler(item),[item])
     const cartHandler = UseCartHandler()
+
+    const { _id, product, qtd } = item
 
     const handleChange = (n:number) =>{
         cartHandler.pushProduct(_id, product, qtd + (1 * n)); 
     } 
-
-    const unitPrice = selectedSupply?.price ?? 0
-    const subTotal = unitPrice * qtd
 
     return (
         <div className='layout-cart-item'>
@@ -39,9 +30,7 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
             <section>
                 <span>{ product.specification } - {product.presentation}</span>
                 <span>{ product.ean }</span>
-               { selectedSupply != null && <>
-                Aqui especificações do fornecimento
-                </>}
+               { cartItem.getSupply() != null && <></>}
             </section>
             <section>
                 <AddCartButton value={qtd} onChange={handleChange}></AddCartButton> 
@@ -49,13 +38,13 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
     
             <section className='item-balance'> 
                 <label>
-                    Preço Unitario:
-                    <span> { unitPrice.toFixed(2) }</span>
+                    Preço:
+                    <span> { cartItem.getUnitPrice().toFixed(2) }</span>
                 </label> 
 
                 <label>
-                    Sub Total:
-                    <span> {  subTotal.toFixed(2) }</span>
+                    Subtotal:
+                    <span> { cartItem.getTotalPrice().toFixed(2) }</span>
                 </label> 
             </section>
         </div>

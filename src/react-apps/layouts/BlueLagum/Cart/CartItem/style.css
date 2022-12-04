@@ -5,7 +5,6 @@
     padding: 12px;  gap: 6px;
     border-bottom: solid 1px #ddd;
     row-gap: 12px;
-    border: solid 1px red;
 }
 
 .layout-cart-item > section{
@@ -15,7 +14,7 @@
 /* images */
 .layout-cart-item > section:nth-child(1){
     position: relative;
-    width: 72px;  height: 0; padding-bottom: 100%;
+    width: 64px;  height: 0; padding-bottom: 100%;
     overflow: hidden;
 }
 
