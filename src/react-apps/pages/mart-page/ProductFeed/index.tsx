@@ -10,6 +10,7 @@ import GlobalContext from '@/react-apps/apps/GlobalContext'
 import { MakeDialogConfig } from 'fck-react-dialog'
 import ProductForm from '@/react-apps/forms/ProductForm'
 import FilterImage from "@assets/icons/filter-icon.svg"
+
 export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
 
     const context = useContext(GlobalContext)
