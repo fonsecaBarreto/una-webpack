@@ -100,6 +100,12 @@
     }
 }
 
+@media screen  and (max-width: 1240px){
+    .bl-common-content-pool > main >.bl-common-content-pool-flow{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media screen  and (max-width: 1024px){
     .bl-common-content-pool > main >.bl-common-content-pool-flow{
         grid-template-columns: repeat(3, 1fr);
