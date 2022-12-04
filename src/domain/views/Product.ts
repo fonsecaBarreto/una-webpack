@@ -1,6 +1,17 @@
 
 import { LabelView } from "./ListingView";
 
+
+export type ProductSupply = { 
+    index: number,
+    company_id: string,
+    expiration: Date,
+    price: number,
+    company_name: string,
+    company_minimum_order: number
+    minimum_order: number;
+  }
+
 export interface Product {
     ncm: string
     ean: string
@@ -16,6 +27,7 @@ export interface Product {
     weight: string | null;
     volume: string | null;
     quantity_per_unity: number | null;
+      supplies: ProductSupply[];
 
 }
 
