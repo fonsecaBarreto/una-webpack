@@ -45,7 +45,10 @@ export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies })
             </div>
 
             <div>
-                <button onClick={()=> cartHandler.push(1, product)} className='product-add-cart-btn una-submit-button-color'> Adicionar ao carrinho </button> 
+             {/*    <button 
+                onClick={()=> cartHandler.push(1, product, null)} 
+                className='product-add-cart-btn una-submit-button-color'> Adicionar ao carrinho 
+                </button>  */}
             </div>
         </div>
     )

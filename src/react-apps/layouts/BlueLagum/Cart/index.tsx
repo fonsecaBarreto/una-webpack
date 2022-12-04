@@ -8,6 +8,9 @@ import { budgetServices } from '@/services/api/budget-service'
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { setLoading } from '@/react-apps/store/reducers/main/actions'
+import { Link } from 'react-router-dom'
+import { UseCartHandler } from '@/react-apps/store/reducers/cart/handler'
+import CartGroup from './CartGroup'
 
 export namespace LayoutCart {
     export type Params = {
@@ -17,13 +20,19 @@ export namespace LayoutCart {
 }
 
 /* Conteudo */
-const CartContent = ({ cart}: {cart:any}) =>{
+const CartContent = () =>{
+
+    const cartHandler = UseCartHandler()
     return (
-        <React.Fragment> {  
-            cart.length > 0 && cart.map((c: any, i:number)=> {
-                return (<CartItem key={i} item={c}></CartItem>)
-            })
-        } </React.Fragment>
+        <>
+            {  
+                cartHandler.getCartBySupplier().map((c: any, i:number)=> {
+                    return (
+                    <CartGroup items={c.items} label={c.label} value={c.supplier_id} />
+                    )
+                })
+            }
+        </>
     )
 }
 /* Footer */
@@ -33,9 +42,9 @@ const CartFooter = ({total, onSubmit}: {total: number, onSubmit: any}) =>{
         <div className='bl-cart-footer'>
             <div className='bl-cart-resume'>
                 <span> Total: { total } </span>
-                <span className='bl-cart-resume-value'> ... </span>
+                <span className='bl-cart-resume-value'>  </span>
             </div>
-            <button className='cart-budget-button' onClick={onSubmit}> Solicitar orçamento </button>
+            {/* <button className='cart-budget-button' onClick={onSubmit}> Solicitar orçamento </button> */}
         </div>
     </React.Fragment>)
 }
@@ -77,7 +86,7 @@ export const LayoutCart: React.FunctionComponent<LayoutCart.Params> = ({ show, o
     return (
         <BlueLagumAsideModal loading={false} show={show} title="Carrinho" onClose={onClose} dir="right"
             footer={ <CartFooter onSubmit={submit} total={totalProducts}/> }
-            content={<CartContent cart={cart}></CartContent> }>
+            content={<CartContent/> }>
         </BlueLagumAsideModal>
     )
 }

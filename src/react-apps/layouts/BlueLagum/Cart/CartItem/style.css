@@ -5,6 +5,7 @@
     padding: 12px;  gap: 6px;
     border-bottom: solid 1px #ddd;
     row-gap: 12px;
+    border: solid 1px red;
 }
 
 .layout-cart-item > section{
@@ -56,16 +57,27 @@
 
 /* select section */
 
-.layout-cart-item > section:nth-child(4){
-
-    grid-column: 3 span;
-    display: flex;
+.layout-cart-item .item-balance{
+    grid-column:  span 3;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1;
+    width: 100%;
 }
 
-.layout-cart-item > section:nth-child(4) > select{
+.layout-cart-item .item-balance > label{
+    padding: 0;
+    margin: 0;
+}
+
+.layout-cart-item .item-balance > label > span{
+
+}
+
+/* .layout-cart-item > section:nth-child(4) > select{
     width: 100%;
     height: 36px;
     padding: 0 12px;
     border: none;
 
-}
+} */

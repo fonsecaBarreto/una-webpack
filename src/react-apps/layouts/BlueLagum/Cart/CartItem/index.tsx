@@ -12,13 +12,24 @@ export namespace CartItem {
 }
 
 export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
-    const { _id, product, qtd, supply } = item
+    const { _id, product, qtd } = item
 
+    const selectedSupply = useMemo(()=>{
+        const [ ean, index, supplier_id ] = _id.split("_");
+        const result = product.supplies.find(p=>{
+            return ( p.company_id == supplier_id && p.index == Number(index) )
+        })
+        return result ?? null;
+    }, [_id, product ]);
+    
     const cartHandler = UseCartHandler()
 
     const handleChange = (n:number) =>{
-        cartHandler.pushProduct(product, qtd + (1 * n), supply); 
+        cartHandler.pushProduct(_id, product, qtd + (1 * n)); 
     } 
+
+    const unitPrice = selectedSupply?.price ?? 0
+    const subTotal = unitPrice * qtd
 
     return (
         <div className='layout-cart-item'>
@@ -32,10 +43,16 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
             <section>
                 <AddCartButton value={qtd} onChange={handleChange}></AddCartButton> 
             </section>  
-            <section> 
-                { 
-                    product.supplies.length == 0 ?  "Nenhum oferta encontrada" : "conduições de fornecimento aqui"
-                }
+            <section className='item-balance'> 
+                <label>
+                    Preço Unitario:
+                    <span> { unitPrice.toFixed(2) }</span>
+                </label> 
+
+                <label>
+                    Sub Total:
+                    <span> {  subTotal.toFixed(2) }</span>
+                </label> 
             </section>
         </div>
     )

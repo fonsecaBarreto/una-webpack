@@ -1,22 +1,16 @@
 import { Product } from "@/domain/views/Product"
 
 export namespace CartState {
-     export type CartItemSupply = { index: number, supplier_id: string } | null
+     // export type CartItemSupply = { index: number, supplier_id: string, supplier_name: string } | null
      export type CartItem = {
-          _id: string // ean_supplier_id_index
+          _id: string
           product: Product,
-          supply: CartItemSupply
           qtd: number
      }
 }
 
-export const CreateCartItem_Id=(ean: string, supply: CartState.CartItemSupply) =>{
-     return `${ean}_${supply?.supplier_id ?? 'none' }_${supply?.index ?? 'none'}`
-}
-
-export const CreateCartItem=(params: Omit<CartState.CartItem, '_id'>) =>{
-     const _id = CreateCartItem_Id(params.product.ean, params.supply);
-     return { _id, ...params}
+export const CreateCartItem_Id=(ean: string, supplier_id?:string, index?:string) =>{
+     return `${ean}_${supplier_id}_${index}`
 }
 
 export interface CartState {

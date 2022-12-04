@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { ProductFeedCartButton } from './AddCartButton'
 import { UseCartHandler } from '@/react-apps/store/reducers/cart/handler'
 import StarImg from "@assets/icons/star.svg"
+import { CreateCartItem_Id } from '@/react-apps/store/reducers/cart'
 export type ListMode = "inline" | "block"
 export namespace ProductItem {
     export type Params = { onChange: () => void, listMode: ListMode, showOptions: boolean }
@@ -46,14 +47,13 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     },[ sorted_supplies])
 
     const handleCartButtonClick = (k: "UP" | "DOWN" = "UP") =>{
-        const supply = !selectedSupply ? null : { index: selectedSupply.index, supplier_id: selectedSupply.company_id } 
-        const qtd = cartHandler.countByEan(ean, supply) ?? 0
-        cartHandler.pushProduct(produto, qtd + (1 * (k =='UP' ? 1 : -1)), supply); 
+        const item_id = CreateCartItem_Id(ean, selectedSupply?.index, selectedSupply?.company_id)
+        const qtd = cartHandler.countBy_id(item_id) ?? 0
+        cartHandler.pushProduct(item_id, produto, qtd + (1 * (k =='UP' ? 1 : -1))); 
     }
 
     const cartQuantity = ()=>{
-        const supply = !selectedSupply ? null : { index: selectedSupply.index, supplier_id: selectedSupply.company_id } 
-        return cartHandler.countByEan(ean, supply) ?? 0
+        return cartHandler.countBy_id(CreateCartItem_Id(ean, selectedSupply?.index, selectedSupply?.company_id)) ?? 0
     }
 
     const full_price = (!selectedSupply) ? 0 : (selectedSupply?.price)
