@@ -39,10 +39,14 @@ export const CartItem: React.FunctionComponent<CartItem.Params> = ({item}) =>{
             <section>
                 <span>{ product.specification } - {product.presentation}</span>
                 <span>{ product.ean }</span>
+               { selectedSupply != null && <>
+                Aqui especificações do fornecimento
+                </>}
             </section>
             <section>
                 <AddCartButton value={qtd} onChange={handleChange}></AddCartButton> 
             </section>  
+    
             <section className='item-balance'> 
                 <label>
                     Preço Unitario:
