@@ -20,8 +20,12 @@ export const DepartamentHeader = () => {
                 <DepartamentDropDown>
                     <Link className='dep-link' to="/mercado"> Todos departamentos</Link>
                 </DepartamentDropDown> 
-                    <DepartamentDropDown>
+                <DepartamentDropDown>
                     <Link className='dep-link' to="/mercado/padaria">  Padaria </Link>
+                </DepartamentDropDown> 
+
+                <DepartamentDropDown>
+                    <Link className='dep-link' to="/mercado/mercado">  Mercado </Link>
                 </DepartamentDropDown> 
                 
                 <DepartamentDropDown>

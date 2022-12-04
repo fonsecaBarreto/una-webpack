@@ -1,43 +1,38 @@
+import { Product } from '@/domain/views/Product'
 import { useDispatch, useSelector } from 'react-redux'
-import { CartState, pushToCart } from './index'
-
-
-
-
-
-export const serializeCartProdut = (product: any): CartState.Product =>{
-
-  return({
-      ean: product.ean,
-      images: product.images ?? [],
-      specification: product.specification  ?? "-",
-      presentation: typeof product.presentation == "string" ? product.presentation : ( product?.presentation?.label ?? "" ) 
-  })
-}
+import { CartState, CreateCartItem, CreateCartItem_Id, pushToCart } from './index'
 
 export const UseCartHandler = () =>{
     
     const dispatch = useDispatch()
     const { cart } = useSelector((state: any)=>state.carrinho)
-  
-    const count = (ean: string) =>{
-      if(!ean) return;
-      const item_index = cart.map((c:any)=> c.product.ean ).indexOf(ean);
+
+    const countByEan = (ean: string, supply?: CartState.CartItemSupply) =>{
+      if(!ean) return 0;
+      const _id = CreateCartItem_Id(ean, supply ?? null)
+      return countBy_id(_id)
+    }
+
+    const countBy_id = (_id: string) =>{
+      const item_index = cart.map((c:any)=> c._id ).indexOf(_id);
       const item = cart[item_index];
       return item?.qtd ?? 0;
     }
 
-    const overwrite = (n: number, product: CartState.Product) => {
-      dispatch(pushToCart(product,n, 'OVERWRITE'));
-    }
+    const pushProduct = (product: Product, qtd: number, supply?: CartState.CartItemSupply) =>{
+
+   
+      if(supply == null ){
+
+        // - Deve verificar se ja existe esse produto no carrinho, se sim, usuara o msm supply
+        // do contrario o primeiro da lsita sera usado
   
-    const push = (n: number, product: CartState.Product) =>{
-      const cartProduct = serializeCartProdut(product)
-      switch(n){
-          case +1:  dispatch(pushToCart(cartProduct,1)); break;
-          case -1:  dispatch(pushToCart(cartProduct,-1)); break;
       }
+
+
+      const item = CreateCartItem({ product, qtd, supply: supply ?? null })
+      dispatch(pushToCart(item));
     }
-    return { count, push, overwrite }
+    return { pushProduct, countByEan, countBy_id }
 }
 
