@@ -6,29 +6,6 @@ import { useSelector } from 'react-redux'
 import StarImg from "@assets/icons/star.svg"
 import { CreateCartItem_Id } from '@/react-apps/store/reducers/cart'
 
-
-
-/*     const suppliesList = useMemo(()=>{
-        if(product.supplies.length == 0 ) return [];
-        return product.supplies.map((sup: any)=>{
-            return ({ 
-                label: `R$: ${sup.price.toFixed(2)} -  ${sup.company_name}`,
-                value: sup.company_id+"_"+sup.index,
-                payload: { supplier_id: sup.company_id, index: sup.index }
-            
-            })
-        })
-    },[ product ]) */
-
-
-/*     const handleSupplySelect= (e: any) =>{
-        console.log(e.target.value)
-        const supply = suppliesList.find(p=>p.value == e.target.value);
-        cartHandler.overwrite(qtd, product, supply?.payload)
-    } */
-
-
-
 export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies }) =>{
     const { user } = useSelector((state: any) => state.main)
     const [ selectedSupply, setSelectedSupply ] = useState<any>(null)
@@ -138,4 +115,24 @@ export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies })
 
 export default ProductInfo
 
+/*     const suppliesList = useMemo(()=>{
+        if(product.supplies.length == 0 ) return [];
+        return product.supplies.map((sup: any)=>{
+            return ({ 
+                label: `R$: ${sup.price.toFixed(2)} -  ${sup.company_name}`,
+                value: sup.company_id+"_"+sup.index,
+                payload: { supplier_id: sup.company_id, index: sup.index }
+            
+            })
+        })
+    },[ product ]) */
 
+
+    /*     const handleSupplySelect= (e: any) =>{
+        console.log(e.target.value)
+        const supply = suppliesList.find(p=>p.value == e.target.value);
+        cartHandler.overwrite(qtd, product, supply?.payload)
+    } 
+
+    
+    */
