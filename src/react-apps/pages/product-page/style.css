@@ -14,9 +14,12 @@
 
 #product-page .product-page-container > section.span1{
     grid-column: span 1;
+    position: relative;
 }
 #product-page .product-page-container > section.span2{
     grid-column: span 2;
+
+    
 }
 
 

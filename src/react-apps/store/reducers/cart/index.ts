@@ -35,8 +35,8 @@ export namespace CartState {
      }
 }
 
-export const CreateCartItem_Id=(ean: string, supplier_id?:string, index?:string) =>{
-     return `${ean}_${supplier_id}_${index}`
+export const CreateCartItem_Id=(ean: string, index?:string, supplier_id?:string) =>{
+     return `${ean}_${index}_${supplier_id}`
 }
 
 export interface CartState {
