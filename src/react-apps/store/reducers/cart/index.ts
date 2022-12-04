@@ -1,11 +1,37 @@
-import { Product } from "@/domain/views/Product"
+import { Product, ProductSupply } from "@/domain/views/Product"
 
 export namespace CartState {
-     // export type CartItemSupply = { index: number, supplier_id: string, supplier_name: string } | null
      export type CartItem = {
-          _id: string
-          product: Product,
-          qtd: number
+          _id: string;
+          product: Product;
+          qtd: number;
+     }
+     export class CartItemHandler implements CartItem{
+         
+          _id!: string;
+          product!: Product;
+          qtd!: number;
+
+          constructor(params: CartItem){
+               Object.assign(this, params)
+          }
+
+          getSupply(): ProductSupply | null{
+               const [ ean, index, supplier_id ] = this._id.split("_");
+               const supply: ProductSupply | null = 
+                    (this.product.supplies.find((p: any)=> ( p.company_id == supplier_id && p.index == Number(index) ))) 
+                    ?? null;
+               return supply;
+          }
+
+          getUnitPrice(){
+               return (this.getSupply()?.price) ?? 0
+          }
+
+          getTotalPrice(){
+               return this.getUnitPrice() * this.qtd
+          }
+
      }
 }
 
@@ -32,7 +58,6 @@ export const carrinhoReducer = (state=INITIAL_STATE, action: any) => {
                var prev_cart= [ ...state.cart ];
                const item: CartState.CartItem = action.payload;
 
-               // Verificar se ja existe
                const indexOf = prev_cart.map(item=>item._id).indexOf(item._id)
                
                if(indexOf != -1){
