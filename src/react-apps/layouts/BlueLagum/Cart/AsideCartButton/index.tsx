@@ -8,12 +8,13 @@ export namespace AsideCartButton{
     }
 }
 
-export const AsideCartButton = ({value =0, onChange}: any) => {
+export const AsideCartButton = ({value =0, onChange, warning = false}: any) => {
 
+    
     return (
-        <div className={`aside-cart-btn`}>
+        <div className={`aside-cart-btn ${warning ? 'cart-btn-warning' : ''}`}>
             <section>
-                <button onClick={()=>onChange(-1)}>-</button>
+                <button onClick={()=>onChange(1)}>+</button>
                 <input 
                     type="text" 
                     disabled={true} 
@@ -21,7 +22,9 @@ export const AsideCartButton = ({value =0, onChange}: any) => {
                     value={value+""} 
                     /* onInput={(e:any)=>onChange(Number(e.target.value), 'OVERWRITE')} */
                 />
-                <button onClick={()=>onChange(1)}>+</button>
+     
+
+                <button onClick={()=>onChange(-1)}>-</button>
             </section>
         </div>)
 }

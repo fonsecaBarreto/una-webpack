@@ -1,35 +1,35 @@
 .aside-cart-btn{
     width: fit-content; height: fit-content;
     z-index: 1;
-    margin: auto
+    margin: auto;
+
 }
 
 .aside-cart-btn > section{
-    position: relative; display: flex; flex-direction: row; align-items: center;
+    position: relative; display: flex; flex-direction: column; align-items: center;
     background-color: rgba(255, 255, 255, 0.2);
-    border: solid 2px var(--main-color);
-    border-radius: 20px;
-    padding: 4px;
+    border-radius: 4px;
+    overflow: hidden;
     gap: 4px;
+    outline: solid 3px var(--main-color);
 }
 
 .aside-cart-btn > section > input{
     border: none;
     width: fit-content;
-    max-width: 28px;
+    max-width: 36px;
     text-align: center;
 }
 
 
 .aside-cart-btn > section > button{
     display: flex; align-items: center; justify-content: center;
-    width: 24px; height: 24px;
+    width: 38px; height: 28px;
     color: var(--main-color);
     box-shadow: inset 1px 0px #5554;
-    border-radius: 50%;
     cursor: pointer;
     font-size: 26px;
-    background-color: var(--main-color);
+    background-color: rgb(4, 78, 236);
     color: white;
     opacity: .9;
     border: none;
@@ -40,3 +40,14 @@
     transition: all .05s;
     opacity: 1;
 }
+
+.aside-cart-btn.cart-btn-warning > section > input {
+    color: red;
+}
+
+
+/* .aside-cart-btn.cart-btn-warning > section {
+    outline: solid 3px rgb(247, 123, 144);
+}
+
+  */
