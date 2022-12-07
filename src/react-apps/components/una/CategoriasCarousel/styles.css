@@ -1,4 +1,6 @@
-.categories-carousel{}
+.categories-carousel{
+
+}
 
 
 /* Items */
@@ -15,7 +17,7 @@
 .carousel-categories-item > main {
     position: relative;
     overflow: hidden;
-    padding: 8px;
+    padding: 4px;
 }
 
 .carousel-categories-item > main > section {
