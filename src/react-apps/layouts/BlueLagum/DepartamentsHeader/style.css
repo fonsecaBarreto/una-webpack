@@ -65,6 +65,16 @@
     font-size: 16px;
 }
 
+
+.departament-dropdown .dep-link > img{
+
+    width: auto;
+    height: 14px;
+    filter: invert(1);
+    margin-right: 4px;
+}
+
+
 .dep-link:hover::after{
     content: "";
     position: absolute;
