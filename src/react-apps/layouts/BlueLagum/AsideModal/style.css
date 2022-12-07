@@ -23,7 +23,7 @@
 .bl-aside-modal-content{
     width: 520px;
     height: 100%;
-    box-shadow: 0px 2px 8px 2px #0003;
+    box-shadow: 0px 2px 6px 2px #0009;
 }
 
 
@@ -57,6 +57,7 @@
     align-items: center;
     justify-content: flex-start;
     padding: 0 22px;
+    box-shadow: 0px 2px 3px 1px #0003;
 }
 
 .bl-aside-modal > header > span{
