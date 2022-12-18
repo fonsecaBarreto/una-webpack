@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import "./style.css"
 import { useSelector } from 'react-redux';
 import CompanyHeaderView from './components/CompanyHeaderView';
@@ -11,34 +11,110 @@ import FiltersNav from './components/FiltersNav';
 import { MakeDialogConfig } from 'fck-react-dialog';
 import GlobalContext from '@/react-apps/apps/GlobalContext';
 import BudgetView from '../budgets-page/modals/BudgetView';
+import { BudgetItem } from './components/Item';
+import GeneralBreadCrumbs from '@/react-apps/layouts/components/GeneralBreadCrumbs';
 
 const mapBudgetsToLavelView = (data: any) =>{
     if(!data) return []
     return data.map((b: any)=>{
        return { 
-           value: b.id , label: ` N° ${b.id} - ${ new Date(b.created_at).toISOString().split('T')[0] } - ${b.company.label} - ${b.user.label}`
+           value: b.id , label: ` N° ${b.id} - ${ new Date(b.created_at).toISOString().split('T')[0] } - R$:${b.amount}`
         }
     })
 }
 
-const handleRecords = () =>{
-    const [ loadTry, setLoadTry ] = React.useState(0)
-    const [ metaData, setMetaData]=  React.useState<UnaListingContent.MetaData | null>(null)
-    const [ records, serRecords ] =  React.useState([])
-    const setData = (r: any) =>{
-        setMetaData(r._metadata)
-        serRecords(mapBudgetsToLavelView(r.records))
-        setLoadTry(prev=>prev+=1)
+
+export const useSearch = () => {
+    const history = useHistory()
+    const { search } = useLocation();
+
+    const search_resolved = useMemo( () => {
+      const query = new URLSearchParams(search);
+      let page = query.get("page");
+      return {
+        page: page && Number(page) > 0 ? Number(page) : 1,
+        search_query: query.get("search_query") ?? ""
+      }
+    }, [search]) 
+
+    const setSearch = (payload: any) =>{
+        history.replace({ search: qs.stringify({...payload})})
     }
-    const submit = (filters: any) =>{
-        setLoadTry(0)
-        budgetServices.listCompanyBudgets(filters).then(setData)
+    return { search_resolved, setSearch };
+  }
+
+
+const CompaniesBudgets:React.FunctionComponent<{company_id:string}> = ({company_id}) =>{
+
+    const context = React.useContext(GlobalContext)
+    const [ forceToFetch, setForceToFetch ] = useState(true)
+    const [ isFetching, setIsFetching ] = useState(false)
+    const [ records, setRecords ] = useState<any[]>([])
+    const [ metadata, setMetadata ] = useState<any>([])
+    const { search_resolved, setSearch } = useSearch()
+
+    useEffect(()=>{
+        console.log('both of then ', search_resolved)
+    },[ search_resolved ])
+
+    useEffect(()=>{ if(forceToFetch === true) fetchBudgets(); }, [forceToFetch])
+
+    const fetchBudgets = (): any =>{
+        setForceToFetch(false);
+        setIsFetching(true);
+        budgetServices.list({})
+          .then((r)=>{
+            setMetadata(r._metadata);
+            setRecords(prev => r._metadata.page === 1 ? r.records : [ ...prev, ...r.records ]);
+          })
+          .finally(()=>{
+            setIsFetching(false);
+          })
     }
 
-    return { records, metaData, submit, loadTry}
+
+    const handleActions = (key: any, payload: any) =>{
+       /*  switch(key){
+            case "PAGE": filters.setValue({"p": payload});break;
+            case "OPEN": setShowBudget(payload);break
+            case "SUBMIT":{ setShowBudget(payload) };break;
+        } */
+    } 
+        
+    return (
+        <div className='app-container'>
+            <UnaListingContent 
+                itemComponent={BudgetItem}
+                metaData={metadata} 
+                records={records} 
+                freeze={isFetching} 
+                onChange={handleActions}>
+            </UnaListingContent> 
+        </div>
+    )
 }
 
-const handleFiltersWithQueries = ({company_id}: any) =>{
+export const MinhasCotacoes: React.FunctionComponent<any> = ({history}) =>{
+    const { user }:any = useSelector<any>(state=> state.main)
+    if(!user) return < span> Carregando... </span>
+    return (
+        <div id="minhas-cotacoes-page">
+            <header className='app-container'>
+                <GeneralBreadCrumbs data={[{ label: "Meu histórico de Cotações", value: "/cotacoes"}]}/>
+                <CompanyHeaderView company={user.company} user_name={user.nome}></CompanyHeaderView>
+            </header>
+            <div className='app-container'>
+                <CompaniesBudgets company_id={user.company_id} ></CompaniesBudgets>
+            </div> 
+        </div>
+    )
+}
+
+export default MinhasCotacoes
+
+
+
+/* const handleFiltersWithQueries = ({company_id}: any) =>{
     const history = useHistory()
     const { search } = useLocation();
     const query = React.useMemo(() => new URLSearchParams(search), [search]);
@@ -59,52 +135,4 @@ const handleFiltersWithQueries = ({company_id}: any) =>{
   
     return { values, setValue }
 }
-
-const CompaniesBudgets:React.FunctionComponent<{company_id:string}> = ({company_id}) =>{
-    const context = React.useContext(GlobalContext)
-    const filters: any = handleFiltersWithQueries({ company_id}) 
-    const { records, metaData, submit, loadTry } = handleRecords()
-    const [showBudget, setShowBudget ] = React.useState(null);
-    React.useEffect(()=>{  submit(filters.values)  },[filters.values])
-
-    React.useEffect(()=>{
-        if(showBudget) {
-          context.dialog.push(MakeDialogConfig(()=> <BudgetView v={0} budget_id={showBudget} company_id={company_id} />,
-          ()=>{ 
-            setShowBudget(null); 
-            return -1;
-          }, `Cotação N° ${showBudget}`))
-        }
-    },[showBudget])
-
-    const handleActions = (key: any, payload: any) =>{
-        switch(key){
-            case "PAGE": filters.setValue({"p": payload});break;
-            case "OPEN": setShowBudget(payload);break
-            case "SUBMIT":{ setShowBudget(payload) };break;
-        }
-    }
-    return (
-        <ContentGrid loading={false}>
-            <FiltersNav values={filters.values} onChange={(k, p)=>filters.setValue(p)}/> 
-            <UnaListingContent searchText={filters.values['v']} metaData={metaData} records={records} freeze={loadTry == 0} onChange={handleActions}>
-            </UnaListingContent> 
-        </ContentGrid>
-    )
-}
-
-
-export const MinhasCotacoes: React.FunctionComponent<any> = ({history}) =>{
-    const { user }:any = useSelector<any>(state=> state.main)
-    if(!user) return < span> Carregando... </span>
-    return (
-        <div id="minhas-cotacoes-page">
-            <div className='app-container'>
-               {/*  <CompanyHeaderView company={user.company}></CompanyHeaderView> */}
-                <CompaniesBudgets company_id={user.company_id}></CompaniesBudgets>
-            </div> 
-        </div>
-    )
-}
-
-export default MinhasCotacoes
+ */
