@@ -75,10 +75,9 @@ export const carrinhoReducer = (state=INITIAL_STATE, action: any) => {
 
           case "REMOVE_FROM_CART": {
                var prev_cart= [ ...state.cart ];
-               const _id: string = action.payload;
-               const indexOf = prev_cart.map(item=>item._id).indexOf(_id)
-               prev_cart.splice(indexOf,1);
-               return ({ ...state, cart: prev_cart })
+               const _ids: string[] = action.payload;
+               const new_cart = prev_cart.filter(item=>!_ids.includes(item._id)); 
+               return ({ ...state, cart: new_cart })
           };
 
           default: return state
@@ -97,8 +96,8 @@ export const pushToCart = ( item: CartState.CartItem) => ({
      payload: { ...item }
 })
 
-export const removeFromCart = ( _id: string ) => ({
+export const removeFromCart = ( _ids: string[] ) => ({
      type: "REMOVE_FROM_CART",
-     payload: _id
+     payload: _ids
 })
 
