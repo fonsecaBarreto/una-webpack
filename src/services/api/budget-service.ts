@@ -35,7 +35,7 @@ export const budgetServices = {
 
      list: async (params: any={}) => {
           const { p = 1, initial_date, end_date } = params;
-          var query = `?page=${p}&limit=99999`;
+          var query = `?page=${p}&limit=99999&order=DESC`;
         /*   query+=`
                &idate=${new Date(initial_date).getTime()} 
                &ldate=${new Date(end_date).getTime()}`; */
