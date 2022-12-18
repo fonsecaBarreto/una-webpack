@@ -76,6 +76,9 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
           </section> 
 
 
+          <LatestProductsCarousel/>
+
+
          {/*  <LatestProductsCarousel/> */}
 
         </div>
