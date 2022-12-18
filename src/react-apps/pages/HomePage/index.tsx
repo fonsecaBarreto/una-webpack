@@ -15,7 +15,7 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
     return (
         <div id="home-page">
-            <header>
+            <header className='app-container home-page-container'>
                 <HeadLineCarousel/>
 
             </header>
