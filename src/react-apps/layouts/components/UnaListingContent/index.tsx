@@ -1,82 +1,45 @@
 import React, { useEffect, useState } from 'react'
 import "./style.css"
 import SimpleItem from './standard-items/SimpleItem'
-import { Button } from 'react-bootstrap';
-import SearchInput from "./SearchBar"
 import LoadingComponent from './standard-items/LoadingComponents' 
 import IconePadrao from "./dashed-circle.svg"
+import { MetadataStorage } from 'class-validator'
 export * from "./ListingHandlers"
 export namespace UnaLisingContent {
 
-    export interface MetaData {
-        page: number,            // indice da pagina
-        per_page: number,        // offset
-        page_count: number,      // paginas disponiveis
-        records_count: number,   // contagem total da pesquisa
-    }
-
-    export type Params = {
-        children: any,
+    export type Params<Data> = {
         onChange: any,
         records: any[],
-        metaData?: MetaData | null,
+        itemComponent?: ItemProps<Data> | any
+        metaData?: any,
         freeze?: boolean,
-        searchText: string
     }
     export interface ItemProps<Data> {
-        onChange?: (k:string, p:any) =>void
-        data?: Data,
+        data: Data,
         icon?: any,
-        listMode?: boolean
+        onChange?: (k:string, p:any) =>void
     }
 }
  
-export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> = ({ searchText, children, onChange, records=[], metaData,  freeze=false}) =>{
-    const [ listMode, setListMode ] = useState(true)
-    const [ itemComponent, setItemComponent ] = useState<any>(<SimpleItem icon={IconePadrao}></SimpleItem>)
+export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params<any>>= (props) =>{
 
-    useEffect(()=>{
-        if(React.Children.count(children) > 0){
-            React.Children.map(children, setItemComponent)
-        }
-    },[children])
-
-    const handleChange = (r:any,k: any) =>{ onChange(r,k)  }
+    const {  onChange, records=[], metaData, freeze=false, itemComponent: Item } = props;
 
     return (
         <div className='una-listing-content'>
             <header>
-                <SearchInput 
-                    entry={searchText}
-                    onChange={onChange}>
-                </SearchInput> 
-               <div> 
-                    <Button 
-                        variant="outline-primary"
-                        className="list-mode-btn mobile-only" 
-                        onClick={()=>{}}> 
-                            <span>&#9886;</span> 
-                    </Button>
-                    <Button 
-                        variant="outline-primary"
-                        className="list-mode-btn " 
-                        onClick={()=>setListMode((prev:any)=>(!prev))}> {
-                            listMode ? <span>&equiv;</span> : <span> &#9871; </span> }
-                    </Button>
-               </div>
+                <span> Total cotações realizadas: {metaData.records_count}</span>
             </header>
-
-            <section className='up-navidator'>
-                <PageNavigator freeze={freeze} metaData={metaData} onChange={onChange}></PageNavigator>
-            </section>
-
             <main>
-                <nav className={`${listMode ? 'listmode': 'blockmode' }`}>
+                <nav className={`listmode`}>
                    { !freeze ? <React.Fragment>
-                        {  records.map( (b: any,i: number)=> ( 
-                            <React.Fragment key={i}> {
-                                    React.cloneElement(itemComponent, { onChange: handleChange,  data: b, listMode })
-                            }</React.Fragment>
+                        {  records?.length > 0 && records.map( (b: any,i: number)=> ( 
+                            <React.Fragment key={i}> 
+                                { 
+                                Item ? <Item onChange={onChange} data={b} /> 
+                                : <SimpleItem icon={IconePadrao} onChange={onChange} data={b}/>
+                                }
+                            </React.Fragment>
                             )) 
                         }  
                     </React.Fragment>
@@ -85,12 +48,12 @@ export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params> 
                     </React.Fragment>}
                 </nav>
             </main>
-            <footer> <PageNavigator freeze={freeze} metaData={metaData} onChange={onChange}></PageNavigator> </footer>
+            <footer> {/* <PageNavigator freeze={freeze} metaData={metaData} onChange={onChange}></PageNavigator>  */}</footer>
         </div>
     )
 }
 
-export const PageNavigator = ({ metaData, onChange, freeze }: { freeze: boolean, onChange: any, metaData?: UnaLisingContent.MetaData | null}) =>{
+/* export const PageNavigator = ({ metaData, onChange, freeze }: { freeze: boolean, onChange: any, metaData?: UnaLisingContent.MetaData | null}) =>{
     if(!metaData || freeze) return <span> ... </span>
     const { page, per_page, page_count, records_count } = metaData
     return (
@@ -110,6 +73,6 @@ export const PageNavigator = ({ metaData, onChange, freeze }: { freeze: boolean,
             </span>
         </div>
     )
-}
+} */
 
 export default UnaLisingContent
