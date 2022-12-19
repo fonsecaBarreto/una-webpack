@@ -21,7 +21,6 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
             </header>
             <div className='app-container home-page-container'>
         
-                
                 <CategoriasCarousel/>
 
                 <section className='una-home-section'>
