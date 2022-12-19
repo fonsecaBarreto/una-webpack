@@ -1,9 +1,9 @@
 #home-page{
-
+    margin-top: 12px;
 }
 
 #home-page > header {
-    margin-bottom: 24px;
+
 }
 
 .home-page-container{
@@ -17,4 +17,9 @@
     .home-page-container{
         gap: 16px;
     }
+    .home-page-container{
+        padding-bottom: 24px;
+ 
+    }
+    
 }
