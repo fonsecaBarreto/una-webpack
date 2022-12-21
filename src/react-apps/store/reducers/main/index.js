@@ -9,7 +9,8 @@ const INITIAL_STATE = {
   session_address: null,
   loading: false,
   god_mode: false,
-  currentPage:  { ...INITIAL_CURRENT_PAGE }
+  currentPage:  { ...INITIAL_CURRENT_PAGE },
+  force_cart_to_open: false
 }
 
 export const mainReducer = (state=INITIAL_STATE, action) => {
@@ -19,6 +20,7 @@ export const mainReducer = (state=INITIAL_STATE, action) => {
     case "SET_GOD_MODE": return { ...state, god_mode: action.payload};
     case "SET_LOADING": return { ...state, loading: action.payload };
     case "SET_CURRENT_PAGE": return { ...state, currentPage: action.payload };
+    case "SET_FORCE_CART_TO_OPEN": return { ...state, force_cart_to_open: action.payload };
     default: return state
   }
 }

@@ -20,6 +20,10 @@ export const setGodMode = (value = false) => ({
     payload: value 
 })
 
+export const setForceCartToOpen = (value = false) => ({
+    type: "SET_FORCE_CART_TO_OPEN",
+    payload: value 
+})
 
 export const setCurrentPage = (payload ) => {
     
