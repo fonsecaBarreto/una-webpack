@@ -37,6 +37,7 @@ export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies })
         const item_id = selectedSupply ?? CreateCartItem_Id(product.ean)
         const qtd = cartHandler.countBy_id(item_id) ?? 0;
         cartHandler.pushProduct(item_id, product, qtd + 1); 
+        cartHandler.openCart()
     }
 
     return (

@@ -2,11 +2,18 @@ import { Product } from '@/domain/views/Product'
 import CartItem from '@/react-apps/layouts/BlueLagum/Cart/CartItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { CartState, CreateCartItem_Id, pushToCart } from './index'
+import { toast } from 'react-toastify'
+import { setForceCartToOpen } from '../main/actions'
+
 
 export const UseCartHandler = () =>{
     
     const dispatch = useDispatch()
     const { cart } = useSelector((state: any)=>state.carrinho)
+
+    const openCart = () =>{
+      dispatch(setForceCartToOpen(true))
+    }
 
     const getCartBySupplier = (): any =>{
       var mtr: { label: string, supplier_id: string, items: any }[] = [];
@@ -40,7 +47,11 @@ export const UseCartHandler = () =>{
     const pushProduct = (_id: string, product: Product, qtd: number, ) =>{
       const item: CartState.CartItem = { _id, product, qtd }
       dispatch(pushToCart(item));
+
+      toast.info(`${product.specification} adicionado ao carrinho.`, { position: "top-left"});
+      
+
     }
-    return { pushProduct, countBy_id, getCartBySupplier }
+    return { pushProduct, countBy_id, getCartBySupplier, openCart }
 }
 
