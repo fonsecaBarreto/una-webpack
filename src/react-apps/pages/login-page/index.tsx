@@ -61,8 +61,8 @@ export const LoginPage: React.FunctionComponent<any> = (props) =>{
             </LoginCard>
 
             <LoginCard show={!toSignup} title={"LOGIN"} sm loading={isLoading} >
-                <Controls.TextBox state={signinState} label={"Usuario"} name={"credencial"} type={Controls.TextBoxTypes.TEXT}/>
-                <Controls.TextBox state={signinState} label="Senha" name={"senha"} type={Controls.TextBoxTypes.PASSWORD}/> 
+                <Controls.TextBox state={signinState} placeHolder="Insira seu E-mail de acesso" label={"Email"} name={"credencial"} type={Controls.TextBoxTypes.TEXT}/>
+                <Controls.TextBox state={signinState} placeHolder="Insira sua senha de acesso" label="Senha" name={"senha"} type={Controls.TextBoxTypes.PASSWORD}/> 
                 <UnaSubmitButton className={"login-entry-btn"} onClick={submitLogin}>  Entrar </UnaSubmitButton>
                 <UnaSubmitButton light onClick={toggleMode}>  Cadastrar-se</UnaSubmitButton>
             </LoginCard>
