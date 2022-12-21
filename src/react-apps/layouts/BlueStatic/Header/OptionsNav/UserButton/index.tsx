@@ -17,7 +17,7 @@ export const UserButton: React.FunctionComponent<any> = ({ user, onClick }) =>{
                   { 
                     (user) ? 
                     <React.Fragment>
-                        <span>{user.nome}</span> 
+                        <span>{(user?.nome.split(" ")[0])}</span> 
                         <span>{user?.roles[0]}</span> 
                     </React.Fragment>
                     :

@@ -19,7 +19,7 @@ export const UserButton: React.FunctionComponent<any> = ({ user, onClick }) =>{
                   { 
                     (user) ? 
                     <React.Fragment>
-                        <span className='uhub-user-title'>{user.nome}</span> 
+                        <span className='uhub-user-title'>{(user.nome.split(" ")[0])}</span> 
                         <div className='uhub-user-subtitle'> 
                           <span>  Minha conta  </span>
                           <img className='uhub-down-arrow' src={DownArrowImage}></img>
