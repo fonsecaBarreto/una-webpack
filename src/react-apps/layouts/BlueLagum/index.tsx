@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom'
 import { BlueLakeMenuContext } from './Menu'
 import GodModeNotify from './GodModeNotify'
 import { useDispatch, useSelector } from 'react-redux'
-import { setGodMode } from '@/react-apps/store/reducers/main/actions'
+import { setForceCartToOpen, setGodMode } from '@/react-apps/store/reducers/main/actions'
 import DepartamentHeader from './DepartamentsHeader'
 import LocationBar from './LocationBar'
 import AsideStaticMenu from './Menu/AsideStaticMenu'
@@ -34,7 +34,14 @@ const FloatAsideContentHandler = ()=>{
 
 const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children }) =>{
     const dispatch = useDispatch()
-    const { user, god_mode } = useSelector((state: any)=>state.main)
+    const { user, god_mode, force_cart_to_open } = useSelector((state: any)=>state.main)
+
+    useEffect(()=>{
+        if(force_cart_to_open == false) return
+        dispatch(setForceCartToOpen(false))
+        setShowCart(true);
+    },[force_cart_to_open])
+
     const history = useHistory()
     const context: any = useContext(GlobalContext);
     const [ showCart, setShowCart ] = useState(false)

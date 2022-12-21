@@ -75,11 +75,7 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
               <SimilarProductsCarousel categoryId={ (breadCrumbs?.category?.value) ?? null } />
           </section> 
 
-
           <LatestProductsCarousel/>
-
-
-         {/*  <LatestProductsCarousel/> */}
 
         </div>
       </div>
