@@ -1,9 +1,8 @@
-import React, { lazy, useContext } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { GlobalContext } from "@/react-apps/apps/GlobalContext"
+import React, { lazy } from "react";
+
+
 import BlueLagumLayout from '@/react-apps/layouts/BlueLagum' 
-import { setLoading, setUser } from '@/react-apps/store/reducers/main/actions';
-import { loginServices } from '@/services/api/login-service';
+
 /* App Router */
 import Router from "@/react-apps/components/Router"
 /* pages */
@@ -11,8 +10,9 @@ import ProfilePage from "@pages/profile-page";
 import ProductPage from '@pages/product-page'
 import MinhasCotacoes from '@pages/MinhasCotacoes'
 import TutoriaisPage from "@pages/Tutoriais"
-import { Redirect } from "react-router-dom";
+
 import HomePage from "@pages/HomePage";
+import Cotacao from "@/react-apps/pages/Cotacao";
 
 const MartPage = lazy(() => import('@pages/mart-page'));
 const LoginPage = lazy(() => import('@pages/login-page'));
@@ -27,9 +27,9 @@ export const ROUTES = [
     { path: "/mercado", title: "Mercado",  component: MartPage } ,
     /* /products */
     { path: "/produto/:ean", title: "Produto",  component: ProductPage } ,
-    /*   component:() => <Redirect to="/registro/fornecimento"></Redirect> } */
     /* cotações */
-    { path: "/cotacoes", title: "Minhas Cotações",  component: MinhasCotacoes } ,
+    { path: "/cotacoes/:budget_id", title: "Minhas Cotação",  component: Cotacao, group:"user" } ,
+    { path: "/cotacoes", title: "Minhas Cotações",  component: MinhasCotacoes, group:"user" } ,
 
     /* Passar perfil para admin */
     { path: "/perfil/usuario/:user_id", title: "Perfil Companhia",  component: ProfilePage } ,
@@ -46,34 +46,8 @@ export const ROUTES = [
 /*     { path: "/", title: "Inicio",  component:() => <Redirect to="/mercado"></Redirect> } , */
 ]
 
-export const Routes = () => {
+export const Routes = () => <Router  routes={ROUTES} layout={BlueLagumLayout}/>
 
-    const dispatch = useDispatch()
-    var { user } = useSelector((state:any)=>state.main);
-    const context = useContext(GlobalContext);
-
-    const beforeEach = async () => {
-        context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
-        if(!user){ 
-          dispatch(setLoading(true));
-          loginServices.verify()
-            .then((user)=> dispatch(setUser(user)))
-            .finally(()=> dispatch(setLoading(false)))
-        }
-        return null 
-    }
-
-    return (
-        <React.Fragment>
-            <Router 
-                chuckAlias=""
-                routine={()=>beforeEach()}
-                routes={ROUTES}
-                layout={BlueLagumLayout}>
-            </Router>
-        </React.Fragment>
-    )
-}
 
 export default Routes
 
