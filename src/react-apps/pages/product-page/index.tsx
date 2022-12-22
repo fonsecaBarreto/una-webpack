@@ -15,7 +15,8 @@ import { LabelView } from '@/domain/views/ListingView'
 import { produtosServiceV2 } from '@/services/api/v2/produtos-service'
 import UtilsCarousel from '@/react-apps/components/utils/Carousel'
 import Item from '@/react-apps/components/una/ProductsCarouselAdapter/item'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
+import GlobalContext from '@/react-apps/apps/GlobalContext'
 export type ProductView = {
 
   specification: string;
@@ -33,11 +34,21 @@ export type ProductView = {
   supplies: any[];
 }
 export const ProductPage: React.FunctionComponent<any> = ({ location, history }) => {
+
+  const context = useContext(GlobalContext);
   const { user } = useSelector((state: any) => state.main)
   const { parsedParams } = UseSearchAdapter({ header : SEARCH_HEADER})
   const [ product, setProduct ] = useState<ProductView | null>(null);
   const [ breadCrumbs, setBreadCrumbs] = useState<any>(null);
+
+  const { ean: ean_hook }: any = useParams();
+
   useEffect(()=>{ if(parsedParams){ handleLoad()} },[parsedParams])
+
+
+  useEffect(()=>{
+    context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
+  },[ean_hook])
  
   const handleLoad= () => {
     setProduct(null)
