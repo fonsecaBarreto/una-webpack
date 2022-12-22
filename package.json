@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.20.0",
+    "@faker-js/faker": "^7.6.0",
     "@ramonak/react-progress-bar": "^5.0.3",
     "@react-google-maps/api": "^2.11.8",
     "@svgr/webpack": "^6.2.1",
@@ -30,7 +31,6 @@
     "copy-to-clipboard": "^3.3.1",
     "copy-webpack-plugin": "^10.1.0",
     "cors": "^2.8.5",
-    "cryptr": "^6.0.3",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
     "fast-csv": "^4.3.6",
