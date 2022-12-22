@@ -57,7 +57,7 @@ export const CartGroup: React.FunctionComponent<any> = ({ items, label, supplier
             await budgetServices.save({ items: serialized_cart_items });
             dispatch(removeFromCart(_ids))
             context.dialog.push(MakeNotification(()=>{return -1},["Obrigado.", "Estamos negociando com fornedores para garantir o melhor preço!","aguarde o nosso contato em até 24 horas."], "Sucesso!", NotificationType.SUCCESS))
-            
+            history.push("/cotacoes")
         }catch(err: any){
             context.dialog.push(MakeNotification(()=>{return -1},[err.mesage ?? "Não foi possível concluir essa cotação! Por favor, entre em contato com o suporte."], "Desculpe!", NotificationType.SUCCESS))
         }

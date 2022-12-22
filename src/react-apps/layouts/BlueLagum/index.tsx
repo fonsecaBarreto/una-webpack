@@ -32,7 +32,7 @@ const FloatAsideContentHandler = ()=>{
     return ({content, setContent, rightContent, setRightContent })
 }
 
-const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({children }) =>{
+const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({ children }) =>{
     const dispatch = useDispatch()
     const { user, god_mode, force_cart_to_open } = useSelector((state: any)=>state.main)
 
@@ -47,8 +47,6 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({chil
     const [ showCart, setShowCart ] = useState(false)
     const menuContext = BlueLakeMenuContext({user})
     const asideFloat = FloatAsideContentHandler()
-
-    useEffect(()=>{ console.log("renderizando o layout")},[])
 
     const handleHeaderChange = (key: string) =>{
 
