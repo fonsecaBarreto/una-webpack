@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import "./style.css"
 import { useSelector } from 'react-redux';
-import CompanyHeaderView from './components/CompanyHeaderView';
+import CompanyHeaderView from '../components/CompanyHeaderView';
 import UnaListingContent from '@/react-apps/layouts/components/UnaListingContent';
 import { budgetServices } from '@/services/api/budget-service';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -87,7 +87,7 @@ export const MinhasCotacoes: React.FunctionComponent<any> = ({history}) =>{
         <div id="minhas-cotacoes-page">
             <header className='app-container'>
                 <GeneralBreadCrumbs data={[{ label: "Meu histórico de Cotações", value: "/cotacoes"}]}/>
-                <CompanyHeaderView company={user.company} user_name={user.nome}></CompanyHeaderView>
+                <CompanyHeaderView company_name={user.company.nomeFantasia} user_name={user.nome}></CompanyHeaderView>
             </header>
             <div className='app-container'>
                 <CompaniesBudgets company_id={user.company_id} ></CompaniesBudgets>

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import UnaLisingContent from "@/react-apps/layouts/components/UnaListingContent"
 import { Budget } from '@/domain/views/Budget';
 import "./styles.css"
 import {Link} from 'react-router-dom'
+import { encrypt } from '@/vendors/Cryptr';
 
 const STATUS = {
     "NEW": "Aguardando aprovação",
@@ -19,6 +20,8 @@ export interface BudgetItemProps extends UnaLisingContent.ItemProps<budgetView> 
 export const BudgetItem: React.FunctionComponent<BudgetItemProps> = (props) =>{
     const { onChange, icon, data } = props;
     const { amount, company_id, created_at, id, status, updated_at, user_id } = data;
+
+    const encrypted_id = useMemo(()=>encrypt(id+""),[id])
     return (
         <div className={`budget-view-item`} onClick={()=>onChange && onChange("OPEN", id )}>
             <header>
@@ -34,7 +37,7 @@ export const BudgetItem: React.FunctionComponent<BudgetItemProps> = (props) =>{
                 </section>
             </header>
             <main>
-                <Link to={`/cotacoes/${id}`}> Exibir detalhes do pedido </Link>
+                <Link to={`/cotacoes/${encrypted_id}`}> Exibir detalhes do pedido </Link>
             </main> 
         </div>
     )

@@ -1,0 +1,51 @@
+#cotacoes-page{
+    padding-top: 22px;
+}
+
+
+/* items */
+
+.budget-item-a1{
+    overflow: hidden;
+    width: 100%;
+}   
+
+.budget-item-a1 > main{
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    column-gap: 22px;
+}
+
+
+.budget-item-a1 > main > section{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 4px;
+    padding: 8px;
+}
+
+
+/* images */
+.budget-item-a1 > main img{
+    object-fit: cover;
+    width: 108px;  height: 108px;
+    overflow: hidden;
+    grid-row: span 5;
+    padding: 4px;
+}
+
+.budget-item-a1 label{
+    line-height: 1.15em;
+    font-size: 16px;
+    color: #444;
+}
+
+.budget-item-a1 label > span{
+     color: black;
+ }
+
+ 

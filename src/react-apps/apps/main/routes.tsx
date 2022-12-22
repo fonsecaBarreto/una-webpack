@@ -8,14 +8,16 @@ import Router from "@/react-apps/components/Router"
 /* pages */
 import ProfilePage from "@pages/profile-page";
 import ProductPage from '@pages/product-page'
-import MinhasCotacoes from '@pages/MinhasCotacoes'
+
 import TutoriaisPage from "@pages/Tutoriais"
 
 import HomePage from "@pages/HomePage";
-import Cotacao from "@/react-apps/pages/Cotacao";
 
 const MartPage = lazy(() => import('@pages/mart-page'));
 const LoginPage = lazy(() => import('@pages/login-page'));
+
+const Cotacoes = lazy(() => import('@pages/cotacoes/index/index'));
+const Cotacoes_numero = lazy(() => import('@pages/cotacoes/[budget_id]/index'));
 
 const goToAdmin: any= (location:any) =>{
     return window.location.href= location.pathname
@@ -28,8 +30,8 @@ export const ROUTES = [
     /* /products */
     { path: "/produto/:ean", title: "Produto",  component: ProductPage } ,
     /* cotações */
-    { path: "/cotacoes/:budget_id", title: "Minhas Cotação",  component: Cotacao, group:"user" } ,
-    { path: "/cotacoes", title: "Minhas Cotações",  component: MinhasCotacoes, group:"user" } ,
+    { path: "/cotacoes/:budget_id", title: "Minhas Cotação",  component: Cotacoes_numero, group:"user" } ,
+    { path: "/cotacoes", title: "Minhas Cotações",  component: Cotacoes, group:"user" } ,
 
     /* Passar perfil para admin */
     { path: "/perfil/usuario/:user_id", title: "Perfil Companhia",  component: ProfilePage } ,

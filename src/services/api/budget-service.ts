@@ -42,6 +42,12 @@ export const budgetServices = {
           const { data } = await budgetsApi.send({ method: "get", url: `/${query}` }) 
           return data 
      },
+
+
+     find: async (budget_id: string) => {
+          const { data } = await budgetsApi.send({ method: "get", url: `/${budget_id}` }) 
+          return data 
+     },
      /* ADMIN listing budgets */
   /*    list: async (params: any={}) => {
           const { p = 1, initial_date, end_date, company_id } = params;
