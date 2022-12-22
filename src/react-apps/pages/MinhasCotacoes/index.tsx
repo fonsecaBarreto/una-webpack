@@ -6,22 +6,9 @@ import UnaListingContent from '@/react-apps/layouts/components/UnaListingContent
 import { budgetServices } from '@/services/api/budget-service';
 import { useHistory, useLocation } from 'react-router-dom';
 import qs from 'query-string'
-import ContentGrid from '@/react-apps/layouts/components/ContentGrid';
-import FiltersNav from './components/FiltersNav';
-import { MakeDialogConfig } from 'fck-react-dialog';
 import GlobalContext from '@/react-apps/apps/GlobalContext';
-import BudgetView from '../budgets-page/modals/BudgetView';
 import { BudgetItem } from './components/Item';
 import GeneralBreadCrumbs from '@/react-apps/layouts/components/GeneralBreadCrumbs';
-
-const mapBudgetsToLavelView = (data: any) =>{
-    if(!data) return []
-    return data.map((b: any)=>{
-       return { 
-           value: b.id , label: ` N° ${b.id} - ${ new Date(b.created_at).toISOString().split('T')[0] } - R$:${b.amount}`
-        }
-    })
-}
 
 
 export const useSearch = () => {
@@ -96,7 +83,6 @@ const CompaniesBudgets:React.FunctionComponent<{company_id:string}> = ({company_
 
 export const MinhasCotacoes: React.FunctionComponent<any> = ({history}) =>{
     const { user }:any = useSelector<any>(state=> state.main)
-    if(!user) return < span> Carregando... </span>
     return (
         <div id="minhas-cotacoes-page">
             <header className='app-container'>

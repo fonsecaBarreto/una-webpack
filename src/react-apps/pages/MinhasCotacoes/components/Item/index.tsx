@@ -34,7 +34,7 @@ export const BudgetItem: React.FunctionComponent<BudgetItemProps> = (props) =>{
                 </section>
             </header>
             <main>
-                <Link to={`#`}> Exibir detalhes do pedido </Link>
+                <Link to={`/cotacoes/${id}`}> Exibir detalhes do pedido </Link>
             </main> 
         </div>
     )
