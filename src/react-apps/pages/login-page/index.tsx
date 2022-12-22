@@ -10,6 +10,8 @@ import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import { Controls } from 'fck-react-input-controls'
 import CadastroCarousel from '@/react-apps/components/una/CadastroCarousel'
+import { useDispatch } from 'react-redux'
+import { setLoading, setUser } from '@/react-apps/store/reducers/main/actions'
 
 const SIGNIN_INITIAL_DATA = {
     credencial: "",
@@ -18,6 +20,7 @@ const SIGNIN_INITIAL_DATA = {
 
 export const LoginPage: React.FunctionComponent<any> = (props) =>{
     const context = useContext(GlobalContext)
+    const dispatch = useDispatch()
     const [ isLoading, setIsLoading ] = useState(false)
     const history = useHistory()
     const [ toSignup, setToSignup ] = useState(false)
@@ -28,7 +31,14 @@ export const LoginPage: React.FunctionComponent<any> = (props) =>{
 
         setIsLoading(true);
         loginServices.signin(signinState.data.get)
-        .then((_)=>{return history.push("/")})
+        .then((_)=>{ 
+            loginServices.verify()
+                .then((user)=> dispatch(setUser(user)))
+                .finally(()=> {
+                    dispatch(setLoading(false))
+                    return history.push("/")
+                })
+        })
         .catch(err=>{
             switch(err.name){
                 case "AccessDeniedError":
