@@ -59,8 +59,7 @@ export const BudgetContent: React.FunctionComponent<BudgetContentProps> = (props
                 </section>
             </header>
             <main>
-
-                <StatusProgress index={2} items={STATUS_PROGRESS_BAR} />
+                <StatusProgress index={0} items={STATUS_PROGRESS_BAR} />
                 <UnaListingContent 
                     itemComponent={BudgetItem}
                     metaData={{ records_count: items.length }} 
