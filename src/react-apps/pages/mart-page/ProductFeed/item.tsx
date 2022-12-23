@@ -97,6 +97,12 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                         <span className="text-muted">
                             pedido minimo de { selectedSupply.minimum_order } caixa;
                         </span>
+
+                        <span className='carousel-pi-notation'>
+                            {
+                                `Preços validos até ${ new Date(selectedSupply.expiration).toISOString().split("T")[0]}`
+                            }
+                </span>
                        
                     </section> 
                 }
