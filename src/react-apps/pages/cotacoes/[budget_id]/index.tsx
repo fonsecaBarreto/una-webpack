@@ -6,8 +6,9 @@ import { useParams } from 'react-router-dom';
 import { budgetServices } from '@/services/api/budget-service';
 import CompanyHeaderView from '../components/CompanyHeaderView';
 import BudgetContent, { BudgetFindView } from './Content';
-import UnaListingContent from '@/react-apps/layouts/components/UnaListingContent';
 import { decrypt } from '@/vendors/Cryptr';
+
+import "../common-panel.css"
 
 export const Cotacao: React.FunctionComponent<any> = ({history}) =>{
     const { user }:any = useSelector<any>(state=> state.main)
@@ -42,23 +43,24 @@ export const Cotacao: React.FunctionComponent<any> = ({history}) =>{
         {
             (isLoading || !budget )? <> Carregando... </>
             :
-            <div id="cotacoes-page">
-                <header className='app-container'>
-                    <GeneralBreadCrumbs data={[
-                        { label: "Meu histórico de Cotações", value: "/cotacoes"}, 
-                        { label: `Cotação: N${decrypted_id}`, value: `/cotacoes/${budget_id}`}
-                    ]}/>
-
-                    <CompanyHeaderView 
-                        company_name={budget?.company.label+""} 
-                        user_name={budget?.user.label+""} 
-                        label={`Cotação de numero: ${decrypted_id}`} />
-                </header>
+            <div id="cotacoes-page" >
                 <div className='app-container'>
+                    <header>
+                        <GeneralBreadCrumbs data={[
+                            { label: "Meu histórico de Cotações", value: "/cotacoes"}, 
+                            { label: `Cotação: N${decrypted_id}`, value: `/cotacoes/${budget_id}`}
+                        ]}/> 
+                    </header>
+                    <main className='budget-common-panel'>
 
-                    <BudgetContent onChange={handleContentChange} data={budget}/>
+                        <CompanyHeaderView 
+                            company_name={budget?.company.label+""} 
+                            user_name={budget?.user.label+""} 
+                            label={`Cotação de numero: ${decrypted_id}`} />
 
-                </div> 
+                        <BudgetContent onChange={handleContentChange} data={budget}/>
+                    </main> 
+                </div>
             </div>
         }
         </>

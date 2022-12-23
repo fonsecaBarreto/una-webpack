@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import "./style.css"
+import "../common-panel.css"
 import { useSelector } from 'react-redux';
 import CompanyHeaderView from '../components/CompanyHeaderView';
 import UnaListingContent from '@/react-apps/layouts/components/UnaListingContent';
@@ -84,14 +85,16 @@ const CompaniesBudgets:React.FunctionComponent<{company_id:string}> = ({company_
 export const MinhasCotacoes: React.FunctionComponent<any> = ({history}) =>{
     const { user }:any = useSelector<any>(state=> state.main)
     return (
-        <div id="minhas-cotacoes-page">
-            <header className='app-container'>
-                <GeneralBreadCrumbs data={[{ label: "Meu histórico de Cotações", value: "/cotacoes"}]}/>
-                <CompanyHeaderView company_name={user.company.nomeFantasia} user_name={user.nome}></CompanyHeaderView>
-            </header>
-            <div className='app-container'>
-                <CompaniesBudgets company_id={user.company_id} ></CompaniesBudgets>
-            </div> 
+        <div id="minhas-cotacoes-page" >
+            <div className='app-container' >
+                <header >
+                    <GeneralBreadCrumbs data={[{ label: "Meu histórico de Cotações", value: "/cotacoes"}]}/>
+                </header>
+                <main className='budget-common-panel'>
+                    <CompanyHeaderView company_name={user.company.nomeFantasia} user_name={user.nome}></CompanyHeaderView>
+                    <CompaniesBudgets company_id={user.company_id} ></CompaniesBudgets>
+                </main> 
+            </div>
         </div>
     )
 }

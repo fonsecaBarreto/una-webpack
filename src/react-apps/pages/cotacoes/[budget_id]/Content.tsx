@@ -5,6 +5,10 @@ import {Link} from 'react-router-dom'
 import UnaListingContent from '@/react-apps/layouts/components/UnaListingContent';
 import { LabelView } from '@/domain/views/ListingView';
 import BudgetItem from './Item';
+import StatusProgress from '@/react-apps/components/StatusProgress';
+import NewIcon from "@assets/status/waiting-list-icon.svg"
+import InProgressIcon from "@assets/status/page-search-result-found-icon.svg"
+import ClosedIcon from "@assets/status/tick-symbol-icon.svg"
 
 const STATUS = {
     "NEW": "Aguardando aprovação",
@@ -13,6 +17,12 @@ const STATUS = {
     "SUCCEEDED": "Compra concluida" ,
     "CLOSED": "Fechado" ,
 }
+
+const STATUS_PROGRESS_BAR = [ 
+    { label: STATUS["NEW"] , image:NewIcon}, 
+    { label: STATUS["IN_PROGRESS"], image:InProgressIcon },
+    { label: STATUS["CLOSED"], image:ClosedIcon },
+]
 
 export interface BudgetFindView extends Budget {
     company: LabelView
@@ -41,17 +51,19 @@ export const BudgetContent: React.FunctionComponent<BudgetContentProps> = (props
         <div className="budget-content-item">
             <header>
                 <section>
-                    <span> Preço Total: <span>{amount > 0 ? `R$:  ${amount}` : "Aguardando definições de orçamento"} </span> </span>
-                </section>
-                <section>
-                    <span> Realizado em: {created_at} </span>
-                    <span> {STATUS[status]} </span>
+                    <span> {"Preço Total:  "}
+                        <b>
+                            {amount > 0 ? `R$:  ${amount.toFixed(2)}` : "Aguardando definições de orçamento"}
+                        </b> 
+                    </span>
                 </section>
             </header>
             <main>
+
+                <StatusProgress index={2} items={STATUS_PROGRESS_BAR} />
                 <UnaListingContent 
                     itemComponent={BudgetItem}
-                    metaData={{}} 
+                    metaData={{ records_count: items.length }} 
                     records={items} 
                     freeze={false} 
                     onChange={onChange} />

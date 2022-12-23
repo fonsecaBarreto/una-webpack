@@ -1,0 +1,91 @@
+.status-progress-bar{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 16px 0;
+}
+
+.status-progress-bar > nav{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr;
+    z-index: 1;
+}
+
+.status-progress-bar > nav > section{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 8px;
+}
+
+
+.status-progress-bar > nav > section > .status-image-vp{
+    position: relative;
+    width: 82px;
+    height: 82px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.status-image-vp > img{
+    display: block;
+    margin: auto;
+    height: 100%;
+    width: auto;
+    max-width: 50%;
+    object-fit: contain;
+}
+
+.status-bar-description{
+
+}
+
+.status-bar-description.active > .status-image-vp{
+    outline: solid 5px rgba(12, 201, 53, 0.815);
+}
+
+/* footer */
+
+.status-progress-bar > footer{
+    position: absolute;
+    top: 56px;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr;
+    z-index: 0;
+}
+
+.status-bar-indicator{
+    height: 3px;
+    width: 100%;
+    background-color: rgb(180, 180, 180);
+}
+
+
+.status-bar-indicator.active{
+   background-color: rgb(12, 201, 53);
+
+}
+
+.status-bar-indicator:first-child{
+    width: 50%;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.status-bar-indicator:last-child{
+    width: 50%;
+    margin-right: auto;
+    margin-left: 0;
+}

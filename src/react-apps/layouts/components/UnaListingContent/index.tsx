@@ -23,12 +23,12 @@ export namespace UnaLisingContent {
  
 export const UnaLisingContent: React.FunctionComponent<UnaLisingContent.Params<any>>= (props) =>{
 
-    const {  onChange, records=[], metaData, freeze=false, itemComponent: Item } = props;
+    const {  onChange, records=[], metaData, freeze=false, itemComponent: Item} = props;
 
     return (
         <div className='una-listing-content'>
             <header>
-                <span> Total cotações realizadas: {metaData.records_count}</span>
+                <span> Total: {metaData.records_count}</span>
             </header>
             <main>
                 <nav className={`listmode`}>

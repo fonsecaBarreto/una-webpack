@@ -4,7 +4,6 @@
     grid-template-rows: repeat(3, auto);
     background-origin: white;
     border-bottom: solid 1px #ddd;
-    border-radius: 8px;
     padding: 6px;
 }
 
