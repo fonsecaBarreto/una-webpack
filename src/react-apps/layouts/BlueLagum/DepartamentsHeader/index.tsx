@@ -35,16 +35,16 @@ export const DepartamentHeader = () => {
                     </Link>
                 </DepartamentDropDown> 
 
-                <DepartamentDropDown>
-                    <Link className='dep-link' to="/mercado/mercado">  
+             {/*    <DepartamentDropDown>
+                    <Link className='dep-link' to="/mercado/massas">  
                     <img src={basketIcon}/>
-                    Mercado </Link>
-                </DepartamentDropDown> 
+                    massas </Link>
+                </DepartamentDropDown>  */}
                 
                 <DepartamentDropDown>
-                    <Link className='dep-link' to="/mercado/confeitare"> 
+                    <Link className='dep-link' to="/mercado/confeitaria"> 
                     <img src={WeddingCake}/>
-                    Confeitare </Link>
+                    Confeitaria </Link>
                 </DepartamentDropDown>  
                     
                 <DepartamentDropDown>
