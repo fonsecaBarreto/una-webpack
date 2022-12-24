@@ -41,6 +41,10 @@ export const CartGroup: React.FunctionComponent<any> = ({ items, label, supplier
 
     const submit = async () =>{
 
+        if(!user) {
+            history.push("/login");
+            return;
+        }
         const _ids: string[] = [];
         const serialized_cart_items:BudgetServices.Item[] = items.map((item:any)=>{
             const { _id, qtd } = item
