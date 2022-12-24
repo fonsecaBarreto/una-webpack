@@ -9,7 +9,7 @@ export const LimpezaProductsCarousel: React.FunctionComponent<any> = () =>{
     const [products, setProducts] = React.useState<any>([])
     const history = useHistory();
     React.useEffect(()=>{
-        produtosServiceV2.list({categories: ["limpeza"]})
+        produtosServiceV2.list({categories: ["antibactericidas"]})
             .then(r=>{setProducts(r.records)});
     },[])
 

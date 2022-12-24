@@ -11,7 +11,7 @@ export const ConfeitareProductsCarousel: React.FunctionComponent<any> = () =>{
     const history = useHistory();
 
     React.useEffect(()=>{
-        produtosServiceV2.list({categories: ["sobremesa", "festa"]})
+        produtosServiceV2.list({categories: ["doces-e-recheios"]})
             .then(r=>{setProducts1(r.records)});
     },[])
 
