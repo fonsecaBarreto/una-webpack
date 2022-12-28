@@ -100,14 +100,14 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
 
     const headerImageHeader = useCallback(() =>{
 
-        const isOutOfStock = !selectedSupply ? true : isDateExpired(new Date(selectedSupply.expiration)) ;
+        const isOutOfStock = !selectedSupply ? true : isDateExpired(new Date(selectedSupply.expiration))
         return <ProductImageSection images={[image]} out={isOutOfStock}/>  
     },[ selectedSupply, image])
 
     return (
         <div className={`product-feed-item ${listMode}`} >
             <header> 
-                { headerImageHeader() };
+                { headerImageHeader() }
             </header>
             <main onClick={()=>{ history.push(`/produto/${ean}`) }}>
                 <section className='produto-specifications'>
