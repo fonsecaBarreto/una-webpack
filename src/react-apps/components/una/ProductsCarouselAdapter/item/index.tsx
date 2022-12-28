@@ -77,7 +77,7 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
                 <span className='carousel-pi-notation'>
                     {
                         lowestPrice ?    
-                        `Preços validos até ${expirationDate}`
+                        `Preços validos até ${new Date(expirationDate).toLocaleDateString()}`
                         :
                         "Faça um orçamento e confira!"
                     }
