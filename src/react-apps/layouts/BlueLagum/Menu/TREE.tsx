@@ -21,7 +21,7 @@ export const ADMIN_TREE_MENU = (user: any) =>{
     return[
         { 
            label:"Cotações", 
-           toDo:"/admin/cotacoes",
+           toDo: () => window.location.href="https://app.unacompras.com.br/admin/budgets",
            icon: <img src={DocumentsFolder} style={svgStyle}/>
        },
        { 
