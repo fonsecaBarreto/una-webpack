@@ -7,10 +7,15 @@ import StarImg from "@assets/icons/star.svg"
 import { CreateCartItem_Id } from '@/react-apps/store/reducers/cart'
 export type ListMode = "inline" | "block"
 export namespace ProductItem {
-    export type Params = { onChange: () => void, listMode: ListMode, showOptions: boolean }
+    export type Params = {
+      onChange: () => void;
+      listMode: ListMode;
+      showOptions: boolean;
+      out: boolean;
+    };
 }
 
-export const ProductImageSection: React.FunctionComponent<any> = ({ images, onClick }) =>{
+export const ProductImageSection: React.FunctionComponent<any> = ({ images, onClick, out = false }) =>{
     
     const [ image, setImage ] = useState(ProductImage);
 
@@ -23,6 +28,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images, onCl
     return (
         <section className='product-feed-item-img-vp' onClick={onClick}> 
             <img alt="Ilustração do produto" src={image}></img>
+            { out && <span className="product-out-of-stock"> Fora de estoque</span>}
         </section>
     )
 }
@@ -62,7 +68,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     return (
         <div className={`product-feed-item ${listMode}`} >
             <header> 
-                <ProductImageSection images={images}/>  
+                <ProductImageSection images={images} out={selectedSupply ? true : false}/>  
             </header>
             <main onClick={()=>{ history.push(`/produto/${ean}`) }}>
                 <section className='produto-specifications'>
@@ -80,7 +86,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                     !selectedSupply ? 
                    
                     <section className='no-supply'>
-                        Preço sobre orçamento
+                       
                     </section>
                         :
                     <section className='product-feed-item-prices'>
@@ -100,7 +106,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
 
                         <span className='carousel-pi-notation'>
                             {
-                                `Preços validos até ${ new Date(selectedSupply.expiration).toISOString().split("T")[0]}`
+                                `Preços validos até ${ new Date(selectedSupply.expiration).toLocaleDateString().split("T")[0]}`
                             }
                 </span>
                        
