@@ -15,6 +15,12 @@ export namespace ProductItem {
     };
 }
 
+
+const isDateExpired = (date: Date) => {
+    const hoje = new Date()
+    return hoje > date;
+}
+
 export const ProductImageSection: React.FunctionComponent<any> = ({ images, onClick, out = false }) =>{
     
     const [ image, setImage ] = useState(ProductImage);
@@ -36,7 +42,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images, onCl
 export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, listMode , showPrices}) =>{
     
     const history = useHistory()
-    const { ean, specification, brand, quantity_per_unity, presentation_label, images, supplies} = produto
+    const { ean, specification, brand, quantity_per_unity, presentation_label, image, supplies} = produto
     const [ selectedSupply , setSelectedSupply ] = useState<any>(null)
     const cartHandler = UseCartHandler()
 
@@ -62,13 +68,49 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
         return cartHandler.countBy_id(CreateCartItem_Id(ean, selectedSupply?.index, selectedSupply?.company_id)) ?? 0
     }
 
-    const full_price = (!selectedSupply) ? 0 : (selectedSupply?.price)
-    const unity_price = (!selectedSupply) ? 0 : (selectedSupply?.price / quantity)
+ 
+
+ 
+    const renderSupply = useCallback(() => {
+        if(!selectedSupply) return <></>;
+        const full_price = (!selectedSupply) ? 0 : (selectedSupply?.price)
+        const unity_price = (!selectedSupply) ? 0 : (selectedSupply?.price / quantity)
+        const expiration_date_str = new Date(selectedSupply.expiration).toLocaleDateString().split("T")[0];
+        return <section className='product-feed-item-prices'>
+            <span className='item-unit-price'>
+                R$: {unity_price.toFixed(2)+ " "} 
+                <span className="unidade-preco">und. </span>
+            </span>
+    
+            <span className="item-full-price"> 
+            <span className="price-hl"> R$: {full_price.toFixed(2)+ " "} </span> 
+            para a caixa com {quantity} unidade{quantity > 1 ? 's': ''}.
+            </span>
+
+            <span className="text-muted">
+                pedido minimo de { selectedSupply.minimum_order } caixa;
+            </span>
+
+            <span className='carousel-pi-notation'>
+                {
+                    `Preços validos até ${ expiration_date_str }`
+                }
+            </span>
+        
+    </section> 
+    }, [ selectedSupply])
+
+
+    const headerImageHeader = useCallback(() =>{
+
+        const isOutOfStock = !selectedSupply ? true : isDateExpired(new Date(selectedSupply.expiration)) ;
+        return <ProductImageSection images={[image]} out={isOutOfStock}/>  
+    },[ selectedSupply, image])
 
     return (
         <div className={`product-feed-item ${listMode}`} >
             <header> 
-                <ProductImageSection images={images} out={selectedSupply ? true : false}/>  
+                { headerImageHeader() };
             </header>
             <main onClick={()=>{ history.push(`/produto/${ean}`) }}>
                 <section className='produto-specifications'>
@@ -83,34 +125,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                     })}
                 </div>
                 {
-                    !selectedSupply ? 
-                   
-                    <section className='no-supply'>
-                       
-                    </section>
-                        :
-                    <section className='product-feed-item-prices'>
-                        <span className='item-unit-price'>
-                            R$: {unity_price.toFixed(2)+ " "} 
-                            <span className="unidade-preco">und. </span>
-                        </span>
-                  
-                        <span className="item-full-price"> 
-                           <span className="price-hl"> R$: {full_price.toFixed(2)+ " "} </span> 
-                           para a caixa com {quantity} unidade{quantity > 1 ? 's': ''}.
-                        </span>
-
-                        <span className="text-muted">
-                            pedido minimo de { selectedSupply.minimum_order } caixa;
-                        </span>
-
-                        <span className='carousel-pi-notation'>
-                            {
-                                `Preços validos até ${ new Date(selectedSupply.expiration).toLocaleDateString().split("T")[0]}`
-                            }
-                </span>
-                       
-                    </section> 
+                    !selectedSupply ? <section className='no-supply'/> : renderSupply()
                 }
             </main>
             <footer>

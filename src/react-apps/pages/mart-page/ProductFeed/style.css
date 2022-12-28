@@ -159,7 +159,7 @@
 }
 
 .una-product-feed .product-feed-item:hover .product-feed-item-img-vp .product-out-of-stock{
-    opacity: 0;
+    opacity: .2;
     transition: all .6s;
 }
 .una-product-feed .product-feed-item:hover .product-feed-item-img-vp img{
