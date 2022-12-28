@@ -43,20 +43,20 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     
     const history = useHistory()
     const { ean, specification, brand, quantity_per_unity, presentation_label, image, supplies} = produto
-    const [ selectedSupply , setSelectedSupply ] = useState<any>(null)
     const cartHandler = UseCartHandler()
-
     var quantity = useMemo(()=>quantity_per_unity ?? 1,[produto])
     
-    const sorted_supplies = useMemo(()=>{
-        if(!supplies || supplies.length == 0) return [];
-        return ([ ...supplies]).sort((a: any, b: any) => a?.price >  b?.price ? 1 : -1);
-    },[ supplies])
+    const selectedSupply: any = useMemo(()=>{
+        if(!supplies || supplies.length == 0) return null;
+        const sorted_supplies = ([ ...supplies])
+        .sort((a: any, b: any) =>{
+            return  ((a?.price >  b?.price) && !isDateExpired(a.expiration)) ? 1 : -1
+        }
+        );
 
-    useEffect(()=>{
-        if(!supplies || supplies.length == 0) return;
-        setSelectedSupply(sorted_supplies[0])
-    },[ sorted_supplies])
+        return sorted_supplies[0];
+
+    },[ supplies])
 
     const handleCartButtonClick = (k: "UP" | "DOWN" = "UP") =>{
         const item_id = CreateCartItem_Id(ean, selectedSupply?.index, selectedSupply?.company_id)
@@ -67,9 +67,6 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
     const cartQuantity = ()=>{
         return cartHandler.countBy_id(CreateCartItem_Id(ean, selectedSupply?.index, selectedSupply?.company_id)) ?? 0
     }
-
- 
-
  
     const renderSupply = useCallback(() => {
         if(!selectedSupply) return <></>;
@@ -79,16 +76,16 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
         return <section className='product-feed-item-prices'>
             <span className='item-unit-price'>
                 R$: {unity_price.toFixed(2)+ " "} 
-                <span className="unidade-preco">und. </span>
+                <span className="unidade-preco"> und. </span>
             </span>
     
             <span className="item-full-price"> 
             <span className="price-hl"> R$: {full_price.toFixed(2)+ " "} </span> 
-            para a caixa com {quantity} unidade{quantity > 1 ? 's': ''}.
+                para a caixa com {quantity} unidade{quantity > 1 ? 's': ''}.
             </span>
 
             <span className="text-muted">
-                pedido minimo de { selectedSupply.minimum_order } caixa;
+                pedido minimo de { selectedSupply.minimum_order } caixas;
             </span>
 
             <span className='carousel-pi-notation'>
