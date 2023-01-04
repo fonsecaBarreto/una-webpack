@@ -32,7 +32,7 @@
     margin: auto;
     width: calc(100% + 28%);
     height: 20%;
-    background-color: rgba(133, 133, 133, 0.7);
+    background-color: rgba(150, 173, 187, 0.7);
     transform: rotateZ(32deg);
     display: flex;
     flex-direction: row;
@@ -67,9 +67,10 @@
 }
 
 .product-feed-item > main .produto-specifications{
-    width: 100%; height: 46px;
+    width: 100%; height: 32px;
     display: flex; flex-direction: column; align-items: flex-start;
     overflow: hidden;
+    margin-top: 4px;
 }
 
 .produto-specifications .produto-nome{
@@ -82,11 +83,12 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #222!important;
+    color: rgb(3, 30, 70)!important;
     text-decoration: none;
 }
 
-.produto-specifications .produto-ean{
+.produto-ean{
+    width: 100%;
     font-size: 12px; line-height: 14px;
     white-space: normal; text-align: left;
     height: 14px;
@@ -98,6 +100,7 @@
     text-overflow: ellipsis;
     color: #888!important;
     text-decoration: none;
+    text-align: center;
 }
 
 .product-feed-item-prices{
