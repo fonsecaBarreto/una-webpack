@@ -39,12 +39,12 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images, onCl
     )
 }
 
-export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOptions, produto, listMode , showPrices}) =>{
+export const ProductItem: React.FunctionComponent<any> = ({ onAction, showPriceFromWeight = false, produto, listMode}) =>{
     
     const history = useHistory()
-    const { ean, specification, brand, quantity_per_unity, presentation_label, image, supplies} = produto
+    const { ean, specification, brand, weight, quantity_per_unity, image, supplies} = produto
     const cartHandler = UseCartHandler()
-    var quantity = useMemo(()=>quantity_per_unity ?? 1,[produto])
+
     
     const selectedSupply: any = useMemo(()=>{
         if(!supplies || supplies.length == 0) return null;
@@ -70,22 +70,39 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
  
     const renderSupply = useCallback(() => {
         if(!selectedSupply) return <></>;
-        const full_price = (!selectedSupply) ? 0 : (selectedSupply?.price)
-        const unity_price = (!selectedSupply) ? 0 : (selectedSupply?.price / quantity)
+
+
+        const { price } = selectedSupply;
+
+        var quantity = produto.quantity_per_unity ?? 1;
+
+        const full_price = price ?? 0;
+        const unity_price = (full_price / (quantity ?? 1));
+        const weight_price = (full_price) / ((weight ?? 1) * (quantity ?? 1));
+
         const expiration_date_str = new Date(selectedSupply.expiration).toLocaleDateString().split("T")[0];
+
+
+
+
+        const principalPrice = showPriceFromWeight ?  weight_price : unity_price;
+        
+
         return <section className='product-feed-item-prices'>
+
             <span className='item-unit-price'>
-                R$: {unity_price.toFixed(2)+ " "} 
-                <span className="unidade-preco"> und. </span>
+                R$: {principalPrice.toFixed(2)+ " "} 
+                <span className="unidade-preco"> / {showPriceFromWeight ? "Kg." : "und."}</span>
             </span>
     
             <span className="item-full-price"> 
-            <span className="price-hl"> R$: {full_price.toFixed(2)+ " "} </span> 
-                para a caixa com {quantity} unidade{quantity > 1 ? 's': ''}.
+                Preço total:
+                <span className="price-hl"> R$: {full_price.toFixed(2)+ " "} </span> 
+                ( {quantity ?? 1} unidade{quantity > 1 ? 's': ''}. )
             </span>
 
             <span className="text-muted">
-                pedido minimo de { selectedSupply.minimum_order } caixas;
+                pedido minimo: { selectedSupply.minimum_order };
             </span>
 
             <span className='carousel-pi-notation'>
@@ -95,7 +112,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
             </span>
         
     </section> 
-    }, [ selectedSupply])
+    }, [ selectedSupply, produto])
 
 
     const headerImageHeader = useCallback(() =>{
@@ -112,7 +129,6 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
             <main onClick={()=>{ history.push(`/produto/${ean}`) }}>
                 <section className='produto-specifications'>
                     <span className="produto-nome"> {specification} </span>
-                    <span className="produto-ean"> { ean } </span>
                 </section>
                 <div className='produto-pi-stars'>
                     {[...Array(5)].map((_,i)=>{
@@ -124,6 +140,8 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showOption
                 {
                     !selectedSupply ? <section className='no-supply'/> : renderSupply()
                 }
+
+               {/*  <span className="produto-ean"> { ean } </span> */}
             </main>
             <footer>
                 {cartQuantity() == 0 ? 

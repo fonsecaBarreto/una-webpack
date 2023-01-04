@@ -151,6 +151,23 @@
     width: 100%;
 }
    
+.carousel-pi-notation{
+    width: 100%;
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 14px;
+    max-height: 28px;
+    color: #666;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    text-align: center;
+    margin-top: 16px;
+}
+
    
 
 /* HOVERING */
