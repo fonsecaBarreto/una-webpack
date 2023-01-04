@@ -39,7 +39,7 @@
 
 .departament-dropdown{
     position: relative;
-    padding: 0 18px;
+    padding: 0 32px 0 0;
     cursor: pointer;
     display: flex;
     flex-direction: row;

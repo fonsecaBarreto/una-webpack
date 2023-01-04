@@ -1,9 +1,6 @@
 .bl-location-bar{
-    border-bottom: solid 1px #ccc;
     background-color: white;
-    background: #fc4a1a;  
-    background: -webkit-linear-gradient(to right, #FF512F, #ff4f49, #FF512F);  
-    background: linear-gradient(to right,#FF512F, #ff4f49, #FF512F);
+    background: #054785; 
 }
 
 .bl-location-bar > div > nav{
@@ -27,15 +24,8 @@
     border: none;
     cursor: pointer;
     color: #333;
-
     color: white;
-    padding: 0 16px;
-    border-right: solid 1px #eeeeee44;
-}
-
-
-.bl-location-bar > div > nav > button:nth-child(1){
-    border-left: solid 1px #eeeeee44;
+    padding: 0 12px;
 }
 
 .bl-location-bar > div > nav > button:hover{
