@@ -24,8 +24,8 @@ export interface Product {
     presentation: any
     subCategory: LabelView
     image: string | null;
-    weight: string | null;
-    volume: string | null;
+    weight: number | null;
+    volume: number | null;
     quantity_per_unity: number | null;
       supplies: ProductSupply[];
 
