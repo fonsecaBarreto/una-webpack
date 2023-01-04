@@ -14,6 +14,7 @@ export const ContentGrid: React.FunctionComponent<ContentGrid.Params> = ({ child
     return (
         <div id="departamento-content-grid">
             {
+        
                 React.Children.map(children, (x,i) =>(
                     <section className={`${loading ? "una-gradiente-loading" : ""}`}> { x } </section> 
                 ))
