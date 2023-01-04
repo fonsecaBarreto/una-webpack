@@ -7,6 +7,7 @@ import { GlobalContext } from "../GlobalContext";
 import FixedUnaLoading from "@/react-apps/layouts/components/FixedLoading";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import WhatsAppFloatButton from "@/react-apps/components/WhatsAppButton";
 
 export const App = () =>{
     const appRef = useRef<HTMLHeadingElement>(null)
@@ -19,6 +20,7 @@ export const App = () =>{
                 <Routes></Routes> 
                 <ToastContainer/>
                 <StackComponent></StackComponent> 
+                <WhatsAppFloatButton/>
             </div>
         </GlobalContext.Provider>
     )
