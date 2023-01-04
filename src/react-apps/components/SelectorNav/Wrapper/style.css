@@ -15,9 +15,9 @@ nav.nav-selector-wrapper{
     width: 100%;
     padding: 2px;
     font-weight: bold;
-    color: #333;
+    color:  #044077; 
     gap: 5px;
-    border-bottom: solid 1px #bbb;
+    border-bottom: solid 1px #ccc;
 }
 
 .nav-selector-wrapper .nav-selector-wrapper-body {
