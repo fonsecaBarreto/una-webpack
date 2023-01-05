@@ -83,6 +83,7 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
     return ( 
 		<Router>
             <Switch>
+           
                 <Layout>
                     <Suspense fallback={<div/>}>
                         <Switch>     
@@ -94,6 +95,7 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
                                         beforeEach={beforeEach} {...rest} /> 
                                 )) 
                             }
+                              
                         </Switch>
                     </Suspense>
                 </Layout>

@@ -1,8 +1,6 @@
 import React, { lazy } from "react";
 
-
 import BlueLagumLayout from '@/react-apps/layouts/BlueLagum' 
-
 /* App Router */
 import Router from "@/react-apps/components/Router"
 /* pages */
@@ -19,10 +17,6 @@ const LoginPage = lazy(() => import('@pages/login-page'));
 const Cotacoes = lazy(() => import('@pages/cotacoes/index/index'));
 const Cotacoes_numero = lazy(() => import('@pages/cotacoes/[budget_id]/index'));
 
-const goToAdmin: any= (location:any) =>{
-    return window.location.href= location.pathname
-}
-
 export const ROUTES = [
     /* /mercado */
     { path: "/mercado/:departament_id", title: "Mercado",  component: MartPage } ,
@@ -32,24 +26,16 @@ export const ROUTES = [
     /* cotações */
     { path: "/cotacoes/:budget_id", title: "Minhas Cotação",  component: Cotacoes_numero, group:"user" } ,
     { path: "/cotacoes", title: "Minhas Cotações",  component: Cotacoes, group:"user" } ,
-
     /* Passar perfil para admin */
     { path: "/perfil/usuario/:user_id", title: "Perfil Companhia",  component: ProfilePage } ,
     { path: "/perfil/companhias/:company_id", title: "Perfil Companhia",  component: ProfilePage },
     { path: "/login", title: "Login",  component: LoginPage } ,
-
     /* Tutoriais */
-
     { path: "/tutoriais", title: "Tutoriais",  component: TutoriaisPage } ,
     { path: "/", title: "Inicio",  component: HomePage },
-    
-    /* REDIRECTS */
-    { path: "/admin*", title: "Redirecionando para admin",  component: ({ location }: any) => goToAdmin(location) } ,
-/*     { path: "/", title: "Inicio",  component:() => <Redirect to="/mercado"></Redirect> } , */
 ]
 
 export const Routes = () => <Router  routes={ROUTES} layout={BlueLagumLayout}/>
-
 
 export default Routes
 
