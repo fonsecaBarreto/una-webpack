@@ -25,9 +25,9 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images, onCl
     
     const [ image, setImage ] = useState(ProductImage);
 
-    useEffect(()=> {
+   useEffect(()=> {
         if(images.length == 0) return;
-        var img = images[0];
+        var img = images[0] ?? ProductImage;
         setImage(img)
     }, [images])
 
