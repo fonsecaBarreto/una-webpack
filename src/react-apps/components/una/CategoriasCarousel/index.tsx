@@ -3,14 +3,16 @@ import './styles.css'
 import Item from "./Item"
 import UtilsCarousel from '../../utils/Carousel';
 /* imagens */
-import AguaSanitariaImg from "@assets/categories/aguasanitaria.webp"
 import AmacianteImg from "@assets/categories/amaciante.webp"
-import FarinhaImg from "@assets/categories/farinha.webp"
+import AguaSanitariaImg from "@assets/categories/aguasanitaria.webp"
 import MisturaboloImg from "@assets/categories/mistura.webp"
-import PaoFrancesImg from "@assets/categories/farinha-domestico.webp"
 import DesinfetanteImg from "@assets/categories/desinfetante.webp"
 import QueijosImg from "@assets/categories/queijos.webp"
 import LimpadorImg from "@assets/categories/limpador.webp"
+import WineImage from "@assets/categories/wine.webp"
+import MilkImage from "@assets/categories/mlik.webp"
+import CakeIamge from "@assets/categories/cake.webp"
+import ButterImage from "@assets/categories/butter.webp"
 import { useHistory } from 'react-router-dom';
 
 
@@ -21,27 +23,42 @@ const CATEGORIES = [
     label: "Queijos",
     key: "?category=queijos"
   },
+  
   {
-    image: FarinhaImg,
-    label: "Farinha de trigo Panificação",
-    key: "?subCategory=farinha-de-trigo-panificacao"
+    image: MilkImage,
+    label: "Leites",
+    key: "?category=leites"
   },
+  {
+    image: ButterImage,
+    label: "Manteigas",
+    key: "?subCategory=manteigas"
+  },
+
+  {
+    image: WineImage,
+    label: "Vinhos",
+    key: "?subCategory=vinhos"
+  },
+
+
   {
     image: MisturaboloImg,
     label: "Mistura para bolos",
     key: "?subCategory=mistura-para-bolos"
   },
-
   {
-    image: PaoFrancesImg,
-    label: "Farinha de trigo uso domestico",
-    key: "?subCategory=farinha-de-trigo-uso-domestico"
+    image: CakeIamge,
+    label: "Doces e recheios",
+    key: "?category=doces-e-recheios"
   },
+
   {
     image: AguaSanitariaImg,
     label: "Agua Sanitaria",
     key: "?subCategory=agua-sanitaria"
   },
+
   {
     image: AmacianteImg,
     label: "Amaciante",
@@ -58,7 +75,7 @@ const CATEGORIES = [
     image: LimpadorImg,
     label: "Limpador Perfumado",
     key: "?subCategory=limpador-perfumado"
-  },
+  }, 
 
 
 ]
