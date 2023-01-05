@@ -86,6 +86,11 @@ export const ProductPage: React.FunctionComponent<any> = ({ location, history })
                   <SimilarProductsCarousel categoryId={ (breadCrumbs?.category?.value) ?? null } />
               </section> 
 
+              <section className='una-home-section'>
+                  <h4> Veja Também: </h4>
+                  <SimilarProductsCarousel categoryId={'queijos'} />
+              </section> 
+
               <LatestProductsCarousel/>
 
             </div>
