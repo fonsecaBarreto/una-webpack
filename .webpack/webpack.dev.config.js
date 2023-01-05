@@ -12,7 +12,8 @@ module.exports = merge(common, {
             disableDotRule: false,
             rewrites: [  
               /*   { from: /^\/$/, to: '/views/landingpage.html' },   */                 
-                { from: "^/admin", to: "/views/admin.html"},   
+                { from: "^/bem-vindo", to: "/views/landingpage.html"},   
+                // { from: "^/admin", to: "/views/admin.html"},   
                 { from: "^/", to: "/views/main.html"},                  
             ]
         },
