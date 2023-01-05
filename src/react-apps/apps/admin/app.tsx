@@ -13,8 +13,8 @@ export const App = () =>{
         <GlobalContext.Provider value={{ dialog: StackState, app: appRef }}>
             <div id="App" ref={appRef} className={`${loading ? "app-is-loading" : ""}`} > 
                 { loading && <FixedUnaLoading> </FixedUnaLoading>}
-                <Routes></Routes> 
-                <StackComponent></StackComponent> 
+                {/* <Routes></Routes> 
+                <StackComponent></StackComponent>  */}
             </div>
         </GlobalContext.Provider>
     )
