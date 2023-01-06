@@ -5,8 +5,6 @@ import LoginCard from './Cards'
 import UnaSubmitButton from '../../components/una/inputs-control/SubmitButton'
 import { useHistory } from 'react-router-dom'
 import { loginServices } from '@/services/api/login-service'
-import { GlobalContext } from "@/react-apps/apps/GlobalContext"
-import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import { Controls } from 'fck-react-input-controls'
 import CadastroCarousel from '@/react-apps/components/una/CadastroCarousel'
@@ -19,7 +17,6 @@ const SIGNIN_INITIAL_DATA = {
 }
 
 export const LoginPage: React.FunctionComponent<any> = (props) =>{
-    const context = useContext(GlobalContext)
     const dispatch = useDispatch()
     const [ isLoading, setIsLoading ] = useState(false)
     const history = useHistory()
