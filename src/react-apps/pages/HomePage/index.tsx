@@ -21,15 +21,12 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
     const [ stage, setStage ] = React.useState(0);
 
     React.useEffect(()=>{
-        console.log([isStage1, isStage2])
         if(stage == 0 && isStage1 == true){
             setStage(1)
         }
         if(stage == 1 && isStage2 == true){
             setStage(2)
         }
-
-        console.log(stage)
     },[ isStage2, isStage1])
 
     return (
