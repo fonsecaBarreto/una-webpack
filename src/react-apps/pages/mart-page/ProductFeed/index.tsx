@@ -4,17 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import ContentPool from '@/react-apps/layouts/components/ContentPool'
 import { ProductItem } from './item'
 import SearchHeader from '../SearchHeader'
-import { setLoading } from '@/react-apps/store/reducers/main/actions'
-import { produtosService } from '@/services/api/produtos-service'
-import GlobalContext from '@/react-apps/apps/GlobalContext'
-import { MakeDialogConfig } from 'fck-react-dialog'
-import ProductForm from '@/react-apps/forms/ProductForm'
 import FilterImage from "@assets/icons/filter-icon.svg"
 
 export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
 
-    const context = useContext(GlobalContext)
-    const dispatch = useDispatch()
     const { user, god_mode } = useSelector((state: any)=>state.main)
     const { products } = useSelector( (state: any)=>state.mart);
 
@@ -22,25 +15,8 @@ export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
         switch(key){
             case "SET_PAGE": manager.onChange({p}, false); break;
             case "SHOW_FILTERS": manager.setForceFilters(true); break;
-            case "ADMIN": handleProductForm(p); break;
         }
     } 
-
-    const handleProductForm = async (product_ean?: string) =>{
-        dispatch(setLoading(true));
-
-        var product:any = null;
-        await produtosService.find({ ean: product_ean })
-            .then(resp=>product = resp.product)
-            .catch(_=>product= null)
-            .finally(()=>{ dispatch(setLoading(false)) })
-        
-        context.dialog.push(MakeDialogConfig(
-            ({onAction})=>( <ProductForm entry={product} onAction={onAction} onData={()=>{}}/>
-            ),()=>-1), "Produto");
-      
-    }
-
 
     return (
         <div className="una-product-feed">
