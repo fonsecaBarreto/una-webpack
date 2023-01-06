@@ -28,3 +28,6 @@
 .login-entry-btn{
     margin-top: 24px;
 }
+.login-err-msg{
+    color: rgb(241, 35, 21);
+}

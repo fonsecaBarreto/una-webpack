@@ -26,7 +26,7 @@ export const LoginPage: React.FunctionComponent<any> = (props) =>{
     const [ toSignup, setToSignup ] = useState(false)
     const signinState = UseStateAdapter(SIGNIN_INITIAL_DATA)
     const toggleMode = () => history.push(`/login?v=${toSignup ? "signin" : 'signup'}`)
-
+    const [ errMessage, setErrMessage ] = useState("")
     const submitLogin = () =>{
 
         setIsLoading(true);
@@ -42,7 +42,7 @@ export const LoginPage: React.FunctionComponent<any> = (props) =>{
         .catch(err=>{
             switch(err.name){
                 case "AccessDeniedError":
-                    context.dialog.push(MakeNotification(()=>-1,[ "Credencial ou senha estão incorretos" ], "Acesso negado", NotificationType.FAILURE))
+                    setErrMessage("Email ou senha estão incorretos")
                 break;
             }
             if(err.params){
@@ -65,7 +65,6 @@ export const LoginPage: React.FunctionComponent<any> = (props) =>{
     return (
         <div id="login-screen">     
             <LoginCard show={toSignup} title={"Cadastro"} loading={isLoading}>
-   {/*              <CadastroCarousel setLoading={setIsLoading}> </CadastroCarousel> */}
                 <CadastroCarousel setLoading={setIsLoading}> </CadastroCarousel>
                 <UnaSubmitButton light onClick={toggleMode}> Já Sou Cadastrado</UnaSubmitButton>
             </LoginCard>
@@ -73,6 +72,7 @@ export const LoginPage: React.FunctionComponent<any> = (props) =>{
             <LoginCard show={!toSignup} title={"LOGIN"} sm loading={isLoading} >
                 <Controls.TextBox state={signinState} placeHolder="Insira seu E-mail de acesso" label={"Email"} name={"credencial"} type={Controls.TextBoxTypes.TEXT}/>
                 <Controls.TextBox state={signinState} placeHolder="Insira sua senha de acesso" label="Senha" name={"senha"} type={Controls.TextBoxTypes.PASSWORD}/> 
+                {errMessage && <span className='login-err-msg'> { errMessage} </span>}
                 <UnaSubmitButton className={"login-entry-btn"} onClick={submitLogin}>  Entrar </UnaSubmitButton>
                 <UnaSubmitButton light onClick={toggleMode}>  Cadastrar-se</UnaSubmitButton>
             </LoginCard>
