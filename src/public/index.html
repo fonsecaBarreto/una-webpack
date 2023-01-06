@@ -16,13 +16,15 @@
     <div id="root"></div>
     <div id="modal-root"></div>
     <script>
-      const documentSize = () => {
-        const doc = document.documentElement
-        doc.style.setProperty('--doc-height', `${window.innerHeight}px`)
-        doc.style.setProperty('--doc-width', `${window.innerWidth}px`)
+      if(window){
+        const documentSize = () => {
+          const doc = document.documentElement
+          doc.style.setProperty('--doc-height', `${window?.innerHeight}px`)
+          doc.style.setProperty('--doc-width', `${window?.innerWidth}px`)
+        }
+        window && window.addEventListener('resize', documentSize)
+        documentSize()
       }
-      window.addEventListener('resize', documentSize)
-      documentSize()
 
     </script>
   </body>

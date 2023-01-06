@@ -37,7 +37,7 @@ server.get('/bem-vindo/:path*?', (req, res) => {
 server.get('/:path*?', (req, res) => {
 
   return res.sendFile(path.join(CLIENT_DIST_DIR, "views", "main.html")) 
-/*   const component = ReactDOMServer.renderToString(React.createElement(Main))
+/*  const component = ReactDOMServer.renderToString(React.createElement(Main))
   const indexFile = path.join(CLIENT_DIST_DIR, "views", "main.html")
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
@@ -47,7 +47,7 @@ server.get('/:path*?', (req, res) => {
     return res.send(
       data.replace('<div id="root"></div>', `<div id="root">${component}</div>`)
     );
-  }); */
+  });  */
 
 })
 

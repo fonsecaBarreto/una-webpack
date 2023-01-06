@@ -3,10 +3,11 @@ const path = require('path')
 
 module.exports = {
   name: 'server',
+  target: 'node',
+  mode: 'production',
   entry: {
     server: path.resolve(__dirname, 'server','server.ts'),
   },
-  mode: 'production',
   output: {
     path: path.resolve(__dirname,'server','dist'),
     filename: '[name].js',
@@ -21,7 +22,7 @@ module.exports = {
     },
   },
   externals: [nodeExternals()],
-  target: 'node',
+
   node: {
     __dirname: false,
   },
@@ -37,8 +38,27 @@ module.exports = {
         },
       },
       {   
-        test: /\.(png|gif|jpg|jpeg|webp|svg|css)$/,
+        test: /\.(png|gif|jpg|jpeg|webp)$/,
         use: [ 'ignore-loader'] 
+      },
+
+      {   
+        test: /\.css$/i, 
+        use: [
+            'css-loader',
+        ] 
+    },
+
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
       },
     ],
   },
