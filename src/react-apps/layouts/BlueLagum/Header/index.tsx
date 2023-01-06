@@ -28,7 +28,6 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
         history.push({ pathname:"/mercado",search: qs.stringify(newQueries) });
     }
 
-
     return (
         <header className="primary-header">
             <div className="primary-header-content app-container">
@@ -57,6 +56,8 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
                         onCancel={()=>{}}/> 
                 </section>
             </div> 
+
+        
         </header> 
     )
 }

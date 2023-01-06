@@ -5,7 +5,6 @@ import LayoutHeader from './Header'
 import LayoutFooter from './Footer' 
 import LayoutCart from './Cart'
 import { GlobalContext } from "@/react-apps/apps/GlobalContext";
-import { MakeDialogConfig } from 'fck-react-dialog'
 import ForbiddenCartModal from '../../components/Modals/ForbiddenCart'
 import { useHistory } from 'react-router-dom'
 import { BlueLakeMenuContext } from './Menu'
@@ -16,6 +15,7 @@ import DepartamentHeader from './DepartamentsHeader'
 import LocationBar from './LocationBar'
 import AsideOverflowMenu from './Menu/AsideOverflowMenu'
 import FloatAsideContent from './FloatAsideContent'
+import FantasticRootModal from '@/react-apps/components/FantasticRootModal'
 
 export namespace BlueLagumLayout {
     export type Params ={
@@ -33,6 +33,8 @@ const FloatAsideContentHandler = ()=>{
 
 const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({ children }) =>{
     const dispatch = useDispatch()
+
+    const [ showWarningModal, setShowWarningModal ] = useState(false)
     const { user, god_mode, force_cart_to_open } = useSelector((state: any)=>state.main)
 
     useEffect(()=>{
@@ -42,7 +44,6 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({ chi
     },[force_cart_to_open])
 
     const history = useHistory()
-    const context: any = useContext(GlobalContext);
     const [ showCart, setShowCart ] = useState(false)
     const menuContext = BlueLakeMenuContext({user})
     const asideFloat = FloatAsideContentHandler()
@@ -50,20 +51,25 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({ chi
     const handleHeaderChange = (key: string) =>{
 
         if(!user){
-            return context.dialog.push( MakeDialogConfig(ForbiddenCartModal,
-                (n)=>{
-                    switch(n){
-                        case 1: history.push("/login?v=singin"); break;
-                        case 2: history.push("/login?v=signup"); break;
-                    }
-                    return -1;
-                }, "Cadastre-se Gratuitamente!"))
+            setShowWarningModal(true)
+            return;
         }
 
         switch(key){
             case "BUDGETS" : history.push("/cotacoes"); break; 
             case "CART": setShowCart(!showCart); break;      
         }
+
+    }
+
+
+    const handleForbidden = (n: any) =>{
+        switch(n){
+            case 2: history.push("/login?v=signup"); 
+            break;
+        }
+     
+        setShowWarningModal(false)
     }
 
     return (
@@ -93,8 +99,15 @@ const BlueLagumLayout:  React.FunctionComponent<BlueLagumLayout.Params> = ({ chi
                     <LayoutFooter></LayoutFooter>  
                 </footer> 
             </div>
+
+            <FantasticRootModal show={showWarningModal}>
+                <ForbiddenCartModal onChange={handleForbidden}/>
+            </FantasticRootModal>
+
+
         </BlueLagumContext.Provider>
     )
 }
 export default BlueLagumLayout
+
 
