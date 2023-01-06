@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import TableForms from "fck-table-forms"
-import { MakeDialogConfig, MakeNotification, NotificationType } from 'fck-react-dialog'
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 
 import { suppliesServices } from '@/services/api/supplies-services'
@@ -21,11 +20,11 @@ export const AddSuppliesTable:React.FunctionComponent<any> = ({onChange}) =>{
 
     const openImportCsvModal = () =>{
         return (
-            context.dialog.push(MakeDialogConfig( ({onAction}) => <ImportCsvModal onAction={onAction} headers={CSV_HEADER} />, (data: any) => {
+           /*  context.dialog.push(MakeDialogConfig( ({onAction}) => <ImportCsvModal onAction={onAction} headers={CSV_HEADER} />, (data: any) => {
                 if(data !== -1) { setInititalData(data)}
                 //appendToHistory({o:[]});
                 return -1;
-            }, "Upload produtos via .CSV"))
+            }, "Upload produtos via .CSV")) */
         )
     }
 
@@ -36,7 +35,7 @@ export const AddSuppliesTable:React.FunctionComponent<any> = ({onChange}) =>{
     }
 
     const submit =async() => {
-        context.dialog.push(MakeDialogConfig(({onAction}: any)=><SuppliesCompaniesModal onAction={onAction}></SuppliesCompaniesModal>, async (n:any)=> {
+      /*   context.dialog.push(MakeDialogConfig(({onAction}: any)=><SuppliesCompaniesModal onAction={onAction}></SuppliesCompaniesModal>, async (n:any)=> {
             if(n !== -1) { 
               try{
                     const supplies : any = resultData;
@@ -53,7 +52,7 @@ export const AddSuppliesTable:React.FunctionComponent<any> = ({onChange}) =>{
                 } 
             }
             return -1
-        } ))
+        } )) */
     }
 
     return (

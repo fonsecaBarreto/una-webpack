@@ -1,18 +1,15 @@
-import { CartState, removeFromCart, setCart } from '@/react-apps/store/reducers/cart'
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import { CartState, removeFromCart } from '@/react-apps/store/reducers/cart'
+import React, { useMemo } from 'react'
 import CartItem from "../CartItem"
 import "./styles.css"
 
 import { useSelector, useDispatch} from 'react-redux'
 import { setLoading } from '@/react-apps/store/reducers/main/actions'
 import { BudgetServices, budgetServices } from '@/services/api/budget-service'
-import { MakeNotification, NotificationType } from 'fck-react-dialog'
-import GlobalContext from '@/react-apps/apps/GlobalContext'
 import { useHistory } from 'react-router-dom'
 
 export const CartGroup: React.FunctionComponent<any> = ({ items, label, supplier_id, onChange}) =>{
 
-    const context = useContext(GlobalContext)
     const history = useHistory()
     const { user } = useSelector((state: any)=>state.main);
     const dispatch = useDispatch();
@@ -60,10 +57,11 @@ export const CartGroup: React.FunctionComponent<any> = ({ items, label, supplier
             dispatch(setLoading(true))
             await budgetServices.save({ items: serialized_cart_items });
             dispatch(removeFromCart(_ids))
-            context.dialog.push(MakeNotification(()=>{return -1},["Obrigado.", "Estamos negociando com fornedores para garantir o melhor preço!","aguarde o nosso contato em até 24 horas."], "Sucesso!", NotificationType.SUCCESS))
+            // context.dialog.push(MakeNotification(()=>{return -1},["Obrigado.", "Estamos negociando com fornedores para garantir o melhor preço!","aguarde o nosso contato em até 24 horas."], "Sucesso!", NotificationType.SUCCESS))
             history.push("/cotacoes")
         }catch(err: any){
-            context.dialog.push(MakeNotification(()=>{return -1},[err.mesage ?? "Não foi possível concluir essa cotação! Por favor, entre em contato com o suporte."], "Desculpe!", NotificationType.SUCCESS))
+            alert("Não foi possível concluir essa cotação! Por favor, entre em contato com o suporte.")
+            // context.dialog.push(MakeNotification(()=>{return -1},[err.mesage ?? "Não foi possível concluir essa cotação! Por favor, entre em contato com o suporte."], "Desculpe!", NotificationType.SUCCESS))
         }
         finally{
             dispatch(setLoading(false))

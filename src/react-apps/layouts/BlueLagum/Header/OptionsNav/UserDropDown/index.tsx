@@ -4,7 +4,6 @@ import GlobalContext from "@/react-apps/apps/GlobalContext";
 import DropDown from "@/react-apps/components/una/DropDown";
 import { setGodMode } from "@/react-apps/store/reducers/main/actions";
 import { loginServices } from "@/services/api/login-service";
-import { MakeNotification, NotificationType } from "fck-react-dialog";
 import { useContext, useState } from "react";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -60,8 +59,6 @@ const MakeDropDownOptions = (user?: any): DropDown.Options[] =>{
 
 export const UserDropDown = ({ onChange }: any) =>{
 
-    const context: any = useContext(GlobalContext);
-    const dispatch = useDispatch()
     const history = useHistory()
 
     const [ options , setOptions ] = useState<DropDown.Options[]>([])
@@ -70,9 +67,9 @@ export const UserDropDown = ({ onChange }: any) =>{
     React.useEffect(()=>{ setOptions(MakeDropDownOptions(user)) }, [user])
 
     const handleGodMode = () => {
-        context.dialog.push(MakeNotification((n)=>{
+        /* context.dialog.push(MakeNotification((n)=>{
             if(n === 0){ dispatch(setGodMode(true))} return -1;
-        },["Você está prestes a entrar no modo administrador", "tem certeza disso?"],"Atenção", NotificationType.CONFIRMATION))
+        },["Você está prestes a entrar no modo administrador", "tem certeza disso?"],"Atenção", NotificationType.CONFIRMATION)) */
     }
 
     const handleOptions = (n:string) =>{

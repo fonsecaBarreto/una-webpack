@@ -1,6 +1,6 @@
 import React from "react"
 import './styles.css'
-import WhatsAppIcon from "@assets/icons/whatsapp.svg"
+import { images } from "@assets/manifest"
 
 export const WhatsAppFloatButton: React.FunctionComponent<any> = () => {
 
@@ -11,7 +11,7 @@ export const WhatsAppFloatButton: React.FunctionComponent<any> = () => {
     return (
         <div className='whatsapp-float-button'>
             <button onClick={handleClick}>
-                <img src={WhatsAppIcon}></img>
+                 <img src={images.whatsApp}></img>  
             </button>
         </div>
     )

@@ -6,7 +6,6 @@ import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls'
 import { CadastroCompanhia_schema, CadastroEndereco_schema, CadastroUsuario_schema } from './schemas'
 import { ValidationSchema, Validator } from 'fck-schema-validator'
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
-import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { loginServices } from "@/services/api/login-service"
 import { useHistory } from 'react-router-dom'
 import CepInputControl from '../inputs-control/CepInputControl'
@@ -99,13 +98,13 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
 
         try{
             await loginServices.signup(data);
-            context.dialog.push(MakeNotification(()=>-1,[ 
+           /*  context.dialog.push(MakeNotification(()=>-1,[ 
                 "Bem Vindo a UNA Compras",
                 "Cadastro efetuado com successo!", 
-                "Obrigado pela confiança, entraremos em contato em breve!"], "Sucesso!", NotificationType.SUCCESS));
+                "Obrigado pela confiança, entraremos em contato em breve!"], "Sucesso!", NotificationType.SUCCESS)); */
             history.push("/login?v=signin");
         }catch(err:any){
-            context.dialog.push(MakeNotification(()=>-1,[ err?.message ], "Algo Errado", NotificationType.FAILURE))
+         /*    context.dialog.push(MakeNotification(()=>-1,[ err?.message ], "Algo Errado", NotificationType.FAILURE)) */
             setCarouselInitialIndex(-1);
             if(err.params) {
                 let paramsKeys = Object.keys(err.params);

@@ -8,7 +8,8 @@ export const Headline: React.FunctionComponent<any> = () =>{
     const [ searchText, setSearchText ] = React.useState("")
 
     const subtmit = () => {
-        window.location.href=`/mercado?v=${searchText}`
+        if(!window) return;
+        window.location.href=`/mercado?v=${searchText}`;
     }
     return (
         <div className='landing-pages-search-box app-container'>

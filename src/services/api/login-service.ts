@@ -33,7 +33,8 @@ export const loginServices = {
   
   logout:() =>{
     localStorage.removeItem(global.user_storage_key)
-    window.location.href="/login"
+    if(window)
+      window.location.href="/login"
   } 
   
 }

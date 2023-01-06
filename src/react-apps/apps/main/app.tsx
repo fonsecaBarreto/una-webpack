@@ -1,28 +1,37 @@
 import React, { useRef } from "react";
 import '../app.css'
 import Routes from './routes' 
-import { DialogStack }  from 'fck-react-dialog'
 import { useSelector } from "react-redux";
 import { GlobalContext } from "../GlobalContext";
 import FixedUnaLoading from "@/react-apps/layouts/components/FixedLoading";
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Provider } from 'react-redux' 
 import WhatsAppFloatButton from "@/react-apps/components/WhatsAppButton";
+import store from '@/react-apps/store/index.js'
 
 export const App = () =>{
     const appRef = useRef<HTMLHeadingElement>(null)
-    const { loading } = useSelector((state:any)=>state.main)
-    const [ StackComponent, StackState ] = DialogStack();
+   
     return (
-        <GlobalContext.Provider value={{ dialog: StackState, app: appRef }}>
-            <div id="App" ref={appRef} className={`${loading ? "app-is-loading" : ""}`} > 
-                { loading && <FixedUnaLoading> </FixedUnaLoading>}
-                <Routes></Routes> 
-                <ToastContainer/>
-                <StackComponent></StackComponent> 
-                <WhatsAppFloatButton/>
-            </div>
-        </GlobalContext.Provider>
+        <Provider store={store}>
+            <GlobalContext.Provider value={{ app: appRef }}>
+                <div id="App" ref={appRef} className={`${false ? "app-is-loading" : ""}`} > 
+                   <LoadingContent/>
+                    <Routes></Routes> 
+                    <ToastContainer/>  
+                    <WhatsAppFloatButton/>
+                </div>
+            </GlobalContext.Provider>
+        </Provider>
+    )
+}
+
+export const LoadingContent = () =>{
+    const { loading } = useSelector((state:any)=>state.main)
+   
+    return (  <>
+            { loading && <FixedUnaLoading> </FixedUnaLoading>}
+        </>
     )
 }
 

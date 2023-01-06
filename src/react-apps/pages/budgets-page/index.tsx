@@ -3,8 +3,6 @@ import ContentGrid from '@/react-apps/layouts/components/ContentGrid'
 import { useDispatch, useSelector } from 'react-redux';
 import { budgetServices } from '@/services/api/budget-service'
 import FiltersNav from './FiltersNav'
-import { GlobalContext } from "@/react-apps/apps/GlobalContext"
-import { MakeDialogConfig } from 'fck-react-dialog';
 import BudgetView from './modals/BudgetView';
 import UnaListingContent from '@/react-apps/layouts/components/UnaListingContent'
 import { useLocation, useParams, useRouteMatch } from 'react-router-dom';
@@ -38,7 +36,7 @@ const handleFiltersWithQueries = ({history}: any) =>{
 
 const handleRecords = () =>{
     const [ loadTry, setLoadTry ] = useState(0)
-    const [ metaData, setMetaData]= useState<UnaListingContent.MetaData | null>(null)
+    const [ metaData, setMetaData]= useState<any>(null)
     const [ records, serRecords ] = useState([])
     const setData = (r: any) =>{
         setMetaData(r._metadata)
@@ -55,19 +53,19 @@ const handleRecords = () =>{
 
 export const ListCotacaoPage = ({ history }: any)=>{
 
-    const context = useContext(GlobalContext)
+/*     const context = useContext(GlobalContext) */
     const filters: any = handleFiltersWithQueries({history})
     const { records, metaData, submit, loadTry } = handleRecords()
     const [showBudget, setShowBudget ] = useState(null);
 
     useEffect(()=>{
         if(showBudget) {
-          context.dialog.push(MakeDialogConfig(()=> <BudgetView budget_id={showBudget} />,
+         /*  context.dialog.push(MakeDialogConfig(()=> <BudgetView budget_id={showBudget} />,
           ()=>{ 
             setShowBudget(null); 
             submit(filters.values);
             return -1;
-          }, `Cotação N° ${showBudget}`))
+          }, `Cotação N° ${showBudget}`)) */
         }
     },[showBudget])
 

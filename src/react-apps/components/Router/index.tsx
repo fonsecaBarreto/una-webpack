@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { setLoading, setUser } from '@/react-apps/store/reducers/main/actions';
 import { loginServices } from '@/services/api/login-service';
-import FixedUnaLoading from '@/react-apps/layouts/components/FixedLoading';
+
 import ModalUnaLoading from '@/react-apps/layouts/components/ModalLoading';
 
 export namespace AppRouter {
