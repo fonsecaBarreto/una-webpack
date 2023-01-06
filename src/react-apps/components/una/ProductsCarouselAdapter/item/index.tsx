@@ -69,7 +69,7 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
         <div className={`carousel-product-item`} onClick={()=>onChange && onChange("OPEN", ean)} >
             <header>
                 <section className='carousel-product-item-img-vp'> 
-                    <img alt="Ilustração do produto" src={image ?? ProductImage}></img>
+                    <img alt="Ilustração do produto" loading='lazy' src={image ?? ProductImage}></img>
                 </section>
             </header>
             <main>
