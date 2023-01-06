@@ -14,5 +14,16 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <script>
+      const documentSize = () => {
+        const doc = document.documentElement
+        doc.style.setProperty('--doc-height', `${window.innerHeight}px`)
+        doc.style.setProperty('--doc-width', `${window.innerWidth}px`)
+      }
+      window.addEventListener('resize', documentSize)
+      documentSize()
+
+    </script>
   </body>
 </html>
