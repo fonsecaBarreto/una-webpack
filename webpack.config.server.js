@@ -29,12 +29,16 @@ module.exports = {
 
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(js|jsx|tsx|ts)$/, 
         loader: 'ts-loader',
         options: {
           configFile: 'tsconfig.server.json',
         },
-      }
+      },
+      {   
+        test: /\.(png|gif|jpg|jpeg|webp|svg|css)$/,
+        use: [ 'ignore-loader'] 
+      },
     ],
   },
 }
