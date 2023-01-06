@@ -27,14 +27,21 @@ export const CepModal: React.FunctionComponent<CepModal.Params> = ({ onChange, u
 
     return(
         <div className='bl-cep-modal'>
-            <Forming.FormGrid title="" columns={[12]} freeze={state.loading.get}>
-                <CepInputControl beforeSubmit={()=>state.loading.set(true)} onData={handleCep} 
-                    value={state.data.get['cep']} onInput={(v: any)=>state.data.onInput('cep', v)}/>
-            </Forming.FormGrid>
-            <div className='bg-cep-modal-user'>
-               { !user && <span> Ja sou Cadastrado </span>}
-                <button className='una-submit-button-color' onClick={()=> onChange('SIGNIN')}>  { user ? "Usar Meu endereço" : "Entrar"}  </button>
-            </div>
+            <header>
+                <span> Minha Localidade </span>
+                <button onClick={()=>onChange(-1)}> x</button>
+            </header>
+            <main>
+
+                    <Forming.FormGrid title="" columns={[12]} freeze={state.loading.get}>
+                        <CepInputControl beforeSubmit={()=>state.loading.set(true)} onData={handleCep} 
+                            value={state.data.get['cep']} onInput={(v: any)=>state.data.onInput('cep', v)}/>
+                    </Forming.FormGrid>
+                    <div className='bg-cep-modal-user'>
+                    { !user && <span> Ja sou Cadastrado </span>}
+                        <button className='una-submit-button-color' onClick={()=> onChange('SIGNIN')}>  { user ? "Usar Meu endereço" : "Entrar"}  </button>
+                    </div>
+            </main>
         </div>
     )
 }   
