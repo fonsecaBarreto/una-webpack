@@ -16,7 +16,8 @@ module.exports = {
     alias: { 
       '@': path.resolve(__dirname, 'src'),
       '@assets': path.resolve(__dirname, 'src',"public","assets"),
-      '@main': path.resolve(__dirname, 'src',"react-apps","apps","main")
+      '@main': path.resolve(__dirname, 'src',"react-apps","apps","main"),
+      '@pages': path.resolve(__dirname, 'src',"react-apps","pages")
     },
   },
   externals: [nodeExternals()],
