@@ -3,7 +3,6 @@ import "./style.css"
 import SimpleItem from './standard-items/SimpleItem'
 import LoadingComponent from './standard-items/LoadingComponents' 
 import IconePadrao from "./dashed-circle.svg"
-import { MetadataStorage } from 'class-validator'
 export * from "./ListingHandlers"
 export namespace UnaLisingContent {
 

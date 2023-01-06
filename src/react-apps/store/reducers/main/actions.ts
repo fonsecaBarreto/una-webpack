@@ -5,7 +5,7 @@ export const setUser = (value = null) => ({
     payload: value
 })
 
-export const setSessionAddress = (value) => ({
+export const setSessionAddress = (value: any) => ({
     type: "SET_SESSION_ADDRESS",
     payload: value
 })
@@ -25,7 +25,7 @@ export const setForceCartToOpen = (value = false) => ({
     payload: value 
 })
 
-export const setCurrentPage = (payload ) => {
+export const setCurrentPage = (payload: any ) => {
     
     const title = payload.title || INITIAL_CURRENT_PAGE.title
     const breadCrumbs = payload.breadCrumbs || INITIAL_CURRENT_PAGE.breadCrumbs

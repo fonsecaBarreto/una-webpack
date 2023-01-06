@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   force_cart_to_open: false
 }
 
-export const mainReducer = (state=INITIAL_STATE, action) => {
+export const mainReducer = (state=INITIAL_STATE, action: any) => {
   switch(action.type){
     case "SET_USER": return { ...state, user: action.payload};
     case "SET_SESSION_ADDRESS": return { ...state, session_address: action.payload};

@@ -6,7 +6,6 @@ const budgetsApi = MakeApiSettings({
      errorHelper: errorHandler, 
      storage_key: global.user_storage_key
 })
-
 export namespace BudgetServices {
      export type Item = {
           ean: string, 
@@ -43,44 +42,9 @@ export const budgetServices = {
           return data 
      },
 
-
      find: async (budget_id: string) => {
           const { data } = await budgetsApi.send({ method: "get", url: `/${budget_id}` }) 
           return data 
-     },
-     /* ADMIN listing budgets */
-  /*    list: async (params: any={}) => {
-          const { p = 1, initial_date, end_date, company_id } = params;
-          var query = `?page=${p}`;
-          query+=`
-               &idate=${new Date(initial_date).getTime()} 
-               &ldate=${new Date(end_date).getTime()}
-               &company_id=${company_id ?? ""}`;
-
-          const { data } = await budgetsApi.send({ method: "get", url: `${query}` }) 
-          return data 
-     }, */
-    /*  // admins finding budgets 
-     find: async (budget_id: string) => {
-          const { data } = await budgetsApi.send({ method: "get", url: `/${budget_id}` }) 
-          return data 
-     },
-     // admins update 
-
-     updateStatus: async (budget_id: string, status: string) => {
-          await budgetsApi.send({ method: "patch", url: `/${budget_id}/status`, data: { status } }) 
-          return;
-     },
- */
-
-     /*  Clientes */
-
- /*     findCompanyBudget: async (budget_id: string, company_id:string) => {
-          const { data } = await budgetsApi.send({ method: "get", url: `/company/${company_id}/${budget_id}` }) 
-          return data 
-     },
-     
-    
- */
+     }
 }
 

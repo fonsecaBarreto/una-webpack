@@ -37,7 +37,7 @@ export namespace HandleRecords {
 
 export const handleRecords = ( {}:  HandleRecords.Params ): HandleRecords.Result =>{
     const [ loadTry, setLoadTry ] = React.useState(0)
-    const [ metaData, setMetaData]= React.useState<UnaListingContent.MetaData | null>(null)
+    const [ metaData, setMetaData]= React.useState<any>(null)
     const [ records, serRecords ] = React.useState([])
 
     const setData = (r: any) =>{

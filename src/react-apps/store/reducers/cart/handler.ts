@@ -1,7 +1,6 @@
 import { Product } from '@/domain/views/Product'
-import CartItem from '@/react-apps/layouts/BlueLagum/Cart/CartItem'
 import { useDispatch, useSelector } from 'react-redux'
-import { CartState, CreateCartItem_Id, pushToCart } from './index'
+import { CartState, pushToCart } from './index'
 import { toast } from 'react-toastify'
 import { setForceCartToOpen } from '../main/actions'
 
