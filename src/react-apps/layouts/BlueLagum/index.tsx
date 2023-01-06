@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setForceCartToOpen, setGodMode } from '@/react-apps/store/reducers/main/actions'
 import DepartamentHeader from './DepartamentsHeader'
 import LocationBar from './LocationBar'
-import AsideStaticMenu from './Menu/AsideStaticMenu'
 import AsideOverflowMenu from './Menu/AsideOverflowMenu'
 import FloatAsideContent from './FloatAsideContent'
 
