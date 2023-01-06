@@ -1,5 +1,5 @@
 import React, { useRef } from "react"
-
+/* import SomeIamge from "@assets/icons/departaments/wine.webp" */
 
 const ROW_STRUCT = [
    {
@@ -39,6 +39,7 @@ export const HomePage = () => {
    return (
       <div id="home-page">
          <div id="home">
+{/*             <img src={SomeIamge}/> */}
             <div id="head-line" >
                   <div className="app-container">
                      

@@ -13,55 +13,73 @@ import useIntersectionObserver from '@/react-apps/components/utils/useIntersecti
 
 export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
-    const bottomRef = React.useRef<HTMLDivElement | any>(null);
-    const { isIntersecting } = useIntersectionObserver(bottomRef, {  }, false);
-    const [ showContent, setShowContent ] = React.useState(false);
+    const firstStage = React.useRef<HTMLDivElement | any>(null);
+    const secondStage = React.useRef<HTMLDivElement | any>(null);
+
+    const { isIntersecting: isStage1 } = useIntersectionObserver(firstStage, {  }, false);
+    const { isIntersecting: isStage2 } = useIntersectionObserver(secondStage, {  }, false);
+    const [ stage, setStage ] = React.useState(0);
 
     React.useEffect(()=>{
-        if(isIntersecting == true){
-            setShowContent(true)
+        console.log([isStage1, isStage2])
+        if(stage == 0 && isStage1 == true){
+            setStage(1)
         }
-    },[ isIntersecting])
+        if(stage == 1 && isStage2 == true){
+            setStage(2)
+        }
+
+        console.log(stage)
+    },[ isStage2, isStage1])
 
     return (
         <div id="home-page">
             <header className='app-container home-page-container'>
                 <HeadLineCarousel/>
-
+        
             </header>
             <div className='app-container home-page-container'>
         
                 <CategoriasCarousel/>
-            {
-                showContent && 
-                <>
-                <section className='una-home-section'>
-                    <h4> Laticinios: </h4>
-                    <LaticiniosProductsCarousel/>
-                </section> 
-                
-                <section className='una-home-section'>
-                    <h4> Para sua padaria: </h4>
-                    <PadariaProductsCarousel/>
-                </section> 
- 
-                <section className='una-home-section'>
-                    <h4> Doces: </h4>
-                    <ConfeitareProductsCarousel/>
-                </section> 
 
-                <section className='una-home-section'>
-                    <h4> Produtos de limpeza: </h4>
-                    <LimpezaProductsCarousel/>
-                </section> 
+                <div ref={firstStage}></div>
+                
+                {  stage >= 1 &&
+                    <>
+                        <section className='una-home-section'>
+                            <h4> Laticinios: </h4>
+                            <LaticiniosProductsCarousel/>
+                        </section> 
 
-                <LatestProductsCarousel/>
-                </>
-                
-            }
-                
+
+                        <section className='una-home-section'>
+                            <h4> Para sua padaria: </h4>
+                            <PadariaProductsCarousel/>
+                        </section> 
+
+                      
+                    </>
+                }
+
+                <div ref={secondStage}></div>
+                { stage >= 2 && <>
+
+                    <section className='una-home-section'>
+                        <h4> Doces: </h4>
+                        <ConfeitareProductsCarousel/>
+                    </section> 
+
+                    <section className='una-home-section'>
+                        <h4> Produtos de limpeza: </h4>
+                        <LimpezaProductsCarousel/>
+                    </section> 
+
+                    <LatestProductsCarousel/>
+                </>}
+            
+
             </div> 
-            <div  ref={bottomRef}> </div>
+          {/*   <div  ref={bottomRef}> </div> */}
         </div>
     )
 }
