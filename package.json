@@ -35,6 +35,7 @@
     "fck-react-input-controls": "^1.0.2",
     "fck-schema-validator": "^1.2.8",
     "fck-table-forms": "^1.0.5",
+    "ignore-loader": "^0.1.2",
     "install": "^0.13.0",
     "query-string": "^7.1.0",
     "react": "^17.0.2",
