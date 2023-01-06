@@ -75,6 +75,8 @@
  /* root */
 
  :root {
+    --doc-height: 100%;
+    --doc-width: 100%;
     --main-color: #0052D4;
     --main-light-color: #007CDC;
     --main-bg-color: #F0F2F5;
