@@ -34,14 +34,7 @@ export const LoginPage: React.FunctionComponent<any> = (props) =>{
                 })
         })
         .catch(err=>{
-            /* switch(err.name){
-                case "AccessDeniedError":
-                    context.dialog.push(MakeNotification(()=>-1,[ "Credencial ou senha estão incorretos" ], "Acesso negado", NotificationType.FAILURE))
-                break;
-            }
-            if(err.params){
-                signinState.errors.set(err.params);
-            } */
+    
         })
         .finally(()=>setIsLoading(false))
     }

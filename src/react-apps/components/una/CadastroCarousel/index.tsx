@@ -13,17 +13,15 @@ import { cnpjMask, cpfMask, phoneMask } from '../../utils/masks'
 import CepInputControl from '../../controls/CepInputControl'
 import SelectBox from '../../controls/Inputs/SelectInput'
 /* validation */
-import { validate } from 'class-validator';
 import { CompanyDto } from './dtos/CompanyDto'
 /* services */
 import {  getCitiesByUf, getUfs } from '@/services/ibge'
-import { loginServices } from "@/services/api/login-service"
 import { handleValidate } from './vendor/Validator'
 import { UserDto } from './dtos/UserDto'
 import { AddressDto } from './dtos/AddressDto'
 import { loginServicesV2, SignUpParams } from '@/services/api/v2/login-service'
-import { MakeNotification, NotificationType } from 'fck-react-dialog'
 import { toast } from 'react-toastify'
+
 
 
 const INITIAL_DATA = {
@@ -354,10 +352,7 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
             setErros(errors);
             setPageIndex(index)
             return;
-        }
-        
-        /* */
-
+        } 
         const{ city, uf, ...rest } = inputsState[0];
 
         const params: SignUpParams = {
@@ -371,10 +366,6 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
         toast.promise(
             loginServicesV2.signup(params)
             .then(()=>{
-                context.dialog.push(MakeNotification(()=>-1,[ 
-                    "Bem Vindo a UNA Compras",
-                    "Cadastro efetuado com successo!", 
-                    "Obrigado pela confiança, entraremos em contato em breve!"], "Sucesso!", NotificationType.SUCCESS));
                 history.push("/login?v=signin");   
             })
             .finally(()=>{
@@ -382,7 +373,7 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
             })
             ,{
                 pending: 'Enviando...',
-                success: 'Cadastro efetuado com successo!',
+                success: 'Cadastro efetuado com successo  Bem Vindo a UNA Compras',
                 error: {
                     render({data}){
                         console.log("erro aqui", data)
