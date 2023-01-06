@@ -33,7 +33,7 @@ export const ProductImageSection: React.FunctionComponent<any> = ({ images, onCl
 
     return (
         <section className='product-feed-item-img-vp' onClick={onClick}> 
-            <img alt="Ilustração do produto" src={image}></img>
+            <img  loading="lazy" alt="Ilustração do produto" src={image}></img>
             { out && <span className="product-out-of-stock"> Fora de estoque</span>}
         </section>
     )
