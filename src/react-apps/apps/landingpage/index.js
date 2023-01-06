@@ -4,10 +4,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from '../../reportWebVitals';
 import App from './app'
+/* import "./styles" */
 
-ReactDOM.render(
-    <React.StrictMode>
-        <App></App>
-    </React.StrictMode> ,document.getElementById("root") );
+ReactDOM.hydrate( <App></App>, document.getElementById("root") );
 reportWebVitals(); 
 

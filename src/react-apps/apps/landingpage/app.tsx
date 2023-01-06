@@ -1,11 +1,10 @@
-import React, { useRef } from "react";
-import '../app.css'
-
+import React, { useEffect, useRef } from "react";
+import Home from './pages/Home'
 export const App = () =>{
     const appRef = useRef<HTMLHeadingElement>(null)
     return (
         <div id="App" ref={appRef} > 
-            Testes
+            <Home/>
         </div>
     )
 }
