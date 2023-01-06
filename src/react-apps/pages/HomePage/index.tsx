@@ -9,9 +9,19 @@ import LatestProductsCarousel from '@/react-apps/components/una/ProductsCarousel
 import { useSelector } from 'react-redux';
 import ConfeitareProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/ConfeitareProducts';
 import LaticiniosProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LaticiniosProducts';
+import useIntersectionObserver from '@/react-apps/components/utils/useIntersectionObserver';
 
 export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
+    const bottomRef = React.useRef<HTMLDivElement | any>(null);
+    const { isIntersecting } = useIntersectionObserver(bottomRef, {  }, false);
+    const [ showContent, setShowContent ] = React.useState(false);
+
+    React.useEffect(()=>{
+        if(isIntersecting == true){
+            setShowContent(true)
+        }
+    },[ isIntersecting])
 
     return (
         <div id="home-page">
@@ -22,7 +32,9 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
             <div className='app-container home-page-container'>
         
                 <CategoriasCarousel/>
-
+            {
+                showContent && 
+                <>
                 <section className='una-home-section'>
                     <h4> Laticinios: </h4>
                     <LaticiniosProductsCarousel/>
@@ -44,8 +56,12 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
                 </section> 
 
                 <LatestProductsCarousel/>
+                </>
+                
+            }
                 
             </div> 
+            <div  ref={bottomRef}> </div>
         </div>
     )
 }
