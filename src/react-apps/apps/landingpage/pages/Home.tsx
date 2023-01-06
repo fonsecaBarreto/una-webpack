@@ -1,5 +1,5 @@
-import React, { useRef } from "react"
-/* import SomeIamge from "@assets/icons/departaments/wine.webp" */
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import "./home.css"
 
 const ROW_STRUCT = [
    {
@@ -27,19 +27,23 @@ const items = [
    { icon:null, text: "O uso da plataforma para cotação é livre de taxas. "},
    { icon:null, text: "Quem determina o produto a ser comprado, continua sendo você."},
    { icon:null, text: "Tenha suas cotações centralizadas em um sistema especializado, com histórico de preços e compras realizadas com diversos fornecedores."}
-
-
 ]
 
 
-
-
 export const HomePage = () => {
+   const [isClient, setIsClient] = useState(false);
+
+   useEffect(() => {
+      setIsClient(true);
+   }, []);
 
    return (
+   <div>
       <div id="home-page">
          <div id="home">
-{/*             <img src={SomeIamge}/> */}
+            <h1>
+             {isClient ? 'Is Client' : 'Is Server'} 
+            </h1>
             <div id="head-line" >
                   <div className="app-container">
                      
@@ -47,9 +51,7 @@ export const HomePage = () => {
                         <h1> Una A praticidade de comprar ao melhor preço</h1>
                         <h3> Uma plataforma digital para empresários reduzirem custos, conectando o comprador ao fornecedor, simplificando o processo de compras. </h3>
                         <button className="soft-btn"> Saiba mais</button>
-                     </div> 
-                     {/* <img src={Banner}></img>  */}
-
+                     </div>
                   </div>
             </div>
          </div>
@@ -88,7 +90,8 @@ export const HomePage = () => {
 
 
       </div>
-   )
+      
+   </div>)
 }
 
 
