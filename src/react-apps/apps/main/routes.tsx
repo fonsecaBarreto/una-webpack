@@ -28,6 +28,9 @@ export const ROUTES = [
     { path: "/login", title: "Login",  component: LoginPage } ,
     // Tuto
     { path: "/tutoriais", title: "Tutoriais",  component: TutoriaisPage } ,
+
+    { path: "/admin*", title: "Redirecionando para admin",  component: ({ location }: any) =>  window.location.href= `https://app.unacompras.com.br${location.pathname}` } ,
+
     { path: "/", title: "Inicio",  component: HomePage },
 ]
 
