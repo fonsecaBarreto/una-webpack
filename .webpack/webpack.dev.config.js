@@ -14,6 +14,7 @@ module.exports = merge(common, {
               /*   { from: /^\/$/, to: '/views/landingpage.html' },   */                 
                 { from: "^/bem-vindo", to: "/views/landingpage.html"},   
                 // { from: "^/admin", to: "/views/admin.html"},   
+       /*          { from: "^/login", to: "/views/login.html"},    */               
                 { from: "^/", to: "/views/main.html"},                  
             ]
         },
