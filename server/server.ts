@@ -5,6 +5,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { useMiddlewares } from "./middlewares"
 import { App as LandginPage } from '../src/react-apps/apps/landingpage/app'
+import { App as Main } from '../src/react-apps/apps/main/app'
 
 const PORT = process.env.PORT || 8080;
 const server = express()
@@ -32,9 +33,27 @@ server.get('/bem-vindo/:path*?', (req, res) => {
 
 })
 
-server.get(`/:path*?`, (req, res) => {
+
+server.get('/:path*?', (req, res) => {
+
+  return res.sendFile(path.join(CLIENT_DIST_DIR, "views", "main.html")) 
+/*   const component = ReactDOMServer.renderToString(React.createElement(Main))
+  const indexFile = path.join(CLIENT_DIST_DIR, "views", "main.html")
+  fs.readFile(indexFile, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Something went wrong:', err);
+      return res.status(500).send('Oops, better luck next time!');
+    }
+    return res.send(
+      data.replace('<div id="root"></div>', `<div id="root">${component}</div>`)
+    );
+  }); */
+
+})
+
+/* server.get(`/:path*?`, (req, res) => {
     return res.sendFile(path.join(CLIENT_DIST_DIR, "views", "main.html")) 
-}); 
+});  */
 
 server.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`)
