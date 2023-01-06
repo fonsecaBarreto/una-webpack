@@ -4,15 +4,9 @@
   "description": "",
   "scripts": {
     "prod:start": "pm2 start server.js -- --production",
-    "build": "rimraf dist/* && webpack --config ./.webpack/webpack.prod.config.js",
-    "dev": "webpack-dev-server --config ./.webpack/webpack.dev.config --host 10.0.10.217",
-    "dev:server": "npm run dev && nodemon server.js",
-    "start": "node server.js --host 10.0.10.217",
-    "test": "jest --passWithNoTests --runInBand --no-cache --silent",
-    "test:unit": "npm test -- --watch --silent -c jest-unit-config.js",
-    "test:integration": "npm test -- --watch --silent -c jest-integration-config.js",
-    "test:coverage": "npm test -- --coverage",
-    "heroku-postbuild": "npm run build"
+    "client:build": "rimraf dist/* && webpack --config ./.webpack/webpack.prod.config.js",
+    "client:dev": "webpack-dev-server --config ./.webpack/webpack.dev.config --host 10.0.10.217",
+    "server:start": "webpack --config ./webpack.config.server.js && node server/dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -66,6 +60,7 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.7",
+    "@types/cors": "^2.8.13",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.11",
     "@types/react": "^17.0.37",
@@ -76,7 +71,7 @@
     "@types/uuid": "^8.3.4",
     "babel-loader": "^8.2.3",
     "babel-plugin-module-resolver": "^4.1.0",
-    "clean-webpack-plugin": "^1.0.0",
+    "clean-webpack-plugin": "^1.0.1",
     "core-js": "^3.19.3",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
@@ -99,7 +94,9 @@
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.1",
-    "webpack-merge": "^5.8.0"
+    "webpack-manifest-plugin": "^5.0.0",
+    "webpack-merge": "^5.8.0",
+    "webpack-node-externals": "^3.0.0"
   },
   "keywords": [],
   "author": "",

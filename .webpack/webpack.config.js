@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 const SRC_DIR =  path.resolve(__dirname, "..", "src")
 const OUTPUT_DIR =  path.resolve(__dirname, "..", "dist")
 const Dotenv = require('dotenv-webpack');
@@ -48,6 +48,7 @@ module.exports ={
                     chunks: [a],                          // chuck Js
             }))
         }),
+        new WebpackManifestPlugin()
     ],
 
     module: {
