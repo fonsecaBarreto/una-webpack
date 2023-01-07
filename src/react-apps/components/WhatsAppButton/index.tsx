@@ -10,8 +10,8 @@ export const WhatsAppFloatButton: React.FunctionComponent<any> = () => {
 
     return (
         <div className='whatsapp-float-button'>
-            <button onClick={handleClick}>
-                 <img src={images.whatsApp}></img>  
+            <button  aria-label="whatsapp support button" onClick={handleClick}>
+                 <img alt="whatsapp" src={images.whatsApp}></img>  
             </button>
         </div>
     )
