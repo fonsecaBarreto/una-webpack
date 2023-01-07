@@ -27,7 +27,6 @@ export const LocationBar = () => {
         if(!user.addresses) alert('Nenhum endereço cadastrado para esse usuario.')
         const {cep, ibge, cidade, uf } = user.company.addresses[0]
         var sessionLocation  = new SessionLocation(cep, ibge,`${cidade} - ${uf}`)
-        console.log(sessionLocation)
         dispatch(setSessionAddress(sessionLocation)) ;
     } 
 

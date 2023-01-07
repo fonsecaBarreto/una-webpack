@@ -3,7 +3,6 @@ import "./styles.css"
 export const SwitchButton = ({ name, value, onChange }: any) =>{
 
     const handleInputs = () =>{
-        console.log("hcanged");
         onChange(name, !value);
     }
     return (

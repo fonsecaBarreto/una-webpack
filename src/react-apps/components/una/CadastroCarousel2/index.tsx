@@ -147,7 +147,6 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
             content:  
             <React.Fragment>
                 <CompanyTypeSelector onChange={(n:any)=>{
-                    console.log("hanged type", n)
                     juridicoState.data.onInput("isVendor", n == 0 ? false :true)
                     juridicoState.data.onInput("isMart", n == 0 ? true : false)
                 }}></CompanyTypeSelector>

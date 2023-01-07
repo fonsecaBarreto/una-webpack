@@ -33,7 +33,6 @@ export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies })
 
 
     const handleCartButton = () =>{
-        console.log(product)
         const item_id = selectedSupply ?? CreateCartItem_Id(product.ean)
         const qtd = cartHandler.countBy_id(item_id) ?? 0;
         cartHandler.pushProduct(item_id, product, qtd + 1); 

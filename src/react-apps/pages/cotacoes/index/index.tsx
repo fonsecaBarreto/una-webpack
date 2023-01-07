@@ -41,9 +41,6 @@ const CompaniesBudgets:React.FunctionComponent<{company_id:string}> = ({company_
     const [ metadata, setMetadata ] = useState<any>([])
     const { search_resolved, setSearch } = useSearch()
 
-    useEffect(()=>{
-        console.log('both of then ', search_resolved)
-    },[ search_resolved ])
 
     useEffect(()=>{ if(forceToFetch === true) fetchBudgets(); }, [forceToFetch])
 

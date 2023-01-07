@@ -13,9 +13,6 @@ export const SearchControl: React.FunctionComponent<SearchControl.Params> =  ({ 
 
     const [ text, setText ] = useState(initial_value);
 
-    useEffect(()=>{
-        console.log("Search control foi instanciado")
-    },[])
     const handleClick = () =>{
         onClick(text)
     }

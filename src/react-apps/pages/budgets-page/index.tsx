@@ -25,7 +25,6 @@ const handleFiltersWithQueries = ({history}: any) =>{
         status:  query.get("status") ?? undefined, 
     }), [query])
 
-    console.log(values)
 
     const setValue = (payload: any) =>{
         history.replace({ search: qs.stringify({...values,  ...payload})})

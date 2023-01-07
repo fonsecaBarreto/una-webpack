@@ -31,7 +31,6 @@ export const SoftPages: React.FunctionComponent<SoftPage.Params> = ({children, p
     useEffect(() => {
         var current:any = null;
         React.Children.map(children, (child: any) => {
-            console.log(child.props)
             if(child.props?.name == page) {
                 current = child;
             }

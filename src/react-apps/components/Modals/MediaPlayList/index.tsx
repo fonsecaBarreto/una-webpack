@@ -48,7 +48,6 @@ export const MediaPlayListModal: React.FunctionComponent<MediaPlayListModal.Para
                 setImages((prev: any)=>{
                     let list = [ ...prev];
                     list.splice(p,1);
-                    console.log("nova lsita")
                     return list
                 })
             break;

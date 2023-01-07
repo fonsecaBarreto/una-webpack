@@ -16,7 +16,7 @@ export const HandleSearchValues = ( { headers=[] } : HandleSearchValues.Params) 
         var parsed: any = {};
         if(headers.length > 0 ){
             headers.map((h:string, i)=>{
-                console.log(h)
+
                 let [ key, initial_value ] = h;
                 parsed[key] = query.get(key) ?? initial_value;
             })

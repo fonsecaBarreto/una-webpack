@@ -12,7 +12,6 @@ export namespace UnaSubmitButton {
 export const UnaSubmitButton: React.FunctionComponent<UnaSubmitButton.Params>  = ({children, light, onClick, className}) =>{
 
     const handleSubtmit = () =>{
-        console.log("submit here")
         onClick && onClick();
     }
     return (

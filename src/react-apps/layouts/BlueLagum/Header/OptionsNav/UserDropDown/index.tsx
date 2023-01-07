@@ -73,8 +73,6 @@ export const UserDropDown = ({ onChange }: any) =>{
     }
 
     const handleOptions = (n:string) =>{
-        console.log('request to ', n)
-        console.log(history)
         history.push("/login?v=signin");
         switch(n){
             case "SAIR": loginServices.logout();break;

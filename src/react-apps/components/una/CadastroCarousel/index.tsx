@@ -376,7 +376,6 @@ export const CadastroCarousel: React.FunctionComponent<any>  = ({setLoading}: {s
                 success: 'Cadastro efetuado com successo  Bem Vindo a UNA Compras',
                 error: {
                     render({data}){
-                        console.log("erro aqui", data)
                         if(data.params)
                             setErros(data.params);
                         return data.message

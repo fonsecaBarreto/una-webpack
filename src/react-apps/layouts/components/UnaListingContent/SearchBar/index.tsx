@@ -13,7 +13,6 @@ export const SearchBar: React.FunctionComponent<SearchBar.Params> = ({ entry, on
     const [ value, setValue ] = useState("")
 
     useEffect(()=>{ 
-        console.log('nova entrada', entry)
         setValue(entry ?? "")
     },[entry])
 
