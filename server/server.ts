@@ -7,7 +7,7 @@ import { StaticRouter } from "react-router-dom";
 import { useMiddlewares } from "./middlewares"
 import { App as LandginPage } from '../src/react-apps/apps/landingpage/app'
 import { App as Main } from '../src/react-apps/apps/main/app'
-const PORT = process.env.PORT || 6060;
+const PORT = process.env.PORT || 8080;
 const server = express()
 useMiddlewares(server);
 
