@@ -1,4 +1,4 @@
-import React, { FC, Suspense, useCallback, useEffect, useState, useContext, useRef } from 'react'
+import React, { FC, Suspense, useCallback, useEffect, useState, useContext, useRef, lazy } from 'react'
 import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
@@ -7,6 +7,14 @@ import { loginServices } from '@/services/api/login-service';
 
 import ModalUnaLoading from '@/react-apps/layouts/components/ModalLoading';
 import BlueLagumLayout from '@/react-apps/layouts/BlueLagum';
+import MartPage from '@/react-apps/pages/mart-page';
+import ProductPage from '@/react-apps/pages/product-page';
+
+import TutoriaisPage from '@pages/Tutoriais';
+import LoginPage from '@pages/login-page';
+import Cotacoes from '@pages/cotacoes/index/index';
+import Cotacoes_numero from '@pages/cotacoes/[budget_id]/index';
+import HomePage from '@/react-apps/pages/HomePage';
 
 export namespace AppRouter {
     export type RouteConfig = { 
@@ -32,14 +40,19 @@ const Guard: React.FunctionComponent<AppRouter.RouteConfig> = (props) => {
 
     if(isLoading) return <ModalUnaLoading/>
     return (
-        <Route  
-            exact={true} location={location} path={path} 
-            render={ (props) => ( 
-                isGranted ? 
-                <Component {...props} > </Component>
-                : <Redirect to='/login' />
-                ) }
-            />)   
+      <Route
+        exact={true}
+        location={location}
+        path={path}
+        render={(props) =>
+          isGranted ? (
+            <Component {...props}> </Component>
+          ) : (
+            <Redirect to="/login" />
+          )
+        }
+      />
+    );   
 }
     
 export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
@@ -76,6 +89,7 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
 
     const beforeEach =async ( config: AppRouter.RouteConfig) => {
         const  { group, path } = config;
+        console.log("changed", path, group)
         context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
         if(group !== "user" || userRef.current) return Promise.resolve(true);
 
@@ -87,30 +101,22 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
         })
     }
 
-
     return (
-      <BrowserRouter>
+
         <Switch>
-          <BlueLagumLayout isClient={isClient}>
-              <Suspense fallback={<div />}>
-                <Switch>
-                  {routes.map(
-                    ({ component, path, ...rest }: any, i: number) => (
-                      <Guard
-                        key={i}
-                        location={location ?? null}
-                        path={path}
-                        component={component}
-                        beforeEach={beforeEach}
-                        {...rest}
-                      />
-                    )
-                  )}
-                </Switch>
-              </Suspense>
-          </BlueLagumLayout>
+            <BlueLagumLayout isClient={isClient}>
+                    <Switch>
+                        <Guard path={"/mercado/:departament_id"} component={MartPage} beforeEach={beforeEach}/>
+                        <Guard path={"/mercado"} component={MartPage} beforeEach={beforeEach}/>
+                        <Guard path={"/produto/:ean"} component={ProductPage} beforeEach={beforeEach}/>
+                        <Guard path={"/cotacoes/:budget_id"} component={Cotacoes_numero} beforeEach={beforeEach} group={"user"}/>
+                        <Guard path={"/cotacoes/"} component={Cotacoes} beforeEach={beforeEach}  group={"user"}/>
+                        <Guard path={"/tutoriais"} component={TutoriaisPage} beforeEach={beforeEach} />
+                        <Guard path={"/login"} component={LoginPage} beforeEach={beforeEach} />
+                        <Guard path={"/"} component={HomePage} beforeEach={beforeEach} />                  
+                    </Switch>
+            </BlueLagumLayout>
         </Switch>
-      </BrowserRouter>
     ); 
 	
 }

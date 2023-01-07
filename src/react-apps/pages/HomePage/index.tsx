@@ -11,6 +11,7 @@ import ConfeitareProductsCarousel from '@/react-apps/components/una/ProductsCaro
 import LaticiniosProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LaticiniosProducts';
 import useIntersectionObserver from '@/react-apps/components/utils/useIntersectionObserver';
 import BlueLagumLayout from '@/react-apps/layouts/BlueLagum';
+import { Link } from 'react-router-dom';
 
 export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
@@ -34,7 +35,6 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
         <div id="home-page">
             <header className='app-container home-page-container'>
                 <HeadLineCarousel/>
-        
             </header>
             <div className='app-container home-page-container'>
         

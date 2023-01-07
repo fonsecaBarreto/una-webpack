@@ -5,11 +5,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from '../../reportWebVitals';
 import App from './app'
-
+import { BrowserRouter } from "react-router-dom"
 import 'react-toastify/dist/ReactToastify.css';
 ReactDOM.hydrate(
-    <React.StrictMode>
-        <App></App>
-    </React.StrictMode> ,document.getElementById("root") );
+  <React.StrictMode>
+    <BrowserRouter>
+      <App data={window.__INITIAL_DATA__} />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 reportWebVitals(); 
 

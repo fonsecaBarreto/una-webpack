@@ -7,7 +7,7 @@ module.exports = {
   target: 'node',
   mode: 'production',
   entry: {
-    server: path.resolve(__dirname, 'server','server.ts'),
+    server: path.resolve(__dirname, 'server','server.tsx'),
   },
   output: {
     path: path.resolve(__dirname,'server','dist'),
@@ -47,13 +47,16 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
-
-
-      {   
-        test: /\.(png|gif|jpg|jpeg|webp)$/,
-        use: [ 'ignore-loader'] 
-      },
-
+    
+      {   test: /\.(png|gif|jpg|jpeg|webp)$/,
+        use: {
+            loader: 'file-loader',
+            options: { 
+                name: '[name].[ext]',
+                outputPath: 'img'
+            }
+        }
+    },
       {
         test: /\.svg$/,
         use: [

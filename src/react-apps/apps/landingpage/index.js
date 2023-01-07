@@ -5,6 +5,14 @@ import ReactDOM from "react-dom";
 import reportWebVitals from '../../reportWebVitals';
 import App from './app'
 
-ReactDOM.hydrate( <App></App>, document.getElementById("root") );
+import {  BrowserRouter } from "react-router-dom"
+
+ReactDOM.hydrate( 
+    <React.StrictMode>    
+        <BrowserRouter>
+            <App />  
+        </BrowserRouter>  
+    </React.StrictMode>
+, document.getElementById("root") );
 reportWebVitals(); 
 

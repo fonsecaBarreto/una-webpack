@@ -3,10 +3,10 @@ import fs from 'fs'
 import path from 'path'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import { StaticRouter } from "react-router-dom";
 import { useMiddlewares } from "./middlewares"
 import { App as LandginPage } from '../src/react-apps/apps/landingpage/app'
 import { App as Main } from '../src/react-apps/apps/main/app'
+import { StaticRouter } from 'react-router-dom'
 const PORT = process.env.PORT || 8080;
 const server = express()
 useMiddlewares(server);
@@ -19,8 +19,16 @@ const manifest = fs.readFileSync(path.join(CLIENT_DIST_DIR, "manifest.json"), 'u
 const assets = JSON.parse(manifest)
 
 server.get('/bem-vindo/:path*?', (req, res) => {
-  const component = ReactDOMServer.renderToString(React.createElement(LandginPage))
+/*   const component = ReactDOMServer.renderToString(React.createElement(LandginPage)) */
   const indexFile = path.join(CLIENT_DIST_DIR, "views", "landingpage.html")
+
+  const component = ReactDOMServer.renderToString(
+    <StaticRouter location={req.url}>
+      <LandginPage />
+    </StaticRouter>
+  );
+
+
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
       console.error('Something went wrong:', err);
@@ -36,9 +44,15 @@ server.get('/bem-vindo/:path*?', (req, res) => {
 
 server.get('/:path*?', (req, res) => {
 
+  console.log("reveinveid here", req.url)
  /*  return res.sendFile(path.join(CLIENT_DIST_DIR, "views", "main.html"))  */
-  const component = ReactDOMServer.renderToString(React.createElement(
-    StaticRouter,{location: req.url},Main))
+ const component = ReactDOMServer.renderToString(
+  <StaticRouter location={req.url}>
+    <Main />
+  </StaticRouter>
+);
+
+  console.log(component)
   const indexFile = path.join(CLIENT_DIST_DIR, "views", "main.html")
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
@@ -46,7 +60,9 @@ server.get('/:path*?', (req, res) => {
       return res.status(500).send('Oops, better luck next time!');
     }
     return res.send(
-      data.replace('<div id="root"></div>', `<div id="root">${component}</div>`)
+      data
+        .replace('//{{metadata}}//', `  window.__INITIAL_DATA__ =${JSON.stringify({ location:  URL })}`)
+        .replace('<div id="root"></div>', `<div id="root">${component}</div>`)
     );
   }); 
 
