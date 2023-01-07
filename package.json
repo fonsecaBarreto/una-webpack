@@ -7,7 +7,7 @@
     "client:build": "rimraf dist/* && webpack --config ./.webpack/webpack.prod.config.js",
     "client:dev": "webpack-dev-server --config ./.webpack/webpack.dev.config --host 10.0.10.217",
     "server:build": "webpack --config ./webpack.config.server.js",
-    "server:start": "webpack --config ./webpack.config.server.js && node server/dist/server.js",
+    "server:start": "npm run server:build && node server/dist/server.js",
     "build": "npm run client:build && npm run server:build"
   },
   "repository": {
