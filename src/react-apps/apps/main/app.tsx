@@ -25,9 +25,6 @@ export const App = () =>{
     )
 }
 
-
-
-
 export const LoadingContent = () =>{
     const { loading } = useSelector((state:any)=>state.main)
    

@@ -92,7 +92,6 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
       <BrowserRouter>
         <Switch>
           <BlueLagumLayout isClient={isClient}>
-            {isClient && (
               <Suspense fallback={<div />}>
                 <Switch>
                   {routes.map(
@@ -109,7 +108,6 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
                   )}
                 </Switch>
               </Suspense>
-            )}
           </BlueLagumLayout>
         </Switch>
       </BrowserRouter>

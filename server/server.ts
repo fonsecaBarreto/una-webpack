@@ -39,7 +39,6 @@ server.get('/:path*?', (req, res) => {
  /*  return res.sendFile(path.join(CLIENT_DIST_DIR, "views", "main.html"))  */
   const component = ReactDOMServer.renderToString(React.createElement(
     StaticRouter,{location: req.url},Main))
-
   const indexFile = path.join(CLIENT_DIST_DIR, "views", "main.html")
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
