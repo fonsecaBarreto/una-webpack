@@ -7,7 +7,7 @@ export const INITIAL_CURRENT_PAGE = {
 const INITIAL_STATE = {
   user: null,
   session_address: null,
-  loading: false,
+  loading: true,
   god_mode: false,
   currentPage:  { ...INITIAL_CURRENT_PAGE },
   force_cart_to_open: false

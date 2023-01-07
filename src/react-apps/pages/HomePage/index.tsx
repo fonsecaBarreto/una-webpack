@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import ConfeitareProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/ConfeitareProducts';
 import LaticiniosProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LaticiniosProducts';
 import useIntersectionObserver from '@/react-apps/components/utils/useIntersectionObserver';
+import BlueLagumLayout from '@/react-apps/layouts/BlueLagum';
 
 export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
@@ -76,7 +77,6 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
             
 
             </div> 
-          {/*   <div  ref={bottomRef}> </div> */}
         </div>
     )
 }

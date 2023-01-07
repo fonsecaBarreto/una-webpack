@@ -1,4 +1,5 @@
 const nodeExternals = require('webpack-node-externals')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require('path')
 
 module.exports = {
@@ -26,6 +27,10 @@ module.exports = {
   node: {
     __dirname: false,
   },
+
+  plugins: [
+    new MiniCssExtractPlugin(),
+  ],
   
   module: {
 
@@ -37,17 +42,17 @@ module.exports = {
           configFile: 'tsconfig.server.json',
         },
       },
+
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+
+
       {   
         test: /\.(png|gif|jpg|jpeg|webp)$/,
         use: [ 'ignore-loader'] 
       },
-
-      {   
-        test: /\.css$/i, 
-        use: [
-            'css-loader',
-        ] 
-    },
 
       {
         test: /\.svg$/,

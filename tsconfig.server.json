@@ -1,8 +1,8 @@
 {
-    "include": ["./server/*"], // compile TS files in server directory
-    "exclude": [ "node_modules"],
+
+
     "compilerOptions": {
-      "module": "commonjs", // classic format that Node.js understands
+      "module": "esnext", // classic format that Node.js understands
       "esModuleInterop": true, // allow imports of modules in ES format
       "skipLibCheck": true, // only check types we refer to from our code
       "resolveJsonModule": true, // enable import of JSON files
@@ -28,6 +28,8 @@
       "forceConsistentCasingInFileNames": true,            
       "isolatedModules": true,
       "moduleResolution": "node",
-    }
+    },
+    "include": ["./server/*"], // compile TS files in server directory,
+    "exclude": [ "./node_modules/**/*"],
   }
   

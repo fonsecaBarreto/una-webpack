@@ -7,9 +7,9 @@ import reportWebVitals from '../../reportWebVitals';
 import App from './app'
 
 import 'react-toastify/dist/ReactToastify.css';
-ReactDOM.render(
+ReactDOM.hydrate(
     <React.StrictMode>
-            <App></App>
+        <App></App>
     </React.StrictMode> ,document.getElementById("root") );
 reportWebVitals(); 
 

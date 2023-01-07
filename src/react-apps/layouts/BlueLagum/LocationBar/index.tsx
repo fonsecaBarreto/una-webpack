@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './style.css'
 import CepModal from "../../components/CepModal"
-import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { SessionLocation } from '@/domain/SessionLocation'
@@ -9,6 +8,8 @@ import { setSessionAddress } from '@/react-apps/store/reducers/main/actions'
 import LocationPin from "@assets/icons/location-pin.svg"
 import DuvidaIcon from "@assets/icons/duvida.svg"
 import FantasticRootModal from '@/react-apps/components/FantasticRootModal'
+
+
 export const LocationBar = () => {
     const [ showLocationModal, setShowLocationModal] = useState(false)
     const history = useHistory()
@@ -62,7 +63,7 @@ export const LocationBar = () => {
             </div>
 
             <FantasticRootModal show={showLocationModal}>
-                <CepModal user={user} onChange={handleModalChange}></CepModal>
+                <CepModal user={user} onChange={handleModalChange}></CepModal> 
             </FantasticRootModal>
         </header>
     )

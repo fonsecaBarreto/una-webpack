@@ -1,11 +1,12 @@
 import React, { FC, Suspense, useCallback, useEffect, useState, useContext, useRef } from 'react'
-import { Route, BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { setLoading, setUser } from '@/react-apps/store/reducers/main/actions';
 import { loginServices } from '@/services/api/login-service';
 
 import ModalUnaLoading from '@/react-apps/layouts/components/ModalLoading';
+import BlueLagumLayout from '@/react-apps/layouts/BlueLagum';
 
 export namespace AppRouter {
     export type RouteConfig = { 
@@ -13,7 +14,6 @@ export namespace AppRouter {
 
     export type Params = { 
         routes: RouteConfig,
-        layout: any,
     }
 }
 
@@ -43,7 +43,14 @@ const Guard: React.FunctionComponent<AppRouter.RouteConfig> = (props) => {
 }
     
 export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
-    const { layout: Layout, routes } = props
+
+    const [ isClient, setIsClient ] = useState(false)
+
+    useEffect(()=>{
+        setIsClient(true);
+    },[])
+
+    const {routes } = props
     const context = useContext(GlobalContext);
     var { user } = useSelector((state:any)=>state.main);
     const userRef = useRef(null)
@@ -80,28 +87,34 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
         })
     }
 
-    return ( 
-		<Router>
-            <Switch>
-           
-                <Layout>
-                    <Suspense fallback={<div/>}>
-                        <Switch>     
-                            { 
-                                routes.map(({ component, path, ...rest }: any, i:number )=> (
-                                    <Guard 
-                                        key={i} location={location} 
-                                        path={path} component={component} 
-                                        beforeEach={beforeEach} {...rest} /> 
-                                )) 
-                            }
-                              
-                        </Switch>
-                    </Suspense>
-                </Layout>
-            </Switch> 
-		</Router> 
-	)
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <BlueLagumLayout isClient={isClient}>
+            {isClient && (
+              <Suspense fallback={<div />}>
+                <Switch>
+                  {routes.map(
+                    ({ component, path, ...rest }: any, i: number) => (
+                      <Guard
+                        key={i}
+                        location={location ?? null}
+                        path={path}
+                        component={component}
+                        beforeEach={beforeEach}
+                        {...rest}
+                      />
+                    )
+                  )}
+                </Switch>
+              </Suspense>
+            )}
+          </BlueLagumLayout>
+        </Switch>
+      </BrowserRouter>
+    ); 
+	
 }
 
 {/* <Route path={`/${chuckAlias}*`}> </Route> */}

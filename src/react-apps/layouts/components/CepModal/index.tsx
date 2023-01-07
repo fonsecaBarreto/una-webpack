@@ -1,21 +1,19 @@
 import * as React from 'react';
 import "./style.css"
-import CepInputControl from '@/react-apps/components/una/inputs-control/CepInputControl';
-import { Forming } from 'fck-react-input-controls';
-import { UseStateAdapter } from 'fck-react-input-controls/lib/Controls';
+import CepInputControl from '@/react-apps/components/una/inputs-control/CepInputControl'; 
 import { SessionLocation } from '@/domain/SessionLocation';
-
-const INITIAL_DATA= { cep: "" }
 
 export namespace CepModal {
     export type Params = {  onChange: any, user: any}
 }
 
 export const CepModal: React.FunctionComponent<CepModal.Params> = ({ onChange, user }) => {
-    const state = UseStateAdapter(INITIAL_DATA);
-
+    /* const state = UseStateAdapter(INITIAL_DATA); */
+    const [ value, setValue ] = React.useState("");
+    const [ isLoading, setIsLoading ] = React.useState(false);
     const handleCep = (result: any) =>{
-        state.loading.set(false);
+        // state.loading.set(false);
+        setIsLoading(false);
         if(result){
             const { cep, ibge, uf, bairro, localidade }  = result
             let str = `${localidade}, ${bairro} - ${uf} `
@@ -33,10 +31,10 @@ export const CepModal: React.FunctionComponent<CepModal.Params> = ({ onChange, u
             </header>
             <main>
 
-                    <Forming.FormGrid title="" columns={[12]} freeze={state.loading.get}>
-                        <CepInputControl beforeSubmit={()=>state.loading.set(true)} onData={handleCep} 
-                            value={state.data.get['cep']} onInput={(v: any)=>state.data.onInput('cep', v)}/>
-                    </Forming.FormGrid>
+                    
+                    <CepInputControl beforeSubmit={()=>setIsLoading(true)} onData={handleCep} 
+                        value={value} onInput={setValue}/> 
+            
                     <div className='bg-cep-modal-user'>
                     { !user && <span> Ja sou Cadastrado </span>}
                         <button className='una-submit-button-color' onClick={()=> onChange('SIGNIN')}>  { user ? "Usar Meu endereço" : "Entrar"}  </button>

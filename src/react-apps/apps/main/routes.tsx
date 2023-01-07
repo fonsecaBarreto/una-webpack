@@ -1,6 +1,4 @@
 import React, { lazy } from "react";
-
-import BlueLagumLayout from '@/react-apps/layouts/BlueLagum' 
 /* App Router */
 import Router from "@/react-apps/components/Router"
 /* pages */
@@ -34,7 +32,7 @@ export const ROUTES = [
     { path: "/", title: "Inicio",  component: HomePage },
 ]
 
-export const Routes = () => <Router  routes={ROUTES} layout={BlueLagumLayout}/>
+export const Routes = () => <Router routes={ROUTES}/>
 
 export default Routes
 

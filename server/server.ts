@@ -3,11 +3,11 @@ import fs from 'fs'
 import path from 'path'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
+import { StaticRouter } from "react-router-dom";
 import { useMiddlewares } from "./middlewares"
 import { App as LandginPage } from '../src/react-apps/apps/landingpage/app'
 import { App as Main } from '../src/react-apps/apps/main/app'
-
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 6060;
 const server = express()
 useMiddlewares(server);
 
@@ -36,8 +36,10 @@ server.get('/bem-vindo/:path*?', (req, res) => {
 
 server.get('/:path*?', (req, res) => {
 
-  return res.sendFile(path.join(CLIENT_DIST_DIR, "views", "main.html")) 
-/*  const component = ReactDOMServer.renderToString(React.createElement(Main))
+ /*  return res.sendFile(path.join(CLIENT_DIST_DIR, "views", "main.html"))  */
+  const component = ReactDOMServer.renderToString(React.createElement(
+    StaticRouter,{location: req.url},Main))
+
   const indexFile = path.join(CLIENT_DIST_DIR, "views", "main.html")
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
@@ -47,13 +49,9 @@ server.get('/:path*?', (req, res) => {
     return res.send(
       data.replace('<div id="root"></div>', `<div id="root">${component}</div>`)
     );
-  });  */
+  }); 
 
 })
-
-/* server.get(`/:path*?`, (req, res) => {
-    return res.sendFile(path.join(CLIENT_DIST_DIR, "views", "main.html")) 
-});  */
 
 server.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`)

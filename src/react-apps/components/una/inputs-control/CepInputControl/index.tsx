@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useState } from 'react'
-import { Forming } from "fck-react-input-controls"
 import { useEffect, useRef } from "react";
 import InputMask from 'react-input-mask';
 import './style.css'
@@ -20,7 +19,7 @@ export const CepInputControl = ({ value, onInput, onData, beforeSubmit }:{ befor
     }
 
     return (
-        <Forming.InputWrapper label={"Cep"} >
+       
             <div className='cepinput-control'>
                 <InputMask className="custom-input" type={'text'} placeholder={'Exemplo : 123456-123'} mask={"99999-999"} value={value??""} 
                     onChange={ ( e: ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +27,7 @@ export const CepInputControl = ({ value, onInput, onData, beforeSubmit }:{ befor
                         onInput(e.target.value) }}/>
                 <button onClick={submit}> Ok </button>
             </div>
-        </Forming.InputWrapper>       
+     
     )
 }
 

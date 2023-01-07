@@ -8,15 +8,17 @@ export type FantasticRootModalProps = {
 }
 
 export const FantasticRootModal:React.FunctionComponent<FantasticRootModalProps> = ({ children, show=true }) =>{
+  const [ isClient, setIsClient ]= useState(false)
 
+  useEffect(()=>{
+    setIsClient(true)
+  },[])
   const ModalWrapper = () => (
     <div className={`fantastic-root-modal-container ${ show ? "show": ""}`}>
-    {/*   <div className='overlap-content'> */}
         { children }
-     {/*  </div> */}
     </div>
   )
-
+  if(!isClient) return <></>
   return ReactDOM.createPortal(
     <ModalWrapper/>,
     document.getElementById('modal-root') as HTMLElement
