@@ -6,7 +6,6 @@ import { setLoading, setUser } from '@/react-apps/store/reducers/main/actions';
 import { loginServices } from '@/services/api/login-service';
 import ModalUnaLoading from '@/react-apps/layouts/components/ModalLoading';
 import BlueLagumLayout from '@/react-apps/layouts/BlueLagum';
-import MartPage from '@/react-apps/pages/mart-page';
 import HomePage from '@/react-apps/pages/HomePage';
 
 const LoginPage = lazy(() => import('@pages/login-page'));
@@ -14,6 +13,7 @@ const TutoriaisPage = lazy(() => import('@pages/Tutoriais'));
 const Cotacoes = lazy(() => import('@pages/cotacoes/index/index'));
 const Cotacoes_numero = lazy(() => import('@pages/cotacoes/[budget_id]/index'));
 const ProductPage = lazy(() => import('@/react-apps/pages/product-page'));
+const MartPage = lazy(() => import('@/react-apps/pages/mart-page'));
 
 
 
