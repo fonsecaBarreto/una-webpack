@@ -19,7 +19,7 @@ export const produtosServiceV2 = {
 
           var options: any = { 
                order :"ASC",
-               limit: 16,
+               limit: 12,
           };
 
           let query = new URLSearchParams(options);
