@@ -32,7 +32,7 @@ server.get('/bem-vindo/:path*?', (req, res) => {
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
       console.error('Something went wrong:', err);
-      return res.status(500).send('Oops, better luck next time!');
+      return res.status(500).send('Em manutenção, aguarde!');
     }
     return res.send(
       data.replace('<div id="root"></div>', `<div id="root">${component}</div>`)

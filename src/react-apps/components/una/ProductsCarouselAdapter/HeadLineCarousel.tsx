@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Carousel } from "react-bootstrap";
-import TestImage2 from "@assets/headline/dist/headline-lg.webp";
+import TestImage2 from "@assets/headline/headline-lg.webp";
 import TestImageMd2 from "@assets/headline/headline2-md.webp";
 
 export const HeadLineCarousel: React.FunctionComponent<any> = () => {
