@@ -132,23 +132,9 @@ body {
 .m-auto  {  margin: auto; }
 .mr-0 { margin-right: 0; }
 .w100{ width: 100%;}
-.unselectable {
-    -webkit-user-select: none; /* Safari */        
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
-    display: flex;
-    flex-direction: column;
-}
 
 /* home section */
-
-.una-home-section{
-
-}
-
 .una-home-section > h4{
-
     font-weight: bold;
     color: #555;
     padding-left: 12px;
