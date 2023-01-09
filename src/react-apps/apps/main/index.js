@@ -7,6 +7,8 @@ import reportWebVitals from '../../reportWebVitals';
 import App from './app'
 import { BrowserRouter } from "react-router-dom"
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 ReactDOM.hydrate(
   <React.StrictMode>
     <BrowserRouter>
