@@ -1,35 +1,24 @@
-import React, { lazy } from "react";
+import React from "react";
 /* App Router */
 import Router from "@/react-apps/components/Router"
-/* pages */
-import ProductPage from '@pages/product-page'
 
-import TutoriaisPage from "@pages/Tutoriais"
-
-import HomePage from "@pages/HomePage";
-
-const MartPage = lazy(() => import('@pages/mart-page'));
-const LoginPage = lazy(() => import('@pages/login-page'));
-
-const Cotacoes = lazy(() => import('@pages/cotacoes/index/index'));
-const Cotacoes_numero = lazy(() => import('@pages/cotacoes/[budget_id]/index'));
 
 export const ROUTES = [
      // mercado
-    { path: "/mercado/:departament_id", title: "Mercado",  component: MartPage } ,
-    { path: "/mercado", title: "Mercado",  component: MartPage } ,
+    { path: "/mercado/:departament_id", title: "Mercado", } ,
+    { path: "/mercado", title: "Mercado",  } ,
       // products
-    { path: "/produto/:ean", title: "Produto",  component: ProductPage } ,
+    { path: "/produto/:ean", title: "Produto", } ,
       // cotações
-    { path: "/cotacoes/:budget_id", title: "Minhas Cotação",  component: Cotacoes_numero, group:"user" } ,
-    { path: "/cotacoes", title: "Minhas Cotações",  component: Cotacoes, group:"user" } ,
-    { path: "/login", title: "Login",  component: LoginPage } ,
+    { path: "/cotacoes/:budget_id", title: "Minhas Cotação", group:"user" } ,
+    { path: "/cotacoes", title: "Minhas Cotações",  group:"user" } ,
+    { path: "/login", title: "Login" } ,
     // Tuto
-    { path: "/tutoriais", title: "Tutoriais",  component: TutoriaisPage } ,
+    { path: "/tutoriais", title: "Tutoriais"} ,
 
-    { path: "/admin*", title: "Redirecionando para admin",  component: ({ location }: any) =>  window.location.href= `https://app.unacompras.com.br${location.pathname}` } ,
+    { path: "/admin*", title: "Redirecionando para admin" } ,
 
-    { path: "/", title: "Inicio",  component: HomePage },
+    { path: "/", title: "Inicio" },
 ]
 
 export const Routes = () => <Router routes={ROUTES}/>

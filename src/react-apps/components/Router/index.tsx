@@ -1,20 +1,21 @@
-import React, { FC, Suspense, useCallback, useEffect, useState, useContext, useRef, lazy } from 'react'
-import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom";
+import React, { FC, Suspense, useEffect, useState, useContext, useRef, lazy } from 'react'
+import { Route, Redirect, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { GlobalContext } from "@/react-apps/apps/GlobalContext"
 import { setLoading, setUser } from '@/react-apps/store/reducers/main/actions';
 import { loginServices } from '@/services/api/login-service';
-
 import ModalUnaLoading from '@/react-apps/layouts/components/ModalLoading';
 import BlueLagumLayout from '@/react-apps/layouts/BlueLagum';
 import MartPage from '@/react-apps/pages/mart-page';
-import ProductPage from '@/react-apps/pages/product-page';
-
-import TutoriaisPage from '@pages/Tutoriais';
-import LoginPage from '@pages/login-page';
-import Cotacoes from '@pages/cotacoes/index/index';
-import Cotacoes_numero from '@pages/cotacoes/[budget_id]/index';
 import HomePage from '@/react-apps/pages/HomePage';
+
+const LoginPage = lazy(() => import('@pages/login-page'));
+const TutoriaisPage = lazy(() => import('@pages/Tutoriais'));
+const Cotacoes = lazy(() => import('@pages/cotacoes/index/index'));
+const Cotacoes_numero = lazy(() => import('@pages/cotacoes/[budget_id]/index'));
+const ProductPage = lazy(() => import('@/react-apps/pages/product-page'));
+
+
 
 export namespace AppRouter {
     export type RouteConfig = { 
@@ -105,6 +106,7 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
 
         <Switch>
             <BlueLagumLayout isClient={isClient}>
+                { isClient && <Suspense fallback={<ModalUnaLoading/>}>    
                     <Switch>
                         <Guard path={"/mercado/:departament_id"} component={MartPage} beforeEach={beforeEach}/>
                         <Guard path={"/mercado"} component={MartPage} beforeEach={beforeEach}/>
@@ -115,12 +117,15 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
                         <Guard path={"/login"} component={LoginPage} beforeEach={beforeEach} />
                         <Guard path={"/"} component={HomePage} beforeEach={beforeEach} />                  
                     </Switch>
+                </Suspense>}
             </BlueLagumLayout>
         </Switch>
     ); 
 	
 }
 
-{/* <Route path={`/${chuckAlias}*`}> </Route> */}
 export default AppRouter
 
+
+
+/* component: ({ location }: any) =>  window.location.href= `https://app.unacompras.com.br${location.pathname}` */

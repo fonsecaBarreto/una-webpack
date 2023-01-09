@@ -3,15 +3,14 @@ import { Carousel } from "react-bootstrap";
 import TestImage2 from "@assets/headline/headline-lg.webp";
 import TestImageMd2 from "@assets/headline/headline2-md.webp";
 
+
 export const HeadLineCarousel: React.FunctionComponent<any> = () => {
   const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
     //preloading image
-    [TestImage2, TestImageMd2].forEach((img_src) => {
       const img = new Image();
-      img.src = img_src;
-    });
+      img.src = TestImage2;
   }, []);
 
   const handleSelect = (selectedIndex: number, e: any) => {
