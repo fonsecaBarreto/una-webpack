@@ -36,7 +36,7 @@ export const ProductFeed: React.FunctionComponent<any> = ({ manager }) =>{
                 itemComponent={ ({item_data, listMode })=> (
                     <ProductItem 
                         showPriceFromWeight={
-                            (['queijo'].includes(item_data?.subCategory?.value.split("-")[0])) ? true : false
+                            (['queijo', "queijos"].includes(item_data?.subCategory?.value.split("-")[0])) ? true : false
                         }
                         showPrices={user}
                         showOptions={god_mode} 
