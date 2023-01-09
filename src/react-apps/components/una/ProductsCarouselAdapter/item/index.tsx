@@ -54,7 +54,7 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
                     <span className="price-hl"> R$: {full_price.toFixed(2)+ " "} </span> 
                 </span>
 
-                <span className='carousel-pi-notation'>
+                <span className='carousel-pix-notation'>
                     {
                         `Preços validos até ${ expiration_date_str }`
                     }

@@ -140,12 +140,11 @@
     width: 100%;
 }
    
-.carousel-pi-notation{
+.carousel-pix-notation{
     width: 100%;
-    margin-top: 12px;
     font-size: 13px;
     line-height: 14px;
-    max-height: 28px;
+    height: 28px;
     color: #666;
     white-space: normal;
     display: -webkit-box;
@@ -154,5 +153,6 @@
     overflow: hidden;
     text-overflow: ellipsis; 
     text-align: center;
-    margin-top: 16px;
+    max-width: 120px;
+    margin: 16px auto 0;
 }
