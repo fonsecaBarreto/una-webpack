@@ -6,8 +6,6 @@ import GaleryContainer from './GaleryContainer'
 import ProductBreadCrumbs from './ProductBreadCrumbs'
 import LoadingComponent from '@/react-apps/components/una/Loading'
 import ProductInfo from './ProductInfo'
-import { getUfName } from '@/services/ibge'
-import { ListTree } from './ListTree'
 import { useSelector } from 'react-redux'
 const SEARCH_HEADER = { params: [ "ean"] }
 import LatestProductsCarousel from "@/react-apps/components/una/ProductsCarouselAdapter/LatestProducts";

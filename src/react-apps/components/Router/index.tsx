@@ -64,7 +64,6 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
         setIsClient(true);
     },[])
 
-    const {routes } = props
     const context = useContext(GlobalContext);
     var { user } = useSelector((state:any)=>state.main);
     const userRef = useRef(null)
@@ -90,7 +89,6 @@ export const AppRouter: React.FunctionComponent<AppRouter.Params> = (props) => {
 
     const beforeEach =async ( config: AppRouter.RouteConfig) => {
         const  { group, path } = config;
-        console.log("changed", path, group)
         context.app.current?.scrollTo({ top: 0, behavior: 'auto'}); 
         if(group !== "user" || userRef.current) return Promise.resolve(true);
 

@@ -1,7 +1,5 @@
 import React, {
   ReactNode,
-  useCallback,
-  useContext,
   useEffect,
   useState,
 } from "react";
@@ -15,7 +13,6 @@ import { BlueLakeMenuContext } from "./Menu";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setForceCartToOpen,
-  setGodMode,
 } from "@/react-apps/store/reducers/main/actions";
 import DepartamentHeader from "./DepartamentsHeader";
 import LocationBar from './LocationBar'

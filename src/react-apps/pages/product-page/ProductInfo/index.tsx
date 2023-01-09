@@ -7,7 +7,6 @@ import StarImg from "@assets/icons/star.svg"
 import { CreateCartItem_Id } from '@/react-apps/store/reducers/cart'
 
 export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies }) =>{
-    const { user } = useSelector((state: any) => state.main)
     const [ selectedSupply, setSelectedSupply ] = useState<any>(null)
     const cartHandler = UseCartHandler()
     var quantity = useMemo(()=>product.quantity_per_unity ?? 1,[product])
@@ -50,7 +49,7 @@ export const ProductInfo: React.FunctionComponent<any> = ({ product, supplies })
                 <div className='produto-page-stars'>
                     {[...Array(5)].map((_,i)=>{
                         return (
-                            <img key={i}src={StarImg}/>
+                            <img key={i}src={StarImg} alt="estrelas"/>
                         )
                     })}
                 </div>

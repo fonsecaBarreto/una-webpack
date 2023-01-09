@@ -133,7 +133,7 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showPriceF
                 <div className='produto-pi-stars'>
                     {[...Array(5)].map((_,i)=>{
                         return (
-                            <img key={i}src={StarImg}/>
+                            <img key={i}src={StarImg} alt="estrelas"/>
                         )
                     })}
                 </div>

@@ -24,38 +24,38 @@ export const DepartamentHeader = () => {
             <nav className='app-container'>
                 <DepartamentDropDown>
                     <Link className='dep-link' to="/mercado"> 
-                        <img src={StackIcon}/>
+                        <img src={StackIcon} alt="Pilha de departamentos"/>
                         Todos departamentos
                     </Link>
                 </DepartamentDropDown> 
                 <DepartamentDropDown>
                     <Link className='dep-link' to="/mercado/padaria">  
-                        <img src={BreadIcon}/>
+                        <img src={BreadIcon} alt="pães" />
                         Padaria 
                     </Link>
                 </DepartamentDropDown> 
 
                <DepartamentDropDown>
                     <Link className='dep-link' to="/mercado/bebidas">  
-                    <img src={basketIcon}/>
+                    <img src={basketIcon} alt="garrafas"/>
                     Bebidas </Link>
                 </DepartamentDropDown> 
 
                 <DepartamentDropDown>
                     <Link className='dep-link' to="/mercado/congelados">  
-                    <img src={basketIcon}/>
+                    <img src={basketIcon} alt="cesta de compras"/>
                     Congelados </Link>
                 </DepartamentDropDown> 
                 
                 <DepartamentDropDown>
                     <Link className='dep-link' to="/mercado/confeitaria"> 
-                    <img src={WeddingCake}/>
+                    <img src={WeddingCake} alt="Bolo de casamento"/>
                     Confeitaria </Link>
                 </DepartamentDropDown>  
                     
                 <DepartamentDropDown>
                     <Link className='dep-link' to="/mercado/laticinios"> 
-                    <img src={CheeseIcon}/>
+                    <img src={CheeseIcon} alt="queijos"/>
                     Laticínios </Link>
                 </DepartamentDropDown>  
             </nav>

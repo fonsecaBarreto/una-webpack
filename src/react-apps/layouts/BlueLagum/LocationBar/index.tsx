@@ -50,12 +50,12 @@ export const LocationBar = () => {
             <div className='app-container'>
                 <nav>
                     <button className='bl-location-selector' onClick={() => setShowLocationModal(true)}>
-                        <img src={LocationPin}></img> 
+                        <img src={LocationPin} alt="pin de localização"></img> 
                         <span>{ session_address ? session_address.label : "Selecione a sua localidade" }</span>
                     </button>
 
                     <button className='bl-duvida-button' onClick={()=>history.push("/tutoriais")}>
-                        <img src={DuvidaIcon}></img> 
+                        <img src={DuvidaIcon} alt="icone de duvida (?)"></img> 
                         <span> Preciso de ajuda </span>
                     </button>
                 </nav>

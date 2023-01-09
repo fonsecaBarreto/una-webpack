@@ -35,7 +35,7 @@ export const PrimaryHeader: React.FunctionComponent<PrimaryHeader.Params> =  ({ 
                 <section>
                     <ToggleButton onClick={menuContext.toggleMenu}></ToggleButton>
                     <a href="/" className="bluelagum-logo-link">
-                        <img src={ LogoImg  }/>
+                        <img alt="logo una compras (escrito por extenso )" src={ LogoImg  }/>
                     </a>
               
                 </section>

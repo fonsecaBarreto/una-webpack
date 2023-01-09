@@ -26,7 +26,7 @@ export const SearchButton: React.FunctionComponent<any> = ({ onClick, onHover })
             {
                 (!showSearchBar) ?
                     <button className={`header-search-button `} onClick={()=>setShowSearchBar(true)} onMouseEnter={onHover} >
-                        <img src={SearchIcon}></img>    
+                        <img src={SearchIcon} alt="lupa"></img>    
                     </button> 
                     :
                     <>
