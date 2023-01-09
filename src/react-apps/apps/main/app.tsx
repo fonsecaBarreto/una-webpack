@@ -2,15 +2,10 @@ import React, { useEffect, useRef } from "react";
 import "../app.css";
 import Routes from "./routes"; 
 import { Provider, useSelector } from "react-redux";
-
 import FixedUnaLoading from "@/react-apps/layouts/components/FixedLoading";
  import { ToastContainer } from 'react-toastify';
 import WhatsAppFloatButton from "@/react-apps/components/WhatsAppButton";
-
 import store from "@/react-apps/store/index.js";
-import { Link, Route, Switch } from "react-router-dom";
-import MartPage from "@/react-apps/pages/mart-page";
-import Cotacao from "@/react-apps/pages/cotacoes/[budget_id]";
 import GlobalContext from "../GlobalContext";
 
 export const App = (props: any) => {
