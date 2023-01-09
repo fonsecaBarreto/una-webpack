@@ -38,7 +38,7 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
         const weight_price = (full_price) / ( ( data?.weight ?? 1 ) * (quantity ?? 1));
 
         const expiration_date_str = new Date(selectedSupply?.expiration).toLocaleDateString().split("T")[0];
-        const showPriceFromWeight = ['queijo'].includes(data?.subCategory?.value.split("-")[0])
+        const showPriceFromWeight = ['queijo', 'queijos'].includes(data?.subCategory?.value.split("-")[0])
         const principalPrice =  showPriceFromWeight ?  weight_price : unity_price; 
 
 
