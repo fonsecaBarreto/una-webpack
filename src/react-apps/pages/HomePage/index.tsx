@@ -36,7 +36,7 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
         
                 <CategoriasCarousel/>
 
-                <div ref={firstStage}></div>
+                <span ref={firstStage}></span>
                 
                 {  stage >= 1 &&
                     <>
@@ -55,7 +55,7 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
                     </>
                 }
 
-                <div ref={secondStage}></div>
+                <span ref={secondStage}></span>
                 { stage >= 2 && <>
 
                     <section className='una-home-section'>
