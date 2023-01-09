@@ -56,12 +56,12 @@ server.get('/:path*?', (req, res) => {
   const indexFile = path.join(CLIENT_DIST_DIR, "views", "main.html")
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
-      console.error('Something went wrong:', err);
+      console.error('Alguma coisa deu errado:', err);
       return res.status(500).send('Oops, better luck next time!');
     }
     return res.send(
       data
-        .replace('//{{metadata}}//', `  window.__INITIAL_DATA__ =${JSON.stringify({ location:  URL })}`)
+        .replace('//{{metadata}}//', `  window.__INITIAL_DATA__ =${JSON.stringify({ location:  "" })}`)
         .replace('<div id="root"></div>', `<div id="root">${component}</div>`)
     );
   }); 
