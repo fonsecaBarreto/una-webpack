@@ -6,7 +6,7 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 const SRC_DIR =  path.resolve(__dirname, "..", "src")
 const OUTPUT_DIR =  path.resolve(__dirname, "..", "dist")
 const Dotenv = require('dotenv-webpack');
-
+const CompressionPlugin = require("compression-webpack-plugin")
 const entries = {};
 fs.readdirSync(`${SRC_DIR}/react-apps/apps`).map(async (file) => {
     if (!fs.statSync(path.resolve(`${SRC_DIR}/react-apps/apps`, file)).isDirectory()) return;
@@ -48,7 +48,9 @@ module.exports ={
                     chunks: [a],                          // chuck Js
             }))
         }),
-        new WebpackManifestPlugin()
+        new WebpackManifestPlugin(),
+
+        new CompressionPlugin()
     ],
 
     module: {

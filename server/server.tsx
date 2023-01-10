@@ -7,11 +7,21 @@ import { useMiddlewares } from "./middlewares"
 import { App as LandginPage } from '../src/react-apps/apps/landingpage/app'
 import { App as Main } from '../src/react-apps/apps/main/app'
 import { StaticRouter } from 'react-router-dom'
+
+
 const PORT = process.env.PORT || 8080;
 const server = express()
 useMiddlewares(server);
 
 const CLIENT_DIST_DIR =   path.resolve(__dirname, "..", "..", "dist")
+
+
+server.get('*.js', (req, res, next) => {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
+
 
 server.use("/", express.static(CLIENT_DIST_DIR));
 
