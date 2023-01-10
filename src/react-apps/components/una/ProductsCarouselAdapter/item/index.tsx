@@ -67,9 +67,9 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
     const renderImage = React.useCallback(() => {
 
         const captureMedium = (image: string) => {
-            const prefix = "https://unacompras-v2-imagens-publicas.s3.amazonaws.com/2023/"
-            const image_name = image?.split(prefix)[1];
-            return prefix+"min/"+(image_name+"").split(".webp")[0]+"-md.webp"
+            const prefix = "https://unacompras-v2-imagens-publicas.s3.amazonaws.com/min/"
+            const image_name = image.substring(image.lastIndexOf('/')+1);
+            return prefix+(image_name+"").split(".webp")[0]+"-md.webp"
         }
 
         const { image, specification } = data

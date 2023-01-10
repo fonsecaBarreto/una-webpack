@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import ProductImage from "@/public/assets/images/product/empty.svg"
 import { useHistory } from 'react-router-dom'
-import { ProductFeedCartButton } from './AddCartButton'
 import { UseCartHandler } from '@/react-apps/store/reducers/cart/handler'
 import StarImg from "@assets/icons/star.svg"
 import { CreateCartItem_Id } from '@/react-apps/store/reducers/cart'
