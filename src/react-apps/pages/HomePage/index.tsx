@@ -8,7 +8,7 @@ import LatestProductsCarousel from '@/react-apps/components/una/ProductsCarousel
 import ConfeitareProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/ConfeitareProducts';
 import LaticiniosProductsCarousel, { JokerProductsCarousel } from '@/react-apps/components/una/ProductsCarouselAdapter/LaticiniosProducts';
 import useIntersectionObserver from '@/react-apps/components/utils/useIntersectionObserver';
-
+import ModalUnaLoading from '@/react-apps/layouts/components/ModalLoading';
 export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
     const firstStage = React.useRef<HTMLDivElement | any>(null);
@@ -37,16 +37,19 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
           <span ref={firstStage}></span>
 
-          {stage >= 1 && (
+          {stage >= 1 ? (
             <>
               <section className="una-home-section">
                 <h4> Queijos: </h4>
-                <JokerProductsCarousel q_params={{ categories: ["queijos"] }} />
+                <JokerProductsCarousel 
+                    columns={[5,5,4,3,2]}
+                    q_params={{ categories: ["queijos"] }} />
               </section>
 
               <section className="una-home-section">
                 <h4> Bebidas: </h4>
-                <JokerProductsCarousel q_params={{ categories: ["alcoolicas", "nao-alcoolicas"] }} />
+                <JokerProductsCarousel 
+                    q_params={{ categories: ["alcoolicas", "nao-alcoolicas"] }} />
               </section>
 
 
@@ -56,10 +59,14 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
               </section>
          
             </>
-          )}
+          )
+          :
+            <ModalUnaLoading/>
+        
+        }
 
           <span ref={secondStage}></span>
-          {stage >= 2 && (
+          {stage >= 2 ? (
             <>
               <section className="una-home-section">
                 <h4> Doces: </h4>
@@ -79,7 +86,10 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
 
               <LatestProductsCarousel />
             </>
-          )}
+          )
+          :
+          <ModalUnaLoading/>
+          }
         </div>
       </div>
     );

@@ -8,13 +8,13 @@ import { useHistory } from 'react-router-dom';
 
 export type JokerProductsCarouselProps = {
     q_params: any,
-    colums?: number[],
+    columns?: number[],
 }
 
 export const JokerProductsCarousel: React.FunctionComponent<JokerProductsCarouselProps> = (props) =>{
 
 
-    const { q_params, colums =[4,4,3,3,2] } = props
+    const { q_params, columns =[4,4,3,3,2] } = props
     const [products, setProducts] = React.useState<any>([])
     const history = useHistory();
     React.useEffect(()=>{
@@ -37,7 +37,7 @@ export const JokerProductsCarousel: React.FunctionComponent<JokerProductsCarouse
                 onChange={handleChanges}
                 element={Item} 
                 records={products} 
-                colums={colums}/>
+                colums={columns}/>
         </div>
                  
     )

@@ -30,7 +30,7 @@ export const ConfeitareProductsCarousel: React.FunctionComponent<any> = () =>{
                 onChange={handleChanges}
                 element={Item} 
                 records={products1} 
-                colums={[6,5,4,3,2]}/>
+                colums={[5,5,4,3,2]}/>
 
         </div>
                  
