@@ -14,7 +14,7 @@ const isDateExpired = (date: Date) => {
 export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.ItemProps<Product>> = (props) =>{
     const  { entry: { data, index }, onChange } = props;
     const { ean, specification, supplies, image,   } = data
-
+    const [ showImage, setShowImage ] = React.useState(false)
     const selectedSupply: any = React.useMemo(()=>{
         if(!supplies || supplies.length == 0) return null;
         const sorted_supplies = ([ ...supplies])
@@ -64,13 +64,56 @@ export const ProductCarouselItem: React.FunctionComponent<UtilsCarouselTypes.Ite
     }, [ selectedSupply, data])
 
 
+    const renderImage = React.useCallback(() => {
 
+        const captureMedium = (image: string) => {
+            const prefix = "https://unacompras-v2-imagens-publicas.s3.amazonaws.com/2023/"
+            const image_name = image?.split(prefix)[1];
+            return prefix+"min/"+(image_name+"").split(".webp")[0]+"-md.webp"
+        }
+
+        const { image, specification } = data
+        let result_image = captureMedium(image+"");
+
+
+        const handleImageLoaded = () => {
+           setShowImage(true)
+        }
+
+        const handleImageErrored = ({ currentTarget }: any) => {
+            currentTarget.src=image ?? ProductImage; 
+            currentTarget.onerror= null
+        }
+        
+        return (
+            <section className='carousel-product-item-img-vp'> 
+            
+            
+                <picture >
+                    <img  
+                        onLoad={handleImageLoaded}
+                        onError={handleImageErrored}
+                        alt={`Ilustração do produto ${specification}`} loading='lazy' src={result_image}/>
+                </picture>
+
+                {   !showImage && <img alt={`Ilustração do produto ${specification}`} loading='lazy' src={ProductImage}/>  } 
+        
+            </section>
+        )
+    },[data, showImage])
+
+  /*   <picture>
+            <source srcSet={TestImage2} media="(min-width: 756px)" />
+            <img
+              className="d-block w-100"
+              src={TestImageMd2}
+              alt="First slide"
+            />
+          </picture> */
     return (
         <div className={`carousel-product-item`} onClick={()=>onChange && onChange("OPEN", ean)} >
             <header>
-                <section className='carousel-product-item-img-vp'> 
-                    <img alt="Ilustração do produto" loading='lazy' src={image ?? ProductImage}></img>
-                </section>
+                {renderImage()}
             </header>
             <main>
                 <span className='carousel-pi-spec'>{specification}</span>
