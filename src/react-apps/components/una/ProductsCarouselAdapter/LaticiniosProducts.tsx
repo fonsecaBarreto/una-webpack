@@ -5,11 +5,20 @@ import { produtosServiceV2 } from "@/services/api/v2/produtos-service"
 import UtilsCarousel from '../../utils/Carousel';
 import { useHistory } from 'react-router-dom';
 
-export const LaticiniosProductsCarousel: React.FunctionComponent<any> = () =>{
+
+export type JokerProductsCarouselProps = {
+    q_params: any,
+    colums?: number[],
+}
+
+export const JokerProductsCarousel: React.FunctionComponent<JokerProductsCarouselProps> = (props) =>{
+
+
+    const { q_params, colums =[4,4,3,3,2] } = props
     const [products, setProducts] = React.useState<any>([])
     const history = useHistory();
     React.useEffect(()=>{
-        produtosServiceV2.list({categories: ["queijos"]})
+        produtosServiceV2.list(q_params)
             .then(r=>{setProducts(r.records)});
     },[])
 
@@ -28,10 +37,10 @@ export const LaticiniosProductsCarousel: React.FunctionComponent<any> = () =>{
                 onChange={handleChanges}
                 element={Item} 
                 records={products} 
-                colums={[4,4,3,3,2]}/>
+                colums={colums}/>
         </div>
                  
     )
 }
 
-export default LaticiniosProductsCarousel
+export default JokerProductsCarouselProps

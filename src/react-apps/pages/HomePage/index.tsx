@@ -6,7 +6,7 @@ import CategoriasCarousel from '@/react-apps/components/una/CategoriasCarousel';
 import HeadLineCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/HeadLineCarousel';
 import LatestProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LatestProducts';
 import ConfeitareProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/ConfeitareProducts';
-import LaticiniosProductsCarousel from '@/react-apps/components/una/ProductsCarouselAdapter/LaticiniosProducts';
+import LaticiniosProductsCarousel, { JokerProductsCarousel } from '@/react-apps/components/una/ProductsCarouselAdapter/LaticiniosProducts';
 import useIntersectionObserver from '@/react-apps/components/utils/useIntersectionObserver';
 
 export const HomePage: React.FunctionComponent<any> = ({ history }) => {
@@ -28,53 +28,61 @@ export const HomePage: React.FunctionComponent<any> = ({ history }) => {
     },[ isStage2, isStage1])
 
     return (
-        <div id="home-page">
-            <header className='app-container home-page-container'>
-                <HeadLineCarousel/>
-            </header>
-            <div className='app-container home-page-container'>
-        
-                <CategoriasCarousel/>
+      <div id="home-page">
+        <header className="app-container home-page-container">
+          <HeadLineCarousel />
+        </header>
+        <div className="app-container home-page-container">
+          <CategoriasCarousel />
 
-                <span ref={firstStage}></span>
-                
-                {  stage >= 1 &&
-                    <>
-                        <section className='una-home-section'>
-                            <h4> Laticinios: </h4>
-                            <LaticiniosProductsCarousel/>
-                        </section> 
+          <span ref={firstStage}></span>
+
+          {stage >= 1 && (
+            <>
+              <section className="una-home-section">
+                <h4> Queijos: </h4>
+                <JokerProductsCarousel q_params={{ categories: ["queijos"] }} />
+              </section>
+
+              <section className="una-home-section">
+                <h4> Bebidas: </h4>
+                <JokerProductsCarousel q_params={{ categories: ["alcoolicas", "nao-alcoolicas"] }} />
+              </section>
 
 
-                        <section className='una-home-section'>
-                            <h4> Para sua padaria: </h4>
-                            <PadariaProductsCarousel/>
-                        </section> 
+              <section className="una-home-section">
+                <h4> Embutidos: </h4>
+                <JokerProductsCarousel q_params={{ categories: ["embutidos-defumados-e-salgados"] }} />
+              </section>
+         
+            </>
+          )}
 
-                      
-                    </>
-                }
+          <span ref={secondStage}></span>
+          {stage >= 2 && (
+            <>
+              <section className="una-home-section">
+                <h4> Doces: </h4>
+                <ConfeitareProductsCarousel />
+              </section>
 
-                <span ref={secondStage}></span>
-                { stage >= 2 && <>
+              <section className="una-home-section">
+                <h4> Para sua padaria: </h4>
+                <PadariaProductsCarousel />
+              </section>
 
-                    <section className='una-home-section'>
-                        <h4> Doces: </h4>
-                        <ConfeitareProductsCarousel/>
-                    </section> 
+              <section className="una-home-section">
+                <h4> Produtos de limpeza: </h4>
+                <LimpezaProductsCarousel />
+              </section>
 
-                    <section className='una-home-section'>
-                        <h4> Produtos de limpeza: </h4>
-                        <LimpezaProductsCarousel/>
-                    </section> 
 
-                    <LatestProductsCarousel/>
-                </>}
-            
-
-            </div> 
+              <LatestProductsCarousel />
+            </>
+          )}
         </div>
-    )
+      </div>
+    );
 }
 
 export default HomePage
