@@ -22,7 +22,7 @@ export interface Product {
     specification: string
     brand: LabelView
     presentation: any
-    subCategory: LabelView
+    subCategory: {value: string, label: string, presentation_unity: string }
     image: string | null;
     weight: number | null;
     volume: number | null;
