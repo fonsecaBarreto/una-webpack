@@ -20,6 +20,12 @@ const isDateExpired = (date: Date) => {
     return hoje > date;
 }
 
+const PRESENTATION_CONFIG: any = {
+    "weight": { sufix: "kg" },
+    "unity": { sufix: "und." },
+    "pack": { sufix: "caixa" },
+}
+
 export const ProductImageSection: React.FunctionComponent<any> = ({ images, onClick, out = false }) =>{
     
     const [ image, setImage ] = useState(ProductImage);
@@ -70,28 +76,25 @@ export const ProductItem: React.FunctionComponent<any> = ({ onAction, showPriceF
     const renderSupply = useCallback(() => {
         if(!selectedSupply) return <></>;
 
-
-        const { price } = selectedSupply;
-
+        const presentation_unity = produto?.subCategory?.presentation_unity;
         var quantity = produto.quantity_per_unity ?? 1;
-
-        const full_price = price ?? 0;
-        const unity_price = (full_price / (quantity ?? 1));
-        const weight_price = (full_price) / ((weight ?? 1) * (quantity ?? 1));
-
-        const expiration_date_str = new Date(selectedSupply.expiration).toLocaleDateString().split("T")[0];
-
-
-
-
-        const principalPrice = showPriceFromWeight ?  weight_price : unity_price;
         
-
+        const full_price = selectedSupply?.price ?? 0;
+        const prices_presentation_options: any = {
+            "weight": (full_price) / ( ( produto?.weight ?? 1 ) * (quantity ?? 1)),
+            "unity": (full_price / (quantity ?? 1)),
+            "pack": full_price
+        }
+        
+        const result_price =  prices_presentation_options[presentation_unity] ?? full_price;
+        const result_price_sufix = PRESENTATION_CONFIG?.[presentation_unity].sufix ?? ""        
+        const expiration_date_str = new Date(selectedSupply.expiration).toLocaleDateString().split("T")[0];
+        
         return <section className='product-feed-item-prices'>
 
             <span className='item-unit-price'>
-                R$: {principalPrice.toFixed(2)+ " "} 
-                <span className="unidade-preco"> / {showPriceFromWeight ? "Kg." : "und."}</span>
+                R$: {result_price.toFixed(2)+ " "} 
+                <span className="unidade-preco"> / {result_price_sufix}</span>
             </span>
     
             <span className="item-full-price"> 
