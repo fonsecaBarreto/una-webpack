@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import "./home.css"
 
+import VideoContainer from '../components/VideoContainer';
+
 const ROW_STRUCT = [
    {
        image:null,
@@ -38,33 +40,71 @@ export const HomePage = () => {
    }, []);
 
    return (
-   <div>
+
       <div id="home-page">
-         <div id="home">
-            <h1>
-             {isClient ? 'Is Client' : 'Is Server'} 
-            </h1>
-            <div id="head-line" >
-                  <div className="app-container">
-                     
-                     <div className="head-line-text-container">
-                        <h1> Una A praticidade de comprar ao melhor preço</h1>
-                        <h3> Uma plataforma digital para empresários reduzirem custos, conectando o comprador ao fornecedor, simplificando o processo de compras. </h3>
-                        <button className="soft-btn"> Saiba mais</button>
+          <header id="headline">
+               <div className="landing-page-navbar app-container">
+                  Aqui deve ter um logo 
+               </div>
+               <nav className="head-line-container">
+
+                     <div className="app-container">
+                        <div className="head-line-text-container">
+                           <h1> Una A praticidade de comprar ao melhor preço</h1>
+                           <h3> Uma plataforma digital para empresários reduzirem custos, conectando o comprador ao fornecedor, simplificando o processo de compras. </h3>
+                           <button className="soft-btn"> Saiba mais</button>
+                        </div>
                      </div>
-                  </div>
+               </nav>
+         </header>
+
+         <main className="app-container">
+
+    
+           
+            <div id="sobre">
+               Texto sobre a asidnansd
             </div>
-         </div>
+
+            <div id="vantagens">
+               <div className="main-content-right-side">
+                  <ul>
+                     { items.map((j,i)=> (  
+                        <li key={i}>
+                              <span> {j.icon} </span>
+                              {j.text}
+                        </li>  
+                     ))  }
+                  </ul>    
+               </div> 
+            </div>
+
+            <div id="video">
+               <VideoContainer/>
+            </div>
+
+      
+            <div id="equipe">
+               Quem somos aquias
+            </div>
+
+            <div>
+               Quero me inscrerer
+               <button> OK </button>
+            </div>
 
 
-         <div  id="goals">
+         </main>
+
+
+        {/*  <div  id="goals">
             <div className="app-container">
             <div className="perks-row">
                {
                   ROW_STRUCT.map( (col, i)=>(
                      <div className="perks-card" key={i}>
                            <div className="pcimg-vp">
-                              {/* <img src={col.image ??}></img> */}
+                              <img src={col.image ?? null}></img> 
                            </div>
                            <span>{col.title}</span>
                            <span>{col.description}</span>
@@ -73,8 +113,8 @@ export const HomePage = () => {
                }
             </div>
             </div> 
-         </div>
-
+         </div> */}
+{/* 
 
          <div className="main-content-right-side">
             <ul>
@@ -86,12 +126,12 @@ export const HomePage = () => {
                 ))  }
             </ul>    
           
-        </div>
+        </div> */}
 
 
       </div>
       
-   </div>)
+)
 }
 
 
